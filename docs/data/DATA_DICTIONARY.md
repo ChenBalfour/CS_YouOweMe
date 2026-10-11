@@ -1,6 +1,6 @@
 # 数据字典
 
-开源样本与运行输出使用相同字段。`samples/pilot_20261011/` 的 `raw_path` 指向提取的 `.nuxt.json`，`raw_sha256` 校验该分发文件；样本额外的 `original_html_sha256` 保留原始整页 HTML 校验值。运行采集器产生的 `data/` 仍归档完整 HTML，并被 Git 忽略。
+开源样本与运行输出使用相同字段。`data/samples/pilot_20261011/` 的 `raw_path` 指向提取的 `.nuxt.json`，`raw_sha256` 校验该分发文件；样本额外的 `original_html_sha256` 保留原始整页 HTML 校验值。运行采集器产生的 `data/local/` 仍归档完整 HTML，并被 Git 忽略。
 
 所有快照时间均使用 ISO 8601，包含 `+08:00`。价格计算使用 Decimal，CSV 输出十进制文本，避免浮点二进制误差。空单元格表示缺失或尚未确认；0 只保留在有定义的原始字段和计数中。
 
@@ -96,6 +96,8 @@
 
 ## SQLite 和运行说明
 
-`runs` 表保留每批 manifest。`items` / `quotes` / `variants` 表保留主键和完整 `payload_json`。同一商品在后续采集会产生新的 run_id，不覆盖旧快照。`data/latest_run.json` 只是一条最近运行指针，不代表历史全部数据。
+`runs` 表保留每批 manifest。`items` / `quotes` / `variants` 表保留主键和完整 `payload_json`。同一商品在后续采集会产生新的 run_id，不覆盖旧快照。`data/local/latest_run.json` 只是一条最近运行指针，不代表历史全部数据。
 
 原始资料仍是事实核对的依据。CSV、数据库和 manifest 的统计来自同批数据，保留失败信息。当前没有历史 OHLCV 表，K 线模式只归档原始响应，不猜测数组字段顺序。
+
+导出表位于每批的 `tables/`，原始证据位于 `raw/`，manifest 和质量报告位于 `reports/`。完整目录与迁移说明见 [采集指南](../usage/COLLECTION.md)。

@@ -7,8 +7,10 @@ env.example
 *.pem
 credentials*.json
 
-# Local collection output and caches. Public pilot lives under samples/.
-data/
+# Only curated anonymous samples may be published from data/.
+data/*
+!data/samples/
+data/local/
 *.sqlite
 *.sqlite3
 *.db

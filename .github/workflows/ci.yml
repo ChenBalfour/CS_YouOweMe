@@ -28,8 +28,8 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - name: Check tracked files and history
-        run: python tools/check_secrets.py --history
+        run: python scripts/check_secrets.py --history
       - name: Run offline tests
         run: python -m unittest discover -s tests -v
       - name: Check CLI version
-        run: python collect.py --version
+        run: python scripts/collect.py --version
