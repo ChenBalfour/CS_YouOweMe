@@ -19,3 +19,6 @@ where = ["src"]
 
 [tool.setuptools.dynamic]
 version = {attr = "cs_youoweme.__version__"}
+
+[tool.setuptools.package-data]
+cs_youoweme = ["history/schema.sql"]

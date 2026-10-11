@@ -9,9 +9,14 @@ from .paths import CONFIG
 from .errors import CollectionError
 from .collectors.public import collect_public
 from .collectors.official import collect_api, collect_kline
+from .history import cli as history_cli
 
 
 def main(argv=None):
+    # Windows consoles default to GBK; catalog names also contain Unicode symbols.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--version", action="version", version=f"CS_YouOweMe {__version__}")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -29,8 +34,11 @@ def main(argv=None):
     kline.add_argument("--type", type=int, required=True, help="Use a platform-confirmed period value; no guessed default")
     kline.add_argument("--platform", required=True)
     kline.add_argument("--special-style", default="")
+    history_cli.register(sub)
     args = parser.parse_args(argv)
     try:
+        if args.command in {"catalog", "history", "universe"}:
+            return history_cli.run(args)
         return {"public": collect_public, "api": collect_api, "kline": collect_kline}[args.command](args)
     except (CollectionError, OSError, ValueError) as error:
         print(f"Collection stopped: {error}", file=sys.stderr)
