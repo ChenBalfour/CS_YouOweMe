@@ -34,7 +34,7 @@ python scripts/collect.py api --limit 20 --with-base
 python scripts/collect.py kline --help
 ```
 
-官方 API 代码尚未完成真实认证和返回字段验证。默认只保留原价；独立确认人民币口径后才使用 `--currency CNY`。K 线仅保存原始响应，不猜测周期或列顺序。官方 [K 线说明](https://doc.steamdt.com/428124801e0)明确不包含成交数据，不能因此生成成交量列。
+官方基础目录已完成真实认证验证，并接入 `catalog sync`。旧批量报价模式仍默认保留原价，确认人民币口径后再使用 `--currency CNY`；旧官方 K 线命令仅归档响应。官方 [K 线说明](https://doc.steamdt.com/428124801e0)不包含成交数据；网页历史是独立来源，实测包含量额与成交。新增目录、小时行情与逐笔采集见 [历史采集](HISTORY.md)，不要将两种接口口径混用。
 
 [官方权限列表](https://doc.steamdt.com/6369437m0)给出基础信息每天 1 次、批量价格每分钟 1 次、K 线每分钟 120 次。采集器使用基础信息 24 小时缓存、批量调用至少 61 秒间隔；账号配额也可能被其他程序消耗。
 
@@ -67,6 +67,6 @@ K 线模式只生成 `raw/` 和 `reports/manifest.json`，不更新快照数据�
 | 根目录数据字典 | `docs/data/DATA_DICTIONARY.md` |
 | `tools/check_secrets.py` | `scripts/check_secrets.py` |
 
-已有运行输出需自行备份迁移；重命名后应更新其中相对路径。不能仅移动 CSV 而丢失 raw 文件。此次维护工作区的最初试采项目完整保存在 `data/local/archive/initial_collection/`，包括完整 HTML 与原始本地配置；历史归档中的旧路径保留原状，新采集使用上述新目录。
+已有运行输出需备份迁移，重命名后更新相对路径，不能只移动 CSV 而丢失 raw。最初试采的完整 HTML、数据库、清单与原始配置保存在 `data/local/archive/initial_collection/`，用于追溯；重复旧代码、测试与说明已清理。历史数据的旧路径保留原状，新采集使用上述新目录。
 
 版本唯一来源为 `src/cs_youoweme/__init__.py` 的 `__version__`。`pyproject.toml` 使用同一版本；推荐直接运行源码入口，或在源码目录内进行 editable 安装。配置和本地数据均属于工作区，不打包分发。

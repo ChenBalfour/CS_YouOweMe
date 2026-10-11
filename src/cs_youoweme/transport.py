@@ -18,7 +18,7 @@ class SameOriginRedirect(urllib.request.HTTPRedirectHandler):
 
 
 def request_bytes(url, body=None, key=None):
-    headers = {"User-Agent": "SteamDT-CourseResearch/0.2", "Accept-Language": "zh-CN,zh;q=0.9"}
+    headers = {"User-Agent": "CS-YouOweMe-Research/0.3", "Accept-Language": "zh-CN,zh;q=0.9"}
     payload = None
     if body is not None:
         payload = json.dumps(body, ensure_ascii=False).encode("utf-8")
