@@ -4,5 +4,7 @@
 *.json text eol=lf
 *.yml text eol=lf
 *.toml text eol=lf
+*.sql text eol=lf
+*.code-workspace text eol=lf
 *.csv text eol=lf
 .githooks/* text eol=lf

@@ -33,7 +33,8 @@ class WebsiteTests(unittest.TestCase):
                          {"success": True, "errorCode": 0, "data": []}])
         archive = []
         client = WebsiteClient(lambda *args: archive.append(args) or len(archive), opener=opener)
-        with patch("cs_youoweme.collectors.website.time.sleep"):
+        # A fresh runner's monotonic clock can be less than the sync interval.
+        with patch("cs_youoweme.collectors.website.time.sleep"), patch("cs_youoweme.collectors.website.time.monotonic", return_value=10):
             data, request = client.call(KLINE, {"typeVal": "source-id", "type": 1})
         self.assertEqual((data, request), ([], 2))
         self.assertEqual(len(archive), 2)

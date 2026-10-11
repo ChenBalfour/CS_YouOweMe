@@ -42,7 +42,7 @@ class WebsiteClient:
         self.opener = opener or urllib.request.build_opener(SameOriginRedirect())
         self.offset = 0
         self.last_request = 0
-        self.synced_at = 0
+        self.synced_at = None
         self.requests = 0
 
     def _request(self, path, params, post):
@@ -95,7 +95,7 @@ class WebsiteClient:
     def call(self, path, params=None, post=False):
         if path not in ALLOWED:
             raise CollectionError("Unsupported website endpoint")
-        if path != SYSTEM and time.monotonic() - self.synced_at > 240:
+        if path != SYSTEM and (self.synced_at is None or time.monotonic() - self.synced_at > 240):
             before = time.time() * 1000
             config, _ = self._request(SYSTEM, {}, False)
             after = time.time() * 1000
