@@ -1,0 +1,35 @@
+name: Test and check credentials
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            python: '3.11'
+          - os: ubuntu-latest
+            python: '3.13'
+          - os: windows-latest
+            python: '3.11'
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Check tracked files and history
+        run: python tools/check_secrets.py --history
+      - name: Run offline tests
+        run: python -m unittest discover -s tests -v
+      - name: Check CLI version
+        run: python collect.py --version

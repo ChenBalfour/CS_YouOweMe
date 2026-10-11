@@ -1,0 +1,31 @@
+# Credentials: only the empty configuration template may be tracked.
+.env*
+!.env.example
+*.env
+env.example
+*.key
+*.pem
+credentials*.json
+
+# Local collection output and caches. Public pilot lives under samples/.
+data/
+*.sqlite
+*.sqlite3
+*.db
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.coverage
+htmlcov/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Full vendor web/document pages are retained locally only.
+docs/*.html
