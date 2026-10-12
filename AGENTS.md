@@ -11,5 +11,5 @@
 - 不无记录删除或移动旧数据。所有文件管理遵循 FILE_MANAGEMENT，资产状态遵循 ASSET_REGISTER。
 - 当前部分的代码或文档修改同步必要的 STATE 和本地交接记录；检查与变更相适应，不为纯文档更新启动市场采集或模型实验。
 
-- 当前目录 layout-1.0：代码与工程配套集中在 scripts/，数据在 data/，文档在 docs/；根目录工具元数据保留。用户本次已授权文件整理与有依据清理，完成后停止，不启动 P02。
+- 当前目录 layout-1.0：代码与工程配套集中在 scripts/，数据在 data/，文档在 docs/；根目录工具元数据保留。文件整理已完成；后续用户授权的单品单日试跑也已完成。当前停止点见 STATE，不自动扩大采集、开始正式选品或训练。
 - 文件与目录用途、内容版本见 docs/governance/FILE_CATALOG.json；私有清单在 data/local/manifests/。修改后运行 python -B scripts/manage_assets.py --write，再 --check；离线测试入口为 scripts/tests。

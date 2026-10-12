@@ -60,6 +60,7 @@ def sensitive_path(path):
         or (name.startswith("credentials") and name.endswith(".json"))
         or (path.startswith("data/") and not path.startswith("data/samples/") and path != "data/readme.md")
         or path.startswith("docs/local/")
+        or path.startswith("scripts/local/")
     )
 
 

@@ -1,6 +1,6 @@
 # 既有资产登记
 
-登记版本 asset-register-1.1，2026-10-12。本次完成文件用途略审与工程整理；市场资产的来源、标签、执行能力仍需对应部分验收。
+登记版本 asset-register-1.2，2026-10-12。文件整理后新增用户授权的单品单日试跑，平台行情初步验证为 L0；市场资产的来源、标签、执行能力仍需对应部分验收。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
@@ -8,6 +8,9 @@
 | scripts/src、collect.py | legacy / unreviewed-market | 解析、精度、分页、恢复和存储机制可复用 | P03 |
 | scripts/tests | legacy / offline-regression | 机制回归；通过不代表市场数据合格 | P03–P05 |
 | scripts/check_secrets.py、hooks | retained / engineering | 本地凭证隔离检查，仍暂停远程发布 | 持续 |
+| scripts/pilot_uu_day.py | retained / engineering-pilot | 单品单日有预算试跑和离线核验，未完成完整爬虫验收 | P03 |
+| data/local/staging/steamdt 单日试跑 | candidate / L0 | 24 个 UU 小时价格桶；量额有缺失、逐笔平台未确认，不用于训练 | P03 |
+| docs/local/pilots、scripts/local/pilot_sources | private / traceable | 试跑质量报告与实际执行源码的准确内容版本 | 持续 |
 | scripts/manage_assets.py、FILE_CATALOG | current-management | 每个文件及目录的版本、用途与完整性检查 | 持续 |
 | scripts/config/seeds、watchlist | legacy / research-clue | 旧精确种子及用户举例线索，非正式名单 | P02 |
 | scripts/sql、config/vscode.code-workspace | legacy / diagnostic | 旧库只读诊断参考 | P03–P04 |

@@ -1,11 +1,13 @@
 # 脚本与工程配套
 
-目录版本 layout-1.0，代码版本 0.3.1（本地未发布）。每个文件和子目录的用途、SHA-256 内容版本见 [统一清单](../docs/governance/FILE_CATALOG.json)。
+目录版本 layout-1.0，代码版本 0.3.2（本地未发布）。每个文件和子目录的用途、SHA-256 内容版本见 [统一清单](../docs/governance/FILE_CATALOG.json)。
 
 | 位置 | 用途与保留依据 |
 | --- | --- |
 | collect.py | 旧 CLI 入口，保留解析、存储和任务机制参考 |
 | check_secrets.py | 提交和历史凭证检查，仅输出位置与结果 |
+| pilot_uu_day.py | 单品单日有限采集、独立试跑库、CSV 导出与离线核验 |
+| local/pilot_sources/ | 私有实际运行源码版本，哈希与采集/核验清单对应 |
 | manage_assets.py | 生成或检查文件、目录版本清单 |
 | src/cs_youoweme/ | 分层源码；UU 口径适配尚未验收 |
 | tests/ | 离线回归，检验解析、精度、恢复及凭证隔离 |

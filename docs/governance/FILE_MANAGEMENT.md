@@ -27,7 +27,7 @@
 - Git 本地提交保存代码、说明和公开清单的可恢复历史；私有数据靠来源清单、哈希和冻结版本管理，不存入 Git。
 - 修改后运行 `python -B scripts/manage_assets.py --write`，随后 `--check`。清单过期、缺说明、缺文件均应修正后再收尾。
 
-计划 plan-1.0、代码 0.3.1、目录 layout-1.0、制度 management-1.1、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)。
+计划 plan-1.1、代码 0.3.2、目录 layout-1.0、制度 management-1.1、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)。
 
 ## 私有数据生命周期
 
@@ -63,4 +63,4 @@ legacy / unreviewed、candidate 不可直接训练；validated 只用于验收�
 
 迁移后检查引用、代码入口、链接与内容哈希。SQLite 备份使用备份接口，或停止写入并处理 WAL 后操作；不在活动写入时单独复制主文件。
 
-每部分更新 STATE、资产登记与交接，执行相应检查并保存本地版本，然后停止。新增 GitHub push、PR、合并与 release 仍暂停，P06 按当时指示发布。凭证在忽略的 `scripts/config/.env`，公开模板保持空白；私有数据、文档、模型产物不进入 Git。
+每部分更新 STATE、资产登记与交接，执行相应检查并保存本地版本，然后停止。新增 GitHub push、PR、合并与 release 仍暂停，P06 按当时指示发布。凭证在忽略的 `scripts/config/.env`，公开模板保持空白；私有数据、文档、模型产物不进入 Git。scripts/local/pilot_sources 保存实际运行源码的准确版本，仅为变更中代码补充追溯，保持私有并纳入私有清单。

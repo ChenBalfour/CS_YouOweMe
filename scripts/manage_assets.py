@@ -27,6 +27,7 @@ PURPOSES = {
     "scripts/collect.py": "旧采集 CLI 的薄入口，当前不恢复采集",
     "scripts/check_secrets.py": "暂存区及 Git 历史的凭证隔离检查，不打印真实值",
     "scripts/manage_assets.py": "生成及校验逐文件、逐目录版本和用途清单",
+    "scripts/pilot_uu_day.py": "单品单日 YOUPIN 小时行情与混合成交的独立有限试跑、离线核验及导出",
     "scripts/config/seeds.json": "旧试采精确英文规格种子，不是正式 UU 名单",
     "scripts/config/watchlist.json": "流金王朝、燃料喷射器等旧调查线索",
     "scripts/config/.env.example": "公开的空白凭证配置模板",
@@ -92,6 +93,8 @@ FOLDERS = {
     "scripts/sql": "旧历史库只读诊断查询",
     "scripts/config": "脚本配置、空白模板与受保护本地凭证",
     "scripts/hooks": "本地 Git 凭证检查 hooks",
+    "scripts/local": "私有的实际运行源码快照，不加入 Git",
+    "scripts/local/pilot_sources": "按试跑保存准确采集和核验源码，匹配 manifest 哈希",
     "data": "来源数据及其伴随元数据",
     "data/samples": "已公开、冻结待复审的旧匿名样本",
     "data/local": "私有历史证据与本地运行产物，不加入 Git",
@@ -103,6 +106,8 @@ FOLDERS = {
     "data/local/recon": "按日期保存的接口与事件探测证据",
     "data/local/universes": "旧候选快照，不是正式 UU 名单",
     "data/local/progress": "旧进度 JSON 记录，当前文字交接迁入 docs/local/progress",
+    "data/local/staging": "未验收候选试跑资产，不能直接训练",
+    "data/local/staging/steamdt": "SteamDT 来源的独立候选试跑与原始追溯",
     "docs": "计划、制度、使用说明和交接记录",
     "docs/governance": "管理、阶段、资产登记与版本索引",
     "docs/research": "唯一主计划与旧研究参考",
@@ -111,6 +116,7 @@ FOLDERS = {
     "docs/releases": "历史发布与本地版本变更说明",
     "docs/local": "私有交接文档，不加入 Git",
     "docs/local/progress": "当前本地交接与旧历史交接文档",
+    "docs/local/pilots": "私有单品试跑和质量核验报告",
 }
 
 def protected(path):
@@ -135,7 +141,7 @@ def code_version():
 def git_public_paths():
     result = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=ROOT, capture_output=True, check=True)
     paths = {name.decode("utf-8") for name in result.stdout.split(b"\0") if name}
-    return {p for p in paths if (ROOT / p).is_file() and not p.startswith(("data/local/", "docs/local/")) and not protected(ROOT / p)} | {PUBLIC, INDEX}
+    return {p for p in paths if (ROOT / p).is_file() and not p.startswith(("data/local/", "docs/local/", "scripts/local/")) and not protected(ROOT / p)} | {PUBLIC, INDEX}
 
 def purpose(path):
     if path in PURPOSES:
@@ -143,6 +149,18 @@ def purpose(path):
     name = Path(path).name
     if protected(Path(path)):
         return "受保护本地凭证，仅登记配置版本，不读取、复制或记录内容及哈希"
+    if path.startswith("scripts/local/pilot_sources/"):
+        return "该试跑实际执行源码的私有版本快照，校验值匹配来源清单"
+    if path.startswith("docs/local/pilots/"):
+        return "单品单日有限试跑或离线质量核验报告，非正式研究结论"
+    if path.startswith("data/local/staging/steamdt/"):
+        if "/raw/" in path:
+            return "该有限试跑的压缩原始响应，用于请求哈希追溯，保持私有"
+        if name == "pilot.sqlite":
+            return "独立单品单日试跑库，不追加旧库、不作为正式训练集"
+        if name.endswith(".worker.lock"):
+            return "独立试跑库的 worker 锁状态"
+        return {"uu_hourly.csv": "指定日的来源标称 UU 小时 OHLC、量额和追溯编号，L0 候选", "source_trades_unmapped.csv": "单日去重后的混合成交，venue unknown，不认定为 UU", "manifest.json": "原始采集范围、代码、预算、覆盖、状态与输入输出哈希", "platform_evidence.json": "采集时的平台键证据，原始大小写提取由独立核验补充", "requests.json": "请求端点、采集时间、HTTP 状态、原始路径与 SHA-256", "quality_review_v1.json": "离线核验：原始哈希、CSV 一致性、UU 键映射、空值与重复", "source_versions.json": "实际采集与核验脚本的私有快照和内容版本"}.get(name, "单品单日候选试跑的伴随元数据")
     if path.startswith("scripts/src/"):
         return SOURCE_PURPOSES[name]
     if path.startswith("scripts/tests/"):
@@ -176,6 +194,10 @@ def purpose(path):
 def folder_purpose(path):
     if path in FOLDERS:
         return FOLDERS[path]
+    if path.startswith("scripts/local/pilot_sources/"):
+        return "该运行实际采集及核验源码快照"
+    if path.startswith("data/local/staging/steamdt/"):
+        return "独立单品单日试跑的原始响应、表、报告或哈希分桶"
     for prefix, label in (("data/local/database/raw/", "旧压缩响应的哈希分桶"), ("data/local/archive/", "最初试采历史证据的分组"), ("data/local/recon/", "按日期保存的来源探测证据"), ("data/local/api_cache/", "按本地凭证标识隔离的旧缓存，不公开标识"), ("data/samples/", "旧匿名样本批次及原始/表/报告分组")):
         if path.startswith(prefix):
             return label
@@ -194,7 +216,7 @@ def catalog(paths, private=False):
     for row in rows:
         folders.update(p.as_posix() for p in Path(row["path"]).parents if p.as_posix() != ".")
     if private:
-        folders.update(p.relative_to(ROOT).as_posix() for p in ROOT.rglob("*") if p.is_dir() and ".git" not in p.relative_to(ROOT).parts and p.relative_to(ROOT).as_posix().startswith(("data/local", "docs/local")))
+        folders.update(p.relative_to(ROOT).as_posix() for p in ROOT.rglob("*") if p.is_dir() and ".git" not in p.relative_to(ROOT).parts and p.relative_to(ROOT).as_posix().startswith(("data/local", "docs/local", "scripts/local")))
     directories = []
     for folder in sorted(folders):
         members = [(r["path"], r["version"]) for r in rows if folder == "." or r["path"].startswith(folder + "/")]

@@ -13,6 +13,7 @@ data/*
 !data/README.md
 data/local/
 docs/local/
+scripts/local/
 *.sqlite
 *.sqlite3
 *.db
