@@ -28,6 +28,7 @@ PURPOSES = {
     "scripts/check_secrets.py": "暂存区及 Git 历史的凭证隔离检查，不打印真实值",
     "scripts/manage_assets.py": "生成及校验逐文件、逐目录版本和用途清单",
     "scripts/pilot_uu_day.py": "单品单日 YOUPIN 小时行情与混合成交的独立有限试跑、离线核验及导出",
+    "scripts/select_uu_research.py": "有预算的 P02 候选调查、正确商品身份补查和版本化验证名单选择",
     "scripts/config/seeds.json": "旧试采精确英文规格种子，不是正式 UU 名单",
     "scripts/config/watchlist.json": "流金王朝、燃料喷射器等旧调查线索",
     "scripts/config/.env.example": "公开的空白凭证配置模板",
@@ -36,7 +37,9 @@ PURPOSES = {
     "scripts/hooks/pre-push": "历史凭证检查；新增远程推送仍暂停",
     "docs/README.md": "当前计划、制度、历史参考和整理说明索引",
     "data/README.md": "私有数据与已公开冻结样本的生命周期说明",
-    "docs/research/PLAN.md": "唯一研究主计划 plan-1.0",
+    "docs/research/PLAN.md": "唯一研究主计划，当前版本见文档头",
+    "docs/research/SELECTION_PLAN.md": "P02 选品计划、事先固定的范围预算及身份纠正修订依据",
+    "docs/research/SELECTION_REPORT.md": "P02 主力、候补、排除与观察结果、来源快照和未知项",
     "docs/research/UNIVERSE.md": "旧筛选方法和候选说明，仅作历史参考",
     "docs/governance/STATE.md": "当前阶段、版本和停止点",
     "docs/governance/HANDOFF.md": "人类与 agent 交接，以及本地与远程版本差异",
@@ -95,6 +98,7 @@ FOLDERS = {
     "scripts/hooks": "本地 Git 凭证检查 hooks",
     "scripts/local": "私有的实际运行源码快照，不加入 Git",
     "scripts/local/pilot_sources": "按试跑保存准确采集和核验源码，匹配 manifest 哈希",
+    "scripts/local/selection_sources": "按调查运行保存准确选品采集源码，匹配 manifest 哈希",
     "data": "来源数据及其伴随元数据",
     "data/samples": "已公开、冻结待复审的旧匿名样本",
     "data/local": "私有历史证据与本地运行产物，不加入 Git",
@@ -104,7 +108,7 @@ FOLDERS = {
     "data/local/api_cache": "旧官方目录与配额状态缓存，不自动刷新",
     "data/local/archive": "最初试采历史证据与受保护旧配置",
     "data/local/recon": "按日期保存的接口与事件探测证据",
-    "data/local/universes": "旧候选快照，不是正式 UU 名单",
+    "data/local/universes": "旧候选快照与有明确批准用途的版本化研究验证名单",
     "data/local/progress": "旧进度 JSON 记录，当前文字交接迁入 docs/local/progress",
     "data/local/staging": "未验收候选试跑资产，不能直接训练",
     "data/local/staging/steamdt": "SteamDT 来源的独立候选试跑与原始追溯",
@@ -117,6 +121,7 @@ FOLDERS = {
     "docs/local": "私有交接文档，不加入 Git",
     "docs/local/progress": "当前本地交接与旧历史交接文档",
     "docs/local/pilots": "私有单品试跑和质量核验报告",
+    "docs/local/selections": "私有选品计划版本快照与原始审查记录",
 }
 
 def protected(path):
@@ -151,9 +156,17 @@ def purpose(path):
         return "受保护本地凭证，仅登记配置版本，不读取、复制或记录内容及哈希"
     if path.startswith("scripts/local/pilot_sources/"):
         return "该试跑实际执行源码的私有版本快照，校验值匹配来源清单"
+    if path.startswith("scripts/local/selection_sources/"):
+        return "该 P02 调查实际执行源码的私有版本快照，校验值匹配运行清单"
+    if path.startswith("docs/local/selections/"):
+        return "调查前写入的选品计划准确版本快照，保留身份纠正前后依据"
+    if path.startswith("data/local/universes/uu_research_selection_"):
+        return {"selection.json": "当前或原版验证名单、候选证据、批准用途和角色；仅限 P03 验证", "candidates.csv": "全部候选的身份、UU 报价时间、数据覆盖、角色、理由和未知项", "manifest.json": "名单来源运行、版本、批准用途与内容哈希", "verification.json": "名单独立核对：原始哈希、UU 报价与小时摘要、角色及预算一致性"}.get(name, "P02 版本化名单的伴随追溯元数据")
     if path.startswith("docs/local/pilots/"):
         return "单品单日有限试跑或离线质量核验报告，非正式研究结论"
     if path.startswith("data/local/staging/steamdt/"):
+        if "/p02_steamdt_selection_" in path:
+            return "有限选品调查的压缩原始响应，保持私有与哈希追溯" if "/raw/" in path else "独立选品调查 SQLite 库" if name == "survey.sqlite" else "P02 来源请求、计划/脚本版本、预算、结果与输入输出清单"
         if "/raw/" in path:
             return "该有限试跑的压缩原始响应，用于请求哈希追溯，保持私有"
         if name == "pilot.sqlite":
@@ -196,6 +209,12 @@ def folder_purpose(path):
         return FOLDERS[path]
     if path.startswith("scripts/local/pilot_sources/"):
         return "该运行实际采集及核验源码快照"
+    if path.startswith("scripts/local/selection_sources/"):
+        return "该有限选品调查的实际源码版本"
+    if path.startswith("docs/local/selections/"):
+        return "该选品调查使用的计划准确版本"
+    if path.startswith("data/local/universes/uu_research_selection_"):
+        return "该版本的研究验证名单、候选表及准入用途清单"
     if path.startswith("data/local/staging/steamdt/"):
         return "独立单品单日试跑的原始响应、表、报告或哈希分桶"
     for prefix, label in (("data/local/database/raw/", "旧压缩响应的哈希分桶"), ("data/local/archive/", "最初试采历史证据的分组"), ("data/local/recon/", "按日期保存的来源探测证据"), ("data/local/api_cache/", "按本地凭证标识隔离的旧缓存，不公开标识"), ("data/samples/", "旧匿名样本批次及原始/表/报告分组")):

@@ -2,6 +2,7 @@
 
 目录版本 layout-1.0。每份文档与子目录的说明和内容版本见 [逐项说明](governance/FILE_INDEX.md)与[完整哈希清单](governance/FILE_CATALOG.json)。
 
+- 本轮选品：[选品计划](research/SELECTION_PLAN.md)、[选品报告](research/SELECTION_REPORT.md)。
 - 当前依据：[PLAN](research/PLAN.md)、[STATE](governance/STATE.md)、[HANDOFF](governance/HANDOFF.md)。
 - 管理与整理：[文件制度](governance/FILE_MANAGEMENT.md)、[资产登记](governance/ASSET_REGISTER.md)、[整理记录](governance/ORGANIZATION.md)。
 - 工程参考：[参与开发](governance/CONTRIBUTING.md)、[凭证与发布](governance/SECURITY.md)。
