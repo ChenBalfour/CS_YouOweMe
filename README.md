@@ -6,6 +6,8 @@
 
 ## 当前入口
 
+- [项目交接文档](docs/governance/HANDOFF.md)：供后续负责人和 agent 接手，含本地／远程差异、旧资产及接手提示。
+
 - [完整主计划](docs/research/PLAN.md)：目标、执行机制、标签、因子、验证与六部分顺序。
 - [文件管理规范](docs/governance/FILE_MANAGEMENT.md)：位置、命名、版本、资产准入和发布制度。
 - [阶段状态](docs/governance/STATE.md)：完成项与当前停止点。
