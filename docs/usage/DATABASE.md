@@ -1,5 +1,7 @@
 # 数据库与 VS Code
 
+> 状态：legacy / unreviewed。此页描述旧技术试验，不代表已验收的 UU 研究能力；其中命令不作为本阶段执行任务。当前方向以 [主计划](../research/PLAN.md)与[资产登记](../governance/ASSET_REGISTER.md)为准。
+
 历史库是 **SQLite 本地文件**，可以直接用 SQL 查询，不需要服务器、端口、账号或密码。
 
 当前维护工作区的路径：

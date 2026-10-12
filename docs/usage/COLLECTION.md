@@ -1,5 +1,7 @@
 # 采集与目录迁移
 
+> 状态：legacy / unreviewed。此页描述旧技术试验，不代表已验收的 UU 研究能力；其中命令不作为本阶段执行任务。当前方向以 [主计划](../research/PLAN.md)与[资产登记](../governance/ASSET_REGISTER.md)为准。
+
 ## 公开页面
 
 在仓库根目录运行，Python 3.11+，无第三方运行依赖：

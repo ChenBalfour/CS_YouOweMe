@@ -1,5 +1,7 @@
 # 数据来源与分发
 
+> 状态：legacy / unreviewed。此页描述旧技术试验，不代表已验收的 UU 研究能力；其中命令不作为本阶段执行任务。当前方向以 [主计划](../research/PLAN.md)与[资产登记](../governance/ASSET_REGISTER.md)为准。
+
 主要来源为 [SteamDT](https://www.steamdt.com/) 的匿名公开商品详情页。其[官方介绍](https://www.steamdt.com/terms/AboutUs)将平台定位为 CS 饰品数据分析工具。
 
 首批访问 20 个商品 URL，提取服务端渲染的 `__NUXT_DATA__` 数据，使用明确的商品名匹配主对象，检查响应 `success=true`。完整网页留在 `data/local/archive/initial_collection/` 的最初本地采集归档，不作为开源代码分发。

@@ -1,5 +1,7 @@
 # 数据字典
 
+> 状态：legacy / unreviewed。此页描述旧技术试验，不代表已验收的 UU 研究能力；其中命令不作为本阶段执行任务。当前方向以 [主计划](../research/PLAN.md)与[资产登记](../governance/ASSET_REGISTER.md)为准。
+
 开源样本与运行输出使用相同字段。`data/samples/pilot_20261011/` 的 `raw_path` 指向提取的 `.nuxt.json`，`raw_sha256` 校验该分发文件；样本额外的 `original_html_sha256` 保留原始整页 HTML 校验值。运行采集器产生的 `data/local/` 仍归档完整 HTML，并被 Git 忽略。
 
 所有快照时间均使用 ISO 8601，包含 `+08:00`。价格计算使用 Decimal，CSV 输出十进制文本，避免浮点二进制误差。空单元格表示缺失或尚未确认；0 只保留在有定义的原始字段和计数中。

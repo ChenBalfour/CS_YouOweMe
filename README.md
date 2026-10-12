@@ -1,69 +1,43 @@
 # CS_YouOweMe
 
-CS2 枪皮市场研究与数据基础设施。当前版本 **v0.3.0**：可查询的商品目录、精确磨损成交、小时行情、可恢复的采集任务与版本化研究名单。
+面向**悠悠有品（UU）**的 CS2 千百战枪皮决策研究。以 UU 为目标交易场所，以 SteamDT、BUFF、Steam 等平台作为辅助信息来源，研究实际交易时间、成本和退出能力约束下的购买判断。
 
-研究集中于**千百战枪皮**：百元和千元价位的普通武器皮肤。先完成主力筛选和数据质量验证，再进行事件研究、论文复现与预测评估。
+当前完成 **P01：研究方向、完整计划与文件管理制度**。后续按“选热门皮肤 → 对应爬虫 → 数据集 → 因子与模型 → 审查后开源”逐步推进，一次对话完成一个部分。
 
-## 开始使用
+## 当前入口
 
-Python 3.11+；采集与查询使用标准库，无第三方运行依赖。
+- [完整主计划](docs/research/PLAN.md)：目标、执行机制、标签、因子、验证与六部分顺序。
+- [文件管理规范](docs/governance/FILE_MANAGEMENT.md)：位置、命名、版本、资产准入和发布制度。
+- [阶段状态](docs/governance/STATE.md)：完成项与当前停止点。
+- [既有资产登记](docs/governance/ASSET_REGISTER.md)：旧代码、名单、数据和公开内容的待审查状态。
 
-```bash
-git clone https://github.com/ChenBalfour/CS_YouOweMe.git
-cd CS_YouOweMe
-python scripts/collect.py --version
-python scripts/collect.py catalog sync
-python scripts/collect.py catalog search --query "燃料喷射器"
-python scripts/collect.py universe scan --output data/local/universes/qianbaizhan.json
-```
+## 既有工作如何处理
 
-官方目录读取本地 `config/.env`；公开模板 `config/.env.example` 保持空白。网页历史使用实测的匿名接口。新名单不会自动启动历史回填；审阅后再指定名单和日期窗口。
+v0.1–v0.3 属于早期技术试验。保留代码、试采、来源证据和版本记录供后续审查；旧 11 个规格不视作新正式主力名单，旧 SteamDT 库不视作已验收的 UU 训练集。当前没有正式 UU 数据集或通过验收的交易模型。
 
-- [在 VS Code 连接数据库、运行 SQL](docs/usage/DATABASE.md)
-- [筛选、回填、续跑与覆盖检查](docs/usage/HISTORY.md)
-- [研究范围、假设、事件与方向](docs/research/DESIGN.md)
-- [第一版千百战名单与依据](docs/research/UNIVERSE.md)
+本阶段不运行旧采集入口，不启动训练，也不新增 GitHub 推送、PR 或 release。已经公开的内容仍是既有事实，最终 P06 再按明确允许清单筛选和调整；本轮不改远程仓库可见性或删除历史。
 
-## 项目结构
+## 文件位置
 
 ```text
-src/cs_youoweme/
-├── collectors/      公开页面、官方接口、网页历史客户端
-└── history/         目录、名单、SQLite、任务、查询与聚合
-scripts/             CLI 入口、密钥检查
-config/              试采种子、观察名单、空白模板、VS Code 工作区
-sql/                 可直接执行的只读查询
-data/
-├── samples/         经核对的匿名公开试采样本
-└── local/           私有数据库、原始响应、名单和运行记录
+src/cs_youoweme/     现有实现；后续按职责审查和适配
+scripts/            命令入口与维护检查
+config/             配置、空白模板及忽略的私有配置
+sql/                旧库诊断查询
 docs/
-├── usage/           使用方法
-├── data/            字段、来源与口径
-├── research/        研究设计、名单与方向
-└── releases/        发布记录
-tests/               离线验证
-.github/             CI、贡献与安全说明
-.githooks/           提交与推送检查
+├── research/       唯一主计划及研究索引
+├── governance/     文件管理、状态与资产登记
+├── data/           旧来源和字段说明
+├── usage/          旧实现使用说明
+└── releases/       既有发布历史
+data/
+├── local/          私有原始资料、旧库及后续运行产物
+└── samples/        冻结待审查的已公开早期样本
+tests/              现有合成与离线验证
 ```
 
-默认历史库：`data/local/database/market.sqlite`。目录、成交、行情、名单和任务分表保存；原始响应采用 gzip 压缩并保留 SHA-256。
+不要将真实值填入 `config/.env.example`。密钥仅留在忽略的本地配置或环境变量；数据库、完整响应和模型产物也留在私有目录。
 
-## 已验证的范围
+原有 [数据库使用说明](docs/usage/DATABASE.md)、[历史采集说明](docs/usage/HISTORY.md)与[字段口径](docs/data/HISTORY_SCHEMA.md)仅说明旧试验，不能替代当前计划或授权后续执行。
 
-截至 2026-10-12，本地目录有 **44,502 个来源当前规格**；历史试采有 **119,520 条小时行情、1,420 条成交**。10 个试采行情序列的小时桶覆盖北京时间 **2025-06-01 至 2026-10-11**，包含早期刀／手套及相位验证数据。部分来源量额缺失，逐笔成交尚未回填到目标起点。第一版千百战名单入选 11 个规格，其完整历史回填尚未开始。
-
-这些是本地验证结果，数据库不随代码分发。小时桶齐全不代表全市场成交完整，也不代表新入选规格已有历史。保留完整轻量目录，仅回填已选样本。
-
-[公开试采样本](data/samples/pilot_20261011/)保留 20 条商品、180 条报价和 267 条关联规格，供解析与追溯验证。报价是挂牌价，不能作为真实成交。见[数据字典](docs/data/DATA_DICTIONARY.md)、[历史库口径](docs/data/HISTORY_SCHEMA.md)和[数据来源](docs/data/DATA_SOURCES.md)。
-
-## 开发
-
-```bash
-git config core.hooksPath .githooks
-python -m unittest discover -s tests -v
-python scripts/check_secrets.py --history
-```
-
-`main` 保存通过检查的代码，正式版本使用标签和 [Changelog](CHANGELOG.md)。密钥检查只报告路径和状态，不打印真实值；CI 使用合成数据。版本唯一来源为 `src/cs_youoweme/__init__.py`。
-
-原创代码与文档采用 [MIT](LICENSE)。第三方数据与商标的权利归各自权利人。
+原创代码与文档采用 [MIT](LICENSE)。第三方数据及商标权利归各自权利人。

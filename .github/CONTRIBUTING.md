@@ -1,5 +1,7 @@
 # 参与开发
 
+当前一次对话只完成一个 part，新增 GitHub 推送、PR 和 release 暂停。本地分支与提交可记录工作；阶段与发布规则以 [主计划](../docs/research/PLAN.md)、[STATE](../docs/governance/STATE.md)和[文件管理](../docs/governance/FILE_MANAGEMENT.md)为准。下述技术流程属于既有工程参考，不自动授权远程发布。
+
 需要 Python 3.11 或以上与 Git。无需安装 Python 依赖。
 
 ```bash
