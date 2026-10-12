@@ -9,7 +9,7 @@
       "path": ".",
       "purpose": "项目根及 Git/Python 所需入口元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:a3a5d0bf58b9e5a61d8f6202a572e5e4a992628eadbe12af22e2bda707a2c7c6"
+      "version": "sha256:6354a8eea184a7ed444c28c47e2720d6cd5ef2af2e9affa77ebe2e564751d75a"
     },
     {
       "path": ".github",
@@ -63,7 +63,7 @@
       "path": "docs",
       "purpose": "计划、制度、使用说明和交接记录",
       "layout_version": "layout-1.0",
-      "version": "sha256:0538b51ea923fe4e25459fe1ff26eade2c61c702bdf95aecb997102bb382f62e"
+      "version": "sha256:edc6b15f0db4f84d3ff32715fa50625890f8cb1e1412a64c2480b1328da0ab98"
     },
     {
       "path": "docs/data",
@@ -75,19 +75,19 @@
       "path": "docs/governance",
       "purpose": "管理、阶段、资产登记与版本索引",
       "layout_version": "layout-1.0",
-      "version": "sha256:a44dcc704d21269a18509f8c000143d5ff9e3631ae424726a68dd342cde8ff8c"
+      "version": "sha256:681b31fd8ef646b130441d44e31e5fa834f0c17441a409ff7798e2809f3a3e20"
     },
     {
       "path": "docs/releases",
       "purpose": "历史发布与本地版本变更说明",
       "layout_version": "layout-1.0",
-      "version": "sha256:a8678b063642b91cd1ba291d0ca1f9f600840abdefa81e93e85023c2a69ceeb4"
+      "version": "sha256:113008d65faec12e0eb4fde9f4c002b9c6e1fd0aa5423c30d45d452126bf94bf"
     },
     {
       "path": "docs/research",
       "purpose": "唯一主计划与旧研究参考",
       "layout_version": "layout-1.0",
-      "version": "sha256:294bafa12aae1e7024e395adbc5793e5d11fe6e8870a6df7832dcd6f4dd7831b"
+      "version": "sha256:bfe2899f606685bb63c495ae93c2af2f8837c34e260405feec891c787e412211"
     },
     {
       "path": "docs/usage",
@@ -99,7 +99,7 @@
       "path": "scripts",
       "purpose": "所有可执行代码及其工程配套",
       "layout_version": "layout-1.0",
-      "version": "sha256:3d86e751803dcc7674901edb4b29f3ec3243b6c7b789e7a854fd37214b00c73b"
+      "version": "sha256:6f2aeae6cdc0ac3337379d2879996829a33947235b968ad3b6013de9cfd67cec"
     },
     {
       "path": "scripts/config",
@@ -411,9 +411,9 @@
       "path": "docs/README.md",
       "purpose": "当前计划、制度、历史参考和整理说明索引",
       "status": "current-or-reference",
-      "version": "sha256:0dccf581e3064db7a5a4646940f527762fe7bd9902b0734e76c63d26a460b205",
-      "sha256": "0dccf581e3064db7a5a4646940f527762fe7bd9902b0734e76c63d26a460b205",
-      "bytes": 1319
+      "version": "sha256:37cc7a16042deb6ad9d6880dc85b84b988765d2cd7b4ada5094f6d6dfb45c7b2",
+      "sha256": "37cc7a16042deb6ad9d6880dc85b84b988765d2cd7b4ada5094f6d6dfb45c7b2",
+      "bytes": 1405
     },
     {
       "path": "docs/data/DATA_DICTIONARY.md",
@@ -443,9 +443,9 @@
       "path": "docs/governance/ASSET_REGISTER.md",
       "purpose": "旧资产保留依据及按用途准入状态",
       "status": "current-or-reference",
-      "version": "sha256:8fb00333e96350e5809be15d1748b906110d193fdb4cf1fc47c0e296b1c9ad5f",
-      "sha256": "8fb00333e96350e5809be15d1748b906110d193fdb4cf1fc47c0e296b1c9ad5f",
-      "bytes": 3953
+      "version": "sha256:dd3b26e93c5c2ebc54e66cf7fb023f16486cb3498e03c28db8de201095e27c36",
+      "sha256": "dd3b26e93c5c2ebc54e66cf7fb023f16486cb3498e03c28db8de201095e27c36",
+      "bytes": 4106
     },
     {
       "path": "docs/governance/CONTRIBUTING.md",
@@ -483,9 +483,9 @@
       "path": "docs/governance/HANDOFF.md",
       "purpose": "人类与 agent 交接，以及本地与远程版本差异",
       "status": "current-or-reference",
-      "version": "sha256:e5a663e8ec772838b4090a6578fb21b93009d4a5602ce5bcab5c3c9abfb4093d",
-      "sha256": "e5a663e8ec772838b4090a6578fb21b93009d4a5602ce5bcab5c3c9abfb4093d",
-      "bytes": 18517
+      "version": "sha256:581b99df0ffb5fb408ccd762e8d99e6f67c6f53a62f0589be1f6f2c60ef2cab5",
+      "sha256": "581b99df0ffb5fb408ccd762e8d99e6f67c6f53a62f0589be1f6f2c60ef2cab5",
+      "bytes": 18838
     },
     {
       "path": "docs/governance/ORGANIZATION.md",
@@ -507,17 +507,17 @@
       "path": "docs/governance/STATE.md",
       "purpose": "当前阶段、版本和停止点",
       "status": "current-or-reference",
-      "version": "sha256:2552f273d4717399d1f17790128d5e3a381ef4319c39869d563d9f764a89f92f",
-      "sha256": "2552f273d4717399d1f17790128d5e3a381ef4319c39869d563d9f764a89f92f",
-      "bytes": 1948
+      "version": "sha256:472fa014d5f842583fbfbdf1db28467df74fc52ea995c92c67e5af0943975448",
+      "sha256": "472fa014d5f842583fbfbdf1db28467df74fc52ea995c92c67e5af0943975448",
+      "bytes": 2259
     },
     {
       "path": "docs/releases/CHANGELOG.md",
       "purpose": "代码历史变更及未发布本地版本说明",
       "status": "current-or-reference",
-      "version": "sha256:e75ef680c2458e1562f9312cc55c2c529b583cbb8c500cfa289a91f86c4eccfb",
-      "sha256": "e75ef680c2458e1562f9312cc55c2c529b583cbb8c500cfa289a91f86c4eccfb",
-      "bytes": 4847
+      "version": "sha256:42e9996abed1f9e4244c6b30b21c64f48016bdbf521e43642d23566f40377144",
+      "sha256": "42e9996abed1f9e4244c6b30b21c64f48016bdbf521e43642d23566f40377144",
+      "bytes": 5032
     },
     {
       "path": "docs/releases/v0.1.0.md",
@@ -550,6 +550,14 @@
       "version": "sha256:96e840398cba4287091885a37927bf7b293369751079793482f432d02053e565",
       "sha256": "96e840398cba4287091885a37927bf7b293369751079793482f432d02053e565",
       "bytes": 19902
+    },
+    {
+      "path": "docs/research/PROGRESS_20261013.md",
+      "purpose": "2026-10-13 阶段总结、相对早期的改动、整体规划与今晚停止点",
+      "status": "current-or-reference",
+      "version": "sha256:2740650940c4628b5d32ef0cb2c03a12a22d9f10c27b54a691eaf934beea3497",
+      "sha256": "2740650940c4628b5d32ef0cb2c03a12a22d9f10c27b54a691eaf934beea3497",
+      "bytes": 7439
     },
     {
       "path": "docs/research/SELECTION_PLAN.md",
@@ -683,9 +691,9 @@
       "path": "scripts/manage_assets.py",
       "purpose": "生成及校验逐文件、逐目录版本和用途清单",
       "status": "current-or-reference",
-      "version": "sha256:c7f48c97d58b800be95dc2beb1f158c02f858adbf7af7a5f095fb3c934e757f6",
-      "sha256": "c7f48c97d58b800be95dc2beb1f158c02f858adbf7af7a5f095fb3c934e757f6",
-      "bytes": 20759
+      "version": "sha256:fddd51ed3569bd43bb071ca57a70983832baf3ec72a960496315e6fd76cc2d47",
+      "sha256": "fddd51ed3569bd43bb071ca57a70983832baf3ec72a960496315e6fd76cc2d47",
+      "bytes": 20885
     },
     {
       "path": "scripts/pilot_uu_day.py",

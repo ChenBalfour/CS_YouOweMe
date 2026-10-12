@@ -40,6 +40,7 @@ PURPOSES = {
     "docs/research/PLAN.md": "唯一研究主计划，当前版本见文档头",
     "docs/research/SELECTION_PLAN.md": "P02 选品计划、事先固定的范围预算及身份纠正修订依据",
     "docs/research/SELECTION_REPORT.md": "P02 主力、候补、排除与观察结果、来源快照和未知项",
+    "docs/research/PROGRESS_20261013.md": "2026-10-13 阶段总结、相对早期的改动、整体规划与今晚停止点",
     "docs/research/UNIVERSE.md": "旧筛选方法和候选说明，仅作历史参考",
     "docs/governance/STATE.md": "当前阶段、版本和停止点",
     "docs/governance/HANDOFF.md": "人类与 agent 交接，以及本地与远程版本差异",

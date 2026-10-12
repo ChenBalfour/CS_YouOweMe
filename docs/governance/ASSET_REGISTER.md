@@ -1,10 +1,11 @@
 # 既有资产登记
 
-登记版本 asset-register-1.3，2026-10-12。文件整理后新增用户授权的单品单日试跑，平台行情初步验证为 L0；市场资产的来源、标签、执行能力仍需对应部分验收。
+登记版本 asset-register-1.4，2026-10-13。文件整理后已完成单品单日试跑与 P02 有限初选，新增阶段总结；市场资产的来源、标签、执行能力仍需对应部分验收。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
 | docs/research/PLAN、governance/ 制度与状态 | current-plan | 当前方向、管理与停止点 | P01 |
+| docs/research/PROGRESS_20261013 | current / progress-snapshot | 今晚收尾总结、早期改动与整体路线；后续状态以 STATE 为准 | 持续 |
 | scripts/src、collect.py | legacy / unreviewed-market | 解析、精度、分页、恢复和存储机制可复用 | P03 |
 | scripts/tests | legacy / offline-regression | 机制回归；通过不代表市场数据合格 | P03–P05 |
 | scripts/check_secrets.py、hooks | retained / engineering | 本地凭证隔离检查，仍暂停远程发布 | 持续 |
