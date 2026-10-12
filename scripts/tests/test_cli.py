@@ -20,7 +20,7 @@ class CliTests(unittest.TestCase):
         self.assertEqual(result.stdout.strip(), f"CS_YouOweMe {__version__}")
 
     def test_public_configuration_template_is_empty(self):
-        text = (PROJECT / "config/.env.example").read_text(encoding="utf-8-sig")
+        text = (PROJECT / "scripts/config/.env.example").read_text(encoding="utf-8-sig")
         assignments = [line.split("=", 1)[1].strip() for line in text.splitlines() if line.startswith("STEAMDT_API_KEY=")]
         self.assertEqual(assignments, [""])
 

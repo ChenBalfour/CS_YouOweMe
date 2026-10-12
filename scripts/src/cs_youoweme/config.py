@@ -32,5 +32,5 @@ def read_key():
                 if sep and name.strip() == "STEAMDT_API_KEY":
                     key = value.strip().strip("\"'")
     if not key:
-        raise CollectionError("API key missing. Copy config/.env.example to config/.env and fill STEAMDT_API_KEY locally.")
+        raise CollectionError("API key missing. Copy scripts/config/.env.example to scripts/config/.env and fill STEAMDT_API_KEY locally.")
     return key

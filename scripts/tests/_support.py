@@ -2,8 +2,8 @@
 import sys
 from pathlib import Path
 
-PROJECT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(PROJECT / "src"))
+PROJECT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT / "scripts" / "src"))
 SAMPLE = PROJECT / "data/samples/pilot_20261011"
 PAYLOAD = SAMPLE / "raw/item_001.nuxt.json"
 

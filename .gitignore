@@ -10,7 +10,9 @@ credentials*.json
 # Only curated anonymous samples may be published from data/.
 data/*
 !data/samples/
+!data/README.md
 data/local/
+docs/local/
 *.sqlite
 *.sqlite3
 *.db

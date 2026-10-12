@@ -2,16 +2,18 @@
 
 | 项目 | 交接信息 |
 | --- | --- |
-| 文档版本 | handoff-1.0 |
+| 文档版本 | handoff-1.1 |
 | 记录日期 | 2026-10-12，北京时间（Asia/Shanghai） |
 | 接收对象 | 后续负责人、开发者与 agent |
 | 用途 | 本地及定向交接；不自动列入未来公开发布清单 |
 | 本机工作区 | `F:\Codex\CS_YouOweMe`；其他机器以实际项目根目录为准 |
 | 当前本地分支 | `planning/uu-research-reset` |
 | 方向重置提交 | `814fb432b4302ba3d7b017f4d1e842fd2691460f` |
-| 旧代码与公开基线 | v0.3.0，`9c62dc9744bfb5a6e263289dae8a4568c1d1149c` |
-| 当前计划 / 制度 | plan-1.0 / management-1.0 |
-| 当前停止点 | P01 已完成；P02–P06 未开始 |
+| 旧公开基线 | v0.3.0，`9c62dc9744bfb5a6e263289dae8a4568c1d1149c` |
+| 当前计划 / 制度 | plan-1.0 / management-1.1 / layout-1.0 |
+| 当前停止点 | P01 及用户指定的文件整理完成；P02–P06 未开始 |
+
+本地代码现为 0.3.1（未发布），目录 layout-1.0；本次用户指定的迁移、清理和版本管理见 [整理记录](ORGANIZATION.md)与[文件清单](FILE_CATALOG.json)。准确整理提交以本地 git log 为准。
 
 本文根据本地文档、Git 状态和源码核对整理，没有重新采集市场数据、重查数据库或训练模型。本文自身的本地提交可通过 `git log` 查询；上表的方向重置提交是先前 P01 的记录，不指代后续文档补充提交。
 
@@ -65,7 +67,7 @@ P01 已交付以下文件，并在方向重置提交中记录：
 | [AGENTS.md](../../AGENTS.md) | 后续 agent 的阶段和发布约束 |
 | [README.md](../../README.md) | 当前入口及文档索引 |
 
-旧 DESIGN、ROADMAP 已改为指向主计划的索引；旧 UNIVERSE、使用说明及数据文档已标注历史试验状态。私有 `data/local/progress/CURRENT.md` 已指向新方向。
+旧 DESIGN、ROADMAP 重复索引在 layout-1.0 清理中删除，入口统一为 PLAN 与 STATE；旧 UNIVERSE、使用说明及数据文档已标注历史试验状态。私有 `docs/local/progress/CURRENT.md` 已指向新方向。
 
 **当前正式资产：UU 主力名单 0，已验收 UU 数据集 0，已验收交易模型 0。**
 
@@ -118,12 +120,12 @@ P01 曾检查 20 份文档、48 个本地链接，未发现断链；17 个修改
 
 | 位置 | 已有内容 | 当前意义 |
 | --- | --- | --- |
-| `src/cs_youoweme/collectors/` | 公开页面、官方接口、匿名网页客户端 | 旧技术参考；UU 对应采集尚未验收 |
-| `src/cs_youoweme/history/` | 目录、名单、SQLite、分页任务、查询与聚合 | 可能复用机制，先审查口径 |
+| `scripts/src/cs_youoweme/collectors/` | 公开页面、官方接口、匿名网页客户端 | 旧技术参考；UU 对应采集尚未验收 |
+| `scripts/src/cs_youoweme/history/` | 目录、名单、SQLite、分页任务、查询与聚合 | 可能复用机制，先审查口径 |
 | `scripts/collect.py` | 旧 CLI 入口 | 本轮不要恢复采集或队列 |
 | `scripts/check_secrets.py` | 本地文件与 Git 历史密钥检查 | 只报告状态与位置，不能显示值 |
-| `tests/` | 合成及离线测试 | 旧代码曾有 39 项测试及跨平台 CI 通过，不代表新数据合格 |
-| `sql/`、`config/vscode.code-workspace` | SQLite 查询与 VS Code 配置 | 旧库诊断参考 |
+| `scripts/tests/` | 合成及离线测试 | 旧代码曾有 39 项测试及跨平台 CI 通过，不代表新数据合格 |
+| `scripts/sql/`、`scripts/config/vscode.code-workspace` | SQLite 查询与 VS Code 配置 | 旧库诊断参考 |
 
 运行实现使用 Python 3.11+ 标准库。VS Code SQLTools 驱动的环境要求仅涉及可选查询工具，详见旧 [数据库指南](../usage/DATABASE.md)。
 
@@ -139,9 +141,9 @@ P01 曾检查 20 份文档、48 个本地链接，未发现断链；17 个修改
 | `data/local/universes/core_20261012.json` | 旧混合板块筛选 | 不作为新正式名单 |
 | `data/local/universes/qianbaizhan_20261012.json` | 旧 11 规格枪皮候选及明细 | 不作为新正式名单 |
 | `data/local/recon/`、`data/local/archive/` | 接口探测、事件资料、原网页与旧配置 | 私有，按用途审查 |
-| `data/local/progress/` | 当前交接和旧暂停／发布记录 | CURRENT 指向当前方向 |
+| `docs/local/progress/`、`data/local/progress/` | 私有文字交接与冻结 JSON 历史记录 | CURRENT 指向当前方向 |
 | `data/samples/pilot_20261011/` | 已公开的早期快照样本 | 冻结待审查，非正式 UU 训练集 |
-| `config/seeds.json`、`config/watchlist.json` | 旧试采种子与观察线索 | 待 P02 核验 |
+| `scripts/config/seeds.json`、`scripts/config/watchlist.json` | 旧试采种子与观察线索 | 待 P02 核验 |
 
 旧记录曾报告：目录 44,502 个规格、小时行情 119,520 条、成交 1,420 条。小时包含 M4A4 喧嚣杀戮、蝴蝶刀多普勒、运动手套迈阿密及多普勒相位试采，10 个序列的小时桶覆盖 2025-06-01 至 2026-10-11。来源量额存在缺失，小时桶齐全不等于真实成交完整。
 
@@ -161,7 +163,7 @@ P01 曾检查 20 份文档、48 个本地链接，未发现断链；17 个修改
 
 公开仓库：[ChenBalfour/CS_YouOweMe](https://github.com/ChenBalfour/CS_YouOweMe)。v0.1.0、v0.2.0、v0.3.0 已发布；本机保存的 `origin/main` 指针为 `9c62dc9...`。本次交接没有联网 fetch 或重新核对远程状态。
 
-当前方向重置位于本地 `planning/uu-research-reset` 分支，P01 提交为 `814fb43...`，尚未推送。**不要为了让接收者看到计划而自动 push；“最后再开源”的约定仍有效。**
+当前方向重置及文件整理位于本地 `planning/uu-research-reset` 分支，P01 提交为 `814fb43...`，尚未推送。**不要为了让接收者看到计划而自动 push；“最后再开源”的约定仍有效。**
 
 若接手者使用同一工作区，先检查分支和文档。若转移到另一机器，交付者需提供最新计划文本和所需的本地代码版本；完整 Git 历史或允许清单的私下转移可以另行安排，本文不生成打包文件或自动传输资料。
 
@@ -171,9 +173,9 @@ P01 曾检查 20 份文档、48 个本地链接，未发现断链；17 个修改
 
 ## 9. 文件与凭证保护
 
-- `config/.env` 与环境变量供相应授权操作使用，公开 `config/.env.example` 为空。本文不读取或记录任何凭证值。
+- `scripts/config/.env` 与环境变量供相应授权操作使用，公开 `scripts/config/.env.example` 为空。本文不读取或记录任何凭证值。
 - `data/local/` 整体被 Git 忽略；原始响应可能含来源公开展示的账户信息，不直接公开。
-- 原始资料、冻结数据集与实验按版本保存，不原地覆盖。资产状态与用途记录在清单中。
+- 全部文件和目录按 layout-1.0 清单登记用途与版本，原始资料、冻结数据集与实验按版本保存，不原地覆盖。资产状态与用途记录在清单中。
 - 删除或迁移前列明目标、状态和保留依据，验证绝对路径，保留来源追溯和恢复能力。
 - 所有新产物应遵循 FILE_MANAGEMENT；不把爬虫实现塞进数据目录，不先建立大量空目录。
 - 旧“paused”“v03”日志描述历史时点，不能覆盖当前计划、STATE 与用户新指示。
@@ -218,7 +220,7 @@ docs/governance/ASSET_REGISTER.md。
 在该部分范围内推进，不重复索取已经给出的授权。
 
 新增 GitHub push、PR、远程合并与 release 暂停，最终 P06 再审查。
-保护 config/.env 和私有原始资料，不显示或转发真实密钥。
+保护 scripts/config/.env 和私有原始资料，不显示或转发真实密钥。
 不要无记录删除、迁移、覆盖旧数据，也不要把旧历史 CLI 的
 status 操作当作无写入检查。
 
@@ -228,4 +230,4 @@ status 操作当作无写入检查。
 
 ## 12. 本次交接的交付边界
 
-本次新增交接文档和必要索引，不改变研究方向、不推进阶段、不运行市场采集、不读写旧数据库、不训练、不发布 GitHub。接手者若需开始选品，下一次明确开展 P02 即可。
+当前交接包含用户新指示下的文件整理：主体目录收拢、11 项有依据清理、路径与链接适配及逐文件/目录版本登记。市场库与保留数据内容按哈希核对，不改变研究方向、不推进阶段、不运行市场采集、不打开旧库、不训练、不发布 GitHub。整理完成后停止，下一部分由用户新指示确定。

@@ -2,7 +2,7 @@
 
 > 状态：legacy / unreviewed。此页描述旧技术试验，不代表已验收的 UU 研究能力；其中命令不作为本阶段执行任务。当前方向以 [主计划](../research/PLAN.md)与[资产登记](../governance/ASSET_REGISTER.md)为准。
 
-`src/cs_youoweme/history/schema.sql` 是 SQLite schema；`user_version=2`。UTC 秒存储事件时间，时间边界与日聚合采用北京时间。`requests.collected_at` 单独保存 UTC 采集时间，不能用采集时间替代历史事件时间。早期库的成交任务从 `1h` 迁移为 `event`，保留任务 ID、游标和检查点；存在冲突任务时停止迁移供人工检查。
+`scripts/src/cs_youoweme/history/schema.sql` 是 SQLite schema；`user_version=2`。UTC 秒存储事件时间，时间边界与日聚合采用北京时间。`requests.collected_at` 单独保存 UTC 采集时间，不能用采集时间替代历史事件时间。早期库的成交任务从 `1h` 迁移为 `event`，保留任务 ID、游标和检查点；存在冲突任务时停止迁移供人工检查。
 
 | 表 | 用途与关键字段 |
 | --- | --- |

@@ -2,7 +2,7 @@ import sys
 import unittest
 from pathlib import Path
 
-PROJECT = Path(__file__).resolve().parents[1]
+PROJECT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(PROJECT))
 from scripts import check_secrets
 
@@ -20,9 +20,9 @@ class SecretCheckTests(unittest.TestCase):
         self.assertIn("Nonempty credential assignment", findings)
 
     def test_private_paths_are_blocked(self):
-        for path in [".env", "config/.env", ".env.local", "nested/.env.backup", "env.example", "data/api_cache/base.json", "data/local/archive/private.json", "private.pem"]:
+        for path in [".env", "scripts/config/.env", ".env.local", "nested/.env.backup", "env.example", "data/api_cache/base.json", "data/local/archive/private.json", "docs/local/progress/CURRENT.md", "private.pem"]:
             self.assertTrue(check_secrets.sensitive_path(path))
-        for path in ["config/.env.example", "src/cs_youoweme/cli.py", "data/samples/pilot_20261011/tables/quotes.csv", "samples/pilot_20261011/quotes.csv"]:
+        for path in ["scripts/config/.env.example", "scripts/src/cs_youoweme/cli.py", "data/README.md", "data/samples/pilot_20261011/tables/quotes.csv", "samples/pilot_20261011/quotes.csv"]:
             self.assertFalse(check_secrets.sensitive_path(path))
 
 

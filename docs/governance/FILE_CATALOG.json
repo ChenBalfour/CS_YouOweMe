@@ -1,0 +1,987 @@
+{
+  "schema_version": 1,
+  "layout_version": "layout-1.0",
+  "code_version": "0.3.1-local-unreleased",
+  "scope": "git-managed-files",
+  "hash_policy": "SHA-256; generated catalogs exclude their own bytes to avoid circular hashes; protected credentials have no content/hash snapshot",
+  "directories": [
+    {
+      "path": ".",
+      "purpose": "项目根及 Git/Python 所需入口元数据",
+      "layout_version": "layout-1.0",
+      "version": "sha256:86ed800dadc072ae3b2886b4964ab76f1edca238f0963b6b5df81e6ebcdca435"
+    },
+    {
+      "path": ".github",
+      "purpose": "GitHub 工具约定的根目录配置",
+      "layout_version": "layout-1.0",
+      "version": "sha256:b04d86b4e64bae7c3c67fb5901c231b674d52765a8c41f246ba0bdcc27315403"
+    },
+    {
+      "path": ".github/workflows",
+      "purpose": "既有自动检查配置",
+      "layout_version": "layout-1.0",
+      "version": "sha256:b04d86b4e64bae7c3c67fb5901c231b674d52765a8c41f246ba0bdcc27315403"
+    },
+    {
+      "path": "data",
+      "purpose": "来源数据及其伴随元数据",
+      "layout_version": "layout-1.0",
+      "version": "sha256:f76946d0c54e9e100b2b935675f058d8e937cdb18ef99c8c7f6e3627889851a0"
+    },
+    {
+      "path": "data/samples",
+      "purpose": "已公开、冻结待复审的旧匿名样本",
+      "layout_version": "layout-1.0",
+      "version": "sha256:644f35f0c47cdc41f01f570ce2e735995099f2c9f8a3797787dde9835253730b"
+    },
+    {
+      "path": "data/samples/pilot_20261011",
+      "purpose": "旧匿名样本批次及原始/表/报告分组",
+      "layout_version": "layout-1.0",
+      "version": "sha256:644f35f0c47cdc41f01f570ce2e735995099f2c9f8a3797787dde9835253730b"
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw",
+      "purpose": "旧匿名样本批次及原始/表/报告分组",
+      "layout_version": "layout-1.0",
+      "version": "sha256:be9fba4685373cfebd402e93daf5a59dca61eb3a6404a51c683e54de0fe3d553"
+    },
+    {
+      "path": "data/samples/pilot_20261011/reports",
+      "purpose": "旧匿名样本批次及原始/表/报告分组",
+      "layout_version": "layout-1.0",
+      "version": "sha256:67309b9a13e4683d804cde3b6de0198c530dd25689911a66eb21de47d1222cd6"
+    },
+    {
+      "path": "data/samples/pilot_20261011/tables",
+      "purpose": "旧匿名样本批次及原始/表/报告分组",
+      "layout_version": "layout-1.0",
+      "version": "sha256:d04bb394675d5fa65611a5931d00b74bbaba1c2dede6cbc4775a31101b41fa17"
+    },
+    {
+      "path": "docs",
+      "purpose": "计划、制度、使用说明和交接记录",
+      "layout_version": "layout-1.0",
+      "version": "sha256:5ae73bf31be075c8221dcc0541ab868c4ff8365400f4e468e7e2b19373b3f989"
+    },
+    {
+      "path": "docs/data",
+      "purpose": "来源、schema 与字段说明",
+      "layout_version": "layout-1.0",
+      "version": "sha256:503ef6fa866d68ff0653c7af8df7c4bfa0b89352a58019908656f0f21b7abe4b"
+    },
+    {
+      "path": "docs/governance",
+      "purpose": "管理、阶段、资产登记与版本索引",
+      "layout_version": "layout-1.0",
+      "version": "sha256:cbda078b9f08e4b5b6b859854c68b53a316190bbf71f8ae9848aca4c81da23d2"
+    },
+    {
+      "path": "docs/releases",
+      "purpose": "历史发布与本地版本变更说明",
+      "layout_version": "layout-1.0",
+      "version": "sha256:0df09d709750cf48b6f6980ca72e4034c5c23394f7549fac86fb14ddf2642f22"
+    },
+    {
+      "path": "docs/research",
+      "purpose": "唯一主计划与旧研究参考",
+      "layout_version": "layout-1.0",
+      "version": "sha256:af04241ab40b3f9973692f6c24a309aa3f03db52febd2ddf3e8aeef5b1ee38fe"
+    },
+    {
+      "path": "docs/usage",
+      "purpose": "旧实现使用参考，非执行授权",
+      "layout_version": "layout-1.0",
+      "version": "sha256:8142c8c9e0c5ae7a3588240427c8813e2a2a58c29300a6dec6648d163a1d79fc"
+    },
+    {
+      "path": "scripts",
+      "purpose": "所有可执行代码及其工程配套",
+      "layout_version": "layout-1.0",
+      "version": "sha256:a2511be533ba5a86a7d3a6bd5d36d8ee01719a79fc034ce5833957ad68b5eb19"
+    },
+    {
+      "path": "scripts/config",
+      "purpose": "脚本配置、空白模板与受保护本地凭证",
+      "layout_version": "layout-1.0",
+      "version": "sha256:72b67b981269a4a65bfab296f914cdbddcbb4a4070f3cde07c2fb1d708b8da60"
+    },
+    {
+      "path": "scripts/hooks",
+      "purpose": "本地 Git 凭证检查 hooks",
+      "layout_version": "layout-1.0",
+      "version": "sha256:89d7eda41c4a2b3a0e57be29d0fcc06a3912ad93109e666cd60b2f9897d3a827"
+    },
+    {
+      "path": "scripts/sql",
+      "purpose": "旧历史库只读诊断查询",
+      "layout_version": "layout-1.0",
+      "version": "sha256:78d833bce86bec64f008499b0238def5332edb87da8f051fdc25570c638a862f"
+    },
+    {
+      "path": "scripts/src",
+      "purpose": "Python 包源码",
+      "layout_version": "layout-1.0",
+      "version": "sha256:c47798ac1a58ddcf532f5c9fd80c12984427da44773403623006ca650b23bbb3"
+    },
+    {
+      "path": "scripts/src/cs_youoweme",
+      "purpose": "旧技术实现，可按对应用途审查复用",
+      "layout_version": "layout-1.0",
+      "version": "sha256:c47798ac1a58ddcf532f5c9fd80c12984427da44773403623006ca650b23bbb3"
+    },
+    {
+      "path": "scripts/src/cs_youoweme/collectors",
+      "purpose": "旧公开页面、官方和匿名接口采集机制",
+      "layout_version": "layout-1.0",
+      "version": "sha256:76b5897b7757d935c7165dbe0b4341f5de47fa12e3dff017f41ba9aafed92573"
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history",
+      "purpose": "旧目录、分页任务、SQLite、查询和候选机制",
+      "layout_version": "layout-1.0",
+      "version": "sha256:233d93cbf9548fc5d0e3c9c08e042f4edf37f1516e35261bea839e6a21660faa"
+    },
+    {
+      "path": "scripts/tests",
+      "purpose": "离线与合成回归测试",
+      "layout_version": "layout-1.0",
+      "version": "sha256:7b297ad36105beb317970b3737e988d21a4cadf4d1b5389c46a563beef664343"
+    }
+  ],
+  "files": [
+    {
+      "path": ".gitattributes",
+      "purpose": "跨平台文本换行规则",
+      "status": "current-or-reference",
+      "version": "sha256:8886e081ad1d0307852738a85a77c8a577cc89325d93e7a52dbc794cebbfb310",
+      "sha256": "8886e081ad1d0307852738a85a77c8a577cc89325d93e7a52dbc794cebbfb310",
+      "bytes": 305
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "purpose": "既有远程离线检查工作流，根目录位置由 GitHub 约定",
+      "status": "current-or-reference",
+      "version": "sha256:dfe66c8ce281b3ae921d852004f4240bc03fc7c43536c548952106876b5f4122",
+      "sha256": "dfe66c8ce281b3ae921d852004f4240bc03fc7c43536c548952106876b5f4122",
+      "bytes": 853
+    },
+    {
+      "path": ".gitignore",
+      "purpose": "私有数据、文档、凭证与生成缓存的 Git 排除规则",
+      "status": "current-or-reference",
+      "version": "sha256:16588f97031bd743c91211bd0d6db13d44ed7b284279727caadc12be02a0e382",
+      "sha256": "16588f97031bd743c91211bd0d6db13d44ed7b284279727caadc12be02a0e382",
+      "bytes": 490
+    },
+    {
+      "path": "AGENTS.md",
+      "purpose": "协作者的执行、阶段、凭证及发布约束",
+      "status": "current-or-reference",
+      "version": "sha256:fecaec1014dd0dcd1e6011b5772395e7f8e180451cb52da07371e7aec3e72bb9",
+      "sha256": "fecaec1014dd0dcd1e6011b5772395e7f8e180451cb52da07371e7aec3e72bb9",
+      "bytes": 1855
+    },
+    {
+      "path": "LICENSE",
+      "purpose": "原创代码与文档的 MIT 授权",
+      "status": "current-or-reference",
+      "version": "sha256:9ccc1508d876adea3e93801504c01ada986431dad66b80b68d1e45ce0764eec5",
+      "sha256": "9ccc1508d876adea3e93801504c01ada986431dad66b80b68d1e45ce0764eec5",
+      "bytes": 1068
+    },
+    {
+      "path": "README.md",
+      "purpose": "项目入口、当前状态与三类目录索引",
+      "status": "current-or-reference",
+      "version": "sha256:bc36ebd6eefb266e8f7c57beef4c78a2171583d582810c1423e1cf8f5b74201b",
+      "sha256": "bc36ebd6eefb266e8f7c57beef4c78a2171583d582810c1423e1cf8f5b74201b",
+      "bytes": 1941
+    },
+    {
+      "path": "data/README.md",
+      "purpose": "私有数据与已公开冻结样本的生命周期说明",
+      "status": "current-or-reference",
+      "version": "sha256:55be20c980a1ec275acd47253d0e5cc1ba5a45e6ca2064b41f1047e90b98f505",
+      "sha256": "55be20c980a1ec275acd47253d0e5cc1ba5a45e6ca2064b41f1047e90b98f505",
+      "bytes": 1521
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_001.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:1557dc48382f4f3b108c7f24c2618ba01df0eaa8954f482665251c4c884e2529",
+      "sha256": "1557dc48382f4f3b108c7f24c2618ba01df0eaa8954f482665251c4c884e2529",
+      "bytes": 8459
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_002.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:1c5884b75e4857ee553130b80f203d03bc9eb3e726f83c57ba9cd1230026c292",
+      "sha256": "1c5884b75e4857ee553130b80f203d03bc9eb3e726f83c57ba9cd1230026c292",
+      "bytes": 9461
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_003.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:2b78a484076d783b19d9cadffaf4ad5bd26c3e8bd310e9e4514d06787979009c",
+      "sha256": "2b78a484076d783b19d9cadffaf4ad5bd26c3e8bd310e9e4514d06787979009c",
+      "bytes": 9807
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_004.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:4cb976acc8f65de8b69e42e3bb119a6d2151f5f6689cefacd68b8aa53fb248ff",
+      "sha256": "4cb976acc8f65de8b69e42e3bb119a6d2151f5f6689cefacd68b8aa53fb248ff",
+      "bytes": 9750
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_005.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:ad5f1b331c16188bd20db145402a7b9e9680418e35165d2e4b56fabbad5b41f4",
+      "sha256": "ad5f1b331c16188bd20db145402a7b9e9680418e35165d2e4b56fabbad5b41f4",
+      "bytes": 9549
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_006.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:5870242700f1183e5eeaa293f9142589489368a543278cdc56dfeb7f0d890ccb",
+      "sha256": "5870242700f1183e5eeaa293f9142589489368a543278cdc56dfeb7f0d890ccb",
+      "bytes": 9747
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_007.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:3197382574dffc193c53f58e276f7fef5dd092f0f0cc8d8c15cd725dc027b40a",
+      "sha256": "3197382574dffc193c53f58e276f7fef5dd092f0f0cc8d8c15cd725dc027b40a",
+      "bytes": 10181
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_008.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:4fe027323006d7dd822148bdd769acb3fe06eb109fd8375011f4af570548f6bd",
+      "sha256": "4fe027323006d7dd822148bdd769acb3fe06eb109fd8375011f4af570548f6bd",
+      "bytes": 9459
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_009.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:8cef1346c10de3fba69a6dc192ff66a81a606a96559da615c4631bf2996fb634",
+      "sha256": "8cef1346c10de3fba69a6dc192ff66a81a606a96559da615c4631bf2996fb634",
+      "bytes": 9274
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_010.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:0977af2def5bba4429d42097c8e3d7491c9e5315626c5b7184c53de7ac7a8b65",
+      "sha256": "0977af2def5bba4429d42097c8e3d7491c9e5315626c5b7184c53de7ac7a8b65",
+      "bytes": 9627
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_011.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:8e25106e1d12dec82c1ce2a762094098bf5061fff45f96f5c47411f1ad6487b8",
+      "sha256": "8e25106e1d12dec82c1ce2a762094098bf5061fff45f96f5c47411f1ad6487b8",
+      "bytes": 9238
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_012.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:85733eec5e3e4c1abbb356759ca22437d0254b3c6ee705963f5582f0e5e54015",
+      "sha256": "85733eec5e3e4c1abbb356759ca22437d0254b3c6ee705963f5582f0e5e54015",
+      "bytes": 7877
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_013.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:8267cf7c1f6a1438e947abeb37b27c82f3f6ba1888d506c9ee47a3869f74bb8c",
+      "sha256": "8267cf7c1f6a1438e947abeb37b27c82f3f6ba1888d506c9ee47a3869f74bb8c",
+      "bytes": 9648
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_014.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:107e63bbcc9d5322e3e276acbfab22ac983ddbd018166fc2d0c6a515f038f5eb",
+      "sha256": "107e63bbcc9d5322e3e276acbfab22ac983ddbd018166fc2d0c6a515f038f5eb",
+      "bytes": 9206
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_015.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:be1a14705725e6f3121407ff957b7ce81fbe10b1539e0efb39f82dd17472af2a",
+      "sha256": "be1a14705725e6f3121407ff957b7ce81fbe10b1539e0efb39f82dd17472af2a",
+      "bytes": 10000
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_016.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:f562062ec089c7d70bd78fa281f45a69526ec446584b50e300b97592a4be0d67",
+      "sha256": "f562062ec089c7d70bd78fa281f45a69526ec446584b50e300b97592a4be0d67",
+      "bytes": 9682
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_017.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:81f7ae935d34e26523e0388ca2e698b1cdb1315e3a67df7084b420895feee102",
+      "sha256": "81f7ae935d34e26523e0388ca2e698b1cdb1315e3a67df7084b420895feee102",
+      "bytes": 9129
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_018.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:2a7e17a2a13aabbb75d3fb6816cbd916b290da438cd8e5375ebe1c1037ba2293",
+      "sha256": "2a7e17a2a13aabbb75d3fb6816cbd916b290da438cd8e5375ebe1c1037ba2293",
+      "bytes": 9347
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_019.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:23c802e6a70a39093625fa81e9e40da4c278abd97da360e04626ad260cfddc17",
+      "sha256": "23c802e6a70a39093625fa81e9e40da4c278abd97da360e04626ad260cfddc17",
+      "bytes": 9591
+    },
+    {
+      "path": "data/samples/pilot_20261011/raw/item_020.nuxt.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:598b88f2d9a90706edd01878128d572a3a9465de7c31198af78dfe5e5d479b2c",
+      "sha256": "598b88f2d9a90706edd01878128d572a3a9465de7c31198af78dfe5e5d479b2c",
+      "bytes": 9738
+    },
+    {
+      "path": "data/samples/pilot_20261011/reports/manifest.json",
+      "purpose": "旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:ac75c93e61138bcc382112ea2e7e1f9cdebae4693e2ecbb0ea66b56eb37b8962",
+      "sha256": "ac75c93e61138bcc382112ea2e7e1f9cdebae4693e2ecbb0ea66b56eb37b8962",
+      "bytes": 3421
+    },
+    {
+      "path": "data/samples/pilot_20261011/reports/quality_report.md",
+      "purpose": "旧匿名公开样本的质量说明，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:713a2111b22169f7f8b1ab59524154ab116a66ba711b443c756738fa98234ebb",
+      "sha256": "713a2111b22169f7f8b1ab59524154ab116a66ba711b443c756738fa98234ebb",
+      "bytes": 768
+    },
+    {
+      "path": "data/samples/pilot_20261011/tables/items.csv",
+      "purpose": "旧匿名公开样本的派生表，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:a429c153662abb65d9f39d6e8862b55cae728c83c9252a111e7910707a17083d",
+      "sha256": "a429c153662abb65d9f39d6e8862b55cae728c83c9252a111e7910707a17083d",
+      "bytes": 23160
+    },
+    {
+      "path": "data/samples/pilot_20261011/tables/quotes.csv",
+      "purpose": "旧匿名公开样本的派生表，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:bb3d0815d6e6c779b477bc7a7adf20a4e6c26f784624528e5339f28077801504",
+      "sha256": "bb3d0815d6e6c779b477bc7a7adf20a4e6c26f784624528e5339f28077801504",
+      "bytes": 93980
+    },
+    {
+      "path": "data/samples/pilot_20261011/tables/related_variants.csv",
+      "purpose": "旧匿名公开样本的派生表，冻结待 UU 用途复审",
+      "status": "legacy-unreviewed",
+      "version": "sha256:4db527f3b702087d4b738063b160943a35a2f8e89fc522f861d274b3dfeb9e0e",
+      "sha256": "4db527f3b702087d4b738063b160943a35a2f8e89fc522f861d274b3dfeb9e0e",
+      "bytes": 132402
+    },
+    {
+      "path": "docs/README.md",
+      "purpose": "当前计划、制度、历史参考和整理说明索引",
+      "status": "current-or-reference",
+      "version": "sha256:93b2a4b6bd7d3f06dfda71e4bd90de8acc071424307766c46c9e49b8bd901da4",
+      "sha256": "93b2a4b6bd7d3f06dfda71e4bd90de8acc071424307766c46c9e49b8bd901da4",
+      "bytes": 1209
+    },
+    {
+      "path": "docs/data/DATA_DICTIONARY.md",
+      "purpose": "旧公开快照表的字段字典",
+      "status": "current-or-reference",
+      "version": "sha256:f0589a84da9ce4f34c3c0f2b64b904427c03ad272299456f5702a49f87838319",
+      "sha256": "f0589a84da9ce4f34c3c0f2b64b904427c03ad272299456f5702a49f87838319",
+      "bytes": 7178
+    },
+    {
+      "path": "docs/data/DATA_SOURCES.md",
+      "purpose": "旧来源、采集证据及口径限制",
+      "status": "current-or-reference",
+      "version": "sha256:c81a426602933ba564a8f056eb930d2607ee4dd7abe8142503ea1dd327baa2d9",
+      "sha256": "c81a426602933ba564a8f056eb930d2607ee4dd7abe8142503ea1dd327baa2d9",
+      "bytes": 2617
+    },
+    {
+      "path": "docs/data/HISTORY_SCHEMA.md",
+      "purpose": "旧历史库 schema v2、时间与字段口径",
+      "status": "current-or-reference",
+      "version": "sha256:62af74eaff65f9f48ab9b45455c94865fc6797e540d0ed137b77ab7e0255958a",
+      "sha256": "62af74eaff65f9f48ab9b45455c94865fc6797e540d0ed137b77ab7e0255958a",
+      "bytes": 4792
+    },
+    {
+      "path": "docs/governance/ASSET_REGISTER.md",
+      "purpose": "旧资产保留依据及按用途准入状态",
+      "status": "current-or-reference",
+      "version": "sha256:000dc115fa79f14dba8f4947b026bc40f6744afe3850edb1e6b07c93b07a6c09",
+      "sha256": "000dc115fa79f14dba8f4947b026bc40f6744afe3850edb1e6b07c93b07a6c09",
+      "bytes": 2836
+    },
+    {
+      "path": "docs/governance/CONTRIBUTING.md",
+      "purpose": "本地工程修改与检查方法",
+      "status": "current-or-reference",
+      "version": "sha256:638174a11fda0e872f1c605b6692888e8b2e5bc822a4621aefe33c2755862c40",
+      "sha256": "638174a11fda0e872f1c605b6692888e8b2e5bc822a4621aefe33c2755862c40",
+      "bytes": 1035
+    },
+    {
+      "path": "docs/governance/FILE_CATALOG.json",
+      "purpose": "公开文件及目录的用途、版本和内容哈希索引",
+      "status": "current-or-reference",
+      "version": "layout-1.0.catalog",
+      "sha256": null,
+      "bytes": null
+    },
+    {
+      "path": "docs/governance/FILE_INDEX.md",
+      "purpose": "逐文件与逐目录用途和内容版本的可读索引，由 manage_assets 生成",
+      "status": "current-or-reference",
+      "version": "layout-1.0.catalog",
+      "sha256": null,
+      "bytes": null
+    },
+    {
+      "path": "docs/governance/FILE_MANAGEMENT.md",
+      "purpose": "文件布局、资产生命周期、版本、迁移及发布制度",
+      "status": "current-or-reference",
+      "version": "sha256:92e1a054b0e5d8dae2b20b9d45ad3e3f795943cef9d3d784044e7121c3529c8b",
+      "sha256": "92e1a054b0e5d8dae2b20b9d45ad3e3f795943cef9d3d784044e7121c3529c8b",
+      "bytes": 5601
+    },
+    {
+      "path": "docs/governance/HANDOFF.md",
+      "purpose": "人类与 agent 交接，以及本地与远程版本差异",
+      "status": "current-or-reference",
+      "version": "sha256:8b35aea3af5bb652340827448ab0fd2827eed53e96b228db6801744e19cadcd0",
+      "sha256": "8b35aea3af5bb652340827448ab0fd2827eed53e96b228db6801744e19cadcd0",
+      "bytes": 17695
+    },
+    {
+      "path": "docs/governance/ORGANIZATION.md",
+      "purpose": "layout-1.0 整理结果、迁移、清理及恢复方法",
+      "status": "current-or-reference",
+      "version": "sha256:08073c10b26002ee46574688422416ad8e9932f0f416517388b9126472543954",
+      "sha256": "08073c10b26002ee46574688422416ad8e9932f0f416517388b9126472543954",
+      "bytes": 3158
+    },
+    {
+      "path": "docs/governance/SECURITY.md",
+      "purpose": "凭证隔离与安全问题处理说明",
+      "status": "current-or-reference",
+      "version": "sha256:5ae922f7a322a6af95a3d36b8ef0ed218d6a2ac70e2b091a8ea8c4374e893775",
+      "sha256": "5ae922f7a322a6af95a3d36b8ef0ed218d6a2ac70e2b091a8ea8c4374e893775",
+      "bytes": 898
+    },
+    {
+      "path": "docs/governance/STATE.md",
+      "purpose": "当前阶段、版本和停止点",
+      "status": "current-or-reference",
+      "version": "sha256:832fe0dc0bf5c4934b7b5dbe72643558c3d9956c71accf997a28cd05b3236bc1",
+      "sha256": "832fe0dc0bf5c4934b7b5dbe72643558c3d9956c71accf997a28cd05b3236bc1",
+      "bytes": 1513
+    },
+    {
+      "path": "docs/releases/CHANGELOG.md",
+      "purpose": "代码历史变更及未发布本地版本说明",
+      "status": "current-or-reference",
+      "version": "sha256:e09e33869292b3b69db449bc60c3e9bbbb8b47049cc4cf876aeb328917c39e3c",
+      "sha256": "e09e33869292b3b69db449bc60c3e9bbbb8b47049cc4cf876aeb328917c39e3c",
+      "bytes": 3957
+    },
+    {
+      "path": "docs/releases/v0.1.0.md",
+      "purpose": "v0.1.0 已发布版本的历史说明",
+      "status": "current-or-reference",
+      "version": "sha256:135b867039018b6749d7f962f7e8231499afd032cba1c51a80bb2372f50b46aa",
+      "sha256": "135b867039018b6749d7f962f7e8231499afd032cba1c51a80bb2372f50b46aa",
+      "bytes": 709
+    },
+    {
+      "path": "docs/releases/v0.2.0.md",
+      "purpose": "v0.2.0 已发布版本的历史说明",
+      "status": "current-or-reference",
+      "version": "sha256:002370597842129af2d5c7dcb316e5beaacca82bd9ab16bd72ef75dbe6562dff",
+      "sha256": "002370597842129af2d5c7dcb316e5beaacca82bd9ab16bd72ef75dbe6562dff",
+      "bytes": 815
+    },
+    {
+      "path": "docs/releases/v0.3.0.md",
+      "purpose": "v0.3.0 已发布版本的历史说明",
+      "status": "current-or-reference",
+      "version": "sha256:ac1f97086ec2652368daeb51fed39fe8077492329f3c7899564f585e9beb303f",
+      "sha256": "ac1f97086ec2652368daeb51fed39fe8077492329f3c7899564f585e9beb303f",
+      "bytes": 1346
+    },
+    {
+      "path": "docs/research/PLAN.md",
+      "purpose": "唯一研究主计划 plan-1.0",
+      "status": "current-or-reference",
+      "version": "sha256:7ecb42c2634d668b6c0938d85d9924a3a5607d584b8bff8c629e93bc14d0cf97",
+      "sha256": "7ecb42c2634d668b6c0938d85d9924a3a5607d584b8bff8c629e93bc14d0cf97",
+      "bytes": 19020
+    },
+    {
+      "path": "docs/research/UNIVERSE.md",
+      "purpose": "旧筛选方法和候选说明，仅作历史参考",
+      "status": "current-or-reference",
+      "version": "sha256:ff17d43748dc1cf2d1312283b476cf8e8128cd8432d598131474e95b9e59d201",
+      "sha256": "ff17d43748dc1cf2d1312283b476cf8e8128cd8432d598131474e95b9e59d201",
+      "bytes": 4019
+    },
+    {
+      "path": "docs/usage/COLLECTION.md",
+      "purpose": "旧采集器的接口、配置和输出说明",
+      "status": "current-or-reference",
+      "version": "sha256:b4a37b5d4071f115da9f454d23cca57ef19824c46cc96ba5afffd2cba807e6f2",
+      "sha256": "b4a37b5d4071f115da9f454d23cca57ef19824c46cc96ba5afffd2cba807e6f2",
+      "bytes": 4638
+    },
+    {
+      "path": "docs/usage/DATABASE.md",
+      "purpose": "旧库的可选查询、时间精度与备份方法",
+      "status": "current-or-reference",
+      "version": "sha256:73c0c8b3da1f73199af10ddd0708e800bd8be942ecadc625fccf7402adc1001e",
+      "sha256": "73c0c8b3da1f73199af10ddd0708e800bd8be942ecadc625fccf7402adc1001e",
+      "bytes": 4209
+    },
+    {
+      "path": "docs/usage/HISTORY.md",
+      "purpose": "旧目录、候选、历史任务及查询命令参考",
+      "status": "current-or-reference",
+      "version": "sha256:4c9eb369e4726db3f33f6b2dc22d9a8b8c79b2a9f67c86d589ceb96ec368af64",
+      "sha256": "4c9eb369e4726db3f33f6b2dc22d9a8b8c79b2a9f67c86d589ceb96ec368af64",
+      "bytes": 8011
+    },
+    {
+      "path": "pyproject.toml",
+      "purpose": "Python 打包配置及单一源码版本入口",
+      "status": "current-or-reference",
+      "version": "sha256:5fccbcc7bee339154e77c56547285a3f7af4e231b13726197b58602d6fcd666e",
+      "sha256": "5fccbcc7bee339154e77c56547285a3f7af4e231b13726197b58602d6fcd666e",
+      "bytes": 570
+    },
+    {
+      "path": "scripts/README.md",
+      "purpose": "代码、配置、测试、SQL 和检查入口说明",
+      "status": "current-or-reference",
+      "version": "sha256:1d4b8cb088cf4d07dafbef6cc3ff4cecee43434e57e9a86ef4e4c7f3082dfd0b",
+      "sha256": "1d4b8cb088cf4d07dafbef6cc3ff4cecee43434e57e9a86ef4e4c7f3082dfd0b",
+      "bytes": 1208
+    },
+    {
+      "path": "scripts/check_secrets.py",
+      "purpose": "暂存区及 Git 历史的凭证隔离检查，不打印真实值",
+      "status": "current-or-reference",
+      "version": "sha256:7dbba895353870d8b0fcf6c4f27536518d5299aae5738a9c2328588c23a7d1a5",
+      "sha256": "7dbba895353870d8b0fcf6c4f27536518d5299aae5738a9c2328588c23a7d1a5",
+      "bytes": 6297
+    },
+    {
+      "path": "scripts/collect.py",
+      "purpose": "旧采集 CLI 的薄入口，当前不恢复采集",
+      "status": "current-or-reference",
+      "version": "sha256:68a4e27d6d7d3b66eaece3496e842cc561e52b5fcdd8b112031e09df15d0433d",
+      "sha256": "68a4e27d6d7d3b66eaece3496e842cc561e52b5fcdd8b112031e09df15d0433d",
+      "bytes": 255
+    },
+    {
+      "path": "scripts/config/.env.example",
+      "purpose": "公开的空白凭证配置模板",
+      "status": "current-or-reference",
+      "version": "sha256:52b696866d0f8ab8f6432eb649999578d3ad29f70628941dbfa2518e1dec1f4d",
+      "sha256": "52b696866d0f8ab8f6432eb649999578d3ad29f70628941dbfa2518e1dec1f4d",
+      "bytes": 89
+    },
+    {
+      "path": "scripts/config/seeds.json",
+      "purpose": "旧试采精确英文规格种子，不是正式 UU 名单",
+      "status": "current-or-reference",
+      "version": "sha256:ddedf38ac8697cedd7a7a8c588b56179fbc9188367127265bf6507733f9da129",
+      "sha256": "ddedf38ac8697cedd7a7a8c588b56179fbc9188367127265bf6507733f9da129",
+      "bytes": 798
+    },
+    {
+      "path": "scripts/config/vscode.code-workspace",
+      "purpose": "旧库可选 SQLTools 工作区配置",
+      "status": "current-or-reference",
+      "version": "sha256:4f88c319a783251af8da28b046b77c8a509015b4e842d8ad334c5e0c39667927",
+      "sha256": "4f88c319a783251af8da28b046b77c8a509015b4e842d8ad334c5e0c39667927",
+      "bytes": 489
+    },
+    {
+      "path": "scripts/config/watchlist.json",
+      "purpose": "流金王朝、燃料喷射器等旧调查线索",
+      "status": "current-or-reference",
+      "version": "sha256:f166dd9a66e393c51fc74c2774c6857c7581a98436b8f500367a1974500c2d12",
+      "sha256": "f166dd9a66e393c51fc74c2774c6857c7581a98436b8f500367a1974500c2d12",
+      "bytes": 424
+    },
+    {
+      "path": "scripts/hooks/pre-commit",
+      "purpose": "本地提交前的暂存凭证检查",
+      "status": "current-or-reference",
+      "version": "sha256:377f8130236be47422a6f720cbe9adb9a377930ab8180f2dc0fddf19bf3ae57c",
+      "sha256": "377f8130236be47422a6f720cbe9adb9a377930ab8180f2dc0fddf19bf3ae57c",
+      "bytes": 51
+    },
+    {
+      "path": "scripts/hooks/pre-push",
+      "purpose": "历史凭证检查；新增远程推送仍暂停",
+      "status": "current-or-reference",
+      "version": "sha256:8bcdeaad4b7d9be5bdc9143317915d80a38567c5a3ac21980f717795c614b515",
+      "sha256": "8bcdeaad4b7d9be5bdc9143317915d80a38567c5a3ac21980f717795c614b515",
+      "bytes": 52
+    },
+    {
+      "path": "scripts/manage_assets.py",
+      "purpose": "生成及校验逐文件、逐目录版本和用途清单",
+      "status": "current-or-reference",
+      "version": "sha256:cf5d55b388e71aaa8ef6ae715d9867beddebbb1c93c3339385abd1d431264cc6",
+      "sha256": "cf5d55b388e71aaa8ef6ae715d9867beddebbb1c93c3339385abd1d431264cc6",
+      "bytes": 16333
+    },
+    {
+      "path": "scripts/sql/01_catalog.sql",
+      "purpose": "旧库目录搜索与身份查询",
+      "status": "current-or-reference",
+      "version": "sha256:7c51db5d6c1eac9dc4e945fd8d9b2f9974b3ce938bf32716e85bea78f7dad818",
+      "sha256": "7c51db5d6c1eac9dc4e945fd8d9b2f9974b3ce938bf32716e85bea78f7dad818",
+      "bytes": 361
+    },
+    {
+      "path": "scripts/sql/02_universe.sql",
+      "purpose": "旧候选名单查询",
+      "status": "current-or-reference",
+      "version": "sha256:c22e9b3e2b8794795a7642df84aba229271d0c5dcd9e39a560d93e45e2b96724",
+      "sha256": "c22e9b3e2b8794795a7642df84aba229271d0c5dcd9e39a560d93e45e2b96724",
+      "bytes": 733
+    },
+    {
+      "path": "scripts/sql/03_market.sql",
+      "purpose": "旧逐笔与行情查询",
+      "status": "current-or-reference",
+      "version": "sha256:fa8a82775930931eb7b0d28bd63e53d682fc08eed8c767c8c24b0ff17942e20d",
+      "sha256": "fa8a82775930931eb7b0d28bd63e53d682fc08eed8c767c8c24b0ff17942e20d",
+      "bytes": 1302
+    },
+    {
+      "path": "scripts/sql/04_coverage.sql",
+      "purpose": "旧覆盖和分页进度诊断",
+      "status": "current-or-reference",
+      "version": "sha256:dd7c696d2535eac4da3ba43a6e22f5ec818e3e491cb10176cb3a029cd87d7475",
+      "sha256": "dd7c696d2535eac4da3ba43a6e22f5ec818e3e491cb10176cb3a029cd87d7475",
+      "bytes": 970
+    },
+    {
+      "path": "scripts/src/cs_youoweme/__init__.py",
+      "purpose": "模块身份及包版本或职责说明",
+      "status": "legacy-unreviewed",
+      "version": "sha256:04b7a2f84434c576234d411fa24c31ec9a33a0a7e6fba2722ba9e89c0a7ecb7e",
+      "sha256": "04b7a2f84434c576234d411fa24c31ec9a33a0a7e6fba2722ba9e89c0a7ecb7e",
+      "bytes": 74
+    },
+    {
+      "path": "scripts/src/cs_youoweme/__main__.py",
+      "purpose": "Python 模块形式的 CLI 入口",
+      "status": "legacy-unreviewed",
+      "version": "sha256:935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "sha256": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+      "bytes": 48
+    },
+    {
+      "path": "scripts/src/cs_youoweme/cleaning.py",
+      "purpose": "规格、价格、数量、币种与时间标准化",
+      "status": "legacy-unreviewed",
+      "version": "sha256:48ae59ccfc0d2491fce269eaaf9eb7aac35d86f61ff82fad5f046c074e2ea7f8",
+      "sha256": "48ae59ccfc0d2491fce269eaaf9eb7aac35d86f61ff82fad5f046c074e2ea7f8",
+      "bytes": 3387
+    },
+    {
+      "path": "scripts/src/cs_youoweme/cli.py",
+      "purpose": "命令注册、参数与工作流调度",
+      "status": "legacy-unreviewed",
+      "version": "sha256:a74dd98501795a010e024feaca4a2b379d3333b47123dfe3e62c85067136bb3a",
+      "sha256": "a74dd98501795a010e024feaca4a2b379d3333b47123dfe3e62c85067136bb3a",
+      "bytes": 2097
+    },
+    {
+      "path": "scripts/src/cs_youoweme/collectors/__init__.py",
+      "purpose": "模块身份及包版本或职责说明",
+      "status": "legacy-unreviewed",
+      "version": "sha256:54d33ce8eae37cfb7e15ca8b45ae7e918f31dbfe3a5da59de24a36422280ee0b",
+      "sha256": "54d33ce8eae37cfb7e15ca8b45ae7e918f31dbfe3a5da59de24a36422280ee0b",
+      "bytes": 57
+    },
+    {
+      "path": "scripts/src/cs_youoweme/collectors/official.py",
+      "purpose": "旧官方 API 客户端、缓存与配额节奏",
+      "status": "legacy-unreviewed",
+      "version": "sha256:9738556f6f47445480af458c5662f5ee33666126a9470ea551abc874f3bb2f1a",
+      "sha256": "9738556f6f47445480af458c5662f5ee33666126a9470ea551abc874f3bb2f1a",
+      "bytes": 5710
+    },
+    {
+      "path": "scripts/src/cs_youoweme/collectors/public.py",
+      "purpose": "旧公开页面采集流程",
+      "status": "legacy-unreviewed",
+      "version": "sha256:3ce200d6c932731bfcf96dce7a71234d6b2422c1d7710a812faf81af6be36db1",
+      "sha256": "3ce200d6c932731bfcf96dce7a71234d6b2422c1d7710a812faf81af6be36db1",
+      "bytes": 4526
+    },
+    {
+      "path": "scripts/src/cs_youoweme/collectors/website.py",
+      "purpose": "旧匿名网页接口客户端、时钟同步与访问停止",
+      "status": "legacy-unreviewed",
+      "version": "sha256:3cd3fae5bd6b9f3966b0a7ade57a53cecc1cadebd024e283aab75a0c102de656",
+      "sha256": "3cd3fae5bd6b9f3966b0a7ade57a53cecc1cadebd024e283aab75a0c102de656",
+      "bytes": 5030
+    },
+    {
+      "path": "scripts/src/cs_youoweme/config.py",
+      "purpose": "旧种子与受保护本地凭证读取",
+      "status": "legacy-unreviewed",
+      "version": "sha256:2e9cd406f32288f39c881f8b40f325e604a2e6624e3e37ff925437e9a1489202",
+      "sha256": "2e9cd406f32288f39c881f8b40f325e604a2e6624e3e37ff925437e9a1489202",
+      "bytes": 1368
+    },
+    {
+      "path": "scripts/src/cs_youoweme/errors.py",
+      "purpose": "安全可展示的采集异常类型",
+      "status": "legacy-unreviewed",
+      "version": "sha256:33de510974d68bc8ca152bb828f3d34cee8c2a8c845a8954ef25d8206b77ff28",
+      "sha256": "33de510974d68bc8ca152bb828f3d34cee8c2a8c845a8954ef25d8206b77ff28",
+      "bytes": 255
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history/__init__.py",
+      "purpose": "模块身份及包版本或职责说明",
+      "status": "legacy-unreviewed",
+      "version": "sha256:d1daff51ccf3993f34b6fbf03e257c75ee22ab7243482a0dc6962615a6f64436",
+      "sha256": "d1daff51ccf3993f34b6fbf03e257c75ee22ab7243482a0dc6962615a6f64436",
+      "bytes": 79
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history/aggregate.py",
+      "purpose": "行情聚合，保留缺失和覆盖语义",
+      "status": "legacy-unreviewed",
+      "version": "sha256:154a0e27a927074911196959cd10556d11352b41ee7af5f565945853f5bc3a1e",
+      "sha256": "154a0e27a927074911196959cd10556d11352b41ee7af5f565945853f5bc3a1e",
+      "bytes": 2865
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history/catalog.py",
+      "purpose": "目录身份、来源平台编号及搜索映射",
+      "status": "legacy-unreviewed",
+      "version": "sha256:178e35a43db31a822ed911cba5ecd9de15559b539b90d266d0eef3fd54cd5162",
+      "sha256": "178e35a43db31a822ed911cba5ecd9de15559b539b90d266d0eef3fd54cd5162",
+      "bytes": 7870
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history/cli.py",
+      "purpose": "命令注册、参数与工作流调度",
+      "status": "legacy-unreviewed",
+      "version": "sha256:65933b7672ede549c65b6c3ccfee194657e30f4a99a9ff51431b3c8f3706250b",
+      "sha256": "65933b7672ede549c65b6c3ccfee194657e30f4a99a9ff51431b3c8f3706250b",
+      "bytes": 7694
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history/jobs.py",
+      "purpose": "有预算的分页任务、恢复与原子检查点",
+      "status": "legacy-unreviewed",
+      "version": "sha256:182c576dbaf99367a24a44b35118cdb5adaa94a22ff5706907a802fc75eeff7e",
+      "sha256": "182c576dbaf99367a24a44b35118cdb5adaa94a22ff5706907a802fc75eeff7e",
+      "bytes": 11826
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history/normalize.py",
+      "purpose": "逐笔及行情精度、时间和空值验证",
+      "status": "legacy-unreviewed",
+      "version": "sha256:aaaa913c4ade45f47012feb4b42f1e2c0db15e6442b60f19b28270d68e0323a3",
+      "sha256": "aaaa913c4ade45f47012feb4b42f1e2c0db15e6442b60f19b28270d68e0323a3",
+      "bytes": 3246
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history/query.py",
+      "purpose": "旧库覆盖、状态、参数化查询和导出",
+      "status": "legacy-unreviewed",
+      "version": "sha256:5ac2245777d6b4ed9d02f4de41f583d38e3d40e4f9db29119265557ca8ac113b",
+      "sha256": "5ac2245777d6b4ed9d02f4de41f583d38e3d40e4f9db29119265557ca8ac113b",
+      "bytes": 6100
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history/schema.sql",
+      "purpose": "旧历史库表、索引与任务结构 schema v2",
+      "status": "legacy-unreviewed",
+      "version": "sha256:4bbee4ab43239cd826dc597756501d4b934f904eb0eab3bbdc8d6c0cc45e6a36",
+      "sha256": "4bbee4ab43239cd826dc597756501d4b934f904eb0eab3bbdc8d6c0cc45e6a36",
+      "bytes": 5155
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history/store.py",
+      "purpose": "旧库 schema、事务、压缩归档和 worker 锁",
+      "status": "legacy-unreviewed",
+      "version": "sha256:7b880556de0d43bdf2243f40dcf8390b510f2926517928c6e8a057d01b038ab8",
+      "sha256": "7b880556de0d43bdf2243f40dcf8390b510f2926517928c6e8a057d01b038ab8",
+      "bytes": 4614
+    },
+    {
+      "path": "scripts/src/cs_youoweme/history/universe.py",
+      "purpose": "旧候选筛选实现，仅机制参考，不沿用为新选品规则",
+      "status": "legacy-unreviewed",
+      "version": "sha256:9b2670351d67b024961712d35411eacd7b95663c054296113f69f88c86d65c59",
+      "sha256": "9b2670351d67b024961712d35411eacd7b95663c054296113f69f88c86d65c59",
+      "bytes": 14362
+    },
+    {
+      "path": "scripts/src/cs_youoweme/parsing.py",
+      "purpose": "Nuxt 响应解析及精确商品匹配",
+      "status": "legacy-unreviewed",
+      "version": "sha256:d555ec0aa8776346b1917791dd78310a88ca28384db3a2a615fe4aeb859f6604",
+      "sha256": "d555ec0aa8776346b1917791dd78310a88ca28384db3a2a615fe4aeb859f6604",
+      "bytes": 3170
+    },
+    {
+      "path": "scripts/src/cs_youoweme/paths.py",
+      "purpose": "独立于工作目录的项目、配置与数据路径",
+      "status": "legacy-unreviewed",
+      "version": "sha256:0c4ad1a5e3b90a769a77e103adca835081c13de7eff77eb8f2c7a5717c6cde66",
+      "sha256": "0c4ad1a5e3b90a769a77e103adca835081c13de7eff77eb8f2c7a5717c6cde66",
+      "bytes": 291
+    },
+    {
+      "path": "scripts/src/cs_youoweme/storage.py",
+      "purpose": "原始证据、快照表、报告与本地 SQLite 存储",
+      "status": "legacy-unreviewed",
+      "version": "sha256:f0bb61cafd4ffe03c1a33c308e819ec50e88b5b99644d8d310d029857779eb35",
+      "sha256": "f0bb61cafd4ffe03c1a33c308e819ec50e88b5b99644d8d310d029857779eb35",
+      "bytes": 8293
+    },
+    {
+      "path": "scripts/src/cs_youoweme/transport.py",
+      "purpose": "HTTP 传输及凭证重定向限制",
+      "status": "legacy-unreviewed",
+      "version": "sha256:e94ef1008584b6f278686df3e952d1eb2e558d7ba37ed1f6b8e6946cfdba2c8a",
+      "sha256": "e94ef1008584b6f278686df3e952d1eb2e558d7ba37ed1f6b8e6946cfdba2c8a",
+      "bytes": 1893
+    },
+    {
+      "path": "scripts/tests/_support.py",
+      "purpose": "离线测试辅助与共享样本路径",
+      "status": "legacy-unreviewed",
+      "version": "sha256:72d1db2c12184c85cd62d1434bed16b7f251e46eae2b0a47a901dc3d2d24733f",
+      "sha256": "72d1db2c12184c85cd62d1434bed16b7f251e46eae2b0a47a901dc3d2d24733f",
+      "bytes": 450
+    },
+    {
+      "path": "scripts/tests/test_cleaning.py",
+      "purpose": "cleaning 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:fd9a35252d7f510ef2ac156e0b6d3ecbb32667f292e8cfc1fdca3f10da7f94fa",
+      "sha256": "fd9a35252d7f510ef2ac156e0b6d3ecbb32667f292e8cfc1fdca3f10da7f94fa",
+      "bytes": 2436
+    },
+    {
+      "path": "scripts/tests/test_cli.py",
+      "purpose": "cli 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:14b3111c25527b8979a905340b6027a7d9e179305dc08f55f1d6372c152ad11d",
+      "sha256": "14b3111c25527b8979a905340b6027a7d9e179305dc08f55f1d6372c152ad11d",
+      "bytes": 1957
+    },
+    {
+      "path": "scripts/tests/test_collection.py",
+      "purpose": "collection 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:c27cd56c8d6319d7ec66c7c851d92e73ce6a0497ab9057f73529ee2f2df050da",
+      "sha256": "c27cd56c8d6319d7ec66c7c851d92e73ce6a0497ab9057f73529ee2f2df050da",
+      "bytes": 3681
+    },
+    {
+      "path": "scripts/tests/test_history.py",
+      "purpose": "history 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:c923f30defdd8bdad56ca7eae874c0a7e4e6b981551fc12c09e2b95c55579f3d",
+      "sha256": "c923f30defdd8bdad56ca7eae874c0a7e4e6b981551fc12c09e2b95c55579f3d",
+      "bytes": 11654
+    },
+    {
+      "path": "scripts/tests/test_parsing.py",
+      "purpose": "parsing 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:de780b4e0af115509982cfcfcd9c8c3ffb0decef991fb1124bbd9aa034a36148",
+      "sha256": "de780b4e0af115509982cfcfcd9c8c3ffb0decef991fb1124bbd9aa034a36148",
+      "bytes": 1004
+    },
+    {
+      "path": "scripts/tests/test_samples.py",
+      "purpose": "samples 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:7cd15623e8d52ce945a4537707b21c6da6bc92f25c53b1bde9d41c685821bd18",
+      "sha256": "7cd15623e8d52ce945a4537707b21c6da6bc92f25c53b1bde9d41c685821bd18",
+      "bytes": 2890
+    },
+    {
+      "path": "scripts/tests/test_secret_checks.py",
+      "purpose": "secret_checks 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:6d0eada50ccc0f985f493e933a44668a5be8473fa7e4b922b36832adf2d4adda",
+      "sha256": "6d0eada50ccc0f985f493e933a44668a5be8473fa7e4b922b36832adf2d4adda",
+      "bytes": 1567
+    },
+    {
+      "path": "scripts/tests/test_transport.py",
+      "purpose": "transport 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:94369afa0d94dff352594e0375af26acf6aadb747cc464cd782dabdc3825f844",
+      "sha256": "94369afa0d94dff352594e0375af26acf6aadb747cc464cd782dabdc3825f844",
+      "bytes": 575
+    },
+    {
+      "path": "scripts/tests/test_universe.py",
+      "purpose": "universe 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:98667d0001b0775f0fa8f1becf73ff2bd3dbeafe72fd0600d014e370d319cad7",
+      "sha256": "98667d0001b0775f0fa8f1becf73ff2bd3dbeafe72fd0600d014e370d319cad7",
+      "bytes": 4730
+    },
+    {
+      "path": "scripts/tests/test_website.py",
+      "purpose": "website 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:930c0122e11dd51443822836b0021ead3765d5d0ff4004be5b390e74cd1e91d2",
+      "sha256": "930c0122e11dd51443822836b0021ead3765d5d0ff4004be5b390e74cd1e91d2",
+      "bytes": 2432
+    }
+  ]
+}

@@ -1,4 +1,8 @@
 * text=auto
+.gitattributes text eol=lf
+.gitignore text eol=lf
+LICENSE text eol=lf
+scripts/config/.env.example text eol=lf
 *.py text eol=lf
 *.md text eol=lf
 *.json text eol=lf
@@ -7,4 +11,4 @@
 *.sql text eol=lf
 *.code-workspace text eol=lf
 *.csv text eol=lf
-.githooks/* text eol=lf
+scripts/hooks/* text eol=lf

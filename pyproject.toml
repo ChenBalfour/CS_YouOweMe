@@ -15,7 +15,7 @@ dependencies = []
 Repository = "https://github.com/ChenBalfour/CS_YouOweMe"
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["scripts/src"]
 
 [tool.setuptools.dynamic]
 version = {attr = "cs_youoweme.__version__"}
