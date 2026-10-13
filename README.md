@@ -2,7 +2,7 @@
 
 面向悠悠有品（UU）的 CS2 百元、千元普通枪皮决策研究，研究可执行净收益与退出能力。P01 完成，P02 初选交付完成：10 个主力验证规格、6 个候补；P03 两规格有限核验已交付，当前只通过 L0 来源观察，执行数据完整验收尚未完成。正式数据集与模型仍为 0。
 
-本地工程版本 **0.3.4（未发布）**，目录版本 **layout-1.0**，研究计划 **plan-1.3**，文件制度 **management-1.1**。本次交付[字段契约](docs/data/UU_FIELD_CONTRACT.md)、[执行规则](docs/data/UU_EXECUTION_RULES.md)和[有限试跑报告](docs/research/P03_VERIFICATION_REPORT.md)。已取得 UU 汇总盘口，但逐笔 UU 归属、可比单件深度和当前结算仍待核验。
+本地工程版本 **0.3.5（未发布）**，目录版本 **layout-1.0**，研究计划 **plan-1.4**，文件制度 **management-1.1**。P03 字段与有限报告已交付；当前另准备[用户本地 Notebook](scripts/notebooks/uu_observe_24h.ipynb)与[运行说明](docs/usage/OBSERVE_24H.md)，默认 24 小时、每小时两规格来源快照，实际连续采集尚未启动。
 
 | 主体目录 | 内容 | 入口 |
 | --- | --- | --- |

@@ -39,7 +39,7 @@ def uu_snapshot(row, observed_at, source_request):
         flags.append("source_time_future")
     elif age > 3600:
         flags.append("stale_over_1h")
-    if sell in {None, "0"} or bid in {None, "0"}:
+    if sell is None or bid is None or Decimal(sell) == 0 or Decimal(bid) == 0:
         flags.append("side_missing_or_zero")
     return {"source": "steamdt", "venue": "UU", "capability_level": "L0",
             "template_id": params["templateId"][0], "source_sell_price_cny": sell,

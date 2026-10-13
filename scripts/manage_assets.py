@@ -32,6 +32,8 @@ PURPOSES = {
     "scripts/verify_public_evidence.py": "有预算的公开网页/规则证据和已发现 UU 只读入口抓取，访问受限主机持久停止",
     "scripts/verify_uu_fields.py": "两个精确规格的 SteamDT UU 汇总盘口字段有限补查，独立库与准确源码留存",
     "scripts/review_uu_verification.py": "离线核对 P03 原始哈希、全页逐笔、只读库与字段准入，导出私有规范观察",
+    "scripts/observe_uu_24h.py": "用户显式启动的新建/恢复连续观察 CLI，status 只读，不默认运行",
+    "scripts/notebooks/uu_observe_24h.ipynb": "VS Code 用户本地 24 小时连续观察 Notebook，交付时输出清空且未执行",
     "scripts/config/seeds.json": "旧试采精确英文规格种子，不是正式 UU 名单",
     "scripts/config/watchlist.json": "流金王朝、燃料喷射器等旧调查线索",
     "scripts/config/.env.example": "公开的空白凭证配置模板",
@@ -46,6 +48,8 @@ PURPOSES = {
     "docs/research/PROGRESS_20261013.md": "2026-10-13 阶段总结、相对早期的改动、整体规划与今晚停止点",
     "docs/research/P03_VERIFICATION_PLAN.md": "P03 两规格来源、盘口、属性与规则核验范围、预算和验收问题",
     "docs/research/P03_VERIFICATION_REPORT.md": "P03 有限试跑结果、证据、报价异常、未知项和 L0 准入边界",
+    "docs/research/P03_OBSERVATION_PLAN.md": "用户本地连续观察的固定窗口、预算、恢复、用途与未启动状态",
+    "docs/usage/OBSERVE_24H.md": "VS Code Notebook 的内核、启动、停止、恢复、输出和采样边界说明",
     "docs/data/UU_FIELD_CONTRACT.md": "已核验 UU 来源行情、汇总快照及混合逐笔字段定义与执行准入限制",
     "docs/data/UU_EXECUTION_RULES.md": "Steam 和 UU 公开规则、旧版适用限制、资金时间字段及访问限制处理",
     "docs/research/UNIVERSE.md": "旧筛选方法和候选说明，仅作历史参考",
@@ -89,6 +93,7 @@ SOURCE_PURPOSES = {
     "store.py": "旧库 schema、事务、压缩归档和 worker 锁",
     "universe.py": "旧候选筛选实现，仅机制参考，不沿用为新选品规则",
     "verification.py": "核验后来源平台分类、可空 Decimal 属性和 UU 汇总报价异常及执行准入标记",
+    "observe.py": "固定截止、逐时点检查点、预算、访问停止和只读状态的用户本地前向观察机制",
     "schema.sql": "旧历史库表、索引与任务结构 schema v2",
 }
 
@@ -102,6 +107,7 @@ FOLDERS = {
     "scripts/src/cs_youoweme/collectors": "旧公开页面、官方和匿名接口采集机制",
     "scripts/src/cs_youoweme/history": "旧目录、分页任务、SQLite、查询和候选机制",
     "scripts/tests": "离线与合成回归测试",
+    "scripts/notebooks": "用户手动运行的 Notebook 入口，Git 中清空执行输出",
     "scripts/sql": "旧历史库只读诊断查询",
     "scripts/config": "脚本配置、空白模板与受保护本地凭证",
     "scripts/hooks": "本地 Git 凭证检查 hooks",
@@ -176,6 +182,8 @@ def purpose(path):
     if path.startswith("docs/local/pilots/"):
         return "单品单日有限试跑或离线质量核验报告，非正式研究结论"
     if path.startswith("data/local/staging/steamdt/"):
+        if "/p03_steamdt_observe_" in path:
+            return "连续观察的压缩原始响应，保持私有和哈希追溯" if "/raw/" in path else "用户本地连续观察的独立 SQLite 与采样/恢复/请求检查点" if name == "observations.sqlite" else "连续观察的固定清单、运行摘要、状态报告、互斥锁或快照导出"
         if "/p03_steamdt_fields_" in path:
             return "P03 比较字段补查的压缩原始响应，保持哈希追溯" if "/raw/" in path else "P03 独立汇总字段补查 SQLite，不是正式数据集" if name == "verification.sqlite" else "P03 字段补查、规范来源观察、全页逐笔和独立离线核验的版本化证据"
         if "/p02_steamdt_selection_" in path:
@@ -231,6 +239,8 @@ def folder_purpose(path):
     if path.startswith("data/local/universes/uu_research_selection_"):
         return "该版本的研究验证名单、候选表及准入用途清单"
     if path.startswith("data/local/staging/steamdt/"):
+        if "/p03_steamdt_observe_" in path:
+            return "用户本地有预算连续观察的独立数据、原始响应、状态和导出"
         if "/p03_steamdt_fields_" in path:
             return "独立 P03 汇总字段补查的原始响应、规范观察、报告或哈希分桶"
         return "独立单品单日试跑的原始响应、表、报告或哈希分桶"

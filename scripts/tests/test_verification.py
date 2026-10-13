@@ -53,13 +53,14 @@ class VerificationTests(unittest.TestCase):
         self.assertFalse(result["execution_eligible"])
 
     def test_missing_count_is_not_zero_filled(self):
-        row = {"platform": "YOUPIN", "platformName": "悠悠", "sellPrice": 100, "biddingPrice": 0,
+        row = {"platform": "YOUPIN", "platformName": "悠悠", "sellPrice": 100, "biddingPrice": "0.00",
                "sellCount": None, "biddingCount": 0,
                "link": "https://www.youpin898.com/market/goods-list?templateId=113014&gameId=730"}
         result = uu_snapshot(row, "2026-10-13T00:00:00+00:00", 3)
         self.assertIsNone(result["source_sell_count"])
         self.assertEqual(result["source_bidding_count"], 0)
         self.assertIn("source_time_missing", result["quality_flags"])
+        self.assertIn("side_missing_or_zero", result["quality_flags"])
 
     def test_same_named_non_uu_row_rejected(self):
         with self.assertRaises(CollectionError):

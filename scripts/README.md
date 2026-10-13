@@ -1,6 +1,6 @@
 # 脚本与工程配套
 
-目录版本 layout-1.0，代码版本 0.3.4（本地未发布）。每个文件和子目录的用途、SHA-256 内容版本见 [统一清单](../docs/governance/FILE_CATALOG.json)。
+目录版本 layout-1.0，代码版本 0.3.5（本地未发布）。每个文件和子目录的用途、SHA-256 内容版本见 [统一清单](../docs/governance/FILE_CATALOG.json)。
 
 | 位置 | 用途与保留依据 |
 | --- | --- |
@@ -12,6 +12,8 @@
 | verify_public_evidence.py | 有预算公开页面/规则和三类已发现 UU 只读入口核验；本轮 UU 主机受限已停止 |
 | verify_uu_fields.py | 两规格 UU 汇总比较字段补查，独立库；不自动执行 |
 | review_uu_verification.py | 指定冻结运行的只读复核与私有观察导出，不采集市场 |
+| notebooks/uu_observe_24h.ipynb | 用户在 VS Code 手动运行的连续观察入口，交付时未执行 |
+| observe_uu_24h.py | 用户显式新建/恢复/只读状态 CLI，与 Notebook 共用同一机制 |
 | local/pilot_sources/ | 私有实际运行源码版本，哈希与采集/核验清单对应 |
 | manage_assets.py | 生成或检查文件、目录版本清单 |
 | src/cs_youoweme/ | 分层源码；新增 verification 的 L0 字段解释，UU 执行口径尚未验收 |

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "layout_version": "layout-1.0",
-  "code_version": "0.3.4-local-unreleased",
+  "code_version": "0.3.5-local-unreleased",
   "scope": "git-managed-files",
   "hash_policy": "SHA-256; generated catalogs exclude their own bytes to avoid circular hashes; protected credentials have no content/hash snapshot",
   "directories": [
@@ -9,7 +9,7 @@
       "path": ".",
       "purpose": "项目根及 Git/Python 所需入口元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:b97aa25171e7ae505835d9f13f42357b693914a84cab57f52a8fd4968d8360bf"
+      "version": "sha256:09e8dcab114dc6534a972ed86150421c7c5c95faef929bdc996dacf5f98a0b6f"
     },
     {
       "path": ".github",
@@ -63,7 +63,7 @@
       "path": "docs",
       "purpose": "计划、制度、使用说明和交接记录",
       "layout_version": "layout-1.0",
-      "version": "sha256:a195d0388ea7efa8debb24a246a489da2c5c0e1c1868c18c9ed5e408bec038ca"
+      "version": "sha256:fa7b8887b4d067c0190700df1433eb0f3fab85257220113cecc686ff1d1b0d7f"
     },
     {
       "path": "docs/data",
@@ -75,31 +75,31 @@
       "path": "docs/governance",
       "purpose": "管理、阶段、资产登记与版本索引",
       "layout_version": "layout-1.0",
-      "version": "sha256:51048e4a543f18ebf3a3966bbaa76b727bcf51c8875625410ef12968da2576ad"
+      "version": "sha256:f1e25d39a52269b1bb1296ea806f1578f0347f1ee1678d8b888eb9cb18447bf6"
     },
     {
       "path": "docs/releases",
       "purpose": "历史发布与本地版本变更说明",
       "layout_version": "layout-1.0",
-      "version": "sha256:8aae42e4acc6f57b73c16e76df1c1daf2841575698554568822b3a253ae4a167"
+      "version": "sha256:9cc3d5144b9af01445c455b782537ac3e963af71ae35fd7f2e9b44b8b6d409c3"
     },
     {
       "path": "docs/research",
       "purpose": "唯一主计划与旧研究参考",
       "layout_version": "layout-1.0",
-      "version": "sha256:21d0cfcbb41b409396e5b8a76f23e47144185001c928f9b86e926f18766a0f4c"
+      "version": "sha256:2d7439f48d0bfe3b3ee790223723574652674ea342254607c87d8b78e8c84a62"
     },
     {
       "path": "docs/usage",
       "purpose": "旧实现使用参考，非执行授权",
       "layout_version": "layout-1.0",
-      "version": "sha256:8142c8c9e0c5ae7a3588240427c8813e2a2a58c29300a6dec6648d163a1d79fc"
+      "version": "sha256:f3e1b1c02a6aa0e14c1382df48e17a44d809f2dbd63c3f2683b64ed328331fc1"
     },
     {
       "path": "scripts",
       "purpose": "所有可执行代码及其工程配套",
       "layout_version": "layout-1.0",
-      "version": "sha256:bad4bf639dcb5e4e09b0cbf6697574884096c4aba902e33754f903dc210df113"
+      "version": "sha256:2a5c9b13e1855b9943ea4829c1392c40869075108acc9e3723a7c906ca699d8c"
     },
     {
       "path": "scripts/config",
@@ -114,6 +114,12 @@
       "version": "sha256:89d7eda41c4a2b3a0e57be29d0fcc06a3912ad93109e666cd60b2f9897d3a827"
     },
     {
+      "path": "scripts/notebooks",
+      "purpose": "用户手动运行的 Notebook 入口，Git 中清空执行输出",
+      "layout_version": "layout-1.0",
+      "version": "sha256:8e411f1bca440fcd263323c072a8dcd65b54a9402741b65f6b591924ae998085"
+    },
+    {
       "path": "scripts/sql",
       "purpose": "旧历史库只读诊断查询",
       "layout_version": "layout-1.0",
@@ -123,31 +129,31 @@
       "path": "scripts/src",
       "purpose": "Python 包源码",
       "layout_version": "layout-1.0",
-      "version": "sha256:1532aa244d59c117c7a698c01b531d648030669041cd57a5ade212b607284e3f"
+      "version": "sha256:f1cf0bb82e2b60321fe5f7be3d8aec064575d6fd9f5fcec2083be00e4e85a0a8"
     },
     {
       "path": "scripts/src/cs_youoweme",
       "purpose": "旧技术实现，可按对应用途审查复用",
       "layout_version": "layout-1.0",
-      "version": "sha256:1532aa244d59c117c7a698c01b531d648030669041cd57a5ade212b607284e3f"
+      "version": "sha256:f1cf0bb82e2b60321fe5f7be3d8aec064575d6fd9f5fcec2083be00e4e85a0a8"
     },
     {
       "path": "scripts/src/cs_youoweme/collectors",
       "purpose": "旧公开页面、官方和匿名接口采集机制",
       "layout_version": "layout-1.0",
-      "version": "sha256:8f580b68ba93ec449349f909b25c200354b3ed407b2bfae676d9c75f3b37f84a"
+      "version": "sha256:292f48b673f25fea3cf85571a95415501c8c1b3df7167153b95311511e1ae6ce"
     },
     {
       "path": "scripts/src/cs_youoweme/history",
       "purpose": "旧目录、分页任务、SQLite、查询和候选机制",
       "layout_version": "layout-1.0",
-      "version": "sha256:7344c598f748131b415ffc7fc1925bcbfdf2198e4bd0201bc4c321ca324f021b"
+      "version": "sha256:169bf7b93ce2c9424844e922d1652094399ca675590892fc9143ed4e7d856530"
     },
     {
       "path": "scripts/tests",
       "purpose": "离线与合成回归测试",
       "layout_version": "layout-1.0",
-      "version": "sha256:a206e8ae73e68bd50fdd78b4f7ad8a02e0e03627f4c36c0598f838baaea8f945"
+      "version": "sha256:873bb8cc31f95639ec6dc34077f2bea39015d18a0e5a89d2653df04c01a5aaf8"
     }
   ],
   "files": [
@@ -179,9 +185,9 @@
       "path": "AGENTS.md",
       "purpose": "协作者的执行、阶段、凭证及发布约束",
       "status": "current-or-reference",
-      "version": "sha256:f5b0d6b184f402da6f79a31b65f3cc9976b2ecfbdce55826182a252d61466dad",
-      "sha256": "f5b0d6b184f402da6f79a31b65f3cc9976b2ecfbdce55826182a252d61466dad",
-      "bytes": 2320
+      "version": "sha256:0f9da3d5754396205afe7a2e26dda1554fe42a2fbf613525461800471254f094",
+      "sha256": "0f9da3d5754396205afe7a2e26dda1554fe42a2fbf613525461800471254f094",
+      "bytes": 2535
     },
     {
       "path": "LICENSE",
@@ -195,9 +201,9 @@
       "path": "README.md",
       "purpose": "项目入口、当前状态与三类目录索引",
       "status": "current-or-reference",
-      "version": "sha256:44eb9a12b84ba7361e2f15a77f6082e6241b803e2bb4eca9b382bb811d6bb524",
-      "sha256": "44eb9a12b84ba7361e2f15a77f6082e6241b803e2bb4eca9b382bb811d6bb524",
-      "bytes": 2277
+      "version": "sha256:84bd22c5b0153cf9385c4e8b705f21df8072e6bbba64c472e40064ea6ad36242",
+      "sha256": "84bd22c5b0153cf9385c4e8b705f21df8072e6bbba64c472e40064ea6ad36242",
+      "bytes": 2250
     },
     {
       "path": "data/README.md",
@@ -411,9 +417,9 @@
       "path": "docs/README.md",
       "purpose": "当前计划、制度、历史参考和整理说明索引",
       "status": "current-or-reference",
-      "version": "sha256:5620711383518ac6d9624069f0b3a77ac30762cb16890ff2b6b6bbb3977faf00",
-      "sha256": "5620711383518ac6d9624069f0b3a77ac30762cb16890ff2b6b6bbb3977faf00",
-      "bytes": 1625
+      "version": "sha256:eae06d1bc547936d90d825d9bf1cb382f9a3f21a61bb0c767b5cdb3d9dff293b",
+      "sha256": "eae06d1bc547936d90d825d9bf1cb382f9a3f21a61bb0c767b5cdb3d9dff293b",
+      "bytes": 1855
     },
     {
       "path": "docs/data/DATA_DICTIONARY.md",
@@ -459,9 +465,9 @@
       "path": "docs/governance/ASSET_REGISTER.md",
       "purpose": "旧资产保留依据及按用途准入状态",
       "status": "current-or-reference",
-      "version": "sha256:f7cd9ee5dafa0e76f3905745f7bfaff944e1bdf7a8c343de8e5c6cd9c991463a",
-      "sha256": "f7cd9ee5dafa0e76f3905745f7bfaff944e1bdf7a8c343de8e5c6cd9c991463a",
-      "bytes": 4984
+      "version": "sha256:222ded216351bdc9c463e10eead4964e80e90c9276462e6b390a7a555187b419",
+      "sha256": "222ded216351bdc9c463e10eead4964e80e90c9276462e6b390a7a555187b419",
+      "bytes": 5330
     },
     {
       "path": "docs/governance/CONTRIBUTING.md",
@@ -491,17 +497,17 @@
       "path": "docs/governance/FILE_MANAGEMENT.md",
       "purpose": "文件布局、资产生命周期、版本、迁移及发布制度",
       "status": "current-or-reference",
-      "version": "sha256:8388a85b007e8cfaa7f8453272776296131b2c553abae2f75587027a466fb1bc",
-      "sha256": "8388a85b007e8cfaa7f8453272776296131b2c553abae2f75587027a466fb1bc",
-      "bytes": 5789
+      "version": "sha256:873b66b6feb3a79caf17fb45245ee9b7dd3d2cc449435ae2fc35bfa1c94dd33a",
+      "sha256": "873b66b6feb3a79caf17fb45245ee9b7dd3d2cc449435ae2fc35bfa1c94dd33a",
+      "bytes": 6104
     },
     {
       "path": "docs/governance/HANDOFF.md",
       "purpose": "人类与 agent 交接，以及本地与远程版本差异",
       "status": "current-or-reference",
-      "version": "sha256:0d72b2f1ce09ad4bbadff46ca5edd45a7e42e717426c3029f52b344e7777e3e3",
-      "sha256": "0d72b2f1ce09ad4bbadff46ca5edd45a7e42e717426c3029f52b344e7777e3e3",
-      "bytes": 19554
+      "version": "sha256:fc9440c2c9ff94408a5cbf5ad5f1fb00ed03f841ee9460902b5211afc1958897",
+      "sha256": "fc9440c2c9ff94408a5cbf5ad5f1fb00ed03f841ee9460902b5211afc1958897",
+      "bytes": 19954
     },
     {
       "path": "docs/governance/ORGANIZATION.md",
@@ -523,17 +529,17 @@
       "path": "docs/governance/STATE.md",
       "purpose": "当前阶段、版本和停止点",
       "status": "current-or-reference",
-      "version": "sha256:76f9d72127817a5846126b68664ad944230ed8de4ff7b35cc8a441db32266a88",
-      "sha256": "76f9d72127817a5846126b68664ad944230ed8de4ff7b35cc8a441db32266a88",
-      "bytes": 3073
+      "version": "sha256:e989909073dfd2571e65b18359b9d0bfa9b8e0453ad15036666fd1027f6081af",
+      "sha256": "e989909073dfd2571e65b18359b9d0bfa9b8e0453ad15036666fd1027f6081af",
+      "bytes": 3658
     },
     {
       "path": "docs/releases/CHANGELOG.md",
       "purpose": "代码历史变更及未发布本地版本说明",
       "status": "current-or-reference",
-      "version": "sha256:d45adcf3ae3c5bf6b41bd5dccd3969d724a3961aacc9326546dede5e60e4948f",
-      "sha256": "d45adcf3ae3c5bf6b41bd5dccd3969d724a3961aacc9326546dede5e60e4948f",
-      "bytes": 5674
+      "version": "sha256:9af20facc7b73d0d36e18bd40cf6c542274d42dfec434f5c96712f58164c34ec",
+      "sha256": "9af20facc7b73d0d36e18bd40cf6c542274d42dfec434f5c96712f58164c34ec",
+      "bytes": 6409
     },
     {
       "path": "docs/releases/v0.1.0.md",
@@ -560,6 +566,14 @@
       "bytes": 1346
     },
     {
+      "path": "docs/research/P03_OBSERVATION_PLAN.md",
+      "purpose": "用户本地连续观察的固定窗口、预算、恢复、用途与未启动状态",
+      "status": "current-or-reference",
+      "version": "sha256:0525e7c988e81958f50d8920489e877b58929ef875e9a6c195e25aaa78c64aba",
+      "sha256": "0525e7c988e81958f50d8920489e877b58929ef875e9a6c195e25aaa78c64aba",
+      "bytes": 3644
+    },
+    {
       "path": "docs/research/P03_VERIFICATION_PLAN.md",
       "purpose": "P03 两规格来源、盘口、属性与规则核验范围、预算和验收问题",
       "status": "current-or-reference",
@@ -579,9 +593,9 @@
       "path": "docs/research/PLAN.md",
       "purpose": "唯一研究主计划，当前版本见文档头",
       "status": "current-or-reference",
-      "version": "sha256:208de6dd5b97c268bf2f1f03a714f426a3495e722b043294324a254204f010fe",
-      "sha256": "208de6dd5b97c268bf2f1f03a714f426a3495e722b043294324a254204f010fe",
-      "bytes": 20480
+      "version": "sha256:8d7c2d0b9bbb825d648a6961dcbae56248ed09b23f23173b9cb6cb79dda062bc",
+      "sha256": "8d7c2d0b9bbb825d648a6961dcbae56248ed09b23f23173b9cb6cb79dda062bc",
+      "bytes": 20862
     },
     {
       "path": "docs/research/PROGRESS_20261013.md",
@@ -640,6 +654,14 @@
       "bytes": 8011
     },
     {
+      "path": "docs/usage/OBSERVE_24H.md",
+      "purpose": "VS Code Notebook 的内核、启动、停止、恢复、输出和采样边界说明",
+      "status": "current-or-reference",
+      "version": "sha256:89250d89c963d95d620b15c5adfbe27d16169635e47944f6dab2c040690bc554",
+      "sha256": "89250d89c963d95d620b15c5adfbe27d16169635e47944f6dab2c040690bc554",
+      "bytes": 7840
+    },
+    {
       "path": "pyproject.toml",
       "purpose": "Python 打包配置及单一源码版本入口",
       "status": "current-or-reference",
@@ -651,9 +673,9 @@
       "path": "scripts/README.md",
       "purpose": "代码、配置、测试、SQL 和检查入口说明",
       "status": "current-or-reference",
-      "version": "sha256:0b93542166c48020dc8ab82efc915a91ac03d63be23b9b780c74db981a03ce8a",
-      "sha256": "0b93542166c48020dc8ab82efc915a91ac03d63be23b9b780c74db981a03ce8a",
-      "bytes": 1969
+      "version": "sha256:02e27ffd92a122f9b95c89052515399e108c8c693fbb6b687eaed1da840c8784",
+      "sha256": "02e27ffd92a122f9b95c89052515399e108c8c693fbb6b687eaed1da840c8784",
+      "bytes": 2180
     },
     {
       "path": "scripts/check_secrets.py",
@@ -723,9 +745,25 @@
       "path": "scripts/manage_assets.py",
       "purpose": "生成及校验逐文件、逐目录版本和用途清单",
       "status": "current-or-reference",
-      "version": "sha256:bef544096dc4d71907f592cbf05f612967200c7339ef3cb8c2b22320aebb7ec7",
-      "sha256": "bef544096dc4d71907f592cbf05f612967200c7339ef3cb8c2b22320aebb7ec7",
-      "bytes": 22818
+      "version": "sha256:9a5e6de1ad428517e4910205588416bb32683391f8342d691aac5524e7dd4914",
+      "sha256": "9a5e6de1ad428517e4910205588416bb32683391f8342d691aac5524e7dd4914",
+      "bytes": 24051
+    },
+    {
+      "path": "scripts/notebooks/uu_observe_24h.ipynb",
+      "purpose": "VS Code 用户本地 24 小时连续观察 Notebook，交付时输出清空且未执行",
+      "status": "current-or-reference",
+      "version": "sha256:750039fe0738d84364f6eb14765aecec3d24e03105e9b30c11433d76d7c75025",
+      "sha256": "750039fe0738d84364f6eb14765aecec3d24e03105e9b30c11433d76d7c75025",
+      "bytes": 10240
+    },
+    {
+      "path": "scripts/observe_uu_24h.py",
+      "purpose": "用户显式启动的新建/恢复连续观察 CLI，status 只读，不默认运行",
+      "status": "current-or-reference",
+      "version": "sha256:dadd8661e1d3b7f41e830fdd9a625a46f11bba1ae81fc603cd6ec53f43fc6f7c",
+      "sha256": "dadd8661e1d3b7f41e830fdd9a625a46f11bba1ae81fc603cd6ec53f43fc6f7c",
+      "bytes": 1247
     },
     {
       "path": "scripts/pilot_uu_day.py",
@@ -787,8 +825,8 @@
       "path": "scripts/src/cs_youoweme/__init__.py",
       "purpose": "模块身份及包版本或职责说明",
       "status": "legacy-unreviewed",
-      "version": "sha256:b755ae23ac74bb8f88fa925d2a6848acd8c58c3b4d1922adc77b4ab0d9b20cef",
-      "sha256": "b755ae23ac74bb8f88fa925d2a6848acd8c58c3b4d1922adc77b4ab0d9b20cef",
+      "version": "sha256:30648bbd9bfd14eb6c6677af3ad36d425006b4bb65d252e7aac505717d8596c9",
+      "sha256": "30648bbd9bfd14eb6c6677af3ad36d425006b4bb65d252e7aac505717d8596c9",
       "bytes": 74
     },
     {
@@ -843,9 +881,9 @@
       "path": "scripts/src/cs_youoweme/collectors/website.py",
       "purpose": "旧匿名网页接口客户端、时钟同步与访问停止",
       "status": "legacy-unreviewed",
-      "version": "sha256:ff88528e602ffaae4fed77c254db66b375eee9f48995301b4a30e58f36de5c8f",
-      "sha256": "ff88528e602ffaae4fed77c254db66b375eee9f48995301b4a30e58f36de5c8f",
-      "bytes": 5103
+      "version": "sha256:7d845693d32d6965df0ee4520bed1b32ae182bf5dea2701da958f8dfe4ec3b36",
+      "sha256": "7d845693d32d6965df0ee4520bed1b32ae182bf5dea2701da958f8dfe4ec3b36",
+      "bytes": 5945
     },
     {
       "path": "scripts/src/cs_youoweme/config.py",
@@ -912,6 +950,14 @@
       "bytes": 3246
     },
     {
+      "path": "scripts/src/cs_youoweme/history/observe.py",
+      "purpose": "固定截止、逐时点检查点、预算、访问停止和只读状态的用户本地前向观察机制",
+      "status": "legacy-unreviewed",
+      "version": "sha256:b5222bf62cf5787d378613384481f19a93c1475c4512cdf0366e64cdd04d467a",
+      "sha256": "b5222bf62cf5787d378613384481f19a93c1475c4512cdf0366e64cdd04d467a",
+      "bytes": 23378
+    },
+    {
       "path": "scripts/src/cs_youoweme/history/query.py",
       "purpose": "旧库覆盖、状态、参数化查询和导出",
       "status": "legacy-unreviewed",
@@ -947,9 +993,9 @@
       "path": "scripts/src/cs_youoweme/history/verification.py",
       "purpose": "核验后来源平台分类、可空 Decimal 属性和 UU 汇总报价异常及执行准入标记",
       "status": "legacy-unreviewed",
-      "version": "sha256:436f8722d1bbfab7604a9de4cf082158c957b18f59d7b648ac41cb5681bd387b",
-      "sha256": "436f8722d1bbfab7604a9de4cf082158c957b18f59d7b648ac41cb5681bd387b",
-      "bytes": 4143
+      "version": "sha256:1dbfe1e3f525339c309c61eb1886082b6a88e75f80d63de0425188e8219268a0",
+      "sha256": "1dbfe1e3f525339c309c61eb1886082b6a88e75f80d63de0425188e8219268a0",
+      "bytes": 4172
     },
     {
       "path": "scripts/src/cs_youoweme/parsing.py",
@@ -1024,6 +1070,14 @@
       "bytes": 11654
     },
     {
+      "path": "scripts/tests/test_observe.py",
+      "purpose": "observe 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:09d8ce145210e311c7d6ad156fc922819997545037db744b6b5cfa0234361bba",
+      "sha256": "09d8ce145210e311c7d6ad156fc922819997545037db744b6b5cfa0234361bba",
+      "bytes": 13766
+    },
+    {
       "path": "scripts/tests/test_parsing.py",
       "purpose": "parsing 模块的离线行为回归测试",
       "status": "legacy-unreviewed",
@@ -1075,17 +1129,17 @@
       "path": "scripts/tests/test_verification.py",
       "purpose": "verification 模块的离线行为回归测试",
       "status": "legacy-unreviewed",
-      "version": "sha256:4c9979c43343f85549257cacb27c19a874bab1b6e2983828e0f45396e2dad3d6",
-      "sha256": "4c9979c43343f85549257cacb27c19a874bab1b6e2983828e0f45396e2dad3d6",
-      "bytes": 4083
+      "version": "sha256:daadf0ab97ec69cb6f1d90ddf98a56edf26bd524fd654d920e6ca5a6ed2a614a",
+      "sha256": "daadf0ab97ec69cb6f1d90ddf98a56edf26bd524fd654d920e6ca5a6ed2a614a",
+      "bytes": 4159
     },
     {
       "path": "scripts/tests/test_website.py",
       "purpose": "website 模块的离线行为回归测试",
       "status": "legacy-unreviewed",
-      "version": "sha256:930c0122e11dd51443822836b0021ead3765d5d0ff4004be5b390e74cd1e91d2",
-      "sha256": "930c0122e11dd51443822836b0021ead3765d5d0ff4004be5b390e74cd1e91d2",
-      "bytes": 2432
+      "version": "sha256:c1cf0b6aa1e3929730c5f95909f6cedf7429c27fe73a82f278e6f5319265e8d1",
+      "sha256": "c1cf0b6aa1e3929730c5f95909f6cedf7429c27fe73a82f278e6f5319265e8d1",
+      "bytes": 3350
     },
     {
       "path": "scripts/verify_public_evidence.py",

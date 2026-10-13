@@ -35,7 +35,7 @@ def freshness_timestamp(milliseconds):
 
 
 class WebsiteClient:
-    def __init__(self, archive, delay=2.5, opener=None):
+    def __init__(self, archive, delay=2.5, opener=None, max_response_bytes=None, before_request=None):
         if delay < 2:
             raise CollectionError("Website request interval must be at least 2 seconds")
         self.archive = archive
@@ -45,6 +45,10 @@ class WebsiteClient:
         self.last_request = 0
         self.synced_at = None
         self.requests = 0
+        if max_response_bytes is not None and (type(max_response_bytes) is not int or max_response_bytes < 1024):
+            raise CollectionError("Invalid response size bound")
+        self.max_response_bytes = max_response_bytes
+        self.before_request = before_request
 
     def _request(self, path, params, post):
         wait = self.delay - (time.monotonic() - self.last_request)
@@ -64,6 +68,8 @@ class WebsiteClient:
             body = json.dumps(params, ensure_ascii=False).encode("utf-8")
             headers["Content-Type"] = "application/json"
         req = urllib.request.Request(url, data=body, headers=headers)
+        if self.before_request is not None:
+            self.before_request(path, params)
         self.last_request = time.monotonic()
         self.requests += 1
         observed = datetime.now(timezone.utc).isoformat(timespec="microseconds")
@@ -71,7 +77,11 @@ class WebsiteClient:
             with self.opener.open(req, timeout=30) as response:
                 if urllib.parse.urlparse(response.url).netloc != "www.steamdt.com":
                     raise AccessStopped("Unexpected website redirect")
-                raw = response.read()
+                raw = response.read(self.max_response_bytes + 1) if self.max_response_bytes else response.read()
+                if self.max_response_bytes and len(raw) > self.max_response_bytes:
+                    # A partial body must not be archived as a complete response.
+                    self.archive(path, params, observed, b"", response.status, None)
+                    raise AccessStopped("Website response size limit exceeded; no parsed record saved")
         except urllib.error.HTTPError as error:
             self.archive(path, params, observed, b"", error.code, None)
             if error.code in {401, 403, 429}:

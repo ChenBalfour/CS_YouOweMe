@@ -1,12 +1,14 @@
 # 既有资产登记
 
-登记版本 asset-register-1.5，2026-10-13。P03 两规格有限核验交付完成，新增来源字段和规则证据；当前仅准入 L0，执行能力仍待验收。
+登记版本 asset-register-1.6，2026-10-13。P03 有限核验与用户本地连续观察入口已交付；实际连续运行未开始，当前仅准入 L0。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
 | docs/research/PLAN、governance/ 制度与状态 | current-plan | 当前方向、管理与停止点 | P01 |
 | docs/research/PROGRESS_20261013 | current / progress-snapshot | 今晚收尾总结、早期改动与整体路线；后续状态以 STATE 为准 | 持续 |
 | P03_VERIFICATION_PLAN、P03_VERIFICATION_REPORT、UU_FIELD_CONTRACT、UU_EXECUTION_RULES | current / P03-delivered | 范围预算、字段口径、规则时效、有限结果与执行缺口 | P03 |
+| scripts/notebooks/uu_observe_24h.ipynb、observe_uu_24h.py、history/observe.py | current / offline-checked | 用户本地显式运行、固定截止与恢复入口；无生产运行结果 | P03 |
+| P03_OBSERVATION_PLAN、usage/OBSERVE_24H | current / user-run-guide | 连续观察预算、启动停止恢复、Notebook 输出和真实验收限制 | P03 |
 | verify_public_evidence、verify_uu_fields、review_uu_verification、history/verification | retained / bounded-verification | 只读证据、来源比较、离线核对和保守解析；不自动重试受限入口 | P03 |
 | data/local/staging/steamdt/p03_steamdt_uu_20261013* | validated / L0-scope-only | 两规格小时表和已核对的来源混合逐笔；UU 执行用途未通过 | P03 |
 | data/local/staging/steamdt/p03_steamdt_fields_* | validated / L0-scope-only | 来源 UU 汇总价格与数量；单件深度未核验、交叉报价标异常 | P03 |

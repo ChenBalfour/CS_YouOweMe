@@ -12,6 +12,7 @@ from cs_youoweme.errors import AccessStopped
 
 class Response(io.BytesIO):
     url = "https://www.steamdt.com/api"
+    status = 200
 
 
 class Opener:
@@ -28,6 +29,27 @@ class Opener:
 
 
 class WebsiteTests(unittest.TestCase):
+    def test_response_cap_does_not_archive_a_partial_success(self):
+        opener = Opener([{"success": True, "errorCode": 0, "data": {"padding": "x" * 3000}}])
+        archived = []
+        client = WebsiteClient(lambda *args: archived.append(args) or 1, opener=opener, max_response_bytes=1024)
+        with self.assertRaises(AccessStopped):
+            client.call(KLINE)
+        self.assertEqual(len(opener.calls), 1)
+        self.assertEqual(archived[0][3], b"")
+
+    def test_guard_can_stop_before_the_actual_request(self):
+        opener = Opener([])
+
+        def guard(endpoint, params):
+            raise AccessStopped("Deadline reached")
+
+        client = WebsiteClient(lambda *args: 1, opener=opener, before_request=guard)
+        with self.assertRaises(AccessStopped):
+            client.call(KLINE)
+        self.assertEqual(client.requests, 0)
+        self.assertEqual(opener.calls, [])
+
     def test_clock_sync_string_and_no_authentication_headers(self):
         opener = Opener([{"success": True, "errorCode": 0, "data": {"systemTime": str(int(time.time()*1000))}},
                          {"success": True, "errorCode": 0, "data": []}])
