@@ -9,7 +9,7 @@
       "path": ".",
       "purpose": "项目根及 Git/Python 所需入口元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:09e8dcab114dc6534a972ed86150421c7c5c95faef929bdc996dacf5f98a0b6f"
+      "version": "sha256:93321b8a2f32d3d22c68dce6b9db4fc54599aa82cb8b76021b548152cc0f34b2"
     },
     {
       "path": ".github",
@@ -161,9 +161,9 @@
       "path": ".gitattributes",
       "purpose": "跨平台文本换行规则",
       "status": "current-or-reference",
-      "version": "sha256:8886e081ad1d0307852738a85a77c8a577cc89325d93e7a52dbc794cebbfb310",
-      "sha256": "8886e081ad1d0307852738a85a77c8a577cc89325d93e7a52dbc794cebbfb310",
-      "bytes": 305
+      "version": "sha256:4a087e27106295eb6a68a8239954d3ae254d2b87f32403b4daacc02f652299a3",
+      "sha256": "4a087e27106295eb6a68a8239954d3ae254d2b87f32403b4daacc02f652299a3",
+      "bytes": 325
     },
     {
       "path": ".github/workflows/ci.yml",
