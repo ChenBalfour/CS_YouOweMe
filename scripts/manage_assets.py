@@ -29,6 +29,9 @@ PURPOSES = {
     "scripts/manage_assets.py": "生成及校验逐文件、逐目录版本和用途清单",
     "scripts/pilot_uu_day.py": "单品单日 YOUPIN 小时行情与混合成交的独立有限试跑、离线核验及导出",
     "scripts/select_uu_research.py": "有预算的 P02 候选调查、正确商品身份补查和版本化验证名单选择",
+    "scripts/verify_public_evidence.py": "有预算的公开网页/规则证据和已发现 UU 只读入口抓取，访问受限主机持久停止",
+    "scripts/verify_uu_fields.py": "两个精确规格的 SteamDT UU 汇总盘口字段有限补查，独立库与准确源码留存",
+    "scripts/review_uu_verification.py": "离线核对 P03 原始哈希、全页逐笔、只读库与字段准入，导出私有规范观察",
     "scripts/config/seeds.json": "旧试采精确英文规格种子，不是正式 UU 名单",
     "scripts/config/watchlist.json": "流金王朝、燃料喷射器等旧调查线索",
     "scripts/config/.env.example": "公开的空白凭证配置模板",
@@ -41,6 +44,10 @@ PURPOSES = {
     "docs/research/SELECTION_PLAN.md": "P02 选品计划、事先固定的范围预算及身份纠正修订依据",
     "docs/research/SELECTION_REPORT.md": "P02 主力、候补、排除与观察结果、来源快照和未知项",
     "docs/research/PROGRESS_20261013.md": "2026-10-13 阶段总结、相对早期的改动、整体规划与今晚停止点",
+    "docs/research/P03_VERIFICATION_PLAN.md": "P03 两规格来源、盘口、属性与规则核验范围、预算和验收问题",
+    "docs/research/P03_VERIFICATION_REPORT.md": "P03 有限试跑结果、证据、报价异常、未知项和 L0 准入边界",
+    "docs/data/UU_FIELD_CONTRACT.md": "已核验 UU 来源行情、汇总快照及混合逐笔字段定义与执行准入限制",
+    "docs/data/UU_EXECUTION_RULES.md": "Steam 和 UU 公开规则、旧版适用限制、资金时间字段及访问限制处理",
     "docs/research/UNIVERSE.md": "旧筛选方法和候选说明，仅作历史参考",
     "docs/governance/STATE.md": "当前阶段、版本和停止点",
     "docs/governance/HANDOFF.md": "人类与 agent 交接，以及本地与远程版本差异",
@@ -81,6 +88,7 @@ SOURCE_PURPOSES = {
     "query.py": "旧库覆盖、状态、参数化查询和导出",
     "store.py": "旧库 schema、事务、压缩归档和 worker 锁",
     "universe.py": "旧候选筛选实现，仅机制参考，不沿用为新选品规则",
+    "verification.py": "核验后来源平台分类、可空 Decimal 属性和 UU 汇总报价异常及执行准入标记",
     "schema.sql": "旧历史库表、索引与任务结构 schema v2",
 }
 
@@ -156,6 +164,8 @@ def purpose(path):
     if protected(Path(path)):
         return "受保护本地凭证，仅登记配置版本，不读取、复制或记录内容及哈希"
     if path.startswith("scripts/local/pilot_sources/"):
+        if name.endswith(".md"):
+            return "该有限核验采集时的计划准确内容版本快照"
         return "该试跑实际执行源码的私有版本快照，校验值匹配来源清单"
     if path.startswith("scripts/local/selection_sources/"):
         return "该 P02 调查实际执行源码的私有版本快照，校验值匹配运行清单"
@@ -166,6 +176,8 @@ def purpose(path):
     if path.startswith("docs/local/pilots/"):
         return "单品单日有限试跑或离线质量核验报告，非正式研究结论"
     if path.startswith("data/local/staging/steamdt/"):
+        if "/p03_steamdt_fields_" in path:
+            return "P03 比较字段补查的压缩原始响应，保持哈希追溯" if "/raw/" in path else "P03 独立汇总字段补查 SQLite，不是正式数据集" if name == "verification.sqlite" else "P03 字段补查、规范来源观察、全页逐笔和独立离线核验的版本化证据"
         if "/p02_steamdt_selection_" in path:
             return "有限选品调查的压缩原始响应，保持私有与哈希追溯" if "/raw/" in path else "独立选品调查 SQLite 库" if name == "survey.sqlite" else "P02 来源请求、计划/脚本版本、预算、结果与输入输出清单"
         if "/raw/" in path:
@@ -192,6 +204,8 @@ def purpose(path):
     if path.startswith("data/local/api_cache/"):
         return "旧官方目录缓存，重复 recon 目录文件的保留副本" if name == "base.json" else "旧来源配额时间状态，不自动刷新"
     if path.startswith("data/local/recon/"):
+        if "/p03_20261013_evidence/" in path:
+            return "P03 已发现公开网页/脚本/官方规则的压缩证据" if name.endswith(".body.gz") else "P03 公开核验请求、响应哈希、实际代码和访问受限主机的持久清单"
         return f"{Path(name).stem} 接口或事件探测的原始历史证据，保留待核验"
     if path.startswith("data/local/universes/"):
         return f"{Path(name).stem} 旧候选快照，不是正式 UU 名单"
@@ -217,6 +231,8 @@ def folder_purpose(path):
     if path.startswith("data/local/universes/uu_research_selection_"):
         return "该版本的研究验证名单、候选表及准入用途清单"
     if path.startswith("data/local/staging/steamdt/"):
+        if "/p03_steamdt_fields_" in path:
+            return "独立 P03 汇总字段补查的原始响应、规范观察、报告或哈希分桶"
         return "独立单品单日试跑的原始响应、表、报告或哈希分桶"
     for prefix, label in (("data/local/database/raw/", "旧压缩响应的哈希分桶"), ("data/local/archive/", "最初试采历史证据的分组"), ("data/local/recon/", "按日期保存的来源探测证据"), ("data/local/api_cache/", "按本地凭证标识隔离的旧缓存，不公开标识"), ("data/samples/", "旧匿名样本批次及原始/表/报告分组")):
         if path.startswith(prefix):

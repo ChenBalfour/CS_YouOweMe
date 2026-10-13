@@ -164,11 +164,15 @@ def review(run_id):
     source_snapshot.write_bytes(Path(__file__).read_bytes())
     requests = json.loads((directory / "reports/requests.json").read_text(encoding="utf-8"))
     raw = {}
+    trade_pages = []
     for request in requests:
         content = gzip.decompress((directory / request["raw_path"]).read_bytes())
         if hashlib.sha256(content).hexdigest() != request["raw_sha256"]:
             raise CollectionError("Raw response integrity check failed")
-        raw[request["endpoint"]] = json.loads(content)
+        response = json.loads(content)
+        raw[request["endpoint"]] = response
+        if request["endpoint"] == "/item/trade/v1/list":
+            trade_pages.append(response)
     item = raw[ITEM]["data"]
     quote = next((row for row in item.get("sellingPriceList", []) if str(row.get("platform", "")).upper() == "YOUPIN"), None)
     if item.get("marketHashName") != manifest["market_hash_name"] or not quote or quote.get("platformName") != "悠悠":
@@ -194,7 +198,7 @@ def review(run_id):
         params = json.loads(connection.execute("SELECT params_json FROM requests WHERE endpoint=?", (KLINE,)).fetchone()[0])
     if params.get("platform") != "YOUPIN" or params.get("type") != 1 or str(params.get("typeVal")) != str(item["itemId"]):
         raise CollectionError("Archived request scope differs from the requested UU hourly series")
-    trades = raw[TRADES]["data"]["list"]
+    trades = [row for page in trade_pages for row in page["data"]["list"]]
     duplicate_count = sum(count - 1 for count in Counter((str(row["id"]), str(row["platform"])) for row in trades).values())
     quality = {"review_version": "pilot-review-1.0", "run_id": run_id, "original_manifest_sha256": sha(original_manifest), "review_script_sha256": sha(Path(__file__)), "reviewed_at_utc": now(), "source_raw_hashes_verified": len(requests), "csv_matches_raw": True, "source_platform_key": params["platform"], "quote_platform_key": quote["platform"], "quote_platform_label": quote["platformName"], "current_quote_cny": str(quote["price"]), "current_quote_is_historical": False, "expected_hour_buckets": 24, "observed_hour_buckets": len({row[1] for row in selected}), "null_volume_rows": sum(row[6] is None for row in selected), "null_turnover_rows": sum(row[7] is None for row in selected), "unaligned_source_timestamps": sum(row[0] != row[1] for row in selected), "trade_source_rows_raw": len(trades), "trade_source_rows_deduplicated": manifest["trade_source_rows"], "duplicate_source_records": duplicate_count, "trade_platform_codes_raw": dict(Counter(str(row["platform"]) for row in trades)), "uu_trade_mapping_verified": False, "legacy_db_unchanged": sha(DEFAULT_DB) == manifest["legacy_db_sha256_before"], "capability_level": "L0", "notes": ["Current item quotes use lower-case youpin; K-line selector uses upper-case YOUPIN.", "Volume and turnover nulls are retained, not filled with zero.", "Full hourly coverage does not certify real UU executed volume or executable prices.", "The screenshot product is a technical probe, not a formal universe admission."]}
     quality.update({"review_source_snapshot": source_snapshot.relative_to(ROOT).as_posix(), "source_bar_rows_raw": len(raw[KLINE]["data"]), "retained_hourly_rows": len(selected)})

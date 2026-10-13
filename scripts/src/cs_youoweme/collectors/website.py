@@ -25,7 +25,8 @@ TRADES = "/item/trade/v1/list"
 OVERVIEW = "/item/trade/v1/overview/today"
 MARKET = "/skin/market/v3/page"
 ATTRIBUTES = "/user/ranking/v1/attribute/730"
-ALLOWED = {SYSTEM, ITEM, VARIANTS, KLINE, TRADES, OVERVIEW, MARKET, ATTRIBUTES}
+MARKET_COMPARISON = "/user/skin/v1/market-comparsion"
+ALLOWED = {SYSTEM, ITEM, VARIANTS, KLINE, TRADES, OVERVIEW, MARKET, ATTRIBUTES, MARKET_COMPARISON}
 
 
 def freshness_timestamp(milliseconds):

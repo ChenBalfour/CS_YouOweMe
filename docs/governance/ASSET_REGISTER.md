@@ -1,11 +1,16 @@
 # 既有资产登记
 
-登记版本 asset-register-1.4，2026-10-13。文件整理后已完成单品单日试跑与 P02 有限初选，新增阶段总结；市场资产的来源、标签、执行能力仍需对应部分验收。
+登记版本 asset-register-1.5，2026-10-13。P03 两规格有限核验交付完成，新增来源字段和规则证据；当前仅准入 L0，执行能力仍待验收。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
 | docs/research/PLAN、governance/ 制度与状态 | current-plan | 当前方向、管理与停止点 | P01 |
 | docs/research/PROGRESS_20261013 | current / progress-snapshot | 今晚收尾总结、早期改动与整体路线；后续状态以 STATE 为准 | 持续 |
+| P03_VERIFICATION_PLAN、P03_VERIFICATION_REPORT、UU_FIELD_CONTRACT、UU_EXECUTION_RULES | current / P03-delivered | 范围预算、字段口径、规则时效、有限结果与执行缺口 | P03 |
+| verify_public_evidence、verify_uu_fields、review_uu_verification、history/verification | retained / bounded-verification | 只读证据、来源比较、离线核对和保守解析；不自动重试受限入口 | P03 |
+| data/local/staging/steamdt/p03_steamdt_uu_20261013* | validated / L0-scope-only | 两规格小时表和已核对的来源混合逐笔；UU 执行用途未通过 | P03 |
+| data/local/staging/steamdt/p03_steamdt_fields_* | validated / L0-scope-only | 来源 UU 汇总价格与数量；单件深度未核验、交叉报价标异常 | P03 |
+| data/local/recon/p03_20261013_evidence | private / traceable | 15 份完整公开脚本/规则响应和 UU 429 状态；不是订单数据 | P03 |
 | scripts/src、collect.py | legacy / unreviewed-market | 解析、精度、分页、恢复和存储机制可复用 | P03 |
 | scripts/tests | legacy / offline-regression | 机制回归；通过不代表市场数据合格 | P03–P05 |
 | scripts/check_secrets.py、hooks | retained / engineering | 本地凭证隔离检查，仍暂停远程发布 | 持续 |

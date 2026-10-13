@@ -27,7 +27,7 @@
 - Git 本地提交保存代码、说明和公开清单的可恢复历史；私有数据靠来源清单、哈希和冻结版本管理，不存入 Git。
 - 修改后运行 `python -B scripts/manage_assets.py --write`，随后 `--check`。清单过期、缺说明、缺文件均应修正后再收尾。
 
-计划 plan-1.2、代码 0.3.3、目录 layout-1.0、制度 management-1.1、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)。
+计划 plan-1.3、代码 0.3.4、目录 layout-1.0、制度 management-1.1、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)，当前阶段见 STATE。
 
 ## 私有数据生命周期
 

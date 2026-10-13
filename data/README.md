@@ -1,14 +1,15 @@
 # 数据与来源证据
 
-目录版本 layout-1.0。当前正式 UU 名单、已验收数据集、模型均为 0。
+目录版本 layout-1.0。当前主力验证规格 10、候补 6；正式 UU 交易数据集与模型仍为 0。P03 试跑仅准入 L0 来源观察。
 
 | 位置 | 用途与状态 |
 | --- | --- |
 | samples/pilot_20261011/ | 已公开旧匿名快照及其 raw/tables/reports，冻结待复审 |
 | local/database/ | 旧 SteamDT 库、压缩响应与 worker 锁；legacy / unreviewed |
-| local/recon/、local/archive/ | 接口、事件、原网页及最初试采证据 |
+| local/recon/、local/archive/ | 接口、事件、原网页及最初试采证据；p03_20261013_evidence 保存本轮官方/网页核验和 429 状态 |
 | local/api_cache/ | 旧官方目录与配额状态，不自动刷新 |
-| local/universes/ | 旧候选，非正式 UU 名单 |
+| local/universes/ | 旧候选及新 P02 版本化验证名单，按明确用途管理 |
+| local/staging/steamdt/p03_* | 独立单日与汇总字段补查库、压缩原始响应及只读复核产物，非正式数据集 |
 | local/progress/ | 冻结的旧 JSON 进度记录 |
 | local/manifests/ | 私有文件版本清单、整理前基线、迁移删除与核对记录 |
 

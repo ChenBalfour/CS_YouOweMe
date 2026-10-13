@@ -3,6 +3,7 @@
 目录版本 layout-1.0。每份文档与子目录的说明和内容版本见 [逐项说明](governance/FILE_INDEX.md)与[完整哈希清单](governance/FILE_CATALOG.json)。
 
 - 本轮选品：[选品计划](research/SELECTION_PLAN.md)、[选品报告](research/SELECTION_REPORT.md)。
+- P03 核验：[范围与预算](research/P03_VERIFICATION_PLAN.md)、[有限试跑报告](research/P03_VERIFICATION_REPORT.md)、[字段契约](data/UU_FIELD_CONTRACT.md)、[执行规则](data/UU_EXECUTION_RULES.md)。
 - 阶段回顾：[2026-10-13 总结与后续路线](research/PROGRESS_20261013.md)。
 - 当前依据：[PLAN](research/PLAN.md)、[STATE](governance/STATE.md)、[HANDOFF](governance/HANDOFF.md)。
 - 管理与整理：[文件制度](governance/FILE_MANAGEMENT.md)、[资产登记](governance/ASSET_REGISTER.md)、[整理记录](governance/ORGANIZATION.md)。
