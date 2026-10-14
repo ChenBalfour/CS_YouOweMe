@@ -9,7 +9,7 @@
       "path": ".",
       "purpose": "项目根及 Git/Python 所需入口元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:b71c42091d2e7295d0645a7c80410d57d0f8e6fdfee3de80f9714dbb4cb88421"
+      "version": "sha256:12d4cbc19303d379f787fed0dad87a271d6eacf4eaa407ae6c1bb3a61e8613a9"
     },
     {
       "path": ".github",
@@ -63,7 +63,7 @@
       "path": "docs",
       "purpose": "计划、制度、使用说明和交接记录",
       "layout_version": "layout-1.0",
-      "version": "sha256:12653c22a60708e532ef3fa0f9822dee8271f83a36bb89f4cd53a70c524fe995"
+      "version": "sha256:44fbc76d56ddbc35f607d6aa35049cd53c8af7981b2450fb9083582c938c5b55"
     },
     {
       "path": "docs/data",
@@ -75,7 +75,7 @@
       "path": "docs/governance",
       "purpose": "管理、阶段、资产登记与版本索引",
       "layout_version": "layout-1.0",
-      "version": "sha256:de3c6d7ea43785ce57b466f61e2c90888a43294a815b7e26f4c1240484c23169"
+      "version": "sha256:a77eca86b512d7683317dcac5392029e7263370b7d137acc1668d17d33e274f9"
     },
     {
       "path": "docs/releases",
@@ -433,9 +433,9 @@
       "path": "docs/PROGRESS.md",
       "purpose": "进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步",
       "status": "current-or-reference",
-      "version": "sha256:7b90af67e4747eea87c12cf8c1ccc372bb95d0048e7cc4c0305193456167cd43",
-      "sha256": "7b90af67e4747eea87c12cf8c1ccc372bb95d0048e7cc4c0305193456167cd43",
-      "bytes": 7178
+      "version": "sha256:42b5022bc8d212163a0c6dd2e56cb84917e55db5dcbbfa78cdb3776f6599553a",
+      "sha256": "42b5022bc8d212163a0c6dd2e56cb84917e55db5dcbbfa78cdb3776f6599553a",
+      "bytes": 8852
     },
     {
       "path": "docs/README.md",
@@ -529,8 +529,8 @@
       "path": "docs/governance/FILE_MANAGEMENT.md",
       "purpose": "文件布局、资产生命周期、版本、迁移及发布制度",
       "status": "current-or-reference",
-      "version": "sha256:bcf5bf9e77d54fa25c9160cb8071dd549f6550198d4da333e62706798b352ab6",
-      "sha256": "bcf5bf9e77d54fa25c9160cb8071dd549f6550198d4da333e62706798b352ab6",
+      "version": "sha256:93e215ab935961a6d6b75f99b2e25ef053ed838fc2593d4a0c19402f1e53f8a8",
+      "sha256": "93e215ab935961a6d6b75f99b2e25ef053ed838fc2593d4a0c19402f1e53f8a8",
       "bytes": 7244
     },
     {
