@@ -1,6 +1,6 @@
 # UU 有限核验字段契约
 
-版本 uu-field-contract-1.0；2026-10-13，北京时间。适用范围为 P03 的流金王朝久经、M4A1-S 印花集崭新有限核验。当前准入为 **L0 来源观察**；单件 UU 盘口、真实订单、成交结算及可执行退出尚未验收。旧 DATA_DICTIONARY/HISTORY_SCHEMA 保留历史意义，此契约不将旧字段升级为执行数据。
+版本 uu-field-contract-1.1；2026-10-14，北京时间。适用范围为 P03 的流金王朝久经、M4A1-S 印花集崭新有限核验，并补充用户截图揭示的求购属性限制。当前准入为 **L0 来源观察**；单件 UU 盘口、真实订单、成交结算及可执行退出尚未验收。旧 DATA_DICTIONARY/HISTORY_SCHEMA 保留历史意义，此契约不将旧字段升级为执行数据；本次没有修改解析代码或已有运行的契约快照。
 
 ## 身份、来源与时间
 
@@ -51,6 +51,19 @@
 `ITEM.sellingPriceList.price` 与比较接口 sellPrice 是不同请求、不同快照字段，分别保留来源时间。本轮流金王朝二者曾为 257.00 和 257.38 元，不能无声覆盖为同一个“最新价”。比较行中的 trendList 原样保存；其聚合和历史修订语义未核验，不进入正式执行标签。
 
 ITEM 的 `consignmentBest`、`purchaseBest`、`purchaseStable` 等比例指标不当作求购价格或深度；`transactionCount`、存世与持有人指标也不当作 UU 实际流动性。
+
+### 求购条件与属性匹配（1.1 补充）
+
+2026-10-14 用户截图中印花集崭新的四笔求购均限磨损 0–0.01。`crossed_source_quotes` 只表示来源汇总求购高于来源汇总在售，可由属性范围或更新时间不同造成，不代表抓取价格错误或可成交套利。截图的拍摄时间、订单 ID 未提供，不能逐单解释旧接口快照；详见 [修订证据](../research/SELECTION_REVISION_20261014.md)。
+
+| 待取得字段 | 类型/状态 | 必要解释 |
+| --- | --- | --- |
+| bid_min_wear / bid_max_wear | 可空 Decimal 文本；当前 unavailable | 求购允许的 float 边界；缺失不等于不限磨损 |
+| bid_attribute_constraints | 结构化条件；当前 unavailable | 模板、贴纸及其他条件，分别记录未知、有限制、明确不限 |
+| eligible_bid_price_cny / eligible_bid_quantity | 可空 Decimal / 整数；当前 unavailable | 针对某件实际属性匹配后的有效求购及待购件数，不能从汇总价/数量推导 |
+| bid_eligibility | matched / not_matched / unknown；当前 unknown | 需要同规格、实际属性、完整条件和有效时间；截图没有标签不自动 matched |
+
+这些是新增字段需求，不是现有 CSV/SQLite 已提供的列。若没有完整条件，应继续保留汇总报价与 unknown；普通版同一标准磨损档也不能默认全体相互可比。
 
 ## 来源逐笔及属性
 

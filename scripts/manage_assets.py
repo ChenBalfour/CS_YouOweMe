@@ -44,6 +44,7 @@ PURPOSES = {
     "data/README.md": "私有数据与已公开冻结样本的生命周期说明",
     "docs/research/PLAN.md": "唯一研究主计划，当前版本见文档头",
     "docs/research/SELECTION_PLAN.md": "P02 选品计划、事先固定的范围预算及身份纠正修订依据",
+    "docs/research/SELECTION_REVISION_20261014.md": "首批百元范围、用户求购截图的属性条件证据与待核验候选及复核顺序",
     "docs/research/SELECTION_REPORT.md": "P02 主力、候补、排除与观察结果、来源快照和未知项",
     "docs/research/PROGRESS_20261013.md": "2026-10-13 阶段总结、相对早期的改动、整体规划与今晚停止点",
     "docs/research/P03_VERIFICATION_PLAN.md": "P03 两规格来源、盘口、属性与规则核验范围、预算和验收问题",
@@ -176,7 +177,7 @@ def purpose(path):
     if path.startswith("scripts/local/selection_sources/"):
         return "该 P02 调查实际执行源码的私有版本快照，校验值匹配运行清单"
     if path.startswith("docs/local/selections/"):
-        return "调查前写入的选品计划准确版本快照，保留身份纠正前后依据"
+        return "选品调查或规则修订前的计划准确版本快照，保留历次依据"
     if path.startswith("data/local/universes/uu_research_selection_"):
         return {"selection.json": "当前或原版验证名单、候选证据、批准用途和角色；仅限 P03 验证", "candidates.csv": "全部候选的身份、UU 报价时间、数据覆盖、角色、理由和未知项", "manifest.json": "名单来源运行、版本、批准用途与内容哈希", "verification.json": "名单独立核对：原始哈希、UU 报价与小时摘要、角色及预算一致性"}.get(name, "P02 版本化名单的伴随追溯元数据")
     if path.startswith("docs/local/pilots/"):
@@ -212,6 +213,8 @@ def purpose(path):
     if path.startswith("data/local/api_cache/"):
         return "旧官方目录缓存，重复 recon 目录文件的保留副本" if name == "base.json" else "旧来源配额时间状态，不自动刷新"
     if path.startswith("data/local/recon/"):
+        if "/user_attribute_scope_20261014/" in path:
+            return "用户求购截图原始证据，保持私有，不公开买家信息" if name.endswith(".png") else "用户截图接收日期、原始哈希、可见行范围与规则修订及未改动文件哈希"
         if "/p03_20261013_evidence/" in path:
             return "P03 已发现公开网页/脚本/官方规则的压缩证据" if name.endswith(".body.gz") else "P03 公开核验请求、响应哈希、实际代码和访问受限主机的持久清单"
         return f"{Path(name).stem} 接口或事件探测的原始历史证据，保留待核验"
@@ -235,7 +238,7 @@ def folder_purpose(path):
     if path.startswith("scripts/local/selection_sources/"):
         return "该有限选品调查的实际源码版本"
     if path.startswith("docs/local/selections/"):
-        return "该选品调查使用的计划准确版本"
+        return "该选品调查或规则修订前的计划准确版本"
     if path.startswith("data/local/universes/uu_research_selection_"):
         return "该版本的研究验证名单、候选表及准入用途清单"
     if path.startswith("data/local/staging/steamdt/"):
@@ -244,6 +247,8 @@ def folder_purpose(path):
         if "/p03_steamdt_fields_" in path:
             return "独立 P03 汇总字段补查的原始响应、规范观察、报告或哈希分桶"
         return "独立单品单日试跑的原始响应、表、报告或哈希分桶"
+    if path.startswith("data/local/recon/user_attribute_scope_20261014"):
+        return "用户求购条件截图及范围修订的私有版本证据"
     for prefix, label in (("data/local/database/raw/", "旧压缩响应的哈希分桶"), ("data/local/archive/", "最初试采历史证据的分组"), ("data/local/recon/", "按日期保存的来源探测证据"), ("data/local/api_cache/", "按本地凭证标识隔离的旧缓存，不公开标识"), ("data/samples/", "旧匿名样本批次及原始/表/报告分组")):
         if path.startswith(prefix):
             return label
