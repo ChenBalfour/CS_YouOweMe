@@ -3,6 +3,7 @@
 目录版本 layout-1.0。每份文档与子目录的说明和内容版本见 [逐项说明](governance/FILE_INDEX.md)与[完整哈希清单](governance/FILE_CATALOG.json)。
 
 - 当前选品：[百元范围与属性修订](research/SELECTION_REVISION_20261014.md)、[选品计划](research/SELECTION_PLAN.md)、[历史选品报告](research/SELECTION_REPORT.md)。
+- UU 历史线索：[图表指标、频率与决策时点](data/UU_HISTORY_CHART.md)。
 - P03 核验：[范围与预算](research/P03_VERIFICATION_PLAN.md)、[有限试跑报告](research/P03_VERIFICATION_REPORT.md)、[字段契约](data/UU_FIELD_CONTRACT.md)、[执行规则](data/UU_EXECUTION_RULES.md)。
 - 用户本地连续观察：[计划](research/P03_OBSERVATION_PLAN.md)、[Notebook](../scripts/notebooks/uu_observe_24h.ipynb)、[VS Code 说明](usage/OBSERVE_24H.md)；用户已运行首轮后中断，24 小时稳定性未验收。
 - 阶段回顾：[2026-10-13 总结与后续路线](research/PROGRESS_20261013.md)。

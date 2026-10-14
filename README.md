@@ -2,7 +2,7 @@
 
 面向悠悠有品（UU）的 CS2 普通枪皮决策研究，研究可执行净收益与退出能力。第一批按用户最新要求只选百元（100 ≤ 价格 < 1000 元），优先同档属性较可比、普通件容易匹配通用求购的规格。原 P02 的 10 主力+6 候补保留历史版本，需按新规则复核；P03 仅通过 L0 来源观察，正式数据集与模型仍为 0。
 
-本地工程版本 **0.3.5（未发布）**，目录版本 **layout-1.0**，研究计划 **plan-1.5**，文件制度 **management-1.2**。[选品修订](docs/research/SELECTION_REVISION_20261014.md)已记录百元范围和求购条件证据。用户已自行运行[Notebook](scripts/notebooks/uu_observe_24h.ipynb)首轮并中断，2 个快照保存成功；24 小时稳定性尚未验收，后续由用户按[运行说明](docs/usage/OBSERVE_24H.md)操作。
+本地工程版本 **0.3.5（未发布）**，目录版本 **layout-1.0**，研究计划 **plan-1.6**，文件制度 **management-1.2**。[选品修订](docs/research/SELECTION_REVISION_20261014.md)已记录百元范围和求购条件证据。用户已自行运行[Notebook](scripts/notebooks/uu_observe_24h.ipynb)首轮并中断，2 个快照保存成功；24 小时稳定性尚未验收，后续由用户按[运行说明](docs/usage/OBSERVE_24H.md)操作。
 
 | 主体目录 | 内容 | 入口 |
 | --- | --- | --- |

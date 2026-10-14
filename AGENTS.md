@@ -14,5 +14,6 @@
 
 - 当前目录 layout-1.0：代码与工程配套集中在 scripts/，数据在 data/，文档在 docs/；根目录工具元数据保留。P02 初选及 P03 两规格有限核验交付完成，L0 来源观察通过、L1/L2 执行准入未通过。当前停止点见 STATE，不自动扩大采集、重试受限 UU 主机或开始 P04/P05。
 - SteamDT 逐笔代码 1 仅核验为 Steam 来源显示，0/2/3 为三方未知，不映射 UU；market-comparsion 的 UU 汇总报价及数量不是单件深度。交叉报价必须保留并标异常，不能形成套利或执行标签。
+- 用户已明确七日 CD 解锁后尽快退出，覆盖旧 14/21 日持有候选。UU 界面有历史在售数量/成交价格，用户观察7天每小时、30天每天4次、90天/半年每天2次；登录前提与实际响应频率待核验，见 UU_HISTORY_CHART。BUFF 成交记录/走势只作辅助，不能直接标为 UU；不因界面入口存在而自动请求已受限主机。
 - 用户要求连续观察 Notebook 由自己本地运行；已自行完成首轮后中断，尚未通过真实 24 小时验收。不要替用户启动联网连续采集、后台服务或定时任务；保留用户 Notebook 输出，不把新候选插入旧运行或改动其冻结源码。当前百元选品规则见 SELECTION_PLAN 与 SELECTION_REVISION_20261014。
 - 文件与目录用途、内容版本见 docs/governance/FILE_CATALOG.json；私有清单在 data/local/manifests/。修改后运行 python -B scripts/manage_assets.py --write，再 --check；离线测试入口为 scripts/tests。

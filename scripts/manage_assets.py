@@ -52,6 +52,7 @@ PURPOSES = {
     "docs/research/P03_OBSERVATION_PLAN.md": "用户本地连续观察的固定窗口、预算、恢复、用途与未启动状态",
     "docs/usage/OBSERVE_24H.md": "VS Code Notebook 的内核、启动、停止、恢复、输出和采样边界说明",
     "docs/data/UU_FIELD_CONTRACT.md": "已核验 UU 来源行情、汇总快照及混合逐笔字段定义与执行准入限制",
+    "docs/data/UU_HISTORY_CHART.md": "用户 UU 历史在售数量/成交价格截图、分窗口频率、待核验口径与七日解锁决策时间设计",
     "docs/data/UU_EXECUTION_RULES.md": "Steam 和 UU 公开规则、旧版适用限制、资金时间字段及访问限制处理",
     "docs/research/UNIVERSE.md": "旧筛选方法和候选说明，仅作历史参考",
     "docs/governance/STATE.md": "当前阶段、版本和停止点",
@@ -213,6 +214,8 @@ def purpose(path):
     if path.startswith("data/local/api_cache/"):
         return "旧官方目录缓存，重复 recon 目录文件的保留副本" if name == "base.json" else "旧来源配额时间状态，不自动刷新"
     if path.startswith("data/local/recon/"):
+        if "/user_uu_history_chart_20261014/" in path:
+            return "用户 UU 历史图表截图原始证据，保持私有" if name.endswith(".png") else "用户历史图表接收日期、原始哈希、可见指标、分窗口频率与未改动文件哈希"
         if "/user_attribute_scope_20261014/" in path:
             return "用户求购截图原始证据，保持私有，不公开买家信息" if name.endswith(".png") else "用户截图接收日期、原始哈希、可见行范围与规则修订及未改动文件哈希"
         if "/p03_20261013_evidence/" in path:
@@ -249,6 +252,8 @@ def folder_purpose(path):
         return "独立单品单日试跑的原始响应、表、报告或哈希分桶"
     if path.startswith("data/local/recon/user_attribute_scope_20261014"):
         return "用户求购条件截图及范围修订的私有版本证据"
+    if path.startswith("data/local/recon/user_uu_history_chart_20261014"):
+        return "用户历史图表截图及分窗口采样频率的私有证据"
     for prefix, label in (("data/local/database/raw/", "旧压缩响应的哈希分桶"), ("data/local/archive/", "最初试采历史证据的分组"), ("data/local/recon/", "按日期保存的来源探测证据"), ("data/local/api_cache/", "按本地凭证标识隔离的旧缓存，不公开标识"), ("data/samples/", "旧匿名样本批次及原始/表/报告分组")):
         if path.startswith(prefix):
             return label

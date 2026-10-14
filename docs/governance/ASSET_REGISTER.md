@@ -1,9 +1,10 @@
 # 既有资产登记
 
-登记版本 asset-register-1.7，2026-10-14。首批百元与属性可比性规则已修订；用户本地观察首轮成功后中断，24 小时稳定性未验收，当前仅准入 L0。
+登记版本 asset-register-1.8，2026-10-14。首批百元与属性可比性规则已修订；用户本地观察首轮成功后中断，24 小时稳定性未验收，当前仅准入 L0。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
+| UU_HISTORY_CHART、data/local/recon/user_uu_history_chart_20261014 | current / user-evidence-pending-verification | UU历史在售数量/成交价格与BUFF辅助入口可见；登录前提与频率待核验，截图私有，尚无图表响应 | P03 |
 | docs/research/PLAN、governance/ 制度与状态 | current-plan | 当前方向、管理与停止点 | P01 |
 | docs/research/PROGRESS_20261013 | current / progress-snapshot | 今晚收尾总结、早期改动与整体路线；后续状态以 STATE 为准 | 持续 |
 | P03_VERIFICATION_PLAN、P03_VERIFICATION_REPORT、UU_FIELD_CONTRACT、UU_EXECUTION_RULES | current / P03-delivered | 范围预算、字段口径、规则时效、有限结果与执行缺口 | P03 |
