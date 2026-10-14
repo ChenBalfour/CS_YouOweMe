@@ -24,4 +24,4 @@
 
 从项目根运行 `python -B -m unittest discover -s scripts/tests -v`。`collect.py --version` 不调用市场接口；其他旧采集命令仍需对应部分的明确范围。
 
-修改文件后先检查，再运行 `python -B scripts/manage_assets.py --write` 更新清单，随后 `--check` 核对。本地 hooks 路径为 `scripts/hooks`。不要把生成缓存、原始数据或模型产物放入此目录。
+每次操作完成更新 [主进展](../docs/PROGRESS.md)，实现变化同步 [产品架构](../docs/ARCHITECTURE.md)。修改文件后先检查，再运行 `python -B scripts/manage_assets.py --write` 更新清单，随后 `--check` 核对。本地 hooks 路径为 `scripts/hooks`。不要把生成缓存、原始数据或模型产物放入此目录。

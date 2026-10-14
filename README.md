@@ -1,27 +1,32 @@
 # CS_YouOweMe
 
-面向悠悠有品（UU）的 CS2 普通枪皮决策研究，研究可执行净收益与退出能力。第一批按用户最新要求只选百元（100 ≤ 价格 < 1000 元），优先同档属性较可比、普通件容易匹配通用求购的规格。原 P02 的 10 主力+6 候补保留历史版本，需按新规则复核；P03 仅通过 L0 来源观察，正式数据集与模型仍为 0。
+面向悠悠有品的 CS2 普通百元枪皮研究 demo，评估七日 CD 实际解锁后退出的价格、净收益风险和可成交性。当前只有 L0 来源观察；正式数据集、训练模型和完整决策 demo 尚未实现。
 
-本地工程版本 **0.3.5（未发布）**，目录版本 **layout-1.0**，研究计划 **plan-1.6**，文件制度 **management-1.2**。[选品修订](docs/research/SELECTION_REVISION_20261014.md)已记录百元范围和求购条件证据。用户已自行运行[Notebook](scripts/notebooks/uu_observe_24h.ipynb)首轮并中断，2 个快照保存成功；24 小时稳定性尚未验收，后续由用户按[运行说明](docs/usage/OBSERVE_24H.md)操作。
+## 三个主文档
 
-| 主体目录 | 内容 | 入口 |
-| --- | --- | --- |
-| scripts/ | 源码、命令、配置、离线测试、SQL、Git hooks | [脚本说明](scripts/README.md) |
-| data/ | 私有来源证据、旧库、旧名单及冻结公开样本 | [数据说明](data/README.md) |
-| docs/ | 计划、制度、字段、使用、发布历史与交接文档 | [文档说明](docs/README.md) |
+| 文档 | 用途 |
+| --- | --- |
+| [产品说明](docs/PRODUCT.md) | 目标、用户流程、选品与退出策略、建议输出和验收要求 |
+| [产品架构](docs/ARCHITECTURE.md) | 当前实现、数据流、存储恢复、后续模型与执行边界 |
+| [当前进展与卡点](docs/PROGRESS.md) | 已完成成果、实际运行、卡点、下一步和每次操作记录 |
 
-根目录仅另保留 README、AGENTS、LICENSE、pyproject、Git 配置和 `.github/workflows/` 等工具要求的入口。逐文件与逐目录说明、内容版本见 [逐项说明](docs/governance/FILE_INDEX.md)和[完整哈希清单](docs/governance/FILE_CATALOG.json)；私有文件的对应清单留在忽略目录，不进入 Git。
+先读这三份文档。每次操作完成后更新进展；目标或实现变化同步对应主文档。专项依据和操作指南见 [文档索引](docs/README.md)。
 
-先读 [主计划](docs/research/PLAN.md)、[当前状态](docs/governance/STATE.md)和[交接](docs/governance/HANDOFF.md)。迁移与删除依据、恢复方法见 [整理记录](docs/governance/ORGANIZATION.md)。旧成果按用途审查后再复用。
+| 目录 | 内容 |
+| --- | --- |
+| [scripts](scripts/README.md) | Notebook、CLI、源码、配置、测试、SQL 与 hooks |
+| [data](data/README.md) | 私有数据库、原始证据和冻结公开样本 |
+| [docs](docs/README.md) | 三大主文档与字段、运行、管理、版本附件 |
 
-离线检查在项目根目录运行：
+运行代码 **0.3.5（本地未发布）**，目录 **layout-1.0**，制度 **management-1.3**。全部文件和目录的用途、内容版本见 [索引](docs/governance/FILE_INDEX.md)与 [SHA-256 清单](docs/governance/FILE_CATALOG.json)。
+
+离线检查：
 
 ```powershell
 python -B -m unittest discover -s scripts/tests -v
-python -B scripts/collect.py --version
 python -B scripts/manage_assets.py --check
 ```
 
-一次完成用户指定的一部分。当前暂停新增 GitHub push、PR、远程合并及 release，最后 P06 再审查开源。真实凭证只在忽略的 `scripts/config/.env` 或环境变量；空白模板不填写真实值。
+采集由用户自己本地显式启动，见 [Notebook 说明](docs/usage/OBSERVE_24H.md)。已有运行和输出保留，agent 不代运行连续采集或后台任务。当前停止新增 GitHub push、PR、合并与 release。本地 Git 记录版本，原始数据和凭证留在忽略目录。
 
-原创代码与文档采用 [MIT](LICENSE)。第三方数据及商标权利归各自权利人。
+原创代码与文档采用 [MIT](LICENSE)。第三方数据及商标权利归其权利人。

@@ -1,6 +1,6 @@
 # 文件管理规范
 
-版本 management-1.2，目录版本 layout-1.0，2026-10-14（北京时间）。2026-10-12 用户要求略读、清理、按脚本/数据/文档收拢并逐项管理版本；整理已完成，当前阶段以 STATE 为准。本次补充用户已运行 Notebook 的输出保护与版本记录。
+版本 management-1.3，目录版本 layout-1.0，2026-10-14（北京时间）。2026-10-12 用户要求略读、清理、按脚本/数据/文档收拢并逐项管理版本；整理已完成，当前阶段以三大主文档为准。本次确定持续更新规则，并清理重复说明及可再生缓存。
 
 ## 目录职责
 
@@ -11,7 +11,8 @@
 | scripts/tests/、sql/、config/、hooks/ | 代码配套的离线验证、查询、配置与 hooks |
 | data/local/ | 私有原始证据、旧资产及后续正式数据和实验产物 |
 | data/samples/ | 已公开旧匿名样本，冻结待 P06 复审 |
-| docs/research/ | 唯一主计划与研究参考 |
+| docs/PRODUCT.md、ARCHITECTURE.md、PROGRESS.md | 产品、架构、成果和卡点的三个主入口 |
+| docs/research/ | 专项计划与调查证据 |
 | docs/governance/ | 文件管理、阶段、资产、整理与版本索引 |
 | docs/data/、usage/、releases/ | 字段、使用和版本历史文档 |
 | docs/local/progress/ | 私有文字交接；JSON 运行日志仍在 data/local/progress/ |
@@ -27,7 +28,7 @@
 - Git 本地提交保存代码、说明和公开清单的可恢复历史；私有数据靠来源清单、哈希和冻结版本管理，不存入 Git。
 - 修改后运行 `python -B scripts/manage_assets.py --write`，随后 `--check`。清单过期、缺说明、缺文件均应修正后再收尾。
 
-计划 plan-1.6、选品计划 selection-plan-1.2、代码 0.3.5、目录 layout-1.0、制度 management-1.2、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)，当前阶段见 STATE。
+主文档 product-1.0 / architecture-1.0 / progress-1.0、兼容计划 plan-1.7、选品计划 selection-plan-1.2、代码 0.3.5、目录 layout-1.0、制度 management-1.3、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)，当前阶段见 PROGRESS。
 
 scripts/notebooks 保存用户本地运行入口，交付的 Git 版本保持 execution_count=null、outputs=[]；实际观察写独立 data/local/staging/steamdt/p03_steamdt_observe_*，用户可能另外保存单元格输出。保留用户工作副本，不为文档提交自动清空或覆盖；本次提交只纳入本次文档/管理变更，不提交用户已执行 Notebook。若将来需要提交入口修改，先私有保存准确执行版本，再处理仅供提交的空输出版本。私有恢复指针与首轮成功不能当作完成一天验收。
 
@@ -67,4 +68,4 @@ legacy / unreviewed、candidate 不可直接训练；validated 只用于验收�
 
 迁移后检查引用、代码入口、链接与内容哈希。SQLite 备份使用备份接口，或停止写入并处理 WAL 后操作；不在活动写入时单独复制主文件。
 
-每部分更新 STATE、资产登记与交接，执行相应检查并保存本地版本，然后停止。新增 GitHub push、PR、合并与 release 仍暂停，P06 按当时指示发布。凭证在忽略的 `scripts/config/.env`，公开模板保持空白；私有数据、文档、模型产物不进入 Git。scripts/local/pilot_sources 和 selection_sources 保存实际运行源码的准确版本，仅为变更中代码补充追溯，保持私有并纳入私有清单。
+每次操作完成必须更新 docs/PROGRESS.md，记录任务、成果/文件、验证、版本、剩余卡点和下一步；失败也记录。范围/策略变化同步 PRODUCT，实现/数据流变化同步 ARCHITECTURE，保持三文档一致。资产状态或文件布局变化再更新对应附件；PLAN/STATE/HANDOFF/CURRENT只保留兼容入口。执行相应检查并保存本地版本，然后停止。新增 GitHub push、PR、合并与 release 仍暂停，P06 按当时指示发布。凭证在忽略的 `scripts/config/.env`，公开模板保持空白；私有数据、文档、模型产物不进入 Git。scripts/local/pilot_sources 和 selection_sources 保存实际运行源码的准确版本，仅为变更中代码补充追溯，保持私有并纳入私有清单。

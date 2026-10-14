@@ -1,12 +1,13 @@
 # 既有资产登记
 
-登记版本 asset-register-1.8，2026-10-14。首批百元与属性可比性规则已修订；用户本地观察首轮成功后中断，24 小时稳定性未验收，当前仅准入 L0。
+登记版本 asset-register-1.9，2026-10-14。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
 | UU_HISTORY_CHART、data/local/recon/user_uu_history_chart_20261014 | current / user-evidence-pending-verification | UU历史在售数量/成交价格与BUFF辅助入口可见；登录前提与频率待核验，截图私有，尚无图表响应 | P03 |
-| docs/research/PLAN、governance/ 制度与状态 | current-plan | 当前方向、管理与停止点 | P01 |
-| docs/research/PROGRESS_20261013 | current / progress-snapshot | 今晚收尾总结、早期改动与整体路线；后续状态以 STATE 为准 | 持续 |
+| PRODUCT、ARCHITECTURE、PROGRESS | current / primary-documents | 产品、架构和进展的三个主入口；每次操作写入成果 | 持续 |
+| PLAN、STATE、HANDOFF、私有CURRENT | retained / compatibility-entry | 旧路径保留导航，不维护重复正文；清理前全文有Git/私有恢复记录 | 持续 |
+| 旧PROGRESS_20261013、UNIVERSE、三份release说明 | removed / recoverable-history | 已被当前进展/选品或CHANGELOG接管，从工作目录清理；Git babb125保留原文 | 持续 |
 | P03_VERIFICATION_PLAN、P03_VERIFICATION_REPORT、UU_FIELD_CONTRACT、UU_EXECUTION_RULES | current / P03-delivered | 范围预算、字段口径、规则时效、有限结果与执行缺口 | P03 |
 | scripts/notebooks/uu_observe_24h.ipynb、observe_uu_24h.py、history/observe.py | current / user-first-round-checked | 用户本地显式运行、固定截止与恢复入口；首轮已保存，用户输出保留，24 小时未验收 | P03 |
 | SELECTION_REVISION_20261014、SELECTION_PLAN 1.2 | current / selection-rule-revision | 首批 [100,1000) 元、同档属性可比性及通用求购匹配，7 个旧百元主力待复核 | P02–P03 |
@@ -33,7 +34,7 @@
 | data/local/universes 根层旧 JSON | legacy / unreviewed | 旧候选快照，不沿用旧数量或权重；新版本目录按其明确批准用途管理 | P02 |
 | data/local/recon、archive、api_cache | legacy / reference | 接口、事件、初始采集与目录证据；已去除两份相同副本 | P03–P05 |
 | data/samples/pilot_20261011 | already-public / frozen | 旧匿名快照与离线解析样本，非 UU 正式训练集 | P04、P06 |
-| docs/data、usage、research/UNIVERSE、releases | legacy / documentation | 字段、接口限制、历史方法与公开版本追溯 | 对应部分 |
+| docs/data、usage、releases/CHANGELOG | retained / specialized-documents | 当前字段/运行指南与旧接口参考、集中版本历史；不是第二套产品或进度 | 对应部分 |
 | docs/local/progress、data/local/progress | private / historical | 当前文字交接和冻结 JSON 历史；不能自动恢复旧任务 | 持续 |
 | data/local/manifests | private / current-management | 整理前基线、迁移删除明细与私有版本清单 | 持续 |
 | scripts/config/.env、旧归档凭证 | private / protected | 仅供授权操作，未展示、转发或加入 Git | 持续 |

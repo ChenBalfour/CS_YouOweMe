@@ -39,7 +39,7 @@ python scripts/collect.py universe scan --output data/local/universes/qianbaizha
 python scripts/collect.py universe narrow --source data/local/universes/core_20261012.json --output data/local/universes/qianbaizhan_20261012.json
 ```
 
-该示例源文件属于维护者本地数据，其他机器应改为自己的扫描输出。原观察时间和重建时间分别保留；名单及成员同时进入 SQLite，查询方法见 [数据库指南](DATABASE.md)。第一版选择摘要见 [UNIVERSE](../research/UNIVERSE.md)。
+该示例源文件属于维护者本地数据，其他机器应改为自己的扫描输出。原观察时间和重建时间分别保留；名单及成员同时进入 SQLite，查询方法见 [数据库指南](DATABASE.md)。旧第一版加权选择摘要已从工作目录移除，原文在 Git `babb125`；当前选择见 [选品计划](../research/SELECTION_PLAN.md)，恢复方法见 [清理记录](../governance/ORGANIZATION.md)。
 
 ## 3. 明确名单后计划回填
 
