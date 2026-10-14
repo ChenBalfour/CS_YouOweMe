@@ -12,6 +12,7 @@
 | verify_public_evidence.py | 有预算公开页面/规则和三类已发现 UU 只读入口核验；本轮 UU 主机受限已停止 |
 | verify_uu_fields.py | 两规格 UU 汇总比较字段补查，独立库；不自动执行 |
 | review_uu_verification.py | 指定冻结运行的只读复核与私有观察导出，不采集市场 |
+| review_uu_chart.py | 用户图表响应的纯离线核验，价格/数量分列，保存独立 SQLite/CSV；工具版本 uu-chart-review-1.0，见[用法](../docs/usage/UU_CHART_EXPORT.md) |
 | notebooks/uu_observe_24h.ipynb | 用户在 VS Code 手动运行的连续观察入口，交付时未执行 |
 | observe_uu_24h.py | 用户显式新建/恢复/只读状态 CLI，与 Notebook 共用同一机制 |
 | local/pilot_sources/ | 私有实际运行源码版本，哈希与采集/核验清单对应 |

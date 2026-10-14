@@ -2,7 +2,7 @@
 
 | 字段 | 当前值 |
 | --- | --- |
-| doc-version | architecture-1.0 |
+| doc-version | architecture-1.1 |
 | updated | 2026-10-14（Asia/Shanghai） |
 | 工程 / 目录 / 制度 | 0.3.5（本地未发布） / layout-1.0 / management-1.3 |
 
@@ -21,7 +21,10 @@ flowchart LR
         Q[只读 inspect / 离线核验 / 报告]
         S --> E --> C --> R --> D --> Q
     end
-    U[UU 登录后历史图表：待响应核验] -. 待接入 .-> R
+    U[用户导出的 UU 历史图表响应]
+    O[纯离线 review_uu_chart]
+    UD[独立图表 SQLite / CSV / 报告]
+    U --> O --> UD
     B[BUFF：辅助来源，尚未接入该流程] -. 待映射与核验 .-> R
     subgraph future[目标设计，尚未实现]
         F[特征与标签 / 信息可得时间]
@@ -31,6 +34,7 @@ flowchart LR
         F -.-> M -.-> P -.-> X
     end
     D -. 验收后冻结正式数据集 .-> F
+    UD -. 身份与统计口径验收后 .-> F
 ```
 
 实线部分已具备工程实现，虚线部分需要来源与用途验收。当前已验收正式数据集 **0**、交易模型 **0**；已有试跑 SQLite、原始响应和源码快照，不等于已完成模型数据集。用户连续观察只完成首轮后中断，真实 24 小时稳定性尚未通过验收。
@@ -46,6 +50,7 @@ flowchart LR
 | `history/store.py`、`history/schema.sql` | SQLite、压缩原始响应、请求记录和单库工作锁 |
 | `history/verification.py`、`normalize.py` | 身份与数值规范、null/零值、来源质量标记；不能把解析成功升级为执行准入 |
 | `scripts/pilot_uu_day.py`、`verify_uu_fields.py`、`review_uu_verification.py` | 独立有限试跑、字段补查与离线复核，具体参数与结果随运行保存 |
+| `scripts/review_uu_chart.py` | 纯离线读取用户导出，显式指定模板/指标/窗口，检查真实时间间隔并保存独立 SQLite/CSV；不调用市场、不修改旧运行 |
 
 采集器使用 **Python 3.11+ 标准库**，`pyproject.toml` 当前没有第三方运行依赖。实际使用 `urllib`、`sqlite3`、`gzip`、`hashlib`、`json`、`csv`、`decimal` 等；本地 Git 用于记录代码基线。VS Code 的 Python/Jupyter 扩展和 Python kernel 属于 notebook 运行环境。当前未引入数据库服务器、pandas、机器学习库或后台服务。
 
@@ -58,14 +63,14 @@ Notebook 与 CLI 复用同一实现。前台采集需要电脑保持唤醒、联
 | SteamDT YOUPIN Kline | 有显式 UU 平台参数的小时行情，已做有限历史试跑；价格及可空来源量额仅限 L0，不证明实际 UU 成交量或结算 |
 | SteamDT ITEM 与 market-comparsion | `youpin`、名称“悠悠”、商品链接/模板形成平台证据；当前连续观察采集商品报价与来源汇总在售/求购报价、数量和更新时间 |
 | SteamDT 来源逐笔 | 代码 1 显示为 Steam，0/2/3 为第三方未知且存在推算口径，不继承 Kline 的 UU 平台选择，不标为 UU 真实订单 |
-| UU 网页历史图表 | 用户截图显示历史在售数量/成交价格，需登录；旧脚本只有 price/trend 接口静态定义，尚未取得图表响应或验证统计口径 |
+| UU 网页历史图表 | 用户请求与两份响应支持 orderType=1 成交价格、11 在售数量；time 为毫秒、price 随指标改变语义。身份、统计与历史可得时间未验收 |
 | BUFF | 用户截图显示成交记录/走势入口和登录提示，仅作辅助；不能替代 UU 执行数据 |
 
 商品使用精确英文名称、普通/特殊版本和标准磨损档；SteamDT itemId、UU templateId 与单件挂牌 ID 分别保存。流金王朝是 **The Oligarch**，黄金藤蔓是 **Gold Arabesque**，不混用身份。首批每品一个标准磨损档，进一步核对同档内 float、模板、贴纸和求购条件的可比性。
 
-UU 图表近 7 天每小时、30 天每日 4 次、90 天及半年每日 2 次，目前是**用户页面观察**，待原始响应时间戳验证。不能将较稀疏的历史插值成真实小时采样。在售数量是存量/挂牌观察，成交价格是待核验统计价格；二者都不是成交数量或成交额，不能相乘推导成交额。截图参考 44.4 元只作技术例子，商品身份未完整提供，不加入百元名单。
+本次 15 天数量响应有 93 点，相邻均为 4 小时；30 天价格响应有 169 点，时间间隔不固定。7 天每小时、90 天及半年每日 2 次仍只是用户观察；不能统一按页面天数预设频率或按 blockNum 推算。两个指标保留各自时间网格，不按行号拼接或插值成真实小时采样。在售数量是挂牌观察，不是成交量；价格与数量不能相乘推导成交额。templateId=980 由用户请求提供，完整身份尚未核验；截图参考 44.4 元只作技术例子，不加入百元名单。
 
-Edge 浏览器工具连接失败，内置浏览器创建超时，尚未取得可用会话或图表响应；这不表示 UU 没有历史数据。UU 旧 429 入口保持停止。后续需在正常可访问、用户完成登录的浏览器内做受控有限核验，不能因存在图表入口而绕过限制。见 [图表口径](data/UU_HISTORY_CHART.md)与[字段契约](data/UU_FIELD_CONTRACT.md)。
+Edge 浏览器工具仍无法读取会话，但用户手动导出已经支持离线字段核验；无需为此读取账号凭证。UU 旧 429 入口保持停止，本次没有发送请求；后续自动采集权限与有限预算仍待确认。见 [图表口径](data/UU_HISTORY_CHART.md)、[导出用法](usage/UU_CHART_EXPORT.md)与[字段契约](data/UU_FIELD_CONTRACT.md)。
 
 ## 4. 当前连续观察的调度与恢复
 
@@ -94,6 +99,8 @@ Edge 浏览器工具连接失败，内置浏览器创建超时，尚未取得可
 | `data/local/manifests/uu_observe_last_run.json` | 指向具体运行并校验 manifest 的恢复指针 |
 
 来源请求时间、响应返回时间、来源更新时间、历史事件/采样时间分别记录。金额保留数值语义，null 不补零，零值不当作缺失；原始字节支持复核数值精度和来源格式。求购高于在售保留原值并标 `crossed_source_quotes`，不自动改价或生成套利标签。
+
+用户图表离线核验另存 `data/local/staging/uu_charts/<批次>/`，包含 response_input.json、manifest.json、report.json、points.csv、chart_review.sqlite、review_source.py。价格附件保留准确输入字节；聊天数量只保存明确标注的 time/price 人工投影，其哈希不能冒充完整原始响应哈希。SQLite 使用精确文本保存价格、整数保存数量，null 与零分开；独立库不调用 Store 或迁移旧库。来源 sourceType 保留原值，不继承 SteamDT 的平台分类；商品身份及价格统计含义明确标为未验证。
 
 用户保存的 Notebook 输出、已有库和冻结源码属于已执行证据，文档重组不清空或覆盖。原始数据、截图、私有源码和运行日志留在忽略目录；工程源码及说明用本地 Git 管理，凭证不打印、快照或提交。
 
@@ -125,3 +132,5 @@ Edge 浏览器工具连接失败，内置浏览器创建超时，尚未取得可
 工程版本 0.3.5、SQLite 基础 `user_version=2`、观察 schema `observe-1.0`、字段契约 `uu-field-contract-1.1`、目录与文档版本各有职责。未来 dataset/model ID 只在资产创建并冻结时赋予，不能用代码版本代替；旧运行按创建时记录的契约与准确源码解释，不随当前说明改写。
 
 维护规则：实现改变更新本页；每次成果写入 [PROGRESS](PROGRESS.md)。
+
+独立离线图表工具版本为 uu-chart-review-1.0；现有连续观察的十份冻结源码及包版本 0.3.5 保持不变，不影响用户原运行恢复校验。

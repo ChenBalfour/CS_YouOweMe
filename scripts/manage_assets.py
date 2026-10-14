@@ -32,6 +32,7 @@ PURPOSES = {
     "scripts/verify_public_evidence.py": "有预算的公开网页/规则证据和已发现 UU 只读入口抓取，访问受限主机持久停止",
     "scripts/verify_uu_fields.py": "两个精确规格的 SteamDT UU 汇总盘口字段有限补查，独立库与准确源码留存",
     "scripts/review_uu_verification.py": "离线核对 P03 原始哈希、全页逐笔、只读库与字段准入，导出私有规范观察",
+    "scripts/review_uu_chart.py": "离线核验用户导出的 UU 图表响应，按请求指标分离价格和数量，保存独立 SQLite/CSV 与真实时间间隔",
     "scripts/observe_uu_24h.py": "用户显式启动的新建/恢复连续观察 CLI，status 只读，不默认运行",
     "scripts/notebooks/uu_observe_24h.ipynb": "VS Code 用户本地 24 小时连续观察 Notebook，交付时输出清空且未执行",
     "scripts/config/seeds.json": "旧试采精确英文规格种子，不是正式 UU 名单",
@@ -53,8 +54,9 @@ PURPOSES = {
     "docs/research/P03_VERIFICATION_REPORT.md": "P03 有限试跑结果、证据、报价异常、未知项和 L0 准入边界",
     "docs/research/P03_OBSERVATION_PLAN.md": "用户本地连续观察的固定窗口、预算、恢复、用途与未启动状态",
     "docs/usage/OBSERVE_24H.md": "VS Code Notebook 的内核、启动、停止、恢复、输出和采样边界说明",
+    "docs/usage/UU_CHART_EXPORT.md": "Edge 复制图表响应正文及用户本地离线核验命令，不复制请求头或启动采集",
     "docs/data/UU_FIELD_CONTRACT.md": "已核验 UU 来源行情、汇总快照及混合逐笔字段定义与执行准入限制",
-    "docs/data/UU_HISTORY_CHART.md": "用户 UU 历史在售数量/成交价格截图、分窗口频率、待核验口径与七日解锁决策时间设计",
+    "docs/data/UU_HISTORY_CHART.md": "UU 历史图表指标映射、两份用户响应的字段与实际间隔核验、统计及决策时间边界",
     "docs/data/UU_EXECUTION_RULES.md": "Steam 和 UU 公开规则、旧版适用限制、资金时间字段及访问限制处理",
     "docs/governance/STATE.md": "旧状态路径的兼容入口，当前进展统一到 PROGRESS",
     "docs/governance/HANDOFF.md": "精简交接入口：三大主文档、接手顺序与版本保护",
@@ -130,11 +132,12 @@ FOLDERS = {
     "data/local/progress": "旧进度 JSON 记录，当前文字交接迁入 docs/local/progress",
     "data/local/staging": "未验收候选试跑资产，不能直接训练",
     "data/local/staging/steamdt": "SteamDT 来源的独立候选试跑与原始追溯",
+    "data/local/staging/uu_charts": "私有用户导出图表响应与聊天投影的独立离线核验，非正式数据集",
     "docs": "计划、制度、使用说明和交接记录",
     "docs/governance": "管理、阶段、资产登记与版本索引",
     "docs/research": "专项选品、核验计划和有限调查证据，三大主文档的附件",
     "docs/data": "来源、schema 与字段说明",
-    "docs/usage": "旧实现使用参考，非执行授权",
+    "docs/usage": "用户本地观察、图表导出与旧实现参考，不构成采集或发布授权",
     "docs/releases": "历史发布与本地版本变更说明",
     "docs/local": "私有交接文档，不加入 Git",
     "docs/local/progress": "当前本地交接与旧历史交接文档",
@@ -172,6 +175,8 @@ def purpose(path):
     name = Path(path).name
     if protected(Path(path)):
         return "受保护本地凭证，仅登记配置版本，不读取、复制或记录内容及哈希"
+    if path.startswith("data/local/staging/uu_charts/"):
+        return {"price_response.json": "用户价格响应附件的准确字节副本，无请求头", "listing_count_projection.json": "用户聊天数量响应的 time/price 人工投影，不是完整原始响应", "provenance.json": "安全请求正文、接收日期、输入来源与投影省略字段说明", "preservation_baseline.json": "本次旧数据、Notebook 与冻结源码的非凭证保留哈希基线", "preservation_verification.json": "旧资产保留核对结果及零市场请求说明", "response_input.json": "本次离线核验输入字节；是否原始用户文件或人工投影由 manifest 说明", "report.json": "字段、指标、真实间隔、覆盖、质量与 L0 限制的离线核验报告", "points.csv": "价格与在售数量分列的图表点便览", "chart_review.sqlite": "独立离线图表核验 SQLite，价格为精确文本、在售数量为整数", "review_source.py": "本次离线核验脚本的准确私有源码版本", "manifest.json": "离线输入及源码哈希、请求上下文、输入类型和零市场请求清单"}.get(name, "用户图表离线核验的私有追溯附件")
     if path.startswith("scripts/local/pilot_sources/"):
         if name.endswith(".md"):
             return "该有限核验采集时的计划准确内容版本快照"
@@ -237,6 +242,8 @@ def purpose(path):
 def folder_purpose(path):
     if path in FOLDERS:
         return FOLDERS[path]
+    if path.startswith("data/local/staging/uu_charts/"):
+        return "用户图表输入、请求正文与人工投影来源说明" if "/inputs_" in path else "一次独立图表离线核验的 SQLite、CSV、报告、输入和准确源码"
     if path.startswith("scripts/local/pilot_sources/"):
         return "该运行实际采集及核验源码快照"
     if path.startswith("scripts/local/selection_sources/"):

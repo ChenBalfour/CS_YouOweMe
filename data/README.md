@@ -10,6 +10,7 @@
 | local/api_cache/ | 旧官方目录与配额状态，不自动刷新 |
 | local/universes/ | 旧候选及新 P02 版本化验证名单，按明确用途管理 |
 | local/staging/steamdt/p03_* | 独立单日与汇总字段补查库、压缩原始响应及只读复核产物，非正式数据集 |
+| local/staging/uu_charts/ | 用户导出图表与数量聊天投影的来源、独立 SQLite/CSV、实际间隔报告及准确源码；身份/统计待验收，非正式数据集 |
 | local/progress/ | 冻结的旧 JSON 进度记录 |
 | local/manifests/ | 私有文件版本清单、整理前基线、迁移删除与核对记录 |
 
