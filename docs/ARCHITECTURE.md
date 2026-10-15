@@ -2,7 +2,7 @@
 
 | 字段 | 当前值 |
 | --- | --- |
-| doc-version | architecture-1.5 |
+| doc-version | architecture-1.6 |
 | updated | 2026-10-15（Asia/Shanghai） |
 | 工程 / 目录 / 制度 | 0.3.5（本地未发布） / layout-1.0 / management-1.3 |
 
@@ -77,6 +77,8 @@ Edge 浏览器工具仍无法读取会话，但用户手动导出已经支持离
 批次SQLite按任务/序号保留窗口与指标，精确价格和整数数量分列；重叠窗口不覆盖。浏览器收取时间与历史可得时间分开，后者未知。UU直接数据为主、SteamDT辅助：原始资产不混存成同一真值；先精确映射模板/规格，后按当时可得时间关联，指标和来源分别成列，不平均或无声补齐。正式合并数据集尚未实现。
 
 拟在现有单商品采集与离线入库外增加本地浏览器调度层：Python/Playwright → 专用 Edge 正常登录状态 → 有限商品队列和页面控件 → 七组采集 → 自动保存与既有离线校验器。先实施凭证目录隔离，再创建持久浏览器状态；不提取日常 Edge 会话或把认证头写入产物。每品核对规格和响应 templateId，保存任务检查点，访问异常停止整队列。该层尚未实现，Playwright 未安装，真实 UU 菜单定位和多商品一致性仍待验收，见[设计与验收要求](usage/UU_BROWSER_AUTOMATION.md)。新 HTML 只可能充当控制面板，不能单靠它继承 UU 登录状态。
+
+用户现优先纯脚本路径，已新增独立 `collect_uu_direct.py`（uu-direct-chart-pilot-1.0）：标准库urllib固定HTTPS图表只读端点 → 既有review_uu_chart校验 → 独立raw/SQLite/CSV/报告。plan/status不联网、不读认证；probe最多一请求，resume只处理pending。私有credentials_uu_chart.json可提供Cookie/Authorization及正常请求设备字段，值不进入日志、清单哈希或源码快照；不跟随重定向、无自动重试或续登录。跨运行共用间隔、商品间隔、滚动24小时60次上限与互斥锁，默认15/60秒；继承旧主机访问停止，人工确认恢复不改写旧证据，也不能跳过Retry-After冷却。新来源标为uu_direct_http_pilot，取得时间用collected_at，historical_available_at为空；不伪装成浏览器来源。当前仅离线模拟通过，真实认证与稳定性待用户单请求验收，详见[纯脚本说明](usage/UU_DIRECT_COLLECT.md)。旧包0.3.5及冻结观察核心不变。
 
 ## 4. 当前连续观察的调度与恢复
 

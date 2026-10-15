@@ -14,6 +14,8 @@
 
 UU历史新入口：[采集与入库步骤](docs/usage/UU_HISTORY_COLLECT.md)、[用户Notebook](scripts/notebooks/uu_history_collect.ipynb)。浏览器正常登录后由用户显式采集，真实稳定性待验收；当前没有训练模型。
 
+新增[纯脚本有限试用入口](docs/usage/UU_DIRECT_COLLECT.md)：运行时不打开网页，登录信息仅在本机私有配置；先尝试一组，再显式继续。程序已做离线模拟，真实登录直连尚未验收，旧429停止需先由用户确认正常访问恢复。
+
 | 目录 | 内容 |
 | --- | --- |
 | [scripts](scripts/README.md) | Notebook、CLI、源码、配置、测试、SQL 与 hooks |
