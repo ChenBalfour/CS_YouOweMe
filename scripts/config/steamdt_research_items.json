@@ -1,0 +1,12 @@
+{
+  "version": "steamdt-research-registry-1.0",
+  "items": [
+    {"market_hash_name": "AK-47 | The Oligarch (Field-Tested)", "name_zh": "AK-47 流金王朝（久经沙场）", "steamdt_item_id": "1442265962434310144", "uu_template_id": null, "history_start": "2025-06-01", "enabled": true},
+    {"market_hash_name": "AWP | Asiimov (Field-Tested)", "name_zh": "AWP 二西莫夫（久经沙场）", "steamdt_item_id": "22554", "uu_template_id": null, "history_start": "2025-06-01", "enabled": true},
+    {"market_hash_name": "AK-47 | Fuel Injector (Field-Tested)", "name_zh": "AK-47 燃料喷射器（久经沙场）", "steamdt_item_id": "27405", "uu_template_id": null, "history_start": "2025-06-01", "enabled": true},
+    {"market_hash_name": "USP-S | Cyrex (Factory New)", "name_zh": "USP消音版 次时代（崭新出厂）", "steamdt_item_id": "293069649", "uu_template_id": null, "history_start": "2025-06-01", "enabled": true},
+    {"market_hash_name": "USP-S | Purple DDPAT (Factory New)", "name_zh": "USP消音版 紫色DDPAT（崭新出厂）", "steamdt_item_id": "914649006550052864", "uu_template_id": null, "history_start": "2025-06-01", "enabled": true},
+    {"market_hash_name": "Glock-18 | Nuclear Garden (Factory New)", "name_zh": "Glock-18 核子花园（崭新出厂）", "steamdt_item_id": "553479512", "uu_template_id": null, "history_start": "2025-06-01", "enabled": true},
+    {"market_hash_name": "FAMAS | Mecha Industries (Factory New)", "name_zh": "FAMAS 机械工业（崭新出厂）", "steamdt_item_id": "296780092", "uu_template_id": null, "history_start": "2025-06-01", "enabled": true}
+  ]
+}

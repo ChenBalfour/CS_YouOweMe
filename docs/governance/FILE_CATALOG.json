@@ -9,7 +9,7 @@
       "path": ".",
       "purpose": "项目根及 Git/Python 所需入口元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:eb656287470376c06765ce5d352a9c1d2fe1b861bbe5679e797995a3aa6c0ad1"
+      "version": "sha256:e4879c55c98c66c59037e43bd0f2584c641d57f939c70e5380ca472d320ec60b"
     },
     {
       "path": ".github",
@@ -63,19 +63,19 @@
       "path": "docs",
       "purpose": "计划、制度、使用说明和交接记录",
       "layout_version": "layout-1.0",
-      "version": "sha256:a987f94e3d1c83a02cd6c5ed17b5e29d14e11a9d156f99d10205e988687bbbd4"
+      "version": "sha256:0cc9958e4864ceea1f230d916e4bd56de33111c6d3ca36518411a5988c6847e5"
     },
     {
       "path": "docs/data",
       "purpose": "来源、schema 与字段说明",
       "layout_version": "layout-1.0",
-      "version": "sha256:6082c023ec8e82158e0c2e4579397d4b9372dadbcbca8a1d68910ef45bc8e7b1"
+      "version": "sha256:d8324e388f36ca3e61c29185d1c6b81b04ee6f7c3fa9ed38802bfc4608c44ac4"
     },
     {
       "path": "docs/governance",
       "purpose": "管理、阶段、资产登记与版本索引",
       "layout_version": "layout-1.0",
-      "version": "sha256:e1f8e43718baafb6adedfc22c41eaadad766254d3f2f8473afcc79f335b3a3c7"
+      "version": "sha256:6b5b62cb546a283e93f7174dd5cd5c1408caffd15852e04777dbd79d5d35d72d"
     },
     {
       "path": "docs/releases",
@@ -93,19 +93,19 @@
       "path": "docs/usage",
       "purpose": "用户本地观察、图表导出与旧实现参考，不构成采集或发布授权",
       "layout_version": "layout-1.0",
-      "version": "sha256:5ab7fc47fca8f2fb4e7914459b3143094e7bf4e40233db30fa54ec6dbf918409"
+      "version": "sha256:61d35b2a48b69fef511d450b50d3f29b99352839e2a1d5f7172e483164345e3e"
     },
     {
       "path": "scripts",
       "purpose": "所有可执行代码及其工程配套",
       "layout_version": "layout-1.0",
-      "version": "sha256:1ad69b44793ce541f4805c2962f82ea9c93a034f4942970f6ddbfbbc40a6edd9"
+      "version": "sha256:e54d0df8865ab77ad961f3d2cf5609423f2f4f17f48f11a912d52dac5765a9e2"
     },
     {
       "path": "scripts/config",
       "purpose": "脚本配置、空白模板与受保护本地凭证",
       "layout_version": "layout-1.0",
-      "version": "sha256:ff221f2cd747dc451b8120eace9d67e49f503939272a206d069b65ace63521ea"
+      "version": "sha256:475ab4c5c46ab24e3288276c4410d1c9ab7bcbaaa28b0914cf6ad58e4031003d"
     },
     {
       "path": "scripts/hooks",
@@ -117,7 +117,7 @@
       "path": "scripts/notebooks",
       "purpose": "用户手动运行的 Notebook 入口，Git 中清空执行输出",
       "layout_version": "layout-1.0",
-      "version": "sha256:8003c5c364d509a75aade195a55f938891facb8c2f4c655fd22a4bc796ea8d86"
+      "version": "sha256:f47d5ae86c04fdee0bef71a3d07973b28d09d4991a8c23649619dfb298b7d3a6"
     },
     {
       "path": "scripts/sql",
@@ -153,7 +153,7 @@
       "path": "scripts/tests",
       "purpose": "离线与合成回归测试",
       "layout_version": "layout-1.0",
-      "version": "sha256:2d2008046b4ec60583529237505de95cb05def1e759f24327b39812d58fe3494"
+      "version": "sha256:5faf34e808376fe43defa7a833126c0402d3195720e9d13802f38bdb34c86f8e"
     }
   ],
   "files": [
@@ -185,9 +185,9 @@
       "path": "AGENTS.md",
       "purpose": "协作者的执行、阶段、凭证及发布约束",
       "status": "current-or-reference",
-      "version": "sha256:608cffb991a61d04a61d7a9488302892b6e5cb55f35b2ed3b2ec2ff9597bb9bf",
-      "sha256": "608cffb991a61d04a61d7a9488302892b6e5cb55f35b2ed3b2ec2ff9597bb9bf",
-      "bytes": 4039
+      "version": "sha256:953cff9a21cba07969fb8e19ede07fd9f205935f8e9f9266743bd7b6122c8ddc",
+      "sha256": "953cff9a21cba07969fb8e19ede07fd9f205935f8e9f9266743bd7b6122c8ddc",
+      "bytes": 4491
     },
     {
       "path": "LICENSE",
@@ -201,9 +201,9 @@
       "path": "README.md",
       "purpose": "项目入口、当前状态与三类目录索引",
       "status": "current-or-reference",
-      "version": "sha256:7f0c8ce70a056607ad54c98ecc2ab24bd20faa9a7b65e0626ba901d8254bdb0a",
-      "sha256": "7f0c8ce70a056607ad54c98ecc2ab24bd20faa9a7b65e0626ba901d8254bdb0a",
-      "bytes": 2718
+      "version": "sha256:79e8552a745f3c5be9bcac147376aa7eeed336a87e40cf05e01dd4bbf81eb1bc",
+      "sha256": "79e8552a745f3c5be9bcac147376aa7eeed336a87e40cf05e01dd4bbf81eb1bc",
+      "bytes": 3082
     },
     {
       "path": "data/README.md",
@@ -417,33 +417,33 @@
       "path": "docs/ARCHITECTURE.md",
       "purpose": "架构主文档：真实实现、数据流、存储恢复与待建模型和执行层",
       "status": "current-or-reference",
-      "version": "sha256:b662b441d75482256d8acc990db694c7f091e00821ea892dbb7e211bb1e7047e",
-      "sha256": "b662b441d75482256d8acc990db694c7f091e00821ea892dbb7e211bb1e7047e",
-      "bytes": 17726
+      "version": "sha256:e22215e28086d9b5a84486ed16451ec336b6e6f73da46acecc869ea11798ecca",
+      "sha256": "e22215e28086d9b5a84486ed16451ec336b6e6f73da46acecc869ea11798ecca",
+      "bytes": 19185
     },
     {
       "path": "docs/PRODUCT.md",
       "purpose": "产品主文档：目标、范围、用户流程、策略、建议输出和验收要求",
       "status": "current-or-reference",
-      "version": "sha256:86253f96d417fd40af264ce2638ff56731096f281d565a260c1e15c933631736",
-      "sha256": "86253f96d417fd40af264ce2638ff56731096f281d565a260c1e15c933631736",
-      "bytes": 11711
+      "version": "sha256:242cc966bf7abf47a18dc8e43cb132243638c385830ed78337a4d1a64dbad9cd",
+      "sha256": "242cc966bf7abf47a18dc8e43cb132243638c385830ed78337a4d1a64dbad9cd",
+      "bytes": 12876
     },
     {
       "path": "docs/PROGRESS.md",
       "purpose": "进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步",
       "status": "current-or-reference",
-      "version": "sha256:9636347c999cdee2f86fc6a0b0d41f5b52d450176ac5f0a7f25e678f70486345",
-      "sha256": "9636347c999cdee2f86fc6a0b0d41f5b52d450176ac5f0a7f25e678f70486345",
-      "bytes": 31126
+      "version": "sha256:65460c4f169842fe16d2244529067db36627a0e1a970c07ef84b642ba682ca2e",
+      "sha256": "65460c4f169842fe16d2244529067db36627a0e1a970c07ef84b642ba682ca2e",
+      "bytes": 35776
     },
     {
       "path": "docs/README.md",
       "purpose": "三大主文档与专项字段、运行、管理附件索引",
       "status": "current-or-reference",
-      "version": "sha256:0eb77eb65fef950edcc7b39d3c3eaeee2f1e69e5f1c1d8bf7593df573f869170",
-      "sha256": "0eb77eb65fef950edcc7b39d3c3eaeee2f1e69e5f1c1d8bf7593df573f869170",
-      "bytes": 2050
+      "version": "sha256:998c05dc748fe7a58a7425aa37bbe903e1a3c190c349d68ac2f38fff19bb6a4d",
+      "sha256": "998c05dc748fe7a58a7425aa37bbe903e1a3c190c349d68ac2f38fff19bb6a4d",
+      "bytes": 2207
     },
     {
       "path": "docs/data/DATA_DICTIONARY.md",
@@ -473,9 +473,9 @@
       "path": "docs/data/SOURCE_ALIGNMENT_PLAN.md",
       "purpose": "SteamDT研究主序列与UU供给/执行补充方案，分字段聚合、过去值对齐、可得时间及登录与换品规则；尚未构建特征或训练",
       "status": "current-or-reference",
-      "version": "sha256:d9bac572a36eb0663fec7701615813c96d2fa3c89b9934697aebced593a78b76",
-      "sha256": "d9bac572a36eb0663fec7701615813c96d2fa3c89b9934697aebced593a78b76",
-      "bytes": 7846
+      "version": "sha256:10d92e65b710ee3a8de4735ca0f573799fdbb9a9e7a81759ffca694dc945cc2f",
+      "sha256": "10d92e65b710ee3a8de4735ca0f573799fdbb9a9e7a81759ffca694dc945cc2f",
+      "bytes": 8306
     },
     {
       "path": "docs/data/UU_EXECUTION_RULES.md",
@@ -505,9 +505,9 @@
       "path": "docs/governance/ASSET_REGISTER.md",
       "purpose": "旧资产保留依据及按用途准入状态",
       "status": "current-or-reference",
-      "version": "sha256:b5bdf468d8c50e76294da351a57b84d10cce1905d8d1c1f867ce7297f5a22506",
-      "sha256": "b5bdf468d8c50e76294da351a57b84d10cce1905d8d1c1f867ce7297f5a22506",
-      "bytes": 7854
+      "version": "sha256:09f0db7c55daea699c7babed7ca25b7611d01af07183e558a51cedd84edcca9a",
+      "sha256": "09f0db7c55daea699c7babed7ca25b7611d01af07183e558a51cedd84edcca9a",
+      "bytes": 8146
     },
     {
       "path": "docs/governance/CONTRIBUTING.md",
@@ -670,6 +670,14 @@
       "bytes": 7840
     },
     {
+      "path": "docs/usage/STEAMDT_RESEARCH.md",
+      "purpose": "SteamDT本地小时研究库、商品清单扩展、分页恢复、去重修订、请求预算、跨周期与日常更新说明",
+      "status": "current-or-reference",
+      "version": "sha256:d46626ba611a713564a67d37a6f737e0382f9247674954d2c8d2a22fa6020c92",
+      "sha256": "d46626ba611a713564a67d37a6f737e0382f9247674954d2c8d2a22fa6020c92",
+      "bytes": 9874
+    },
+    {
       "path": "docs/usage/UU_BROWSER_AUTOMATION.md",
       "purpose": "待实现的专用Edge商品队列、页面自动操作与保存入库方案，明确登录边界和分阶段真实验收",
       "status": "current-or-reference",
@@ -713,9 +721,9 @@
       "path": "scripts/README.md",
       "purpose": "代码、配置、测试、SQL 和检查入口说明",
       "status": "current-or-reference",
-      "version": "sha256:6a76fa8d7e5ad14d7eb3c4dd02356b06605844be8c1e89c51e87336f3d706ce7",
-      "sha256": "6a76fa8d7e5ad14d7eb3c4dd02356b06605844be8c1e89c51e87336f3d706ce7",
-      "bytes": 3189
+      "version": "sha256:8e0368b141d8e319eb9a15e76b27381212dd5c3acff5b3974e7d4598efbc99bb",
+      "sha256": "8e0368b141d8e319eb9a15e76b27381212dd5c3acff5b3974e7d4598efbc99bb",
+      "bytes": 3607
     },
     {
       "path": "scripts/check_secrets.py",
@@ -764,6 +772,14 @@
       "version": "sha256:ddedf38ac8697cedd7a7a8c588b56179fbc9188367127265bf6507733f9da129",
       "sha256": "ddedf38ac8697cedd7a7a8c588b56179fbc9188367127265bf6507733f9da129",
       "bytes": 798
+    },
+    {
+      "path": "scripts/config/steamdt_research_items.json",
+      "purpose": "七个普通百元候选的精确名称、SteamDT编号与历史起点种子；新工作区复制后另行维护",
+      "status": "current-or-reference",
+      "version": "sha256:07e5852fef2312de6c96f944e1a238aee54d77469eb6c8c47fe1eaa3417627a6",
+      "sha256": "07e5852fef2312de6c96f944e1a238aee54d77469eb6c8c47fe1eaa3417627a6",
+      "bytes": 1623
     },
     {
       "path": "scripts/config/uu_direct_auth.example.json",
@@ -825,9 +841,17 @@
       "path": "scripts/manage_assets.py",
       "purpose": "生成及校验逐文件、逐目录版本和用途清单",
       "status": "current-or-reference",
-      "version": "sha256:f052b07d2602be8353d683018d40d4acc1db5600ba852fc6779f37e8eed27840",
-      "sha256": "f052b07d2602be8353d683018d40d4acc1db5600ba852fc6779f37e8eed27840",
-      "bytes": 30412
+      "version": "sha256:509dcebbc37cae015d54ede1e025c16ecd064b5e198af4f0ced78ee09d7ded1e",
+      "sha256": "509dcebbc37cae015d54ede1e025c16ecd064b5e198af4f0ced78ee09d7ded1e",
+      "bytes": 31585
+    },
+    {
+      "path": "scripts/notebooks/steamdt_research.ipynb",
+      "purpose": "VS Code有限采集入口：商品清单、默认关闭联网、手动续采与本地报告；交付空输出",
+      "status": "current-or-reference",
+      "version": "sha256:03bd3cc1cdc204f96bdb8540b5354b6ce5488c381bd66ce7aac1c1f350600642",
+      "sha256": "03bd3cc1cdc204f96bdb8540b5354b6ce5488c381bd66ce7aac1c1f350600642",
+      "bytes": 8752
     },
     {
       "path": "scripts/notebooks/uu_history_collect.ipynb",
@@ -1126,6 +1150,14 @@
       "bytes": 1893
     },
     {
+      "path": "scripts/steamdt_research.py",
+      "purpose": "SteamDT显式悠悠小时研究库：商品登记、有限回补、分页续采、增量复核、修订追溯及报告，独立组件1.0",
+      "status": "current-or-reference",
+      "version": "sha256:b08db3e828c8893f553cc7da5fe42af23dc22006b470d13508e286465920d87b",
+      "sha256": "b08db3e828c8893f553cc7da5fe42af23dc22006b470d13508e286465920d87b",
+      "bytes": 27968
+    },
+    {
       "path": "scripts/tests/_support.py",
       "purpose": "离线测试辅助与共享样本路径",
       "status": "legacy-unreviewed",
@@ -1204,6 +1236,14 @@
       "version": "sha256:571a40d68c4d5ea548bb4d0f9e1505add55e3268373b26c325373de9ad092e68",
       "sha256": "571a40d68c4d5ea548bb4d0f9e1505add55e3268373b26c325373de9ad092e68",
       "bytes": 2052
+    },
+    {
+      "path": "scripts/tests/test_steamdt_research.py",
+      "purpose": "steamdt_research 模块的离线行为回归测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:233559e9fcd077598f73fc4a31ddbf0a89888f6f561d18239e9ab378f3d76b57",
+      "sha256": "233559e9fcd077598f73fc4a31ddbf0a89888f6f561d18239e9ab378f3d76b57",
+      "bytes": 10302
     },
     {
       "path": "scripts/tests/test_transport.py",

@@ -4,6 +4,8 @@
 
 | 位置 | 用途与保留依据 |
 | --- | --- |
+| steamdt_research.py、notebooks/steamdt_research.ipynb | 独立组件 steamdt-research-1.0：商品登记、悠悠小时回补/增量/断点恢复、SQLite去重与修订、4h/日/周导出；默认不联网，见[使用说明](../docs/usage/STEAMDT_RESEARCH.md) |
+| config/steamdt_research_items.json | 新研究工作区的七品种子；工作清单在该工作区registry.json，增加商品不改采集代码 |
 | collect.py | 旧 CLI 入口，保留解析、存储和任务机制参考 |
 | check_secrets.py | 提交和历史凭证检查，仅输出位置与结果 |
 | select_uu_research.py | 有预算 P02 调查、身份修订与版本化研究名单，不创建历史队列 |

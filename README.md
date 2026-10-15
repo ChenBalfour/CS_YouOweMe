@@ -16,6 +16,8 @@ UU历史新入口：[采集与入库步骤](docs/usage/UU_HISTORY_COLLECT.md)、
 
 新增[纯脚本有限试用入口](docs/usage/UU_DIRECT_COLLECT.md)：运行时不打开网页，登录信息仅在本机私有配置；先尝试一组，再显式继续。44828纯脚本七组已完整成功，共1360条窗口记录，原始JSON/SQLite/CSV一致；多轮、多商品与统计口径仍待验收，旧受限入口保持原记录。
 
+新增 [SteamDT 本地小时数据库 Notebook](scripts/notebooks/steamdt_research.ipynb) 与[使用说明](docs/usage/STEAMDT_RESEARCH.md)：集中维护商品名称/编号，首次回补、保存分页检查点、再次启动续采，近期增量去重并保留来源修订。默认关闭联网，由用户手动运行；实际覆盖见进展和私有报告。
+
 研究方案新增[SteamDT主序列与UU补充对齐](docs/data/SOURCE_ALIGNMENT_PLAN.md)：保留小时原始数据、按决策时点使用过去已知值，不人为制造细粒度波动；尚未构建正式特征或训练。
 
 | 目录 | 内容 |

@@ -29,6 +29,9 @@ PURPOSES = {
     "scripts/manage_assets.py": "生成及校验逐文件、逐目录版本和用途清单",
     "scripts/pilot_uu_day.py": "单品单日 YOUPIN 小时行情与混合成交的独立有限试跑、离线核验及导出",
     "scripts/select_uu_research.py": "有预算的 P02 候选调查、正确商品身份补查和版本化验证名单选择",
+    "scripts/steamdt_research.py": "SteamDT显式悠悠小时研究库：商品登记、有限回补、分页续采、增量复核、修订追溯及报告，独立组件1.0",
+    "scripts/config/steamdt_research_items.json": "七个普通百元候选的精确名称、SteamDT编号与历史起点种子；新工作区复制后另行维护",
+    "scripts/notebooks/steamdt_research.ipynb": "VS Code有限采集入口：商品清单、默认关闭联网、手动续采与本地报告；交付空输出",
     "scripts/verify_public_evidence.py": "有预算的公开网页/规则证据和已发现 UU 只读入口抓取，访问受限主机持久停止",
     "scripts/verify_uu_fields.py": "两个精确规格的 SteamDT UU 汇总盘口字段有限补查，独立库与准确源码留存",
     "scripts/review_uu_verification.py": "离线核对 P03 原始哈希、全页逐笔、只读库与字段准入，导出私有规范观察",
@@ -60,6 +63,7 @@ PURPOSES = {
     "docs/research/P03_VERIFICATION_REPORT.md": "P03 有限试跑结果、证据、报价异常、未知项和 L0 准入边界",
     "docs/research/P03_OBSERVATION_PLAN.md": "用户本地连续观察的固定窗口、预算、恢复、用途与未启动状态",
     "docs/usage/OBSERVE_24H.md": "VS Code Notebook 的内核、启动、停止、恢复、输出和采样边界说明",
+    "docs/usage/STEAMDT_RESEARCH.md": "SteamDT本地小时研究库、商品清单扩展、分页恢复、去重修订、请求预算、跨周期与日常更新说明",
     "docs/usage/UU_CHART_EXPORT.md": "Edge 复制图表响应正文及用户本地离线核验命令，不复制请求头或启动采集",
     "docs/usage/UU_HISTORY_COLLECT.md": "用户登录页面历史采集、下载入库、恢复限制、当前报价用途与UU/SteamDT结合方案",
     "docs/usage/UU_BROWSER_AUTOMATION.md": "待实现的专用Edge商品队列、页面自动操作与保存入库方案，明确登录边界和分阶段真实验收",
@@ -200,6 +204,8 @@ def purpose(path):
     if path.startswith("docs/local/pilots/"):
         return "单品单日有限试跑或离线质量核验报告，非正式研究结论"
     if path.startswith("data/local/staging/steamdt/"):
+        if "/research_" in path:
+            return "SteamDT小时研究库的压缩来源响应与哈希追溯" if "/raw/" in path else "该有限研究运行实际源码快照" if "/source/" in path else "SteamDT小时研究库、商品清单、逐品游标、共享访问控制、覆盖报告或导出；L0私有"
         if "/p03_steamdt_observe_" in path:
             return "连续观察的压缩原始响应，保持私有和哈希追溯" if "/raw/" in path else "用户本地连续观察的独立 SQLite 与采样/恢复/请求检查点" if name == "observations.sqlite" else "连续观察的固定清单、运行摘要、状态报告、互斥锁或快照导出"
         if "/p03_steamdt_fields_" in path:
@@ -263,6 +269,8 @@ def folder_purpose(path):
     if path.startswith("data/local/universes/uu_research_selection_"):
         return "该版本的研究验证名单、候选表及准入用途清单"
     if path.startswith("data/local/staging/steamdt/"):
+        if "/research_" in path:
+            return "用户本地SteamDT小时研究工作区或共享控制：原始证据、SQLite、清单、分页进度、源码、报告及导出"
         if "/p03_steamdt_observe_" in path:
             return "用户本地有预算连续观察的独立数据、原始响应、状态和导出"
         if "/p03_steamdt_fields_" in path:

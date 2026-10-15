@@ -2,11 +2,21 @@
 
 | 字段 | 当前值 |
 | --- | --- |
-| doc-version | architecture-1.8 |
-| updated | 2026-10-15（Asia/Shanghai） |
+| doc-version | architecture-1.9 |
+| updated | 2026-10-16（Asia/Shanghai） |
 | 工程 / 目录 / 制度 | 0.3.5（本地未发布） / layout-1.0 / management-1.3 |
 
 本页解释当前实现、数据如何流动，以及后续模型与执行评估的边界。[PRODUCT](PRODUCT.md)说明目标与研究方案，[PROGRESS](PROGRESS.md)记录成果、证据和下一步。首批目标为 UU 百元普通枪皮，采用七日 CD 解锁后尽快退出的策略；当前实现仅支持来源观察、有限采集和离线验收。
+
+## 新增：独立SteamDT小时研究工作区
+
+独立入口 `scripts/steamdt_research.py` / `scripts/notebooks/steamdt_research.ipynb`，组件 steamdt-research-1.0，复用冻结0.3.5核心而不改旧运行。工作区为 `data/local/staging/steamdt/research_20261016_v1/`：registry.json登记精确身份和历史起点，research.sqlite存商品映射、小时数据、jobs/checkpoints、source版本与请求，raw保存压缩原始响应；runs按轮保存清单与准确源码，reports保存覆盖/缺失和1h/4h/日/周导出。
+
+流程为清单→逐品身份与悠悠比较行核验→新商品回补任务/旧商品近期任务→串行小时分页→每页事务提交与游标→只读报告。当前小时不进入导出；源码、请求、收到时间分别保留，历史available_at未知。
+
+已有bars主键去重，新增research_bar_versions通过触发器保存首次值及变化；research_hourly_latest按规格/小时取最近来源记录，原始秒偏移保留。daily重查7天、weekly重查35天后续接较早未完成任务。源端空页、到起点、预算暂停、访问停止分别记录；源端缺口不填造。请求限制与共享停止/锁见[使用说明](usage/STEAMDT_RESEARCH.md)。
+
+4h/日/周是按北京时间从小时派生：首开/max高/min低/末收；小时覆盖不足标记complete_hours=false，量额任一缺失则聚合保留null。未实现正式UU多源特征拼接、模型或执行器。
 
 ## 1. 当前实现与目标流程
 
