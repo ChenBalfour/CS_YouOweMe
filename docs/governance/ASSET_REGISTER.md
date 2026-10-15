@@ -1,12 +1,12 @@
 # 既有资产登记
 
-登记版本 asset-register-2.2，2026-10-15。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
+登记版本 asset-register-2.3，2026-10-15。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
 | UU_HISTORY_CHART、data/local/recon/user_uu_history_chart_20261014 | current / user-evidence-pending-verification | UU历史在售数量/成交价格与BUFF辅助入口可见；已取得用户价格附件与数量聊天投影；核验字段及本次间隔，身份/统计/其他窗口待验收，证据私有 | P03 |
 | PRODUCT、ARCHITECTURE、PROGRESS | current / primary-documents | 产品、架构和进展的三个主入口；每次操作写入成果 | 持续 |
-| collect_uu_charts.js、import_uu_chart_batch、uu_history_collect.ipynb、UU_HISTORY_COLLECT | delivered / offline-tested-live-pending | 已按截图修正为价格4窗口/数量3窗口；真实旧批次3成功/1失败/4待采、639点保留，恢复为正确7组中的3成功/4待采；真实稳定性仍待验收，没有训练 | P03 |
+| collect_uu_charts.js、import_uu_chart_batch、uu_history_collect.ipynb、UU_HISTORY_COLLECT | delivered / offline-tested-live-pending | 已按截图修正为价格4窗口/数量3窗口；真实旧批次3成功/1失败/4待采、639点保留，恢复为正确7组中的3成功/4待采；新1.1完整七组1335条已离线入库，单轮基础质量通过，多轮稳定性待验收，没有训练 | P03 |
 | review_uu_chart、UU_CHART_EXPORT、data/local/staging/uu_charts | current / offline-structure-checked | 纯离线工具与私有价格附件/数量投影，169/93点及实际间隔已核验；身份/统计/历史可得时间未验收，非正式训练资产 | P03 |
 | PLAN、STATE、HANDOFF、私有CURRENT | retained / compatibility-entry | 旧路径保留导航，不维护重复正文；清理前全文有Git/私有恢复记录 | 持续 |
 | 旧PROGRESS_20261013、UNIVERSE、三份release说明 | removed / recoverable-history | 已被当前进展/选品或CHANGELOG接管，从工作目录清理；Git babb125保留原文 | 持续 |
