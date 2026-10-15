@@ -1,6 +1,6 @@
 # UU 纯脚本历史采集试用
 
-版本 **uu-direct-collect-1.0**；2026-10-15，北京时间。程序 **uu-direct-chart-pilot-1.0**，只使用 Python 3.11+ 标准库。**无需采集时打开浏览器；真实登录直连尚未验收。**
+版本 **uu-direct-collect-1.1**；2026-10-15，北京时间。程序 **uu-direct-chart-pilot-1.0**，只使用 Python 3.11+ 标准库。**无需采集时打开浏览器；真实登录直连尚未验收。**
 
 ## 当前能做什么
 
@@ -21,6 +21,30 @@ python -B scripts/collect_uu_direct.py init-auth
 配置文件中的 headers 对应正常成功请求的同名字段。可先使用自己正常登录会话的 cookie/authorization；如确实需要设备字段，仍只在本地填写从同一正常请求得到的原值。不要把完整“复制为fetch”、浏览器存储导出或账号个人信息放进文件。空白字段不会发送；程序不打印配置值，失败只输出固定原因分类。
 
 商品清单模板是 [uu_direct_items.example.json](../../scripts/config/uu_direct_items.example.json)。44828只是已有真实图表响应的技术样例，完整名称、磨损和版本仍需核对，不能自动加入正式百元名单。可将模板另存为 `data/local/staging/uu_charts/direct_items_v1.json` 后修改；每轮暂限1至3个商品，半年 day 填正常页面已确认的实际参数，44828已实证180。
+
+## Edge 中逐项取得本地配置
+
+这一步由用户自己操作；不向聊天粘贴请求头、截图中的登录值或配置文件。
+
+1. 用自己的账号正常登录 UU，打开上次采集的44828商品页，确认价格走势能正常加载。
+2. 按F12（笔记本也可能是Fn+F12），选“网络 / Network”。网络面板要先打开，才能记录接下来的请求。
+3. 在筛选框输入 `price/trend/data`，回到网页切换一次“成交价格”的时间范围，例如从半年切到近7天。不运行旧采集面板，避免同时发送批次请求。
+4. 在新出现的 `data` 请求中，选择POST且状态200的那一条。点开后在“常规 / General”核对Request URL是 `https://pc-api.youpin898.com/api/youpin/price/trend/data`；在“载荷 / Payload”核对orderType为1、templateId为44828。这里不需要复制载荷。
+5. 选择“标头 / Headers”，展开“请求标头 / Request Headers”，向下找下表字段。不要从“响应标头 / Response Headers”或Set-Cookie取值；Authorization和Cookie可能需要展开后才能看到。Headers中的Request Headers位置见[微软Edge官方说明](https://learn.microsoft.com/en-us/microsoft-edge/devtools/network/reference#display-http-headers)。
+6. 逐项复制冒号右侧的完整值（可右键值选择“复制值 / Copy value”，若菜单没有就选中值复制），直接粘贴到本机VS Code对应的JSON双引号中。只复制值，不带字段名，不复制整段fetch，也不改变值；若Authorization带Bearer前缀则原样保留，没有则不额外添加。
+
+| Edge请求标头字段 | 本地JSON字段 | 填写方法 |
+| --- | --- | --- |
+| authorization / Authorization | authorization | 复制同一正常成功请求的原值 |
+| cookie / Cookie | cookie | 该请求显示才复制整段值；没有则保留空字符串，不必额外导出浏览器全部Cookie |
+| deviceid、deviceuk、uk | 各自同名字段 | 有则复制各自原值，全部来自同一账号会话和同一请求 |
+| app-version、appversion、apptype、platform、secret-v | 各自同名字段 | 按当前请求填写，不沿用文档中的旧版本号；缺少的字段留空 |
+
+如果目标请求根本没有Cookie，这不代表操作错了；接口可能使用Authorization，是否足够仍需单请求试采。不要用其他网站、主账号或不同设备的值拼在一起。
+
+在VS Code中选择“文件→打开文件夹”，打开 `F:\Codex\CS_YouOweMe`。按Ctrl+P输入 `scripts/config/credentials_uu_chart.json` 打开已准备的私有文件，填好后按Ctrl+S。JSON左边字段名、逗号、外层大括号和英文双引号保持原样，不写注释；如果有红色语法提示，先修正再运行。不要编辑或填入公开的uu_direct_auth.example.json。
+
+若找不到请求，先确认Network正在记录、未选中过窄的其他类型过滤，然后再次切换时间范围；若网页本身加载失败或返回401/403/429，先停止，不用命令行反复尝试。浏览器配置步骤只用于首次取得/后续更新会话，脚本实际采集时不需要继续开着网页。
 
 ## 先查看计划，不联网
 

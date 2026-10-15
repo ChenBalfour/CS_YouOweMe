@@ -9,7 +9,7 @@
       "path": ".",
       "purpose": "项目根及 Git/Python 所需入口元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:bc93d6aa60db24c03eb70dc6c805d5529f0567bf2ad6b18c34fe168b771608f5"
+      "version": "sha256:88d1a0f80d0943140232afc1dc1a967db273338861be9246caf6a8dd1c390e0e"
     },
     {
       "path": ".github",
@@ -63,7 +63,7 @@
       "path": "docs",
       "purpose": "计划、制度、使用说明和交接记录",
       "layout_version": "layout-1.0",
-      "version": "sha256:5a1de2c6c0397b9334a9360b6768dbe5f019f9a26256d7c42f2e21e9025ca9d9"
+      "version": "sha256:0f20d72cfec8ddac64e64e192b1a0ddb51e934bc38cdfa1d7cc08d3fa9d9cafe"
     },
     {
       "path": "docs/data",
@@ -93,7 +93,7 @@
       "path": "docs/usage",
       "purpose": "用户本地观察、图表导出与旧实现参考，不构成采集或发布授权",
       "layout_version": "layout-1.0",
-      "version": "sha256:4c703023c0ebc63405d6915aac1836955a6da471c10094df8217c7254f2224e4"
+      "version": "sha256:d2cc4c1ab9f6ac55ac222a1fbb2537b4b90760f31c0fbfa42c2bdf466b3da836"
     },
     {
       "path": "scripts",
@@ -433,9 +433,9 @@
       "path": "docs/PROGRESS.md",
       "purpose": "进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步",
       "status": "current-or-reference",
-      "version": "sha256:94f1de118610c0bb7e20e13b86ae01e16c87767429e845af2df3069574adb48f",
-      "sha256": "94f1de118610c0bb7e20e13b86ae01e16c87767429e845af2df3069574adb48f",
-      "bytes": 23966
+      "version": "sha256:0dc16a985f69c50b25d92cc1e649fe652914592d8a21e78b07ddc749ea3a0883",
+      "sha256": "0dc16a985f69c50b25d92cc1e649fe652914592d8a21e78b07ddc749ea3a0883",
+      "bytes": 25110
     },
     {
       "path": "docs/README.md",
@@ -681,9 +681,9 @@
       "path": "docs/usage/UU_DIRECT_COLLECT.md",
       "purpose": "本地纯脚本凭证配置、单请求试采、间隔配额、停止恢复和独立输出说明；不保证Cookie单独可用",
       "status": "current-or-reference",
-      "version": "sha256:77772569309f5e9ea88f0ff479832446f373ea92b9206c1e6ffaf426876fef2f",
-      "sha256": "77772569309f5e9ea88f0ff479832446f373ea92b9206c1e6ffaf426876fef2f",
-      "bytes": 6956
+      "version": "sha256:6830a5a155727fb421dc8211e401207d0e26b4d51141257be930f89402109b92",
+      "sha256": "6830a5a155727fb421dc8211e401207d0e26b4d51141257be930f89402109b92",
+      "bytes": 10106
     },
     {
       "path": "docs/usage/UU_HISTORY_COLLECT.md",
