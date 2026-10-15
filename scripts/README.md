@@ -13,7 +13,7 @@
 | verify_uu_fields.py | 两规格 UU 汇总比较字段补查，独立库；不自动执行 |
 | review_uu_verification.py | 指定冻结运行的只读复核与私有观察导出，不采集市场 |
 | review_uu_chart.py | 用户图表响应的纯离线核验，价格/数量分列，保存独立 SQLite/CSV；工具版本 uu-chart-review-1.0，见[用法](../docs/usage/UU_CHART_EXPORT.md) |
-| collect_uu_charts.js、import_uu_chart_batch.py | 用户已登录UU页面的有限历史批次采集与纯离线入库；价格7/30/90天/半年，数量7/15/30天，共7组；旧批次已返回3组，完整真实稳定性待验收 |
+| collect_uu_charts.js、import_uu_chart_batch.py | 用户已登录UU页面的有限历史批次采集与纯离线入库；价格7/30/90天/半年，数量7/15/30天，共7组；44828单轮完整七组已核验，多轮稳定性和自动商品导航待验收 |
 | notebooks/uu_history_collect.ipynb | 浏览器操作指引、选择下载JSON、入库与覆盖检查；没有训练代码，交付时未执行 |
 | notebooks/uu_observe_24h.ipynb | 用户在 VS Code 手动运行的连续观察入口，交付时未执行 |
 | observe_uu_24h.py | 用户显式新建/恢复/只读状态 CLI，与 Notebook 共用同一机制 |
