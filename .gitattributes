@@ -13,3 +13,5 @@ scripts/config/.env.example text eol=lf
 *.code-workspace text eol=lf
 *.csv text eol=lf
 scripts/hooks/* text eol=lf
+
+*.js text eol=lf

@@ -12,6 +12,8 @@
 
 先读这三份文档。每次操作完成后更新进展；目标或实现变化同步对应主文档。专项依据和操作指南见 [文档索引](docs/README.md)。
 
+UU历史新入口：[采集与入库步骤](docs/usage/UU_HISTORY_COLLECT.md)、[用户Notebook](scripts/notebooks/uu_history_collect.ipynb)。浏览器正常登录后由用户显式采集，真实稳定性待验收；当前没有训练模型。
+
 | 目录 | 内容 |
 | --- | --- |
 | [scripts](scripts/README.md) | Notebook、CLI、源码、配置、测试、SQL 与 hooks |

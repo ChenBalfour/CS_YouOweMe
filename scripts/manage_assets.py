@@ -33,6 +33,9 @@ PURPOSES = {
     "scripts/verify_uu_fields.py": "两个精确规格的 SteamDT UU 汇总盘口字段有限补查，独立库与准确源码留存",
     "scripts/review_uu_verification.py": "离线核对 P03 原始哈希、全页逐笔、只读库与字段准入，导出私有规范观察",
     "scripts/review_uu_chart.py": "离线核验用户导出的 UU 图表响应，按请求指标分离价格和数量，保存独立 SQLite/CSV 与真实时间间隔",
+    "scripts/collect_uu_charts.js": "用户正常登录UU页面的有限历史批次采集，四窗口两指标、内存会话、限流停止与下载检查点；真实稳定性待验收",
+    "scripts/import_uu_chart_batch.py": "用户浏览器下载批次的纯离线校验与独立SQLite/CSV入库，保留窗口、状态和历史可得时间未知",
+    "scripts/notebooks/uu_history_collect.ipynb": "用户本地历史采集指引、选择下载批次、离线入库与覆盖检查；无训练代码、交付空输出",
     "scripts/observe_uu_24h.py": "用户显式启动的新建/恢复连续观察 CLI，status 只读，不默认运行",
     "scripts/notebooks/uu_observe_24h.ipynb": "VS Code 用户本地 24 小时连续观察 Notebook，交付时输出清空且未执行",
     "scripts/config/seeds.json": "旧试采精确英文规格种子，不是正式 UU 名单",
@@ -55,6 +58,7 @@ PURPOSES = {
     "docs/research/P03_OBSERVATION_PLAN.md": "用户本地连续观察的固定窗口、预算、恢复、用途与未启动状态",
     "docs/usage/OBSERVE_24H.md": "VS Code Notebook 的内核、启动、停止、恢复、输出和采样边界说明",
     "docs/usage/UU_CHART_EXPORT.md": "Edge 复制图表响应正文及用户本地离线核验命令，不复制请求头或启动采集",
+    "docs/usage/UU_HISTORY_COLLECT.md": "用户登录页面历史采集、下载入库、恢复限制、当前报价用途与UU/SteamDT结合方案",
     "docs/data/UU_FIELD_CONTRACT.md": "已核验 UU 来源行情、汇总快照及混合逐笔字段定义与执行准入限制",
     "docs/data/UU_HISTORY_CHART.md": "UU 历史图表指标映射、两份用户响应的字段与实际间隔核验、统计及决策时间边界",
     "docs/data/UU_EXECUTION_RULES.md": "Steam 和 UU 公开规则、旧版适用限制、资金时间字段及访问限制处理",
@@ -176,7 +180,7 @@ def purpose(path):
     if protected(Path(path)):
         return "受保护本地凭证，仅登记配置版本，不读取、复制或记录内容及哈希"
     if path.startswith("data/local/staging/uu_charts/"):
-        return {"price_response.json": "用户价格响应附件的准确字节副本，无请求头", "listing_count_projection.json": "用户聊天数量响应的 time/price 人工投影，不是完整原始响应", "provenance.json": "安全请求正文、接收日期、输入来源与投影省略字段说明", "preservation_baseline.json": "本次旧数据、Notebook 与冻结源码的非凭证保留哈希基线", "preservation_verification.json": "旧资产保留核对结果及零市场请求说明", "response_input.json": "本次离线核验输入字节；是否原始用户文件或人工投影由 manifest 说明", "report.json": "字段、指标、真实间隔、覆盖、质量与 L0 限制的离线核验报告", "points.csv": "价格与在售数量分列的图表点便览", "chart_review.sqlite": "独立离线图表核验 SQLite，价格为精确文本、在售数量为整数", "review_source.py": "本次离线核验脚本的准确私有源码版本", "manifest.json": "离线输入及源码哈希、请求上下文、输入类型和零市场请求清单"}.get(name, "用户图表离线核验的私有追溯附件")
+        return {"batch_input.json": "用户浏览器下载批次准确输入，含窗口/响应/状态，不含登录头", "chart_batch.sqlite": "四窗口两指标独立批次SQLite，保留成功失败和待采及精确点", "collect_uu_charts.js": "批次对应浏览器采集代码的私有准确版本", "import_uu_chart_batch.py": "本次纯离线批次导入器准确源码", "review_uu_chart.py": "本次复用的图表字段核验准确源码", "request_body_price_7d_44828.json": "用户提供44828七天价格的安全请求正文，不含请求头", "price_response.json": "用户价格响应附件的准确字节副本，无请求头", "listing_count_projection.json": "用户聊天数量响应的 time/price 人工投影，不是完整原始响应", "provenance.json": "安全请求正文、接收日期、输入来源与投影省略字段说明", "preservation_baseline.json": "本次旧数据、Notebook 与冻结源码的非凭证保留哈希基线", "preservation_verification.json": "旧资产保留核对结果及零市场请求说明", "response_input.json": "本次离线核验输入字节；是否原始用户文件或人工投影由 manifest 说明", "report.json": "字段、指标、真实间隔、覆盖、质量与 L0 限制的离线核验报告", "points.csv": "价格与在售数量分列的图表点便览", "chart_review.sqlite": "独立离线图表核验 SQLite，价格为精确文本、在售数量为整数", "review_source.py": "本次离线核验脚本的准确私有源码版本", "manifest.json": "离线输入及源码哈希、请求上下文、输入类型和零市场请求清单"}.get(name, "用户图表离线核验的私有追溯附件")
     if path.startswith("scripts/local/pilot_sources/"):
         if name.endswith(".md"):
             return "该有限核验采集时的计划准确内容版本快照"

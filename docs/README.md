@@ -14,6 +14,7 @@
 | 来源与执行证据 | [P03计划](research/P03_VERIFICATION_PLAN.md)、[有限报告](research/P03_VERIFICATION_REPORT.md)、[字段](data/UU_FIELD_CONTRACT.md)、[规则](data/UU_EXECUTION_RULES.md)、[历史图表](data/UU_HISTORY_CHART.md) |
 | 用户本地运行 | [连续观察计划](research/P03_OBSERVATION_PLAN.md)、[VS Code说明](usage/OBSERVE_24H.md)、[Notebook](../scripts/notebooks/uu_observe_24h.ipynb) |
 | 用户图表导出 | [Edge复制响应与离线核验](usage/UU_CHART_EXPORT.md)、[字段和实际间隔](data/UU_HISTORY_CHART.md) |
+| UU历史批量采集 | [登录页面采集与入库步骤](usage/UU_HISTORY_COLLECT.md)、[新Notebook](../scripts/notebooks/uu_history_collect.ipynb)；真实稳定性待用户试跑 |
 | 文件与版本 | [制度](governance/FILE_MANAGEMENT.md)、[逐项索引](governance/FILE_INDEX.md)、[清单](governance/FILE_CATALOG.json)、[清理恢复](governance/ORGANIZATION.md) |
 | 资产与工程 | [资产登记](governance/ASSET_REGISTER.md)、[贡献说明](governance/CONTRIBUTING.md)、[凭证保护](governance/SECURITY.md)、[版本历史](releases/CHANGELOG.md) |
 
