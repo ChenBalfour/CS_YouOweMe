@@ -28,7 +28,7 @@
 - Git 本地提交保存代码、说明和公开清单的可恢复历史；私有数据靠来源清单、哈希和冻结版本管理，不存入 Git。
 - 修改后运行 `python -B scripts/manage_assets.py --write`，随后 `--check`。清单过期、缺说明、缺文件均应修正后再收尾。
 
-主文档 product-1.2 / architecture-1.2 / progress-1.3、兼容计划 plan-1.7、选品计划 selection-plan-1.2、代码 0.3.5、目录 layout-1.0、制度 management-1.3、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)，当前阶段见 PROGRESS。
+主文档 product-1.3 / architecture-1.3 / progress-1.4、兼容计划 plan-1.7、选品计划 selection-plan-1.2、代码 0.3.5、目录 layout-1.0、制度 management-1.3、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)，当前阶段见 PROGRESS。
 
 scripts/notebooks 保存用户本地运行入口，交付的 Git 版本保持 execution_count=null、outputs=[]；实际观察写独立 data/local/staging/steamdt/p03_steamdt_observe_*，用户可能另外保存单元格输出。保留用户工作副本，不为文档提交自动清空或覆盖；本次提交只纳入本次文档/管理变更，不提交用户已执行 Notebook。若将来需要提交入口修改，先私有保存准确执行版本，再处理仅供提交的空输出版本。私有恢复指针与首轮成功不能当作完成一天验收。
 

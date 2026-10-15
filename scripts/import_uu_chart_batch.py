@@ -19,8 +19,9 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parents[1]
 DESTINATION = ROOT / "data/local/staging/uu_charts"
-VERSION = "uu-chart-batch-import-1.0"
-COLLECTOR_VERSION = "uu-browser-charts-1.0"
+VERSION = "uu-chart-batch-import-1.1"
+COLLECTOR_VERSION = "uu-browser-charts-1.1"
+LEGACY_SOURCES = {"uu-browser-charts-1.0": "64186f5cdcffcdb7695c05639a578591916fc3fd23eb9954b9922243f9d5bf5e"}
 
 
 def timestamp(value):
@@ -39,12 +40,18 @@ def inspect_batch(raw):
     if re.search(r"eyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}", text):
         raise ValueError("Credential-like input; nothing archived")
     batch = json.loads(text)
-    chart.fields(batch, {"format", "collector_version", "collector_source", "run_id", "created_at", "updated_at", "template_id", "item_label", "half_year_day", "identity_verified", "status", "tasks"})
-    if batch.get("format") != "uu-chart-batch-1.0" or batch.get("collector_version") != COLLECTOR_VERSION or batch.get("identity_verified") is not False:
+    chart.fields(batch, {"format", "collector_version", "collector_source", "run_id", "created_at", "updated_at", "template_id", "item_label", "half_year_day", "identity_verified", "status", "tasks", "parent_batch"})
+    legacy = batch.get("format") == "uu-chart-batch-1.0" and batch.get("collector_version") in LEGACY_SOURCES
+    current = batch.get("format") == "uu-chart-batch-1.1" and batch.get("collector_version") == COLLECTOR_VERSION
+    if not (legacy or current) or batch.get("identity_verified") is not False:
         raise ValueError("Unsupported browser batch")
     source = (ROOT / "scripts/collect_uu_charts.js").read_text(encoding="utf-8")
     known_source = source[source.index("(function UUChartCollector()") :]
-    if not isinstance(batch.get("collector_source"), str) or batch["collector_source"].replace("\r\n", "\n") != known_source:
+    if not isinstance(batch.get("collector_source"), str):
+        raise ValueError("Missing collector source")
+    normalized = batch["collector_source"].replace("\r\n", "\n")
+    source_hash = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+    if (legacy and source_hash != LEGACY_SOURCES[batch["collector_version"]]) or (current and normalized != known_source):
         raise ValueError("Collector source/version differs")
     run_id = batch.get("run_id")
     if not isinstance(run_id, str) or not re.fullmatch(r"uu_charts_[A-Za-z0-9_-]{8,100}", run_id):
@@ -59,13 +66,28 @@ def inspect_batch(raw):
         raise ValueError("Invalid batch status")
     timestamp(batch.get("created_at"))
     timestamp(batch.get("updated_at"))
+    parent = batch.get("parent_batch")
+    if parent is not None:
+        chart.fields(parent, {"run_id", "collector_version", "excluded_unsupported_tasks"})
+        if not isinstance(parent.get("run_id"), str) or not re.fullmatch(r"uu_charts_[A-Za-z0-9_-]{8,100}", parent["run_id"]) or parent.get("collector_version") != "uu-browser-charts-1.0":
+            raise ValueError("Invalid prior batch")
+        excluded = parent.get("excluded_unsupported_tasks")
+        if not isinstance(excluded, list) or len(excluded) != 3:
+            raise ValueError("Invalid excluded requests")
+        ids = set()
+        for entry in excluded:
+            chart.fields(entry, {"id", "status", "attempts"})
+            if entry.get("id") not in {"15d_1", "90d_11", "half_year_11"} or entry["id"] in ids or entry.get("status") not in {"pending", "success", "failed", "interrupted_unknown"} or type(entry.get("attempts")) is not int or entry["attempts"] != (0 if entry["status"] == "pending" else 1):
+                raise ValueError("Invalid excluded task")
+            ids.add(entry["id"])
     source_tasks = batch.get("tasks")
-    if not isinstance(source_tasks, list) or len(source_tasks) != 8:
-        raise ValueError("Expected four windows times two metrics")
-    expected = {f"{window}_{order}": (window, day, order) for window, day in (("7d", 7), ("15d", 15), ("90d", 90), ("half_year", half)) for order in (1, 11)}
+    plan = [(w, d, o) for w, d in (("7d", 7), ("15d", 15), ("90d", 90), ("half_year", half)) for o in (1, 11)] if legacy else [("7d", 7, 1), ("7d", 7, 11), ("15d", 15, 11), ("30d", 30, 1), ("30d", 30, 11), ("90d", 90, 1), ("half_year", half, 1)]
+    expected = {f"{window}_{order}": (window, day, order) for window, day, order in plan}
+    if not isinstance(source_tasks, list) or len(source_tasks) != len(expected):
+        raise ValueError("Task count differs from versioned metric/window plan")
     seen, tasks, points, counts = set(), [], [], Counter()
     for task in source_tasks:
-        chart.fields(task, {"id", "window", "request_body", "status", "attempts", "origin", "started_at", "received_at", "http_status", "response_text", "error"})
+        chart.fields(task, {"id", "window", "request_body", "status", "attempts", "origin", "started_at", "received_at", "http_status", "response_text", "error", "diagnostic"})
         key = task.get("id")
         if key not in expected or key in seen:
             raise ValueError("Unknown or repeated task")
@@ -79,6 +101,16 @@ def inspect_batch(raw):
         if state not in {"pending", "success", "failed", "interrupted_unknown"} or type(attempts) is not int or attempts != (0 if state == "pending" else 1):
             raise ValueError("Invalid task checkpoint")
         row = {"task_id": key, "window": window, "requested_days": day, "order_type": order, "status": state, "attempts": attempts}
+        if "diagnostic" in task:
+            diag = task["diagnostic"]
+            chart.fields(diag, {"stage", "reason", "application_code"})
+            if diag.get("stage") not in {"request", "response_read", "utf8_decode", "json", "application", "schema", "http"} or not isinstance(diag.get("reason"), str) or not re.fullmatch(r"[a-z0-9_]{1,80}", diag["reason"]) or ("application_code" in diag and type(diag["application_code"]) is not int):
+                raise ValueError("Invalid safe failure diagnostic")
+            row["diagnostic"] = diag
+        if "error" in task:
+            if not isinstance(task["error"], str) or not re.fullmatch(r"[a-z0-9_]{1,80}", task["error"]):
+                raise ValueError("Invalid error category")
+            row["error"] = task["error"]
         if attempts:
             timestamp(task.get("started_at"))
             if task.get("origin") not in {"user_triggered_page_request", "explicit_user_batch"}:
@@ -97,9 +129,9 @@ def inspect_batch(raw):
             raise ValueError("Unsuccessful task cannot supply successful data")
         counts[state] += 1
         tasks.append(row)
-    if batch["status"] == "completed" and counts["success"] != 8:
+    if batch["status"] == "completed" and counts["success"] != len(expected):
         raise ValueError("Incomplete batch cannot claim completion")
-    return {"import_version": VERSION, "collector_version": COLLECTOR_VERSION, "run_id": run_id, "template_id": template, "item_label": batch["item_label"], "half_year_day": half, "item_identity_verified": False, "capability_level": "L0", "execution_eligible": False, "source": "user_browser_chart_export", "input_sha256": hashlib.sha256(raw).hexdigest(), "source_text_kind": "browser_decoded_or_xhr_json_reserialized_not_transport_bytes", "market_requests_sent_by_importer": 0, "status_counts": dict(counts), "complete": counts["success"] == 8, "tasks": tasks, "points": points}
+    return {"import_version": VERSION, "collector_version": batch["collector_version"], "collector_source_sha256": source_hash, "deprecated_request_plan": legacy, "expected_tasks": len(expected), "parent_batch": parent, "run_id": run_id, "template_id": template, "item_label": batch["item_label"], "half_year_day": half, "item_identity_verified": False, "capability_level": "L0", "execution_eligible": False, "source": "user_browser_chart_export", "input_sha256": hashlib.sha256(raw).hexdigest(), "source_text_kind": "browser_decoded_or_xhr_json_reserialized_not_transport_bytes", "market_requests_sent_by_importer": 0, "status_counts": dict(counts), "complete": counts["success"] == len(expected), "tasks": tasks, "points": points}
 
 
 def import_batch(raw, output):
@@ -122,7 +154,7 @@ def import_batch(raw, output):
         db.executemany("INSERT INTO points VALUES(?,?,?,?,?,?,?,?)", [(r["task_id"], r["sequence"], r["source_time_ms"], r["source_trade_price_cny"], r["source_listing_count"], r["browser_received_at"], None, json.dumps(r, ensure_ascii=False)) for r in report["points"]])
     snapshots = {}
     for filename in ("import_uu_chart_batch.py", "review_uu_chart.py", "collect_uu_charts.js"):
-        content = (ROOT / "scripts" / filename).read_bytes()
+        content = json.loads(raw.decode("utf-8-sig"))["collector_source"].encode("utf-8") if filename == "collect_uu_charts.js" else (ROOT / "scripts" / filename).read_bytes()
         (output / filename).write_bytes(content)
         snapshots[filename] = hashlib.sha256(content).hexdigest()
     manifest = {k: v for k, v in report.items() if k not in {"points", "tasks", "item_label"}}
