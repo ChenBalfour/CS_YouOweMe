@@ -66,6 +66,7 @@ PURPOSES = {
     "docs/usage/UU_DIRECT_COLLECT.md": "本地纯脚本凭证配置、单请求试采、间隔配额、停止恢复和独立输出说明；不保证Cookie单独可用",
     "docs/data/UU_FIELD_CONTRACT.md": "已核验 UU 来源行情、汇总快照及混合逐笔字段定义与执行准入限制",
     "docs/data/UU_HISTORY_CHART.md": "UU 历史图表指标映射、两份用户响应的字段与实际间隔核验、统计及决策时间边界",
+    "docs/data/SOURCE_ALIGNMENT_PLAN.md": "SteamDT研究主序列与UU供给/执行补充方案，分字段聚合、过去值对齐、可得时间及登录与换品规则；尚未构建特征或训练",
     "docs/data/UU_EXECUTION_RULES.md": "Steam 和 UU 公开规则、旧版适用限制、资金时间字段及访问限制处理",
     "docs/governance/STATE.md": "旧状态路径的兼容入口，当前进展统一到 PROGRESS",
     "docs/governance/HANDOFF.md": "精简交接入口：三大主文档、接手顺序与版本保护",

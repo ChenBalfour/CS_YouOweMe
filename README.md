@@ -14,7 +14,9 @@
 
 UU历史新入口：[采集与入库步骤](docs/usage/UU_HISTORY_COLLECT.md)、[用户Notebook](scripts/notebooks/uu_history_collect.ipynb)。浏览器正常登录后由用户显式采集，真实稳定性待验收；当前没有训练模型。
 
-新增[纯脚本有限试用入口](docs/usage/UU_DIRECT_COLLECT.md)：运行时不打开网页，登录信息仅在本机私有配置；先尝试一组，再显式继续。44828的一次真实直连已成功保存103个价格点；剩余六组与多轮稳定性待用户继续验收，旧受限入口仍保持原记录。
+新增[纯脚本有限试用入口](docs/usage/UU_DIRECT_COLLECT.md)：运行时不打开网页，登录信息仅在本机私有配置；先尝试一组，再显式继续。44828纯脚本七组已完整成功，共1360条窗口记录，原始JSON/SQLite/CSV一致；多轮、多商品与统计口径仍待验收，旧受限入口保持原记录。
+
+研究方案新增[SteamDT主序列与UU补充对齐](docs/data/SOURCE_ALIGNMENT_PLAN.md)：保留小时原始数据、按决策时点使用过去已知值，不人为制造细粒度波动；尚未构建正式特征或训练。
 
 | 目录 | 内容 |
 | --- | --- |
