@@ -9,7 +9,7 @@
       "path": ".",
       "purpose": "项目根及 Git/Python 所需入口元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:52fa9dc8dbd202064ab49ed841c56bbd387af9bef6f1b8e1f7455948d2dfa6f9"
+      "version": "sha256:0324429b3f3d003989cf1e257fa3da0c60bfdf6a3d54fd942828febb732d7154"
     },
     {
       "path": ".github",
@@ -63,7 +63,7 @@
       "path": "docs",
       "purpose": "计划、制度、使用说明和交接记录",
       "layout_version": "layout-1.0",
-      "version": "sha256:168977b83794e4378abf8614a5bd805a51c1a16817d58ba8671e51d77a68510b"
+      "version": "sha256:4b0b13d5b197fa67ce35949cd66ac1417130b7a86c608b905ed1e4198a2d231d"
     },
     {
       "path": "docs/data",
@@ -463,9 +463,9 @@
       "path": "docs/PROGRESS.md",
       "purpose": "进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步",
       "status": "current-or-reference",
-      "version": "sha256:880038e59ef95deb7e815afa0359db1450343acfb55bdf80cdf4b239792a497c",
-      "sha256": "880038e59ef95deb7e815afa0359db1450343acfb55bdf80cdf4b239792a497c",
-      "bytes": 9446
+      "version": "sha256:9c3180a4eed641867b1bd359260db1f31565737e3d142855023486ceed27e83a",
+      "sha256": "9c3180a4eed641867b1bd359260db1f31565737e3d142855023486ceed27e83a",
+      "bytes": 9651
     },
     {
       "path": "docs/README.md",

@@ -6,7 +6,7 @@
 
 | 路径 | 用途 | 内容版本（摘要） |
 | --- | --- | --- |
-| [.](../..) | 项目根及 Git/Python 所需入口元数据 | sha256:52fa9dc8dbd2 |
+| [.](../..) | 项目根及 Git/Python 所需入口元数据 | sha256:0324429b3f3d |
 | [.github](../../.github) | GitHub 工具约定的根目录配置 | sha256:1790293e25fd |
 | [.github/workflows](../../.github/workflows) | 既有自动检查配置 | sha256:1790293e25fd |
 | [data](../../data) | 来源数据及其伴随元数据 | sha256:3a0a9f4c5392 |
@@ -15,7 +15,7 @@
 | [data/samples/pilot_20261011/raw](../../data/samples/pilot_20261011/raw) | 旧匿名样本批次及原始/表/报告分组 | sha256:be9fba468537 |
 | [data/samples/pilot_20261011/reports](../../data/samples/pilot_20261011/reports) | 旧匿名样本批次及原始/表/报告分组 | sha256:67309b9a13e4 |
 | [data/samples/pilot_20261011/tables](../../data/samples/pilot_20261011/tables) | 旧匿名样本批次及原始/表/报告分组 | sha256:d04bb394675d |
-| [docs](../../docs) | 计划、制度、使用说明和交接记录 | sha256:168977b83794 |
+| [docs](../../docs) | 计划、制度、使用说明和交接记录 | sha256:4b0b13d5b197 |
 | [docs/data](../../docs/data) | 来源、schema 与字段说明 | sha256:66f924693e56 |
 | [docs/governance](../../docs/governance) | 管理、阶段、资产登记与版本索引 | sha256:602c72a26621 |
 | [docs/releases](../../docs/releases) | 历史发布与本地版本变更说明 | sha256:56d914fd0fef |
@@ -75,7 +75,7 @@
 | [data/samples/pilot_20261011/tables/related_variants.csv](../../data/samples/pilot_20261011/tables/related_variants.csv) | 旧匿名公开样本的派生表，冻结待 UU 用途复审 | sha256:4db527f3b702 |
 | [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) | 架构主文档：真实实现、数据流、存储恢复与待建模型和执行层 | sha256:8436c7adf3e5 |
 | [docs/PRODUCT.md](../../docs/PRODUCT.md) | 产品主文档：目标、范围、用户流程、策略、建议输出和验收要求 | sha256:57f856ce652b |
-| [docs/PROGRESS.md](../../docs/PROGRESS.md) | 进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步 | sha256:880038e59ef9 |
+| [docs/PROGRESS.md](../../docs/PROGRESS.md) | 进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步 | sha256:9c3180a4eed6 |
 | [docs/README.md](../../docs/README.md) | 三大主文档与专项字段、运行、管理附件索引 | sha256:53e4c8323e10 |
 | [docs/data/CYREX_DAILY_SAMPLES.md](../../docs/data/CYREX_DAILY_SAMPLES.md) | 次时代日级候选字段、28天序列、七日价格目标、缺失/隔离规则和Notebook操作说明 | sha256:5364f0b71a22 |
 | [docs/data/DATA_DICTIONARY.md](../../docs/data/DATA_DICTIONARY.md) | 旧公开快照表的字段字典 | sha256:f0589a84da9c |
