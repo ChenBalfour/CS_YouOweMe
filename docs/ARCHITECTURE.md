@@ -1,6 +1,6 @@
 # 产品架构
 
-版本 **architecture-1.13**；2026-10-19（北京时间）。冻结采集核心仍为 **0.3.5**，独立研究组件分别版本化。目标见 [PRODUCT](PRODUCT.md)，实际运行、分数和卡点见 [PROGRESS](PROGRESS.md)。
+版本 **architecture-1.14**；2026-10-19（北京时间）。冻结采集核心仍为 **0.3.5**，独立研究组件分别版本化。目标见 [PRODUCT](PRODUCT.md)，实际运行、分数和卡点见 [PROGRESS](PROGRESS.md)。
 
 ## 从来源到决策
 
@@ -8,7 +8,9 @@
 flowchart TD
     S[SteamDT 显式 YOUPIN 小时来源] --> C[用户本地有限采集\n商品清单 / 分页与续采]
     C --> D[SQLite 小时库 / 来源修订\n压缩原始响应 / 请求时间]
-    D --> F[离线冻结快照\n过去28天 / 每日10点 / 七日目标]
+    D --> QC[七品清洗研究版\nNULL / mask / 质量和事件诊断]
+    QC -. 后续新特征接入 .-> NF[缺失感知特征与新评估]
+    D --> F[既有严格单品离线冻结快照\n过去28天 / 每日10点 / 七日目标]
     F --> E[固定基准\n验证集选规则 / 锁定测试]
     E --> V[Notebook\n历史、预测路径和误差图]
     U[UU 历史价格与在售数量] --> UD[独立来源库\n保留真实时间粒度]
@@ -26,11 +28,13 @@ scripts/
   notebooks/                         VS Code 用户入口
   config/                            商品种子、固定规范、受保护本地配置
   research/
+    data/clean_hourly.py              七品小时清洗、缺失与因果质量诊断
     data/daily_samples.py            冻结快照、过去特征、序列和七日标签
     models/baselines.py               固定预测规则
     evaluation/baseline_report.py     数据校验、验证选择、锁定测试和产物
     evaluation/costs.py               已知报价/费用的保本情景
     visualization/forecast_charts.py  历史与预测图
+  clean_steamdt_data.py               清洗薄入口
   build_research_samples.py           兼容薄入口
   evaluate_research_baselines.py      评估薄入口
   steamdt_research.py                 有限采集组件，当前保持原版
@@ -47,6 +51,8 @@ Notebook 配置、调用和展示；计算逻辑放入包，避免在单元格�
 | data/local/staging/steamdt/research_20261016_v1/ | registry.json精确身份；research.sqlite小时数据/修订/请求/任务；raw压缩原始响应；runs准确源码；reports覆盖和导出 |
 | data/local/staging/steamdt/research_control/ | 跨运行共享配额、访问停止与锁，不得清理重置来绕过限制 |
 | data/local/staging/uu_charts/ | UU图表各窗口响应、独立SQLite、数量/价格、来源和采集时间 |
+| data/local/datasets/steamdt_clean/具体ID/ | 全部来源版本、小时网格、合法价格/NULL/mask、事件诊断、质量窗口、报告及源码规范 |
+| data/local/reports/cleaning_reviews/具体ID/ | 清洗实际值/窗口/哈希与Notebook默认只读行为复核 |
 | data/local/staging/research_samples/具体ID/ | 冻结小时输入、日级样本、28日序列、质量报告、规范与准确代码依赖 |
 | data/local/artifacts/baseline_evaluations/具体ID/ | 规则、验证/测试预测、误差、最新七日参考路径及哈希清单 |
 | data/local/reports/baseline_charts/具体ID/ | 冻结评估生成的PNG及独立绘图清单 |
@@ -65,6 +71,16 @@ Notebook 配置、调用和展示；计算逻辑放入包，避免在单元格�
 research_hourly_latest 按规范小时取得最近来源版本，保留原始秒偏移；导出排除当前未完成小时。4h/日/周按北京时间聚合首开、最高、最低、末收；缺小时标不完整，量额任一空则聚合空。源端断档不造波动。已有一次真实跨日增量与有限分页验证，不等于长期稳定；逐轮检查新鲜度、失败、任务、缺口和修订。
 
 2026-10-19有限缺口对照：次时代在7月23日20点至24日11点前、24日22点至25日9点前共缺26小时。旧页和本次同参/换maxTime新页都只返回694条（覆盖720小时），未找回这26小时；全数组解析与原始→规范库小时并集一致，不能归因于开发者工具折叠、分页接缝或本地漏入库。最新页720小时完整。该结论只针对实际核验的网页K线端点与请求，网页是否另取数据或绘制补线尚未验证。原库、旧候选/评估不变，新请求/raw存工作区gap_audit_20261019_v1/network；复用共享锁/配额/停止，最多6请求、间隔5秒，无自动重试。
+
+## 七品清洗层
+
+组件steamdt-hourly-cleaning-1.0、规范steamdt-cleaning-spec-1.0；入口[Notebook](../scripts/notebooks/steamdt_cleaning.ipynb)、[字段](data/STEAMDT_CLEANING.md)、[2025–2026方法依据](research/DATA_METHODS_20261019.md)。原库mode=ro，从完成报告的cap199/截止10月19日12点冻结；本次隔离探测的新两小时不无声并入。
+
+清洗SQLite保留81407来源版本、81397真实观察小时，扩展84924行规则小时网格；无数据行全部NULL、observed=0。3527空白分为流金首次观察前3289小时和七品内部缺238小时，不能把前者当共同接口掉数。原始库与旧候选/评估保持不变。
+
+时间/身份结构不符停止；非法价格/OHLC/量额字段隔离，原值仍在source_versions。真实跳变不删、不平滑、不截尾，预设30%涨跌/振幅与过去168小时MAD标记仅诊断，未认定操盘。MAD不含当前收益，零MAD不造分母，缺小时不算跨缺口一小时收益。
+
+input_quality_windows仅计算过去28天覆盖和最近24h完整度，保留严格/95%门槛对照，没有未来标签；它不是预测特征或训练资格。新特征工程将显式接入本版clean.sqlite；既有Cyrex builder仍读旧原库并维持严格规范。本轮没有安装深度框架、插补模型或重算旧预测。
 
 ## 样本与预测评估
 

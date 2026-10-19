@@ -1,9 +1,11 @@
 # 既有资产登记
 
-登记版本 asset-register-2.8，2026-10-19。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
+登记版本 asset-register-2.9，2026-10-19。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
+| research/data/clean_hourly、clean_steamdt_data、对应规范/Notebook、datasets/steamdt_clean | frozen / research-cleaning-only | 7品全部81407源版本、81397真实小时、84924网格与NULL/mask/过去窗口诊断；原值/极端走势保留，历史可得时间未知，不自动训练 | P04研究清洗 |
+| DATA_METHODS_20261019、STEAMDT_CLEANING、reports/cleaning_reviews | current / evidence-and-methods | 2025–2026论文与官方实现方法依据，清洗字段与实际值/窗口/Notebook验证；基础模型与新特征仅为后续对照 | 研究方法 |
 | research_20261016_v1/gap_audit_20261019_v1 | private / bounded-live-gap-verified | 一次6请求、独立probe库/raw/准确源码、旧页/新页/入库/样本筛选追溯；实际端点仍缺26h，非JSON折叠或本地丢失，网页显示机制未验证 | P03缺口诊断 |
 | research/{data,models,evaluation,visualization}、evaluate_research_baselines、cyrex_forecast_dashboard | current / exploratory-fixed-rule-evaluation | 函数分包、固定基准与测试误差和七日路径；原候选/评估/图表独立冻结，未拟合深度模型、未验证执行收益 | P04研究/P05基准 |
 | data/local/artifacts/baseline_evaluations、reports/baseline_charts | private / immutable-research-artifacts | 初次持平获选及验证/测试、源码、绘图输入和哈希，包含失败/无效信号依据，不覆盖或为调参删测试结果 | 研究复核 |

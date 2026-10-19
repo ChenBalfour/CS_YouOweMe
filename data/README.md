@@ -7,6 +7,8 @@
 | local/staging/steamdt/research_20261016_v1/ | 七品registry、小时SQLite、原始raw、分页任务、来源修订、运行源码和覆盖报告 |
 | local/staging/steamdt/research_control/ | 共享访问停止/配额/锁，不能通过清理重置 |
 | local/staging/uu_charts/ | UU历史价格/数量的独立来源、窗口、SQLite与采集时间 |
+| local/datasets/steamdt_clean/ | 七品清洗研究版：全部源版本、小时网格、NULL/mask与事件/质量诊断，不自动训练 |
+| local/reports/cleaning_reviews/ | 清洗原值、时间窗口和默认Notebook只读行为的独立复核 |
 | local/staging/research_samples/ | 每版冻结来源、日级特征/标签、28日序列、质量与源码规范 |
 | local/artifacts/baseline_evaluations/ | 固定基准、验证选择、锁定测试、七日路径与准确源码 |
 | local/reports/baseline_charts/ | 从冻结评估生成的价格图和独立清单 |

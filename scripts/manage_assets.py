@@ -32,6 +32,11 @@ PURPOSES = {
     "scripts/steamdt_research.py": "SteamDT显式悠悠小时研究库：商品登记、有限回补、分页续采、增量复核、修订追溯及报告，独立组件1.0",
     "scripts/build_research_samples.py": "日级样本构建的兼容CLI/API薄入口，实际实现委托research/data；不联网或训练",
     "scripts/evaluate_research_baselines.py": "离线固定规则基准评估薄入口：验证集选规则、锁定测试和七日来源参考预测，不执行交易",
+    "scripts/clean_steamdt_data.py": "七品小时清洗CLI/API薄入口，只读来源、缺失感知网格、事件标记与独立SQLite版本，不训练",
+    "scripts/config/steamdt_cleaning_spec.json": "七品清洗的缺失、价格/量额校验、因果波动诊断与输入质量门槛固定规范",
+    "scripts/notebooks/steamdt_cleaning.ipynb": "VS Code七品清洗与质量检查入口，默认只读已有结果；显式开关新建版本，不采集或训练",
+    "docs/data/STEAMDT_CLEANING.md": "七品清洗SQLite表、mask/缺失/极端事件与Notebook使用及特征工程边界",
+    "docs/research/DATA_METHODS_20261019.md": "2025至2026年一手论文与官方实现调研：缺失感知、异常、特征和概率预测的采用理由与候选对照",
     "scripts/config/cyrex_baseline_spec.json": "评分前固定的基准规则、验证选择准则、测试与研究边界，不按测试结果调参",
     "scripts/notebooks/cyrex_forecast_dashboard.ipynb": "VS Code离线预测评估与可视化入口，默认读取已有结果，显式开关才新建评估版本",
     "docs/usage/FORECAST_DASHBOARD.md": "预测图表Notebook、固定基准、评价指标、保存位置与成本/执行边界说明",
@@ -130,7 +135,7 @@ FOLDERS = {
     ".github/workflows": "既有自动检查配置",
     "scripts": "所有可执行代码及其工程配套",
     "scripts/research": "当前离线研究包，按数据、模型、评估、可视化分工；独立于冻结采集核心",
-    "scripts/research/data": "冻结来源快照、日级特征序列、七日标签与时间隔离",
+    "scripts/research/data": "冻结来源快照、七品清洗、缺失感知质量与日级样本/标签",
     "scripts/research/models": "固定价格预测基准及以后经批准的模型实现",
     "scripts/research/evaluation": "候选校验、验证集选择、锁定测试、成本情景和不可变评估产物",
     "scripts/research/visualization": "历史、测试期真实/预测价格及七日路径图表，不联网或训练",
@@ -154,6 +159,9 @@ FOLDERS = {
     "data/local/artifacts/baseline_evaluations": "固定基准的不可变评估、规则选择、预测表、准确源码与哈希清单",
     "data/local/reports": "由冻结研究产物生成的可复核报告与图表",
     "data/local/reports/baseline_charts": "每次评估的图表输出、绘图配置及独立版本清单",
+    "data/local/reports/cleaning_reviews": "清洗冻结产物的只读独立复核、Notebook默认行为检查与数据保留证据",
+    "data/local/datasets": "按明确用途冻结的研究数据版本；不自动批准正式训练或交易",
+    "data/local/datasets/steamdt_clean": "七品小时清洗研究版：全部来源修订、规则网格、缺失/事件标记、质量报告及准确代码规范",
     "data/local/database": "旧 SteamDT 试采库及其伴随原始证据",
     "data/local/database/raw": "旧来源内容寻址压缩响应",
     "data/local/api_cache": "旧官方目录与配额状态缓存，不自动刷新",
@@ -206,7 +214,11 @@ def purpose(path):
         return PURPOSES[path]
     name = Path(path).name
     if path.startswith("scripts/research/"):
-        return {"__init__.py": "研究功能包的职责与公共接口", "daily_samples.py": "cyrex-daily-samples-1.1：只读冻结小时来源、28天样本、七日标签与准确依赖快照", "baselines.py": "仅使用过去价格特征的持平/固定对数趋势规则与七日路径", "baseline_report.py": "候选完整性校验、验证选择及锁定测试、预测与实验清单", "costs.py": "已知买价与费用的保本情景计算；未知输入保留为不足", "forecast_charts.py": "来源历史、真实七日目标与固定规则预测路径的Matplotlib图表及版本报告"}.get(name, "离线研究的功能实现与公共接口")
+        return {"__init__.py": "研究功能包的职责与公共接口", "clean_hourly.py": "steamdt-hourly-cleaning-1.0：只读七品源版本、NULL/mask、原值保留、因果事件诊断与质量窗口", "daily_samples.py": "cyrex-daily-samples-1.1：只读冻结小时来源、28天样本、七日标签与准确依赖快照", "baselines.py": "仅使用过去价格特征的持平/固定对数趋势规则与七日路径", "baseline_report.py": "候选完整性校验、验证选择及锁定测试、预测与实验清单", "costs.py": "已知买价与费用的保本情景计算；未知输入保留为不足", "forecast_charts.py": "来源历史、真实七日目标与固定规则预测路径的Matplotlib图表及版本报告"}.get(name, "离线研究的功能实现与公共接口")
+    if path.startswith("data/local/datasets/steamdt_clean/"):
+        return "本版准确执行的源码、规范、方法或来源报告/registry快照" if "/source/" in path else {"clean.sqlite": "全部来源版本与请求、七品小时网格、真实价格/NULL及事件和输入质量标记的研究SQLite", "latest.json": "指向具体冻结清洗版本的本地入口", "manifest.json": "只读来源前后哈希、上限、规范、源码与清洗产物哈希清单", "protocol_locked.json": "清洗前先冻结规范和来源上限，确认真实极端走势保留", "quality_report.json": "逐品真实观察、缺口、量额未知、事件与质量窗口候选计数", "gaps.csv": "首次观察前、内部及尾部未观察小时的分段清单", "flagged_hours.csv": "版本、时刻和市场波动诊断，不是操盘或错误判定", "quarantine.csv": "不合法价格/量额字段的原始版本链接，原值仍保留", "report.md": "七品清洗摘要、缺失策略、未训练边界和下一步"}.get(name, "冻结清洗研究版的追溯附件")
+    if path.startswith("data/local/reports/cleaning_reviews/"):
+        return "清洗来源/输出原值、质量窗口、保留核对与Notebook默认只读行为的独立复核"
     if path.startswith("data/local/artifacts/baseline_evaluations/"):
         return "基准评估实际执行的源码或固定规范快照" if "/source/" in path else {"latest.json": "指向一个具体基准评估版本的本地便捷入口", "manifest.json": "候选/源码/规范/产物哈希与规则选择、非执行研究限制", "metrics.json": "验证集及锁定测试价格误差、基准对照与有效样本数量", "forecast.csv": "固定来源时点的day0至day7参考预测路径，不是未来真实行情", "history.csv": "用于图表的最近28天来源小时价格", "report.md": "固定基准的评估结果、用途和限制说明"}.get(name, "固定规则基准的离线评估、预测或复核附件")
     if path.startswith("data/local/reports/baseline_charts/"):
@@ -286,6 +298,10 @@ def folder_purpose(path):
         return FOLDERS[path]
     if path.startswith("scripts/research/"):
         return "当前离线研究的功能包与公共接口"
+    if path.startswith("data/local/datasets/steamdt_clean/"):
+        return "一次冻结的七品小时清洗研究版本、质量输出与准确来源/实现快照"
+    if path.startswith("data/local/reports/cleaning_reviews/"):
+        return "一次清洗研究版本的独立只读复核与默认Notebook执行验证"
     if path.startswith("data/local/artifacts/baseline_evaluations/"):
         return "一次不可变基准评估的预测、分组误差、输入与源码快照"
     if path.startswith("data/local/reports/baseline_charts/"):

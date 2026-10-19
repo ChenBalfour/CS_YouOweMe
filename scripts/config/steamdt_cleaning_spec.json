@@ -1,0 +1,21 @@
+{
+  "version": "steamdt-cleaning-spec-1.0",
+  "platform": "YOUPIN",
+  "period": "1h",
+  "style": "",
+  "impute_prices": false,
+  "impute_flows": false,
+  "remove_extreme_moves": false,
+  "large_abs_hourly_return": 0.30,
+  "large_intrabar_range": 0.30,
+  "robust_window_hours": 168,
+  "robust_min_returns": 48,
+  "robust_abs_score_threshold": 6,
+  "input_lookback_days": 28,
+  "input_min_coverage": 0.95,
+  "input_recent_complete_hours": 24,
+  "decision_hour_beijing": 10,
+  "historical_available_at_verified": false,
+  "training_approved": false,
+  "purpose": "research_cleaning_and_quality_only_no_new_predictive_features_or_labels"
+}

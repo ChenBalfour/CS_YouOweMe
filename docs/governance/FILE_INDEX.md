@@ -6,27 +6,27 @@
 
 | 路径 | 用途 | 内容版本（摘要） |
 | --- | --- | --- |
-| [.](../..) | 项目根及 Git/Python 所需入口元数据 | sha256:8a325d875b1d |
+| [.](../..) | 项目根及 Git/Python 所需入口元数据 | sha256:5f3a81447d6f |
 | [.github](../../.github) | GitHub 工具约定的根目录配置 | sha256:b04d86b4e64b |
 | [.github/workflows](../../.github/workflows) | 既有自动检查配置 | sha256:b04d86b4e64b |
-| [data](../../data) | 来源数据及其伴随元数据 | sha256:1aa4ab2eca5f |
+| [data](../../data) | 来源数据及其伴随元数据 | sha256:3a0a9f4c5392 |
 | [data/samples](../../data/samples) | 已公开、冻结待复审的旧匿名样本 | sha256:644f35f0c47c |
 | [data/samples/pilot_20261011](../../data/samples/pilot_20261011) | 旧匿名样本批次及原始/表/报告分组 | sha256:644f35f0c47c |
 | [data/samples/pilot_20261011/raw](../../data/samples/pilot_20261011/raw) | 旧匿名样本批次及原始/表/报告分组 | sha256:be9fba468537 |
 | [data/samples/pilot_20261011/reports](../../data/samples/pilot_20261011/reports) | 旧匿名样本批次及原始/表/报告分组 | sha256:67309b9a13e4 |
 | [data/samples/pilot_20261011/tables](../../data/samples/pilot_20261011/tables) | 旧匿名样本批次及原始/表/报告分组 | sha256:d04bb394675d |
-| [docs](../../docs) | 计划、制度、使用说明和交接记录 | sha256:51555e8f621d |
-| [docs/data](../../docs/data) | 来源、schema 与字段说明 | sha256:05ef1a4868ca |
-| [docs/governance](../../docs/governance) | 管理、阶段、资产登记与版本索引 | sha256:29f011814ddf |
-| [docs/releases](../../docs/releases) | 历史发布与本地版本变更说明 | sha256:244f89135f25 |
-| [docs/research](../../docs/research) | 专项选品、核验计划和有限调查证据，三大主文档的附件 | sha256:9efd6d16adb8 |
+| [docs](../../docs) | 计划、制度、使用说明和交接记录 | sha256:c18aad038c85 |
+| [docs/data](../../docs/data) | 来源、schema 与字段说明 | sha256:66f924693e56 |
+| [docs/governance](../../docs/governance) | 管理、阶段、资产登记与版本索引 | sha256:43ee0e9d84e9 |
+| [docs/releases](../../docs/releases) | 历史发布与本地版本变更说明 | sha256:8dbe95ad9f1f |
+| [docs/research](../../docs/research) | 专项选品、核验计划和有限调查证据，三大主文档的附件 | sha256:bcb3d7a769b6 |
 | [docs/usage](../../docs/usage) | 用户本地观察、图表导出与旧实现参考，不构成采集或发布授权 | sha256:95a11e3b398b |
-| [scripts](../../scripts) | 所有可执行代码及其工程配套 | sha256:ce3df439c066 |
-| [scripts/config](../../scripts/config) | 脚本配置、空白模板与受保护本地凭证 | sha256:695548a45f03 |
+| [scripts](../../scripts) | 所有可执行代码及其工程配套 | sha256:042d9c3c96d3 |
+| [scripts/config](../../scripts/config) | 脚本配置、空白模板与受保护本地凭证 | sha256:24023c8e911a |
 | [scripts/hooks](../../scripts/hooks) | 本地 Git 凭证检查 hooks | sha256:89d7eda41c4a |
-| [scripts/notebooks](../../scripts/notebooks) | 用户手动运行的 Notebook 入口，Git 中清空执行输出 | sha256:847f6e93f748 |
-| [scripts/research](../../scripts/research) | 当前离线研究包，按数据、模型、评估、可视化分工；独立于冻结采集核心 | sha256:793767161f5b |
-| [scripts/research/data](../../scripts/research/data) | 冻结来源快照、日级特征序列、七日标签与时间隔离 | sha256:b9e502dca1cb |
+| [scripts/notebooks](../../scripts/notebooks) | 用户手动运行的 Notebook 入口，Git 中清空执行输出 | sha256:c221dfd770f3 |
+| [scripts/research](../../scripts/research) | 当前离线研究包，按数据、模型、评估、可视化分工；独立于冻结采集核心 | sha256:f3ae6ab13cd6 |
+| [scripts/research/data](../../scripts/research/data) | 冻结来源快照、七品清洗、缺失感知质量与日级样本/标签 | sha256:0dfbfed9eb89 |
 | [scripts/research/evaluation](../../scripts/research/evaluation) | 候选校验、验证集选择、锁定测试、成本情景和不可变评估产物 | sha256:d3fbc1fbd678 |
 | [scripts/research/models](../../scripts/research/models) | 固定价格预测基准及以后经批准的模型实现 | sha256:624afba236cb |
 | [scripts/research/visualization](../../scripts/research/visualization) | 历史、测试期真实/预测价格及七日路径图表，不联网或训练 | sha256:b009f89dfd08 |
@@ -35,7 +35,7 @@
 | [scripts/src/cs_youoweme](../../scripts/src/cs_youoweme) | 旧技术实现，可按对应用途审查复用 | sha256:f1cf0bb82e2b |
 | [scripts/src/cs_youoweme/collectors](../../scripts/src/cs_youoweme/collectors) | 旧公开页面、官方和匿名接口采集机制 | sha256:292f48b673f2 |
 | [scripts/src/cs_youoweme/history](../../scripts/src/cs_youoweme/history) | 旧目录、分页任务、SQLite、查询和候选机制 | sha256:169bf7b93ce2 |
-| [scripts/tests](../../scripts/tests) | 离线与合成回归测试 | sha256:344f39c64efd |
+| [scripts/tests](../../scripts/tests) | 离线与合成回归测试 | sha256:b11d9d0e9357 |
 
 ## 文件
 
@@ -44,10 +44,10 @@
 | [.gitattributes](../../.gitattributes) | 跨平台文本换行规则 | sha256:bef30d55070d |
 | [.github/workflows/ci.yml](../../.github/workflows/ci.yml) | 既有远程离线检查工作流，根目录位置由 GitHub 约定 | sha256:dfe66c8ce281 |
 | [.gitignore](../../.gitignore) | 私有数据、文档、凭证与生成缓存的 Git 排除规则 | sha256:3e41120a23af |
-| [AGENTS.md](../../AGENTS.md) | 协作者的执行、阶段、凭证及发布约束 | sha256:b38b995f4938 |
+| [AGENTS.md](../../AGENTS.md) | 协作者的执行、阶段、凭证及发布约束 | sha256:11916b372de8 |
 | [LICENSE](../../LICENSE) | 原创代码与文档的 MIT 授权 | sha256:9ccc1508d876 |
-| [README.md](../../README.md) | 项目入口、当前状态与三类目录索引 | sha256:615d52a69732 |
-| [data/README.md](../../data/README.md) | 私有数据与已公开冻结样本的生命周期说明 | sha256:0be9ef56f203 |
+| [README.md](../../README.md) | 项目入口、当前状态与三类目录索引 | sha256:bba010c7cf97 |
+| [data/README.md](../../data/README.md) | 私有数据与已公开冻结样本的生命周期说明 | sha256:37fdf1428196 |
 | [data/samples/pilot_20261011/raw/item_001.nuxt.json](../../data/samples/pilot_20261011/raw/item_001.nuxt.json) | 旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审 | sha256:1557dc48382f |
 | [data/samples/pilot_20261011/raw/item_002.nuxt.json](../../data/samples/pilot_20261011/raw/item_002.nuxt.json) | 旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审 | sha256:1c5884b75e48 |
 | [data/samples/pilot_20261011/raw/item_003.nuxt.json](../../data/samples/pilot_20261011/raw/item_003.nuxt.json) | 旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审 | sha256:2b78a484076d |
@@ -73,19 +73,20 @@
 | [data/samples/pilot_20261011/tables/items.csv](../../data/samples/pilot_20261011/tables/items.csv) | 旧匿名公开样本的派生表，冻结待 UU 用途复审 | sha256:a429c153662a |
 | [data/samples/pilot_20261011/tables/quotes.csv](../../data/samples/pilot_20261011/tables/quotes.csv) | 旧匿名公开样本的派生表，冻结待 UU 用途复审 | sha256:bb3d0815d6e6 |
 | [data/samples/pilot_20261011/tables/related_variants.csv](../../data/samples/pilot_20261011/tables/related_variants.csv) | 旧匿名公开样本的派生表，冻结待 UU 用途复审 | sha256:4db527f3b702 |
-| [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) | 架构主文档：真实实现、数据流、存储恢复与待建模型和执行层 | sha256:7bbf922b7881 |
-| [docs/PRODUCT.md](../../docs/PRODUCT.md) | 产品主文档：目标、范围、用户流程、策略、建议输出和验收要求 | sha256:6d078b61ef57 |
-| [docs/PROGRESS.md](../../docs/PROGRESS.md) | 进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步 | sha256:112a6b89ed38 |
-| [docs/README.md](../../docs/README.md) | 三大主文档与专项字段、运行、管理附件索引 | sha256:c9b902c0b099 |
+| [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) | 架构主文档：真实实现、数据流、存储恢复与待建模型和执行层 | sha256:02c61e3b1635 |
+| [docs/PRODUCT.md](../../docs/PRODUCT.md) | 产品主文档：目标、范围、用户流程、策略、建议输出和验收要求 | sha256:ca5815436b27 |
+| [docs/PROGRESS.md](../../docs/PROGRESS.md) | 进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步 | sha256:7d06343c0534 |
+| [docs/README.md](../../docs/README.md) | 三大主文档与专项字段、运行、管理附件索引 | sha256:ba29b173d014 |
 | [docs/data/CYREX_DAILY_SAMPLES.md](../../docs/data/CYREX_DAILY_SAMPLES.md) | 次时代日级候选字段、28天序列、七日价格目标、缺失/隔离规则和Notebook操作说明 | sha256:5364f0b71a22 |
 | [docs/data/DATA_DICTIONARY.md](../../docs/data/DATA_DICTIONARY.md) | 旧公开快照表的字段字典 | sha256:f0589a84da9c |
 | [docs/data/DATA_SOURCES.md](../../docs/data/DATA_SOURCES.md) | 旧来源、采集证据及口径限制 | sha256:c81a42660293 |
 | [docs/data/HISTORY_SCHEMA.md](../../docs/data/HISTORY_SCHEMA.md) | 旧历史库 schema v2、时间与字段口径 | sha256:62af74eaff65 |
 | [docs/data/SOURCE_ALIGNMENT_PLAN.md](../../docs/data/SOURCE_ALIGNMENT_PLAN.md) | SteamDT研究主序列与UU供给/执行补充方案，分字段聚合、过去值对齐、可得时间及登录与换品规则；尚未构建特征或训练 | sha256:10d92e65b710 |
+| [docs/data/STEAMDT_CLEANING.md](../../docs/data/STEAMDT_CLEANING.md) | 七品清洗SQLite表、mask/缺失/极端事件与Notebook使用及特征工程边界 | sha256:17b6b0afdc85 |
 | [docs/data/UU_EXECUTION_RULES.md](../../docs/data/UU_EXECUTION_RULES.md) | Steam 和 UU 公开规则、旧版适用限制、资金时间字段及访问限制处理 | sha256:824aebde1f40 |
 | [docs/data/UU_FIELD_CONTRACT.md](../../docs/data/UU_FIELD_CONTRACT.md) | 已核验 UU 来源行情、汇总快照及混合逐笔字段定义与执行准入限制 | sha256:a7069d1edce0 |
 | [docs/data/UU_HISTORY_CHART.md](../../docs/data/UU_HISTORY_CHART.md) | UU 历史图表指标映射、两份用户响应的字段与实际间隔核验、统计及决策时间边界 | sha256:35159eb2941f |
-| [docs/governance/ASSET_REGISTER.md](../../docs/governance/ASSET_REGISTER.md) | 旧资产保留依据及按用途准入状态 | sha256:aa2abf608f78 |
+| [docs/governance/ASSET_REGISTER.md](../../docs/governance/ASSET_REGISTER.md) | 旧资产保留依据及按用途准入状态 | sha256:86a7ce7f2ff7 |
 | [docs/governance/CONTRIBUTING.md](../../docs/governance/CONTRIBUTING.md) | 本地工程修改与检查方法 | sha256:b1244b3e6e06 |
 | [docs/governance/FILE_CATALOG.json](../../docs/governance/FILE_CATALOG.json) | 公开文件及目录的用途、版本和内容哈希索引 | layout-1.0.catalog |
 | [docs/governance/FILE_INDEX.md](../../docs/governance/FILE_INDEX.md) | 逐文件与逐目录用途和内容版本的可读索引，由 manage_assets 生成 | layout-1.0.catalog |
@@ -94,7 +95,8 @@
 | [docs/governance/ORGANIZATION.md](../../docs/governance/ORGANIZATION.md) | layout-1.0 整理结果、迁移、清理及恢复方法 | sha256:3399a18b667b |
 | [docs/governance/SECURITY.md](../../docs/governance/SECURITY.md) | 凭证隔离与安全问题处理说明 | sha256:1e28de94832a |
 | [docs/governance/STATE.md](../../docs/governance/STATE.md) | 旧状态路径的兼容入口，当前进展统一到 PROGRESS | sha256:33f3fa4756b9 |
-| [docs/releases/CHANGELOG.md](../../docs/releases/CHANGELOG.md) | 代码历史变更及未发布本地版本说明 | sha256:9ff475cbecf5 |
+| [docs/releases/CHANGELOG.md](../../docs/releases/CHANGELOG.md) | 代码历史变更及未发布本地版本说明 | sha256:9a4395b1edf0 |
+| [docs/research/DATA_METHODS_20261019.md](../../docs/research/DATA_METHODS_20261019.md) | 2025至2026年一手论文与官方实现调研：缺失感知、异常、特征和概率预测的采用理由与候选对照 | sha256:5f30ba32958c |
 | [docs/research/P03_OBSERVATION_PLAN.md](../../docs/research/P03_OBSERVATION_PLAN.md) | 用户本地连续观察的固定窗口、预算、恢复、用途与未启动状态 | sha256:0525e7c988e8 |
 | [docs/research/P03_VERIFICATION_PLAN.md](../../docs/research/P03_VERIFICATION_PLAN.md) | P03 两规格来源、盘口、属性与规则核验范围、预算和验收问题 | sha256:2a0c3cc09406 |
 | [docs/research/P03_VERIFICATION_REPORT.md](../../docs/research/P03_VERIFICATION_REPORT.md) | P03 有限试跑结果、证据、报价异常、未知项和 L0 准入边界 | sha256:c2fb19ab18c7 |
@@ -113,9 +115,10 @@
 | [docs/usage/UU_DIRECT_COLLECT.md](../../docs/usage/UU_DIRECT_COLLECT.md) | 本地纯脚本凭证配置、单请求试采、间隔配额、停止恢复和独立输出说明；不保证Cookie单独可用 | sha256:fb37ca5605d7 |
 | [docs/usage/UU_HISTORY_COLLECT.md](../../docs/usage/UU_HISTORY_COLLECT.md) | 用户登录页面历史采集、下载入库、恢复限制、当前报价用途与UU/SteamDT结合方案 | sha256:405e96e41e84 |
 | [pyproject.toml](../../pyproject.toml) | Python 打包配置及单一源码版本入口 | sha256:5fccbcc7bee3 |
-| [scripts/README.md](../../scripts/README.md) | 代码、配置、测试、SQL 和检查入口说明 | sha256:9787485ffcfe |
+| [scripts/README.md](../../scripts/README.md) | 代码、配置、测试、SQL 和检查入口说明 | sha256:4966fb04e822 |
 | [scripts/build_research_samples.py](../../scripts/build_research_samples.py) | 日级样本构建的兼容CLI/API薄入口，实际实现委托research/data；不联网或训练 | sha256:fb83a73151d8 |
 | [scripts/check_secrets.py](../../scripts/check_secrets.py) | 暂存区及 Git 历史的凭证隔离检查，不打印真实值 | sha256:deeb89ea73de |
+| [scripts/clean_steamdt_data.py](../../scripts/clean_steamdt_data.py) | 七品小时清洗CLI/API薄入口，只读来源、缺失感知网格、事件标记与独立SQLite版本，不训练 | sha256:f46584263495 |
 | [scripts/collect.py](../../scripts/collect.py) | 旧采集 CLI 的薄入口，当前不恢复采集 | sha256:68a4e27d6d7d |
 | [scripts/collect_uu_charts.js](../../scripts/collect_uu_charts.js) | 用户正常登录UU页面的有限历史批次采集，价格四窗口/数量三窗口、内存会话、限流停止与下载检查点；真实稳定性待验收 | sha256:03769ccaa8ae |
 | [scripts/collect_uu_direct.py](../../scripts/collect_uu_direct.py) | 用户本地纯HTTP单请求试采与有限队列继续；私有认证配置、串行间隔、全局配额、继承访问停止及独立SQLite/CSV，真实直连待验收 | sha256:e7df498c12b6 |
@@ -123,6 +126,7 @@
 | [scripts/config/cyrex_baseline_spec.json](../../scripts/config/cyrex_baseline_spec.json) | 评分前固定的基准规则、验证选择准则、测试与研究边界，不按测试结果调参 | sha256:216241720c19 |
 | [scripts/config/cyrex_daily_spec.json](../../scripts/config/cyrex_daily_spec.json) | 次时代日级研究的决策时间、输入窗口、目标、特征、时间划分与研究限制固定规范 | sha256:f5356ed81aa4 |
 | [scripts/config/seeds.json](../../scripts/config/seeds.json) | 旧试采精确英文规格种子，不是正式 UU 名单 | sha256:ddedf38ac869 |
+| [scripts/config/steamdt_cleaning_spec.json](../../scripts/config/steamdt_cleaning_spec.json) | 七品清洗的缺失、价格/量额校验、因果波动诊断与输入质量门槛固定规范 | sha256:902052bafa18 |
 | [scripts/config/steamdt_research_items.json](../../scripts/config/steamdt_research_items.json) | 七个普通百元候选的精确名称、SteamDT编号与历史起点种子；新工作区复制后另行维护 | sha256:07e5852fef23 |
 | [scripts/config/uu_direct_auth.example.json](../../scripts/config/uu_direct_auth.example.json) | UU纯脚本入口的公开空白认证字段模板，不含真实凭证 | sha256:74325fe54cbc |
 | [scripts/config/uu_direct_items.example.json](../../scripts/config/uu_direct_items.example.json) | UU纯脚本单品有限试采的模板和窗口参数样例，44828身份尚未核验 | sha256:b66952eb8f01 |
@@ -132,9 +136,10 @@
 | [scripts/hooks/pre-commit](../../scripts/hooks/pre-commit) | 本地提交前的暂存凭证检查 | sha256:377f8130236b |
 | [scripts/hooks/pre-push](../../scripts/hooks/pre-push) | 历史凭证检查；新增远程推送仍暂停 | sha256:8bcdeaad4b7d |
 | [scripts/import_uu_chart_batch.py](../../scripts/import_uu_chart_batch.py) | 用户浏览器下载批次的纯离线校验与独立SQLite/CSV入库，保留窗口、状态和历史可得时间未知 | sha256:1241a8fc9a35 |
-| [scripts/manage_assets.py](../../scripts/manage_assets.py) | 生成及校验逐文件、逐目录版本和用途清单 | sha256:5f4ee28d9c1f |
+| [scripts/manage_assets.py](../../scripts/manage_assets.py) | 生成及校验逐文件、逐目录版本和用途清单 | sha256:1fbd915202dc |
 | [scripts/notebooks/cyrex_daily_samples.ipynb](../../scripts/notebooks/cyrex_daily_samples.ipynb) | VS Code离线日级样本构建与检查入口，默认不构建、交付空输出；不联网或训练 | sha256:7fb48801d825 |
 | [scripts/notebooks/cyrex_forecast_dashboard.ipynb](../../scripts/notebooks/cyrex_forecast_dashboard.ipynb) | VS Code离线预测评估与可视化入口，默认读取已有结果，显式开关才新建评估版本 | sha256:6bea389cab84 |
+| [scripts/notebooks/steamdt_cleaning.ipynb](../../scripts/notebooks/steamdt_cleaning.ipynb) | VS Code七品清洗与质量检查入口，默认只读已有结果；显式开关新建版本，不采集或训练 | sha256:7c8e0bfcec8e |
 | [scripts/notebooks/steamdt_research.ipynb](../../scripts/notebooks/steamdt_research.ipynb) | VS Code有限采集入口：商品清单、默认关闭联网、手动续采与本地报告；交付空输出 | sha256:03bd3cc1cdc2 |
 | [scripts/notebooks/uu_history_collect.ipynb](../../scripts/notebooks/uu_history_collect.ipynb) | 用户本地历史采集指引、选择下载批次、离线入库与覆盖检查；无训练代码、交付空输出 | sha256:1ea2126830c2 |
 | [scripts/notebooks/uu_observe_24h.ipynb](../../scripts/notebooks/uu_observe_24h.ipynb) | VS Code 用户本地 24 小时连续观察 Notebook，交付时输出清空且未执行 | sha256:750039fe0738 |
@@ -142,6 +147,7 @@
 | [scripts/pilot_uu_day.py](../../scripts/pilot_uu_day.py) | 单品单日 YOUPIN 小时行情与混合成交的独立有限试跑、离线核验及导出 | sha256:774810dd3002 |
 | [scripts/research/__init__.py](../../scripts/research/__init__.py) | 研究功能包的职责与公共接口 | sha256:8dd0a4a413e6 |
 | [scripts/research/data/__init__.py](../../scripts/research/data/__init__.py) | 研究功能包的职责与公共接口 | sha256:46b38c5c0e0c |
+| [scripts/research/data/clean_hourly.py](../../scripts/research/data/clean_hourly.py) | steamdt-hourly-cleaning-1.0：只读七品源版本、NULL/mask、原值保留、因果事件诊断与质量窗口 | sha256:3cd3d20e5a82 |
 | [scripts/research/data/daily_samples.py](../../scripts/research/data/daily_samples.py) | cyrex-daily-samples-1.1：只读冻结小时来源、28天样本、七日标签与准确依赖快照 | sha256:23f74b22ed36 |
 | [scripts/research/evaluation/__init__.py](../../scripts/research/evaluation/__init__.py) | 研究功能包的职责与公共接口 | sha256:818a99b0001f |
 | [scripts/research/evaluation/baseline_report.py](../../scripts/research/evaluation/baseline_report.py) | 候选完整性校验、验证选择及锁定测试、预测与实验清单 | sha256:010e93701560 |
@@ -190,6 +196,7 @@
 | [scripts/tests/test_collection.py](../../scripts/tests/test_collection.py) | collection 模块的离线行为回归测试 | sha256:c27cd56c8d63 |
 | [scripts/tests/test_forecast_charts.py](../../scripts/tests/test_forecast_charts.py) | forecast_charts 模块的离线行为回归测试 | sha256:cf3eee00c549 |
 | [scripts/tests/test_history.py](../../scripts/tests/test_history.py) | history 模块的离线行为回归测试 | sha256:c923f30defdd |
+| [scripts/tests/test_hourly_cleaning.py](../../scripts/tests/test_hourly_cleaning.py) | hourly_cleaning 模块的离线行为回归测试 | sha256:e6fe6e394bdf |
 | [scripts/tests/test_observe.py](../../scripts/tests/test_observe.py) | observe 模块的离线行为回归测试 | sha256:09d8ce145210 |
 | [scripts/tests/test_parsing.py](../../scripts/tests/test_parsing.py) | parsing 模块的离线行为回归测试 | sha256:de780b4e0af1 |
 | [scripts/tests/test_research_baselines.py](../../scripts/tests/test_research_baselines.py) | research_baselines 模块的离线行为回归测试 | sha256:4edb8a6902ea |
