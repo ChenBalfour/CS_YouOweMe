@@ -1,12 +1,13 @@
 # 文件管理规范
 
-版本 management-1.3，目录版本 layout-1.0，2026-10-14（北京时间）。2026-10-12 用户要求略读、清理、按脚本/数据/文档收拢并逐项管理版本；整理已完成，当前阶段以三大主文档为准。本次确定持续更新规则，并清理重复说明及可再生缓存。
+版本 management-1.4，目录版本 layout-1.0，2026-10-19（北京时间）。2026-10-12 用户要求略读、清理、按脚本/数据/文档收拢并逐项管理版本；整理已完成，当前阶段以三大主文档为准。本次确定持续更新规则，并清理重复说明及可再生缓存。
 
 ## 目录职责
 
 | 位置 | 职责 |
 | --- | --- |
-| scripts/src/cs_youoweme/ | 分层源码，后续采集、变换、特征、模型与回测实现 |
+| scripts/src/cs_youoweme/ | 冻结0.3.5采集核心与历史实现，旧运行保持原版 |
+| scripts/research/data、models、evaluation、visualization | 当前离线研究按数据、规则、验证、图表分包；Notebook调用而不复制实现 |
 | scripts/collect.py、check_secrets.py、manage_assets.py | 薄命令入口、凭证检查、版本清单维护 |
 | scripts/tests/、sql/、config/、hooks/ | 代码配套的离线验证、查询、配置与 hooks |
 | data/local/ | 私有原始证据、旧资产及后续正式数据和实验产物 |
@@ -28,11 +29,13 @@
 - Git 本地提交保存代码、说明和公开清单的可恢复历史；私有数据靠来源清单、哈希和冻结版本管理，不存入 Git。
 - 修改后运行 `python -B scripts/manage_assets.py --write`，随后 `--check`。清单过期、缺说明、缺文件均应修正后再收尾。
 
-三大主文档以各自页首版本为准；兼容计划 plan-1.7、选品计划 selection-plan-1.2、代码 0.3.5、目录 layout-1.0、制度 management-1.3、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)，当前阶段见 PROGRESS。
+三大主文档以各自页首版本为准；兼容计划 plan-1.7、选品计划 selection-plan-1.2、代码 0.3.5、目录 layout-1.0、制度 management-1.4、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)，当前阶段见 PROGRESS。
 
-scripts/notebooks 保存用户本地运行入口，交付的 Git 版本保持 execution_count=null、outputs=[]；实际观察写独立 data/local/staging/steamdt/p03_steamdt_observe_*，用户可能另外保存单元格输出。保留用户工作副本，不为文档提交自动清空或覆盖；本次提交只纳入本次文档/管理变更，不提交用户已执行 Notebook。若将来需要提交入口修改，先私有保存准确执行版本，再处理仅供提交的空输出版本。私有恢复指针与首轮成功不能当作完成一天验收。
+scripts/notebooks 保存用户本地运行入口，交付的 Git 版本保持 execution_count=null、outputs=[]；实际观察写独立 data/local/staging/steamdt/p03_steamdt_observe_*，用户可能另外保存单元格输出。保留用户工作副本，不为提交自动清空或覆盖；提交仅纳入当前任务变更，不擅自提交用户执行输出。若需要修改已有入口，先私有保存准确执行版本，再处理仅供提交的空输出版本。私有恢复指针与首轮成功不能当作完成一天验收。
 
 公开清单记录当前工作副本内容，因此用户保存 Notebook 输出会产生本地哈希变更。仅提交文档时，提交中的公开清单按 Notebook 原 Git 版本记录，提交后重新生成工作区清单，使工作副本输出仍有可检查的内容版本；用户输出及对应清单差异可以保持未提交。
+
+新基准评估放data/local/artifacts/baseline_evaluations，每轮图放data/local/reports/baseline_charts。两者独立清单，图表不追加到已冻结评估。逐品价格和UU报价快照长期落盘，Notebook内存不替代数据层；准确源码依赖在每版产物中保存。
 
 ## 私有数据生命周期
 

@@ -1,42 +1,44 @@
 # CS_YouOweMe
 
-面向悠悠有品的 CS2 普通百元枪皮研究 demo，评估七日 CD 实际解锁后退出的价格、净收益风险和可成交性。当前只有 L0 来源观察；正式数据集、训练模型和完整决策 demo 尚未实现。
+面向悠悠有品的 CS2 普通百元枪皮研究 demo：SteamDT 小时来源数据 → 七日参考价格预测 → UU 当前匹配报价与成本/实际解锁判断。已有七品小时库、次时代日级样本、固定基准评估和价格图；完整买卖决策仍待接入执行证据。
 
 ## 三个主文档
 
 | 文档 | 用途 |
 | --- | --- |
-| [产品说明](docs/PRODUCT.md) | 目标、用户流程、选品与退出策略、建议输出和验收要求 |
-| [产品架构](docs/ARCHITECTURE.md) | 当前实现、数据流、存储恢复、后续模型与执行边界 |
-| [当前进展与卡点](docs/PROGRESS.md) | 已完成成果、实际运行、卡点、下一步和每次操作记录 |
+| [产品说明](docs/PRODUCT.md) | 目标、选品、七日CD退出策略和验收 |
+| [产品架构](docs/ARCHITECTURE.md) | 当前数据流、功能包、存储和待建能力 |
+| [当前进展与卡点](docs/PROGRESS.md) | 数据量、评估结果、验证、卡点和操作记录 |
 
-先读这三份文档。每次操作完成后更新进展；目标或实现变化同步对应主文档。专项依据和操作指南见 [文档索引](docs/README.md)。
+## 现在主要用这三个 Notebook
 
-UU历史新入口：[采集与入库步骤](docs/usage/UU_HISTORY_COLLECT.md)、[用户Notebook](scripts/notebooks/uu_history_collect.ipynb)。浏览器正常登录后由用户显式采集，真实稳定性待验收；当前没有训练模型。
+| 顺序 | VS Code 文件 | 做什么 |
+| --- | --- | --- |
+| 1 | [steamdt_research.ipynb](scripts/notebooks/steamdt_research.ipynb) | 用户手动更新小时数据库、检查续采/覆盖 |
+| 2 | [cyrex_daily_samples.ipynb](scripts/notebooks/cyrex_daily_samples.ipynb) | 从已保存数据离线生成日级候选版本 |
+| 3 | [cyrex_forecast_dashboard.ipynb](scripts/notebooks/cyrex_forecast_dashboard.ipynb) | 读取或明确新建基准评估，显示历史、七日路径和测试误差 |
 
-新增[纯脚本有限试用入口](docs/usage/UU_DIRECT_COLLECT.md)：运行时不打开网页，登录信息仅在本机私有配置；先尝试一组，再显式继续。44828纯脚本七组已完整成功，共1360条窗口记录，原始JSON/SQLite/CSV一致；多轮、多商品与统计口径仍待验收，旧受限入口保持原记录。
+默认不启动采集/新评估。已有本轮结果时，第3个 Notebook 直接运行全部即可看图。各轮输入与输出另存在本地；Notebook不是唯一存储。见[采集说明](docs/usage/STEAMDT_RESEARCH.md)、[样本规范](docs/data/CYREX_DAILY_SAMPLES.md)、[图表说明](docs/usage/FORECAST_DASHBOARD.md)。
 
-新增 [SteamDT 本地小时数据库 Notebook](scripts/notebooks/steamdt_research.ipynb) 与[使用说明](docs/usage/STEAMDT_RESEARCH.md)：集中维护商品名称/编号，首次回补、保存分页检查点、再次启动续采，近期增量去重并保留来源修订。默认关闭联网，由用户手动运行；实际覆盖见进展和私有报告。
+初次验证选择了“价格持平”，当前趋势外推没有超过它。来源预测不是可成交价或净利润；尚未拟合深度模型，没有自动买卖。
 
-新增[次时代日级候选样本 Notebook](scripts/notebooks/cyrex_daily_samples.ipynb) 与[字段/操作说明](docs/data/CYREX_DAILY_SAMPLES.md)：离线把28天过去序列与七日来源参考目标整理为独立候选版本，保留缺失、未成熟标签和时间隔离；没有拟合模型或生成交易建议。
-
-研究方案新增[SteamDT主序列与UU补充对齐](docs/data/SOURCE_ALIGNMENT_PLAN.md)：保留小时原始数据、按决策时点使用过去已知值，不人为制造细粒度波动；尚未构建正式特征或训练。
+## 文件分工与版本
 
 | 目录 | 内容 |
 | --- | --- |
-| [scripts](scripts/README.md) | Notebook、CLI、源码、配置、测试、SQL 与 hooks |
-| [data](data/README.md) | 私有数据库、原始证据和冻结公开样本 |
-| [docs](docs/README.md) | 三大主文档与字段、运行、管理、版本附件 |
+| [scripts](scripts/README.md) | Notebook、薄入口、按data/models/evaluation/visualization分工的research包及冻结采集核心 |
+| [data](data/README.md) | 私有小时SQLite、原始响应、UU快照、候选、评估与图表 |
+| [docs](docs/README.md) | 三大主文档、字段、使用、治理及历史附件 |
 
-运行代码 **0.3.5（本地未发布）**，目录 **layout-1.0**，制度 **management-1.3**。全部文件和目录的用途、内容版本见 [索引](docs/governance/FILE_INDEX.md)与 [SHA-256 清单](docs/governance/FILE_CATALOG.json)。
+冻结核心 **0.3.5（本地未发布）**；独立组件分别版本化。文件/目录用途与SHA-256见[索引](docs/governance/FILE_INDEX.md)和[清单](docs/governance/FILE_CATALOG.json)。已有原始证据、用户Notebook输出和冻结运行保留；只清理有依据的缓存或冗余。
 
-离线检查：
+本轮相关离线检查：
 
 ```powershell
-python -B -m unittest discover -s scripts/tests -v
+python -B -m unittest scripts.tests.test_research_samples scripts.tests.test_research_baselines scripts.tests.test_forecast_charts -v
 python -B scripts/manage_assets.py --check
 ```
 
-采集由用户自己本地显式启动，见 [Notebook 说明](docs/usage/OBSERVE_24H.md)。已有运行和输出保留，agent 不代运行连续采集或后台任务。当前停止新增 GitHub push、PR、合并与 release。本地 Git 记录版本，原始数据和凭证留在忽略目录。
+UU补充入口见[纯脚本说明](docs/usage/UU_DIRECT_COLLECT.md)、[历史图表Notebook](scripts/notebooks/uu_history_collect.ipynb)。登录信息仅由用户本地维护，不贴聊天或加入Git。采集由用户显式本地运行，不代启动持续采集、后台/定时服务。仅保存本地Git版本，新增远程推送、PR和release暂停。
 
-原创代码与文档采用 [MIT](LICENSE)。第三方数据及商标权利归其权利人。
+原创代码与文档采用[MIT](LICENSE)。第三方数据及商标权利归其权利人。

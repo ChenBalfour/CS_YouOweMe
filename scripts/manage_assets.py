@@ -30,7 +30,11 @@ PURPOSES = {
     "scripts/pilot_uu_day.py": "单品单日 YOUPIN 小时行情与混合成交的独立有限试跑、离线核验及导出",
     "scripts/select_uu_research.py": "有预算的 P02 候选调查、正确商品身份补查和版本化验证名单选择",
     "scripts/steamdt_research.py": "SteamDT显式悠悠小时研究库：商品登记、有限回补、分页续采、增量复核、修订追溯及报告，独立组件1.0",
-    "scripts/build_research_samples.py": "标准库离线构建次时代日级候选：28天序列、七日来源标签、时间留出隔离与输入输出追溯；不训练",
+    "scripts/build_research_samples.py": "日级样本构建的兼容CLI/API薄入口，实际实现委托research/data；不联网或训练",
+    "scripts/evaluate_research_baselines.py": "离线固定规则基准评估薄入口：验证集选规则、锁定测试和七日来源参考预测，不执行交易",
+    "scripts/config/cyrex_baseline_spec.json": "评分前固定的基准规则、验证选择准则、测试与研究边界，不按测试结果调参",
+    "scripts/notebooks/cyrex_forecast_dashboard.ipynb": "VS Code离线预测评估与可视化入口，默认读取已有结果，显式开关才新建评估版本",
+    "docs/usage/FORECAST_DASHBOARD.md": "预测图表Notebook、固定基准、评价指标、保存位置与成本/执行边界说明",
     "scripts/config/cyrex_daily_spec.json": "次时代日级研究的决策时间、输入窗口、目标、特征、时间划分与研究限制固定规范",
     "scripts/notebooks/cyrex_daily_samples.ipynb": "VS Code离线日级样本构建与检查入口，默认不构建、交付空输出；不联网或训练",
     "docs/data/CYREX_DAILY_SAMPLES.md": "次时代日级候选字段、28天序列、七日价格目标、缺失/隔离规则和Notebook操作说明",
@@ -125,6 +129,11 @@ FOLDERS = {
     ".github": "GitHub 工具约定的根目录配置",
     ".github/workflows": "既有自动检查配置",
     "scripts": "所有可执行代码及其工程配套",
+    "scripts/research": "当前离线研究包，按数据、模型、评估、可视化分工；独立于冻结采集核心",
+    "scripts/research/data": "冻结来源快照、日级特征序列、七日标签与时间隔离",
+    "scripts/research/models": "固定价格预测基准及以后经批准的模型实现",
+    "scripts/research/evaluation": "候选校验、验证集选择、锁定测试、成本情景和不可变评估产物",
+    "scripts/research/visualization": "历史、测试期真实/预测价格及七日路径图表，不联网或训练",
     "scripts/src": "Python 包源码",
     "scripts/src/cs_youoweme": "旧技术实现，可按对应用途审查复用",
     "scripts/src/cs_youoweme/collectors": "旧公开页面、官方和匿名接口采集机制",
@@ -141,6 +150,10 @@ FOLDERS = {
     "data/samples": "已公开、冻结待复审的旧匿名样本",
     "data/local": "私有历史证据与本地运行产物，不加入 Git",
     "data/local/manifests": "私有文件清单、整理前基线及逐项迁移删除记录",
+    "data/local/artifacts": "离线研究实验和评估的独立版本，不存原始市场凭证",
+    "data/local/artifacts/baseline_evaluations": "固定基准的不可变评估、规则选择、预测表、准确源码与哈希清单",
+    "data/local/reports": "由冻结研究产物生成的可复核报告与图表",
+    "data/local/reports/baseline_charts": "每次评估的图表输出、绘图配置及独立版本清单",
     "data/local/database": "旧 SteamDT 试采库及其伴随原始证据",
     "data/local/database/raw": "旧来源内容寻址压缩响应",
     "data/local/api_cache": "旧官方目录与配额状态缓存，不自动刷新",
@@ -192,6 +205,12 @@ def purpose(path):
     if path in PURPOSES:
         return PURPOSES[path]
     name = Path(path).name
+    if path.startswith("scripts/research/"):
+        return {"__init__.py": "研究功能包的职责与公共接口", "daily_samples.py": "cyrex-daily-samples-1.1：只读冻结小时来源、28天样本、七日标签与准确依赖快照", "baselines.py": "仅使用过去价格特征的持平/固定对数趋势规则与七日路径", "baseline_report.py": "候选完整性校验、验证选择及锁定测试、预测与实验清单", "costs.py": "已知买价与费用的保本情景计算；未知输入保留为不足", "forecast_charts.py": "来源历史、真实七日目标与固定规则预测路径的Matplotlib图表及版本报告"}.get(name, "离线研究的功能实现与公共接口")
+    if path.startswith("data/local/artifacts/baseline_evaluations/"):
+        return "基准评估实际执行的源码或固定规范快照" if "/source/" in path else {"latest.json": "指向一个具体基准评估版本的本地便捷入口", "manifest.json": "候选/源码/规范/产物哈希与规则选择、非执行研究限制", "metrics.json": "验证集及锁定测试价格误差、基准对照与有效样本数量", "forecast.csv": "固定来源时点的day0至day7参考预测路径，不是未来真实行情", "history.csv": "用于图表的最近28天来源小时价格", "report.md": "固定基准的评估结果、用途和限制说明"}.get(name, "固定规则基准的离线评估、预测或复核附件")
+    if path.startswith("data/local/reports/baseline_charts/"):
+        return "冻结评估对应的价格图、输入/绘图版本清单或复核附件"
     if path.startswith("data/local/staging/research_samples/"):
         return "该候选构建器或规范的准确源码快照" if "/source/" in path else {"source_hourly.csv": "按已保存运行请求上限固定的次时代小时输入快照", "samples.csv": "单品日级过去特征、未来七日来源标签、缺失/成熟度和时间划分候选", "sequence.csv": "每个候选时点的28个历史日段，完整性与可空来源量额保留", "quality_report.json": "候选数量、缺口、未成熟、时间隔离和分组可用计数", "manifest.json": "候选输入、来源/源码/规范哈希、输出清单与未批准训练的版本记录", "report.md": "单品日级候选构建结果、范围、质量和研究用途限制", "latest_cyrex.json": "指向一个具体单品日级候选版本的本地入口"}.get(name, "单品日级研究候选的私有构建、验收或追溯附件")
     if protected(Path(path)):
@@ -265,6 +284,12 @@ def purpose(path):
 def folder_purpose(path):
     if path in FOLDERS:
         return FOLDERS[path]
+    if path.startswith("scripts/research/"):
+        return "当前离线研究的功能包与公共接口"
+    if path.startswith("data/local/artifacts/baseline_evaluations/"):
+        return "一次不可变基准评估的预测、分组误差、输入与源码快照"
+    if path.startswith("data/local/reports/baseline_charts/"):
+        return "一次冻结评估对应的价格图及绘图输入/版本清单"
     if path.startswith("data/local/staging/research_samples/"):
         return "离线日级样本候选的独立版本、准确源码/规范、冻结输入、特征/标签、序列与验收报告"
     if path.startswith("data/local/staging/uu_charts/"):

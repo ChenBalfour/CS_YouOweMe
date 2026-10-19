@@ -1,9 +1,11 @@
 # 既有资产登记
 
-登记版本 asset-register-2.6，2026-10-19。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
+登记版本 asset-register-2.7，2026-10-19。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
+| research/{data,models,evaluation,visualization}、evaluate_research_baselines、cyrex_forecast_dashboard | current / exploratory-fixed-rule-evaluation | 函数分包、固定基准与测试误差和七日路径；原候选/评估/图表独立冻结，未拟合深度模型、未验证执行收益 | P04研究/P05基准 |
+| data/local/artifacts/baseline_evaluations、reports/baseline_charts | private / immutable-research-artifacts | 初次持平获选及验证/测试、源码、绘图输入和哈希，包含失败/无效信号依据，不覆盖或为调参删测试结果 | 研究复核 |
 | build_research_samples.py、cyrex_daily_spec、对应Notebook、staging/research_samples | candidate / retrospective-research-only | 单品28天过去序列与168小时来源目标、时间隔离和精确输入输出追溯；历史可得时间未验收，不批准正式训练或执行 | P04候选准备 |
 | scripts/steamdt_research.py、对应Notebook/初始清单、data/local/staging/steamdt/research_20261016_v1 | candidate / L0-research | 独立小时库、商品映射、分页回补/续采、近期增量复核与修订证据；按实际报告检查覆盖，不直接训练或执行 | P03 |
 | UU_HISTORY_CHART、data/local/recon/user_uu_history_chart_20261014 | current / user-evidence-pending-verification | UU历史在售数量/成交价格与BUFF辅助入口可见；已取得用户价格附件与数量聊天投影；核验字段及本次间隔，身份/统计/其他窗口待验收，证据私有 | P03 |
@@ -47,4 +49,6 @@
 
 本次 11 项删除均列入私有 layout-1.0-changes.json，说明依据、哈希与 Git blob 或保留副本。重复 DESIGN/ROADMAP 索引由 PLAN/STATE 取代；旧单文件代码、旧测试及 VERSION 已有完全一致的 Git 历史，无需保留第二份。文件内容版本和各子目录说明详见 FILE_CATALOG 与私有清单。
 
-旧记录曾报告 44,502 个目录规格、119,520 条小时行情、1,420 条成交；本次未查询旧库重新验证。原验证名单 **10**、候补 **6**，当前百元待复核主力线索 **7**，新版名单未冻结；已验收正式数据集与模型仍为 **0**。
+旧记录曾报告 44,502 个目录规格、119,520 条小时行情、1,420 条成交；本次未查询旧库重新验证。原验证名单 **10**、候补 **6**，当前百元待复核主力线索 **7**，新版执行名单未冻结；正式数据集与拟合模型仍为 **0**，已有单品候选与固定规则评估。
+
+2026-10-19研究包整理另删除17个可再生pyc（158943字节）和4个空目录，逐项哈希/路径/恢复依据与692文件保留核验见私有manifests/cleanup_20261019_134557_cache_v1。15个旧根入口有引用或证据用途保留；旧库、raw、Notebook输出、准确运行源码和凭证均未动。

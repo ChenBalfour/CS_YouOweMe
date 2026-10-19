@@ -1,35 +1,46 @@
-# 脚本与工程配套
+# 代码与运行入口
 
-目录版本 layout-1.0，代码版本 0.3.5（本地未发布）。每个文件和子目录的用途、SHA-256 内容版本见 [统一清单](../docs/governance/FILE_CATALOG.json)。
+冻结采集核心0.3.5保持原版；当前研究包独立版本化。文件与目录用途、内容SHA见[统一索引](../docs/governance/FILE_INDEX.md)。
 
-| 位置 | 用途与保留依据 |
+## 日常三个入口
+
+1. [steamdt_research.ipynb](notebooks/steamdt_research.ipynb)：更新七品小时SQLite、查看任务和缺口；[操作说明](../docs/usage/STEAMDT_RESEARCH.md)。
+2. [cyrex_daily_samples.ipynb](notebooks/cyrex_daily_samples.ipynb)：冻结本地来源并构建次时代日级样本；[字段说明](../docs/data/CYREX_DAILY_SAMPLES.md)。
+3. [cyrex_forecast_dashboard.ipynb](notebooks/cyrex_forecast_dashboard.ipynb)：基准评估、历史/预测图、测试误差；[图表说明](../docs/usage/FORECAST_DASHBOARD.md)。
+
+新版交付Notebook默认关闭变更开关。用户已经保存的旧Notebook输出不清空。重启内核可加载本次包迁移后的代码。
+
+## 按功能放实现
+
+| 包/入口 | 职责 |
 | --- | --- |
-| steamdt_research.py、notebooks/steamdt_research.ipynb | 独立组件 steamdt-research-1.0：商品登记、悠悠小时回补/增量/断点恢复、SQLite去重与修订、4h/日/周导出；默认不联网，见[使用说明](../docs/usage/STEAMDT_RESEARCH.md) |
-| config/steamdt_research_items.json | 新研究工作区的七品种子；工作清单在该工作区registry.json，增加商品不改采集代码 |
-| build_research_samples.py、notebooks/cyrex_daily_samples.ipynb | 标准库离线构建次时代日级研究候选：28天序列、七日标签、时间留出隔离与质量/版本报告；不联网或训练，见[说明](../docs/data/CYREX_DAILY_SAMPLES.md) |
-| config/cyrex_daily_spec.json | 日级样本的固定研究规范；改参数要生成新候选版本 |
-| collect.py | 旧 CLI 入口，保留解析、存储和任务机制参考 |
-| check_secrets.py | 提交和历史凭证检查，仅输出位置与结果 |
-| select_uu_research.py | 有预算 P02 调查、身份修订与版本化研究名单，不创建历史队列 |
-| local/selection_sources/ | 按运行保存实际 P02 采集源码，保持私有 |
-| pilot_uu_day.py | 单品单日有限采集、独立试跑库、CSV 导出与离线核验 |
-| verify_public_evidence.py | 有预算公开页面/规则和三类已发现 UU 只读入口核验；本轮 UU 主机受限已停止 |
-| verify_uu_fields.py | 两规格 UU 汇总比较字段补查，独立库；不自动执行 |
-| review_uu_verification.py | 指定冻结运行的只读复核与私有观察导出，不采集市场 |
-| review_uu_chart.py | 用户图表响应的纯离线核验，价格/数量分列，保存独立 SQLite/CSV；工具版本 uu-chart-review-1.0，见[用法](../docs/usage/UU_CHART_EXPORT.md) |
-| collect_uu_charts.js、import_uu_chart_batch.py | 用户已登录UU页面的有限历史批次采集与纯离线入库；价格7/30/90天/半年，数量7/15/30天，共7组；44828单轮完整七组已核验，多轮稳定性和自动商品导航待验收 |
-| collect_uu_direct.py | 本地标准库纯HTTP有限试用：plan不联网、probe最多一请求、resume只继续pending；默认15秒请求/60秒商品间隔，44828七组1360条窗口记录已核验，多商品与多轮待验收，见[用法](../docs/usage/UU_DIRECT_COLLECT.md) |
-| notebooks/uu_history_collect.ipynb | 浏览器操作指引、选择下载JSON、入库与覆盖检查；没有训练代码，交付时未执行 |
-| notebooks/uu_observe_24h.ipynb | 用户在 VS Code 手动运行的连续观察入口，交付时未执行 |
-| observe_uu_24h.py | 用户显式新建/恢复/只读状态 CLI，与 Notebook 共用同一机制 |
-| local/pilot_sources/ | 私有实际运行源码版本，哈希与采集/核验清单对应 |
-| manage_assets.py | 生成或检查文件、目录版本清单 |
-| src/cs_youoweme/ | 分层源码；新增 verification 的 L0 字段解释，UU 执行口径尚未验收 |
-| tests/ | 离线回归，检验解析、精度、恢复及凭证隔离 |
-| sql/ | 旧历史库只读诊断查询 |
-| config/ | 种子、观察线索、空白模板、可选工作区和私有凭证 |
-| hooks/ | 本地提交与推送凭证检查 |
+| research/data/daily_samples.py | 样本组件1.1；只读小时快照、28天序列、七日标签和时间隔离 |
+| research/models/baselines.py | 固定持平与3/7/14日趋势规则；没有训练参数 |
+| research/evaluation/baseline_report.py | 校验候选、验证选规则、锁定测试与不可变评估 |
+| research/evaluation/costs.py | 显式报价/费用的保本情景；缺参不当0 |
+| research/visualization/forecast_charts.py | 历史、目标/预测、七日路径和PNG报告 |
+| build_research_samples.py | 原样本CLI/API兼容薄入口 |
+| evaluate_research_baselines.py | 离线评估薄入口 |
+| steamdt_research.py | 采集组件1.0：registry、回补/增量、检查点、修订与导出 |
+| config/ | 商品种子、样本/评估固定规范和受保护本地配置 |
+| tests/ | 离线行为测试 |
+| manage_assets.py、check_secrets.py、hooks/ | 逐文件版本与提交凭证检查 |
 
-从项目根运行 `python -B -m unittest discover -s scripts/tests -v`。`collect.py --version` 不调用市场接口；其他旧采集命令仍需对应部分的明确范围。
+采集和研究使用Python3.11+标准库，图表另需Matplotlib。研究包从项目根导入；冻结核心仍位于src/cs_youoweme。源码准确快照由各轮清单保留，不能移动到旧运行里。
 
-每次操作完成更新 [主进展](../docs/PROGRESS.md)，实现变化同步 [产品架构](../docs/ARCHITECTURE.md)。修改文件后先检查，再运行 `python -B scripts/manage_assets.py --write` 更新清单，随后 `--check` 核对。本地 hooks 路径为 `scripts/hooks`。不要把生成缓存、原始数据或模型产物放入此目录。
+## UU与历史兼容入口
+
+| 文件/目录 | 保留用途 |
+| --- | --- |
+| collect_uu_direct.py | 本地有限UU纯HTTP采集；登录配置仅由用户填写，见[说明](../docs/usage/UU_DIRECT_COLLECT.md) |
+| collect_uu_charts.js、import_uu_chart_batch.py、review_uu_chart.py | 已登录页面历史图表、纯离线导入与指标核验 |
+| notebooks/uu_history_collect.ipynb | 用户图表导出与入库 |
+| observe_uu_24h.py、notebooks/uu_observe_24h.ipynb | 原有限连续观察/恢复；已有运行和输出保持 |
+| collect.py、src/cs_youoweme/、sql/ | 旧采集核心、查询与恢复机制；仍被当前入口依赖 |
+| pilot_uu_day.py、select_uu_research.py | 原有限试跑与选品调查 |
+| verify_public_evidence.py、verify_uu_fields.py、review_uu_verification.py | 原来源/字段证据与冻结运行复核 |
+| local/ | 私有准确运行源码，不提交Git |
+
+这些入口仍有引用或证据用途，不能当垃圾删除。当前新研究实现集中在research包，不在Notebook重复堆计算代码。
+
+修改后更新[进展](../docs/PROGRESS.md)、架构和资产清单。本轮针对性验证命令见根README；无需为画图重复跑市场请求或完整旧回归。

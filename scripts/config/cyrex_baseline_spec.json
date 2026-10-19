@@ -1,0 +1,16 @@
+{
+  "version": "cyrex-fixed-baselines-1.0",
+  "evaluation_scope": "exploratory_retrospective_evaluation",
+  "market_hash_name": "USP-S | Cyrex (Factory New)",
+  "horizon_days": 7,
+  "models_in_tie_order": ["persistence", "log_drift_3d", "log_drift_7d", "log_drift_14d"],
+  "forecast_formula": "persistence=P_t; log_drift_Ld=P_t*exp(log1p(x_return_Ld)/L*day)",
+  "model_inputs": ["x_reference_close", "x_return_3d", "x_return_7d", "x_return_14d"],
+  "selection_split": "validation",
+  "selection_metric": "mae_cny",
+  "test_policy": "lock_model_after_validation_then_report_selected_and_persistence_only",
+  "fit_parameters": false,
+  "historical_available_at_verified": false,
+  "execution_profit_modelled": false,
+  "label_overlap_policy": "overlapping_7d_labels_are_not_independent_trades"
+}

@@ -49,3 +49,11 @@
 清理前Git基线为 `babb125`，私有 `data/local/manifests/cleanup_20261014_before.json` 保存数据保留基线，`cleanup_20261014_changes.json` 保存每项路径、类型、理由、大小、SHA-256、Git blob与恢复依据，另保留旧私有CURRENT原文。公开内容用Git本地提交保存，私有文件依靠清单和准确快照管理。
 
 恢复需要时，先从上述提交或blob导出到独立恢复位置并核对哈希，再决定使用；不要用旧版本覆盖当前主文档。Notebook执行输出仍留工作副本，不加入本次Git提交。检查结果和本次操作记录统一见 [PROGRESS](../PROGRESS.md)。
+
+## 2026-10-19 当前研究按功能整理
+
+新增scripts/research/data、models、evaluation、visualization，将活跃研究计算从入口和Notebook移入功能包。旧build_research_samples.py保持22行兼容入口；采集组件和冻结核心不移动。根README现在先列采集、样本、预测三步，三大主文档继续是唯一当前说明。
+
+本次清理17个可再生pyc，共158943字节，移除4个空缓存目录。私有manifests/cleanup_20261019_134557_cache_v1保存每项路径、删除前SHA、理由与源码重建依据；verification确认旧692文件全部保留且哈希一致，缓存与基线无交集。15个旧脚本仍有引用或证据用途保留。没有清理数据库、唯一来源、停止/配额、用户Notebook输出或凭证。
+
+改写前架构与入口文档可从本地Git基线25a0627恢复到独立目录查看，不覆盖当前主文档。样本、评估和图表按独立ID冻结，本次不把相同表当无用运行删除。

@@ -1,6 +1,8 @@
 # 次时代崭新：日级研究样本与七日目标
 
-版本 **cyrex-daily-samples-guide-1.0**；2026-10-19（北京时间）。构建组件 **cyrex-daily-samples-1.0**，规则配置 **cyrex-daily-spec-1.0**。
+版本 **cyrex-daily-samples-guide-1.1**；2026-10-19（北京时间）。构建组件 **cyrex-daily-samples-1.1**，规则配置 **cyrex-daily-spec-1.0**。
+
+样本实现已移至scripts/research/data/daily_samples.py，原CLI/API仍兼容；重启Notebook内核加载新版本。新产物冻结主实现、薄入口和包初始化依赖，旧1.0候选不变且可继续读。预测评估和画图使用[另一个Notebook](../../scripts/notebooks/cyrex_forecast_dashboard.ipynb)。
 
 本工具将已保存的 SteamDT 显式悠悠小时来源数据，整理为单品的每日研究样本与 28 日序列。它只在本地离线运行，不发市场请求、不训练模型、不产生买卖建议。产物仍是待验收候选样本，`training_approved=false`。
 

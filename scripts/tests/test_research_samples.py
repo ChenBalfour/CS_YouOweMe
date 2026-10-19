@@ -15,7 +15,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from scripts import build_research_samples as sample_builder
+from scripts.research.data import daily_samples as sample_builder
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -248,6 +248,14 @@ class DailySampleTests(unittest.TestCase):
             digest_before = hashlib.sha256(database.read_bytes()).hexdigest()
             with patch.multiple(sample_builder, BASE=temporary_path / "outputs", SOURCE_BASE=source_root):
                 first = sample_builder.build("research_fixture", "first", ROOT / "scripts/config/cyrex_daily_spec.json")
+                self.assertEqual(first["version"], "cyrex-daily-samples-1.1")
+                self.assertEqual(set(first["code_files"]), set(sample_builder.CODE_FILES))
+                self.assertEqual(first["code_sha256"], first["code_files"][sample_builder.CODE_PATH]["sha256"])
+                for relative, item in first["code_files"].items():
+                    snapshot = Path(first["output_dir"]) / item["snapshot"]
+                    self.assertEqual(snapshot.read_bytes(), (ROOT / relative).read_bytes())
+                    self.assertEqual(hashlib.sha256(snapshot.read_bytes()).hexdigest(), item["sha256"])
+                    self.assertIn(item["snapshot"], first["outputs"])
                 self.assertTrue(first["source_database_unchanged"])
                 self.assertFalse(first["training_approved"])
                 self.assertEqual(hashlib.sha256(database.read_bytes()).hexdigest(), digest_before)
