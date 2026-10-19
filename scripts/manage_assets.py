@@ -30,6 +30,10 @@ PURPOSES = {
     "scripts/pilot_uu_day.py": "单品单日 YOUPIN 小时行情与混合成交的独立有限试跑、离线核验及导出",
     "scripts/select_uu_research.py": "有预算的 P02 候选调查、正确商品身份补查和版本化验证名单选择",
     "scripts/steamdt_research.py": "SteamDT显式悠悠小时研究库：商品登记、有限回补、分页续采、增量复核、修订追溯及报告，独立组件1.0",
+    "scripts/build_research_samples.py": "标准库离线构建次时代日级候选：28天序列、七日来源标签、时间留出隔离与输入输出追溯；不训练",
+    "scripts/config/cyrex_daily_spec.json": "次时代日级研究的决策时间、输入窗口、目标、特征、时间划分与研究限制固定规范",
+    "scripts/notebooks/cyrex_daily_samples.ipynb": "VS Code离线日级样本构建与检查入口，默认不构建、交付空输出；不联网或训练",
+    "docs/data/CYREX_DAILY_SAMPLES.md": "次时代日级候选字段、28天序列、七日价格目标、缺失/隔离规则和Notebook操作说明",
     "scripts/config/steamdt_research_items.json": "七个普通百元候选的精确名称、SteamDT编号与历史起点种子；新工作区复制后另行维护",
     "scripts/notebooks/steamdt_research.ipynb": "VS Code有限采集入口：商品清单、默认关闭联网、手动续采与本地报告；交付空输出",
     "scripts/verify_public_evidence.py": "有预算的公开网页/规则证据和已发现 UU 只读入口抓取，访问受限主机持久停止",
@@ -146,6 +150,7 @@ FOLDERS = {
     "data/local/progress": "旧进度 JSON 记录，当前文字交接迁入 docs/local/progress",
     "data/local/staging": "未验收候选试跑资产，不能直接训练",
     "data/local/staging/steamdt": "SteamDT 来源的独立候选试跑与原始追溯",
+    "data/local/staging/research_samples": "离线日级研究候选、输入快照、特征标签、序列、质量报告与源码；非正式训练集",
     "data/local/staging/uu_charts": "私有用户导出图表响应与聊天投影的独立离线核验，非正式数据集",
     "docs": "计划、制度、使用说明和交接记录",
     "docs/governance": "管理、阶段、资产登记与版本索引",
@@ -187,6 +192,8 @@ def purpose(path):
     if path in PURPOSES:
         return PURPOSES[path]
     name = Path(path).name
+    if path.startswith("data/local/staging/research_samples/"):
+        return "该候选构建器或规范的准确源码快照" if "/source/" in path else {"source_hourly.csv": "按已保存运行请求上限固定的次时代小时输入快照", "samples.csv": "单品日级过去特征、未来七日来源标签、缺失/成熟度和时间划分候选", "sequence.csv": "每个候选时点的28个历史日段，完整性与可空来源量额保留", "quality_report.json": "候选数量、缺口、未成熟、时间隔离和分组可用计数", "manifest.json": "候选输入、来源/源码/规范哈希、输出清单与未批准训练的版本记录", "report.md": "单品日级候选构建结果、范围、质量和研究用途限制", "latest_cyrex.json": "指向一个具体单品日级候选版本的本地入口"}.get(name, "单品日级研究候选的私有构建、验收或追溯附件")
     if protected(Path(path)):
         return "受保护本地凭证，仅登记配置版本，不读取、复制或记录内容及哈希"
     if path.startswith("data/local/staging/uu_charts/"):
@@ -258,6 +265,8 @@ def purpose(path):
 def folder_purpose(path):
     if path in FOLDERS:
         return FOLDERS[path]
+    if path.startswith("data/local/staging/research_samples/"):
+        return "离线日级样本候选的独立版本、准确源码/规范、冻结输入、特征/标签、序列与验收报告"
     if path.startswith("data/local/staging/uu_charts/"):
         return "用户指标不同时间范围的私有菜单截图证据" if path.endswith("/window_evidence") else "用户图表输入、请求正文与人工投影来源说明" if "/inputs_" in path else "一次独立图表离线核验的 SQLite、CSV、报告、输入和准确源码"
     if path.startswith("scripts/local/pilot_sources/"):

@@ -1,9 +1,10 @@
 # 既有资产登记
 
-登记版本 asset-register-2.5，2026-10-16。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
+登记版本 asset-register-2.6，2026-10-19。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
+| build_research_samples.py、cyrex_daily_spec、对应Notebook、staging/research_samples | candidate / retrospective-research-only | 单品28天过去序列与168小时来源目标、时间隔离和精确输入输出追溯；历史可得时间未验收，不批准正式训练或执行 | P04候选准备 |
 | scripts/steamdt_research.py、对应Notebook/初始清单、data/local/staging/steamdt/research_20261016_v1 | candidate / L0-research | 独立小时库、商品映射、分页回补/续采、近期增量复核与修订证据；按实际报告检查覆盖，不直接训练或执行 | P03 |
 | UU_HISTORY_CHART、data/local/recon/user_uu_history_chart_20261014 | current / user-evidence-pending-verification | UU历史在售数量/成交价格与BUFF辅助入口可见；已取得用户价格附件与数量聊天投影；核验字段及本次间隔，身份/统计/其他窗口待验收，证据私有 | P03 |
 | PRODUCT、ARCHITECTURE、PROGRESS | current / primary-documents | 产品、架构和进展的三个主入口；每次操作写入成果 | 持续 |

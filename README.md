@@ -18,6 +18,8 @@ UU历史新入口：[采集与入库步骤](docs/usage/UU_HISTORY_COLLECT.md)、
 
 新增 [SteamDT 本地小时数据库 Notebook](scripts/notebooks/steamdt_research.ipynb) 与[使用说明](docs/usage/STEAMDT_RESEARCH.md)：集中维护商品名称/编号，首次回补、保存分页检查点、再次启动续采，近期增量去重并保留来源修订。默认关闭联网，由用户手动运行；实际覆盖见进展和私有报告。
 
+新增[次时代日级候选样本 Notebook](scripts/notebooks/cyrex_daily_samples.ipynb) 与[字段/操作说明](docs/data/CYREX_DAILY_SAMPLES.md)：离线把28天过去序列与七日来源参考目标整理为独立候选版本，保留缺失、未成熟标签和时间隔离；没有拟合模型或生成交易建议。
+
 研究方案新增[SteamDT主序列与UU补充对齐](docs/data/SOURCE_ALIGNMENT_PLAN.md)：保留小时原始数据、按决策时点使用过去已知值，不人为制造细粒度波动；尚未构建正式特征或训练。
 
 | 目录 | 内容 |
