@@ -9,7 +9,7 @@
       "path": ".",
       "purpose": "项目根及 Git/Python 所需入口元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:0324429b3f3d003989cf1e257fa3da0c60bfdf6a3d54fd942828febb732d7154"
+      "version": "sha256:c6ec2943b2799b7f93fcc487f6e18f8e56696945940ebd0dd4cdd1c1f8e7c50c"
     },
     {
       "path": ".github",
@@ -63,7 +63,7 @@
       "path": "docs",
       "purpose": "计划、制度、使用说明和交接记录",
       "layout_version": "layout-1.0",
-      "version": "sha256:4b0b13d5b197fa67ce35949cd66ac1417130b7a86c608b905ed1e4198a2d231d"
+      "version": "sha256:212b842afc2ba254f162a2944b64f9597c69aa83fd009824a6aff4a8b808b16f"
     },
     {
       "path": "docs/data",
@@ -75,13 +75,13 @@
       "path": "docs/governance",
       "purpose": "管理、阶段、资产登记与版本索引",
       "layout_version": "layout-1.0",
-      "version": "sha256:602c72a26621d07cf4677bb554033f33a58ca18ef2e1bc4097a02bb8e727c0b2"
+      "version": "sha256:39249c7eba6c9914231d32b181efac0385b494dbbf373871214d5b004a59a32c"
     },
     {
       "path": "docs/releases",
       "purpose": "历史发布与本地版本变更说明",
       "layout_version": "layout-1.0",
-      "version": "sha256:56d914fd0fef723276562e4bd2cf23f6fdb4a4bafe5c508b5935576da6a026fd"
+      "version": "sha256:4e2b91ad215f80fc0cbb32a5d1d2e4b53e614598da420bbb837956cba4a772e5"
     },
     {
       "path": "docs/research",
@@ -99,7 +99,7 @@
       "path": "scripts",
       "purpose": "所有可执行代码及其工程配套",
       "layout_version": "layout-1.0",
-      "version": "sha256:5713a871d7ba5ba60d8295dd180ec5cd8126b9e84c6d944655869cd94c3b571f"
+      "version": "sha256:bfaa58d928acdca1fd1fc759c63d154a5c00a4e0c009e69d0724eeed2328fdf6"
     },
     {
       "path": "scripts/config",
@@ -183,7 +183,7 @@
       "path": "scripts/tests",
       "purpose": "离线与合成回归测试",
       "layout_version": "layout-1.0",
-      "version": "sha256:b11d9d0e9357c1cb423cd39209bc98f4c41d793b0df128ae9567ac10b56af508"
+      "version": "sha256:f164b176b66c4540190afa8dd762b151cac290e96784af773bd8fbcfc6063e39"
     }
   ],
   "files": [
@@ -463,9 +463,9 @@
       "path": "docs/PROGRESS.md",
       "purpose": "进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步",
       "status": "current-or-reference",
-      "version": "sha256:9c3180a4eed641867b1bd359260db1f31565737e3d142855023486ceed27e83a",
-      "sha256": "9c3180a4eed641867b1bd359260db1f31565737e3d142855023486ceed27e83a",
-      "bytes": 9651
+      "version": "sha256:187f94a851d51779092c589c52eaaefb5c6784578f3a9680a8fa44661ee8e00b",
+      "sha256": "187f94a851d51779092c589c52eaaefb5c6784578f3a9680a8fa44661ee8e00b",
+      "bytes": 10047
     },
     {
       "path": "docs/README.md",
@@ -551,9 +551,9 @@
       "path": "docs/governance/ASSET_REGISTER.md",
       "purpose": "旧资产保留依据及按用途准入状态",
       "status": "current-or-reference",
-      "version": "sha256:91bfc1db0e68e3629979e8c5b6e1d99c74694c216579827ab4678b1c500347db",
-      "sha256": "91bfc1db0e68e3629979e8c5b6e1d99c74694c216579827ab4678b1c500347db",
-      "bytes": 10512
+      "version": "sha256:c4145e6f56054d69ad4f827100d64d7532dae16147f0be28da7f79b26307e318",
+      "sha256": "c4145e6f56054d69ad4f827100d64d7532dae16147f0be28da7f79b26307e318",
+      "bytes": 10823
     },
     {
       "path": "docs/governance/CONTRIBUTING.md",
@@ -623,9 +623,9 @@
       "path": "docs/releases/CHANGELOG.md",
       "purpose": "代码历史变更及未打发布标签的迭代说明",
       "status": "current-or-reference",
-      "version": "sha256:a38d279a22400ff85abd74e003988f027fe5b19a1f26ba9751652a3b55427792",
-      "sha256": "a38d279a22400ff85abd74e003988f027fe5b19a1f26ba9751652a3b55427792",
-      "bytes": 12402
+      "version": "sha256:e867b217d1a4bb523ca18afc1affa5ca64bd89226fc494fbe3b4975733651881",
+      "sha256": "e867b217d1a4bb523ca18afc1affa5ca64bd89226fc494fbe3b4975733651881",
+      "bytes": 12649
     },
     {
       "path": "docs/releases/WORK_LOG_20261014_20261019.md",
@@ -1503,9 +1503,9 @@
       "path": "scripts/tests/test_steamdt_research.py",
       "purpose": "steamdt_research 模块的离线行为回归测试",
       "status": "legacy-unreviewed",
-      "version": "sha256:233559e9fcd077598f73fc4a31ddbf0a89888f6f561d18239e9ab378f3d76b57",
-      "sha256": "233559e9fcd077598f73fc4a31ddbf0a89888f6f561d18239e9ab378f3d76b57",
-      "bytes": 10302
+      "version": "sha256:0a68d55417d3c27d9811f8f2cb7637971b6211fe08b36b7f4948c9643d6ead03",
+      "sha256": "0a68d55417d3c27d9811f8f2cb7637971b6211fe08b36b7f4948c9643d6ead03",
+      "bytes": 10391
     },
     {
       "path": "scripts/tests/test_transport.py",

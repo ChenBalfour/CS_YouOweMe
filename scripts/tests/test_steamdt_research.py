@@ -51,7 +51,9 @@ class FakeOpener:
 class ResearchTests(unittest.TestCase):
     def setUp(self):
         # Use a named writable workspace temp directory; cleanup is scoped here.
-        self.tmp = tempfile.TemporaryDirectory(prefix='_offline_research_',dir=ROOT/'data/local/staging/steamdt')
+        temp_parent = ROOT/'data/local/staging/steamdt'
+        temp_parent.mkdir(parents=True, exist_ok=True)
+        self.tmp = tempfile.TemporaryDirectory(prefix='_offline_research_',dir=temp_parent)
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name).resolve()
         assert self.root.is_relative_to((ROOT/'data/local/staging/steamdt').resolve())

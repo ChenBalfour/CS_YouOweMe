@@ -6,7 +6,7 @@
 
 | 路径 | 用途 | 内容版本（摘要） |
 | --- | --- | --- |
-| [.](../..) | 项目根及 Git/Python 所需入口元数据 | sha256:0324429b3f3d |
+| [.](../..) | 项目根及 Git/Python 所需入口元数据 | sha256:c6ec2943b279 |
 | [.github](../../.github) | GitHub 工具约定的根目录配置 | sha256:1790293e25fd |
 | [.github/workflows](../../.github/workflows) | 既有自动检查配置 | sha256:1790293e25fd |
 | [data](../../data) | 来源数据及其伴随元数据 | sha256:3a0a9f4c5392 |
@@ -15,13 +15,13 @@
 | [data/samples/pilot_20261011/raw](../../data/samples/pilot_20261011/raw) | 旧匿名样本批次及原始/表/报告分组 | sha256:be9fba468537 |
 | [data/samples/pilot_20261011/reports](../../data/samples/pilot_20261011/reports) | 旧匿名样本批次及原始/表/报告分组 | sha256:67309b9a13e4 |
 | [data/samples/pilot_20261011/tables](../../data/samples/pilot_20261011/tables) | 旧匿名样本批次及原始/表/报告分组 | sha256:d04bb394675d |
-| [docs](../../docs) | 计划、制度、使用说明和交接记录 | sha256:4b0b13d5b197 |
+| [docs](../../docs) | 计划、制度、使用说明和交接记录 | sha256:212b842afc2b |
 | [docs/data](../../docs/data) | 来源、schema 与字段说明 | sha256:66f924693e56 |
-| [docs/governance](../../docs/governance) | 管理、阶段、资产登记与版本索引 | sha256:602c72a26621 |
-| [docs/releases](../../docs/releases) | 历史发布与本地版本变更说明 | sha256:56d914fd0fef |
+| [docs/governance](../../docs/governance) | 管理、阶段、资产登记与版本索引 | sha256:39249c7eba6c |
+| [docs/releases](../../docs/releases) | 历史发布与本地版本变更说明 | sha256:4e2b91ad215f |
 | [docs/research](../../docs/research) | 专项选品、核验计划和有限调查证据，三大主文档的附件 | sha256:bcb3d7a769b6 |
 | [docs/usage](../../docs/usage) | 用户本地观察、图表导出与旧实现参考，不构成采集或发布授权 | sha256:95a11e3b398b |
-| [scripts](../../scripts) | 所有可执行代码及其工程配套 | sha256:5713a871d7ba |
+| [scripts](../../scripts) | 所有可执行代码及其工程配套 | sha256:bfaa58d928ac |
 | [scripts/config](../../scripts/config) | 脚本配置、空白模板与受保护本地凭证 | sha256:24023c8e911a |
 | [scripts/hooks](../../scripts/hooks) | 本地 Git 凭证检查 hooks | sha256:89d7eda41c4a |
 | [scripts/notebooks](../../scripts/notebooks) | 用户手动运行的 Notebook 入口，Git 中清空执行输出 | sha256:c221dfd770f3 |
@@ -35,7 +35,7 @@
 | [scripts/src/cs_youoweme](../../scripts/src/cs_youoweme) | 旧技术实现，可按对应用途审查复用 | sha256:f1cf0bb82e2b |
 | [scripts/src/cs_youoweme/collectors](../../scripts/src/cs_youoweme/collectors) | 旧公开页面、官方和匿名接口采集机制 | sha256:292f48b673f2 |
 | [scripts/src/cs_youoweme/history](../../scripts/src/cs_youoweme/history) | 旧目录、分页任务、SQLite、查询和候选机制 | sha256:169bf7b93ce2 |
-| [scripts/tests](../../scripts/tests) | 离线与合成回归测试 | sha256:b11d9d0e9357 |
+| [scripts/tests](../../scripts/tests) | 离线与合成回归测试 | sha256:f164b176b66c |
 
 ## 文件
 
@@ -75,7 +75,7 @@
 | [data/samples/pilot_20261011/tables/related_variants.csv](../../data/samples/pilot_20261011/tables/related_variants.csv) | 旧匿名公开样本的派生表，冻结待 UU 用途复审 | sha256:4db527f3b702 |
 | [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) | 架构主文档：真实实现、数据流、存储恢复与待建模型和执行层 | sha256:8436c7adf3e5 |
 | [docs/PRODUCT.md](../../docs/PRODUCT.md) | 产品主文档：目标、范围、用户流程、策略、建议输出和验收要求 | sha256:57f856ce652b |
-| [docs/PROGRESS.md](../../docs/PROGRESS.md) | 进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步 | sha256:9c3180a4eed6 |
+| [docs/PROGRESS.md](../../docs/PROGRESS.md) | 进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步 | sha256:187f94a851d5 |
 | [docs/README.md](../../docs/README.md) | 三大主文档与专项字段、运行、管理附件索引 | sha256:53e4c8323e10 |
 | [docs/data/CYREX_DAILY_SAMPLES.md](../../docs/data/CYREX_DAILY_SAMPLES.md) | 次时代日级候选字段、28天序列、七日价格目标、缺失/隔离规则和Notebook操作说明 | sha256:5364f0b71a22 |
 | [docs/data/DATA_DICTIONARY.md](../../docs/data/DATA_DICTIONARY.md) | 旧公开快照表的字段字典 | sha256:f0589a84da9c |
@@ -86,7 +86,7 @@
 | [docs/data/UU_EXECUTION_RULES.md](../../docs/data/UU_EXECUTION_RULES.md) | Steam 和 UU 公开规则、旧版适用限制、资金时间字段及访问限制处理 | sha256:824aebde1f40 |
 | [docs/data/UU_FIELD_CONTRACT.md](../../docs/data/UU_FIELD_CONTRACT.md) | 已核验 UU 来源行情、汇总快照及混合逐笔字段定义与执行准入限制 | sha256:a7069d1edce0 |
 | [docs/data/UU_HISTORY_CHART.md](../../docs/data/UU_HISTORY_CHART.md) | UU 历史图表指标映射、两份用户响应的字段与实际间隔核验、统计及决策时间边界 | sha256:35159eb2941f |
-| [docs/governance/ASSET_REGISTER.md](../../docs/governance/ASSET_REGISTER.md) | 旧资产保留依据及按用途准入状态 | sha256:91bfc1db0e68 |
+| [docs/governance/ASSET_REGISTER.md](../../docs/governance/ASSET_REGISTER.md) | 旧资产保留依据及按用途准入状态 | sha256:c4145e6f5605 |
 | [docs/governance/CONTRIBUTING.md](../../docs/governance/CONTRIBUTING.md) | 本地工程修改与检查方法 | sha256:5cfb682e98dd |
 | [docs/governance/FILE_CATALOG.json](../../docs/governance/FILE_CATALOG.json) | 公开文件及目录的用途、版本和内容哈希索引 | layout-1.0.catalog |
 | [docs/governance/FILE_INDEX.md](../../docs/governance/FILE_INDEX.md) | 逐文件与逐目录用途和内容版本的可读索引，由 manage_assets 生成 | layout-1.0.catalog |
@@ -95,7 +95,7 @@
 | [docs/governance/ORGANIZATION.md](../../docs/governance/ORGANIZATION.md) | layout-1.0 整理结果、迁移、清理及恢复方法 | sha256:3399a18b667b |
 | [docs/governance/SECURITY.md](../../docs/governance/SECURITY.md) | 凭证隔离与安全问题处理说明 | sha256:8e93242a8e09 |
 | [docs/governance/STATE.md](../../docs/governance/STATE.md) | 旧状态路径的兼容入口，当前进展统一到 PROGRESS | sha256:33f3fa4756b9 |
-| [docs/releases/CHANGELOG.md](../../docs/releases/CHANGELOG.md) | 代码历史变更及未打发布标签的迭代说明 | sha256:a38d279a2240 |
+| [docs/releases/CHANGELOG.md](../../docs/releases/CHANGELOG.md) | 代码历史变更及未打发布标签的迭代说明 | sha256:e867b217d1a4 |
 | [docs/releases/WORK_LOG_20261014_20261019.md](../../docs/releases/WORK_LOG_20261014_20261019.md) | 10月14至19日既往操作记录的冻结归档，不维护当前路线 | sha256:a611f034e169 |
 | [docs/research/DATA_METHODS_20261019.md](../../docs/research/DATA_METHODS_20261019.md) | 2025至2026年一手论文与官方实现调研：缺失感知、异常、特征和概率预测的采用理由与候选对照 | sha256:5f30ba32958c |
 | [docs/research/P03_OBSERVATION_PLAN.md](../../docs/research/P03_OBSERVATION_PLAN.md) | 用户本地连续观察的固定窗口、预算、恢复、用途与未启动状态 | sha256:0525e7c988e8 |
@@ -205,7 +205,7 @@
 | [scripts/tests/test_samples.py](../../scripts/tests/test_samples.py) | samples 模块的离线行为回归测试 | sha256:7cd15623e8d5 |
 | [scripts/tests/test_secret_checks.py](../../scripts/tests/test_secret_checks.py) | secret_checks 模块的离线行为回归测试 | sha256:70bc3fbc2eb7 |
 | [scripts/tests/test_selection.py](../../scripts/tests/test_selection.py) | selection 模块的离线行为回归测试 | sha256:571a40d68c4d |
-| [scripts/tests/test_steamdt_research.py](../../scripts/tests/test_steamdt_research.py) | steamdt_research 模块的离线行为回归测试 | sha256:233559e9fcd0 |
+| [scripts/tests/test_steamdt_research.py](../../scripts/tests/test_steamdt_research.py) | steamdt_research 模块的离线行为回归测试 | sha256:0a68d55417d3 |
 | [scripts/tests/test_transport.py](../../scripts/tests/test_transport.py) | transport 模块的离线行为回归测试 | sha256:94369afa0d94 |
 | [scripts/tests/test_universe.py](../../scripts/tests/test_universe.py) | universe 模块的离线行为回归测试 | sha256:98667d0001b0 |
 | [scripts/tests/test_uu_chart.py](../../scripts/tests/test_uu_chart.py) | uu_chart 模块的离线行为回归测试 | sha256:62b941a8b6b3 |
