@@ -6,7 +6,7 @@
 
 | 路径 | 用途 | 内容版本（摘要） |
 | --- | --- | --- |
-| [.](../..) | 项目根及 Git/Python 所需入口元数据 | sha256:4fb3860cd244 |
+| [.](../..) | 项目根及 Git/Python 所需入口元数据 | sha256:78b3b93e46b5 |
 | [.github](../../.github) | GitHub 工具约定的根目录配置 | sha256:b04d86b4e64b |
 | [.github/workflows](../../.github/workflows) | 既有自动检查配置 | sha256:b04d86b4e64b |
 | [data](../../data) | 来源数据及其伴随元数据 | sha256:89b6ce4b8129 |
@@ -15,7 +15,7 @@
 | [data/samples/pilot_20261011/raw](../../data/samples/pilot_20261011/raw) | 旧匿名样本批次及原始/表/报告分组 | sha256:be9fba468537 |
 | [data/samples/pilot_20261011/reports](../../data/samples/pilot_20261011/reports) | 旧匿名样本批次及原始/表/报告分组 | sha256:67309b9a13e4 |
 | [data/samples/pilot_20261011/tables](../../data/samples/pilot_20261011/tables) | 旧匿名样本批次及原始/表/报告分组 | sha256:d04bb394675d |
-| [docs](../../docs) | 计划、制度、使用说明和交接记录 | sha256:f575b58f5dce |
+| [docs](../../docs) | 计划、制度、使用说明和交接记录 | sha256:c7c23c91e71f |
 | [docs/data](../../docs/data) | 来源、schema 与字段说明 | sha256:d8324e388f36 |
 | [docs/governance](../../docs/governance) | 管理、阶段、资产登记与版本索引 | sha256:6b5b62cb546a |
 | [docs/releases](../../docs/releases) | 历史发布与本地版本变更说明 | sha256:eaac5e71fb8e |
@@ -70,7 +70,7 @@
 | [data/samples/pilot_20261011/tables/related_variants.csv](../../data/samples/pilot_20261011/tables/related_variants.csv) | 旧匿名公开样本的派生表，冻结待 UU 用途复审 | sha256:4db527f3b702 |
 | [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) | 架构主文档：真实实现、数据流、存储恢复与待建模型和执行层 | sha256:e22215e28086 |
 | [docs/PRODUCT.md](../../docs/PRODUCT.md) | 产品主文档：目标、范围、用户流程、策略、建议输出和验收要求 | sha256:242cc966bf7a |
-| [docs/PROGRESS.md](../../docs/PROGRESS.md) | 进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步 | sha256:15105eb525b6 |
+| [docs/PROGRESS.md](../../docs/PROGRESS.md) | 进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步 | sha256:d17fb6050c5b |
 | [docs/README.md](../../docs/README.md) | 三大主文档与专项字段、运行、管理附件索引 | sha256:998c05dc748f |
 | [docs/data/DATA_DICTIONARY.md](../../docs/data/DATA_DICTIONARY.md) | 旧公开快照表的字段字典 | sha256:f0589a84da9c |
 | [docs/data/DATA_SOURCES.md](../../docs/data/DATA_SOURCES.md) | 旧来源、采集证据及口径限制 | sha256:c81a42660293 |
