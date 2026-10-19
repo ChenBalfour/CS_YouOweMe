@@ -1,17 +1,18 @@
 # 既有资产登记
 
-登记版本 asset-register-2.9，2026-10-19。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
+登记版本 asset-register-2.10，2026-10-19。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
 | research/data/clean_hourly、clean_steamdt_data、对应规范/Notebook、datasets/steamdt_clean | frozen / research-cleaning-only | 7品全部81407源版本、81397真实小时、84924网格与NULL/mask/过去窗口诊断；原值/极端走势保留，历史可得时间未知，不自动训练 | P04研究清洗 |
 | DATA_METHODS_20261019、STEAMDT_CLEANING、reports/cleaning_reviews | current / evidence-and-methods | 2025–2026论文与官方实现方法依据，清洗字段与实际值/窗口/Notebook验证；基础模型与新特征仅为后续对照 | 研究方法 |
-| research_20261016_v1/gap_audit_20261019_v1 | private / bounded-live-gap-verified | 一次6请求、独立probe库/raw/准确源码、旧页/新页/入库/样本筛选追溯；实际端点仍缺26h，非JSON折叠或本地丢失，网页显示机制未验证 | P03缺口诊断 |
+| research_20261016_v1/gap_audit_20261019_v1 | private / bounded-live-gap-verified | 一次6请求、独立probe库/raw/准确源码、旧页/新页/入库/样本筛选追溯；实际端点仍缺26h，非JSON折叠或本地丢失，用户页面也观察到跳时，未穷尽所有端点 | P03缺口诊断 |
 | research/{data,models,evaluation,visualization}、evaluate_research_baselines、cyrex_forecast_dashboard | current / exploratory-fixed-rule-evaluation | 函数分包、固定基准与测试误差和七日路径；原候选/评估/图表独立冻结，未拟合深度模型、未验证执行收益 | P04研究/P05基准 |
 | data/local/artifacts/baseline_evaluations、reports/baseline_charts | private / immutable-research-artifacts | 初次持平获选及验证/测试、源码、绘图输入和哈希，包含失败/无效信号依据，不覆盖或为调参删测试结果 | 研究复核 |
 | build_research_samples.py、cyrex_daily_spec、对应Notebook、staging/research_samples | candidate / retrospective-research-only | 单品28天过去序列与168小时来源目标、时间隔离和精确输入输出追溯；历史可得时间未验收，不批准正式训练或执行 | P04候选准备 |
 | scripts/steamdt_research.py、对应Notebook/初始清单、data/local/staging/steamdt/research_20261016_v1 | candidate / L0-research | 独立小时库、商品映射、分页回补/续采、近期增量复核与修订证据；按实际报告检查覆盖，不直接训练或执行 | P03 |
 | UU_HISTORY_CHART、data/local/recon/user_uu_history_chart_20261014 | current / user-evidence-pending-verification | UU历史在售数量/成交价格与BUFF辅助入口可见；已取得用户价格附件与数量聊天投影；核验字段及本次间隔，身份/统计/其他窗口待验收，证据私有 | P03 |
+| releases/WORK_LOG_20261014_20261019 | frozen / historical-operations | 从原PROGRESS迁入的操作记录，Git45713df可恢复原文；不维护第二套当前路线 | 追溯 |
 | PRODUCT、ARCHITECTURE、PROGRESS | current / primary-documents | 产品、架构和进展的三个主入口；每次操作写入成果 | 持续 |
 | collect_uu_charts.js、import_uu_chart_batch、uu_history_collect.ipynb、UU_HISTORY_COLLECT | delivered / offline-tested-live-pending | 已按截图修正为价格4窗口/数量3窗口；真实旧批次3成功/1失败/4待采、639点保留，恢复为正确7组中的3成功/4待采；新1.1完整七组1335条已离线入库，单轮基础质量通过，多轮稳定性待验收，没有训练 | P03 |
 | collect_uu_direct.py、UU_DIRECT_COLLECT、私有direct运行及review_v1 | delivered / single-item-live-checked / L0 | 用户44828完整七组1360条窗口记录，原JSON/SQLite/CSV与冻结源码核验通过；保留962个不同指标/时间点及全部跨窗关系，时效/混合间隔已记录；多商品/多轮/身份/统计待验收，无训练 | P03 |
@@ -30,7 +31,7 @@
 | data/local/recon/p03_20261013_evidence | private / traceable | 15 份完整公开脚本/规则响应和 UU 429 状态；不是订单数据 | P03 |
 | scripts/src、collect.py | legacy / unreviewed-market | 解析、精度、分页、恢复和存储机制可复用 | P03 |
 | scripts/tests | legacy / offline-regression | 机制回归；通过不代表市场数据合格 | P03–P05 |
-| scripts/check_secrets.py、hooks | retained / engineering | 本地凭证隔离检查，仍暂停远程发布 | 持续 |
+| scripts/check_secrets.py、hooks | retained / engineering | 提交与推送前凭证隔离检查；本轮用户已授权公开分支迭代 | 持续 |
 | scripts/select_uu_research.py、SELECTION_REPORT | retained / P02-historical | 原有限选品调查和名单；未实现新属性门槛，不据旧脚本自动重选 | P02 |
 | data/local/universes/uu_research_selection_20261012T235228+0800_v1_1_b74608 | validated / original-P03-scope-only | 原 10 主力、6 候补不覆盖；百元/属性新规则待复核，训练及买入用途未批准 | P03 |
 | data/local/staging/steamdt/p02_*、scripts/local/selection_sources | candidate / private-traceable | 两个调查运行、48 请求、精确源码和原始证据，旧版本保留 | P02–P03 |

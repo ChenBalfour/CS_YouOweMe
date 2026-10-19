@@ -8,7 +8,7 @@
 | --- | --- |
 | [产品说明](docs/PRODUCT.md) | 目标、选品、七日CD退出策略和验收 |
 | [产品架构](docs/ARCHITECTURE.md) | 当前数据流、功能包、存储和待建能力 |
-| [当前进展与卡点](docs/PROGRESS.md) | 数据量、评估结果、验证、卡点和操作记录 |
+| [当前进展与卡点](docs/PROGRESS.md) | 真实成果、卡点、未来工作与验收；历史操作另归档 |
 
 ## 当前 Notebook 入口
 
@@ -31,15 +31,16 @@
 | [data](data/README.md) | 私有小时SQLite、原始响应、UU快照、候选、评估与图表 |
 | [docs](docs/README.md) | 三大主文档、字段、使用、治理及历史附件 |
 
-冻结核心 **0.3.5（本地未发布）**；独立组件分别版本化。文件/目录用途与SHA-256见[索引](docs/governance/FILE_INDEX.md)和[清单](docs/governance/FILE_CATALOG.json)。已有原始证据、用户Notebook输出和冻结运行保留；只清理有依据的缓存或冗余。
+冻结核心 **0.3.5（未打发布标签）**；独立组件分别版本化。文件/目录用途与SHA-256见[索引](docs/governance/FILE_INDEX.md)和[清单](docs/governance/FILE_CATALOG.json)。已有原始证据、用户Notebook输出和冻结运行保留；只清理有依据的缓存或冗余。
 
 本轮相关离线检查：
 
 ```powershell
-python -B -m unittest scripts.tests.test_research_samples scripts.tests.test_research_baselines scripts.tests.test_forecast_charts -v
+python -m pip install ".[test]"
+python -B -m unittest discover -s scripts/tests -v
 python -B scripts/manage_assets.py --check
 ```
 
-UU补充入口见[纯脚本说明](docs/usage/UU_DIRECT_COLLECT.md)、[历史图表Notebook](scripts/notebooks/uu_history_collect.ipynb)。登录信息仅由用户本地维护，不贴聊天或加入Git。采集由用户显式本地运行，不代启动持续采集、后台/定时服务。仅保存本地Git版本，新增远程推送、PR和release暂停。
+UU补充入口见[纯脚本说明](docs/usage/UU_DIRECT_COLLECT.md)、[历史图表Notebook](scripts/notebooks/uu_history_collect.ipynb)。登录信息仅由用户本地维护，不贴聊天或加入Git。采集由用户显式本地运行，不代启动持续采集、后台/定时服务。公开代码/文档在`planning/uu-research-reset`分支迭代；私有数据和用户已保存的Notebook输出留在本地。分支上传不代表正式release或交易能力上线。
 
 原创代码与文档采用[MIT](LICENSE)。第三方数据及商标权利归其权利人。

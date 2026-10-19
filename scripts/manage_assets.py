@@ -62,7 +62,7 @@ PURPOSES = {
     "scripts/config/uu_direct_items.example.json": "UU纯脚本单品有限试采的模板和窗口参数样例，44828身份尚未核验",
     "scripts/config/vscode.code-workspace": "旧库可选 SQLTools 工作区配置",
     "scripts/hooks/pre-commit": "本地提交前的暂存凭证检查",
-    "scripts/hooks/pre-push": "历史凭证检查；新增远程推送仍暂停",
+    "scripts/hooks/pre-push": "推送前历史凭证检查；本轮公开分支迭代已获授权",
     "docs/README.md": "三大主文档与专项字段、运行、管理附件索引",
     "docs/PRODUCT.md": "产品主文档：目标、范围、用户流程、策略、建议输出和验收要求",
     "docs/ARCHITECTURE.md": "架构主文档：真实实现、数据流、存储恢复与待建模型和执行层",
@@ -100,7 +100,8 @@ PURPOSES = {
     "docs/usage/COLLECTION.md": "旧采集器的接口、配置和输出说明",
     "docs/usage/HISTORY.md": "旧目录、候选、历史任务及查询命令参考",
     "docs/usage/DATABASE.md": "旧库的可选查询、时间精度与备份方法",
-    "docs/releases/CHANGELOG.md": "代码历史变更及未发布本地版本说明",
+    "docs/releases/WORK_LOG_20261014_20261019.md": "10月14至19日既往操作记录的冻结归档，不维护当前路线",
+    "docs/releases/CHANGELOG.md": "代码历史变更及未打发布标签的迭代说明",
 }
 
 SOURCE_PURPOSES = {
@@ -354,13 +355,13 @@ def catalog(paths, private=False):
         members = [(r["path"], r["version"]) for r in rows if folder == "." or r["path"].startswith(folder + "/")]
         version = hashlib.sha256(json.dumps(members, ensure_ascii=False).encode()).hexdigest()
         directories.append({"path": folder, "purpose": folder_purpose(folder), "layout_version": LAYOUT, "version": "sha256:" + version})
-    return {"schema_version": 1, "layout_version": LAYOUT, "code_version": code_version() + "-local-unreleased", "scope": "private-ignored-files" if private else "git-managed-files", "hash_policy": "SHA-256; generated catalogs exclude their own bytes to avoid circular hashes; protected credentials have no content/hash snapshot", "directories": directories, "files": rows}
+    return {"schema_version": 1, "layout_version": LAYOUT, "code_version": code_version() + "-untagged", "scope": "private-ignored-files" if private else "git-managed-files", "hash_policy": "SHA-256; generated catalogs exclude their own bytes to avoid circular hashes; protected credentials have no content/hash snapshot", "directories": directories, "files": rows}
 
 def serialize(value):
     return json.dumps(value, ensure_ascii=False, indent=2) + "\n"
 
 def readable_index(public):
-    lines = ["# 文件与目录说明", "", f"自动生成，目录版本 {LAYOUT}，代码 {code_version()}（本地未发布）。完整 SHA-256 见 [机器清单](FILE_CATALOG.json)。私有逐项清单只在 data/local/manifests/workspace-layout-1.0.json；Git 内部对象由 Git 管理。生成清单使用固定目录版本，不计算自身哈希以避免循环。", "", "## 目录", "", "| 路径 | 用途 | 内容版本（摘要） |", "| --- | --- | --- |"]
+    lines = ["# 文件与目录说明", "", f"自动生成，目录版本 {LAYOUT}，冻结核心 {code_version()}（未打发布标签）。完整 SHA-256 见 [机器清单](FILE_CATALOG.json)。私有逐项清单只在 data/local/manifests/workspace-layout-1.0.json；Git 内部对象由 Git 管理。生成清单使用固定目录版本，不计算自身哈希以避免循环。", "", "## 目录", "", "| 路径 | 用途 | 内容版本（摘要） |", "| --- | --- | --- |"]
     for row in public["directories"]:
         link = "../.." if row["path"] == "." else "../../" + row["path"]
         lines.append(f"| [{row['path']}]({link}) | {row['purpose']} | {row['version'][:19]} |")

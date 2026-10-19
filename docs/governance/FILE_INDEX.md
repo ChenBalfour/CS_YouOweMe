@@ -1,27 +1,27 @@
 # 文件与目录说明
 
-自动生成，目录版本 layout-1.0，代码 0.3.5（本地未发布）。完整 SHA-256 见 [机器清单](FILE_CATALOG.json)。私有逐项清单只在 data/local/manifests/workspace-layout-1.0.json；Git 内部对象由 Git 管理。生成清单使用固定目录版本，不计算自身哈希以避免循环。
+自动生成，目录版本 layout-1.0，冻结核心 0.3.5（未打发布标签）。完整 SHA-256 见 [机器清单](FILE_CATALOG.json)。私有逐项清单只在 data/local/manifests/workspace-layout-1.0.json；Git 内部对象由 Git 管理。生成清单使用固定目录版本，不计算自身哈希以避免循环。
 
 ## 目录
 
 | 路径 | 用途 | 内容版本（摘要） |
 | --- | --- | --- |
-| [.](../..) | 项目根及 Git/Python 所需入口元数据 | sha256:5f3a81447d6f |
-| [.github](../../.github) | GitHub 工具约定的根目录配置 | sha256:b04d86b4e64b |
-| [.github/workflows](../../.github/workflows) | 既有自动检查配置 | sha256:b04d86b4e64b |
+| [.](../..) | 项目根及 Git/Python 所需入口元数据 | sha256:52fa9dc8dbd2 |
+| [.github](../../.github) | GitHub 工具约定的根目录配置 | sha256:1790293e25fd |
+| [.github/workflows](../../.github/workflows) | 既有自动检查配置 | sha256:1790293e25fd |
 | [data](../../data) | 来源数据及其伴随元数据 | sha256:3a0a9f4c5392 |
 | [data/samples](../../data/samples) | 已公开、冻结待复审的旧匿名样本 | sha256:644f35f0c47c |
 | [data/samples/pilot_20261011](../../data/samples/pilot_20261011) | 旧匿名样本批次及原始/表/报告分组 | sha256:644f35f0c47c |
 | [data/samples/pilot_20261011/raw](../../data/samples/pilot_20261011/raw) | 旧匿名样本批次及原始/表/报告分组 | sha256:be9fba468537 |
 | [data/samples/pilot_20261011/reports](../../data/samples/pilot_20261011/reports) | 旧匿名样本批次及原始/表/报告分组 | sha256:67309b9a13e4 |
 | [data/samples/pilot_20261011/tables](../../data/samples/pilot_20261011/tables) | 旧匿名样本批次及原始/表/报告分组 | sha256:d04bb394675d |
-| [docs](../../docs) | 计划、制度、使用说明和交接记录 | sha256:c18aad038c85 |
+| [docs](../../docs) | 计划、制度、使用说明和交接记录 | sha256:168977b83794 |
 | [docs/data](../../docs/data) | 来源、schema 与字段说明 | sha256:66f924693e56 |
-| [docs/governance](../../docs/governance) | 管理、阶段、资产登记与版本索引 | sha256:43ee0e9d84e9 |
-| [docs/releases](../../docs/releases) | 历史发布与本地版本变更说明 | sha256:8dbe95ad9f1f |
+| [docs/governance](../../docs/governance) | 管理、阶段、资产登记与版本索引 | sha256:602c72a26621 |
+| [docs/releases](../../docs/releases) | 历史发布与本地版本变更说明 | sha256:56d914fd0fef |
 | [docs/research](../../docs/research) | 专项选品、核验计划和有限调查证据，三大主文档的附件 | sha256:bcb3d7a769b6 |
 | [docs/usage](../../docs/usage) | 用户本地观察、图表导出与旧实现参考，不构成采集或发布授权 | sha256:95a11e3b398b |
-| [scripts](../../scripts) | 所有可执行代码及其工程配套 | sha256:042d9c3c96d3 |
+| [scripts](../../scripts) | 所有可执行代码及其工程配套 | sha256:5713a871d7ba |
 | [scripts/config](../../scripts/config) | 脚本配置、空白模板与受保护本地凭证 | sha256:24023c8e911a |
 | [scripts/hooks](../../scripts/hooks) | 本地 Git 凭证检查 hooks | sha256:89d7eda41c4a |
 | [scripts/notebooks](../../scripts/notebooks) | 用户手动运行的 Notebook 入口，Git 中清空执行输出 | sha256:c221dfd770f3 |
@@ -42,11 +42,11 @@
 | 路径 | 用途 | 内容版本（摘要） |
 | --- | --- | --- |
 | [.gitattributes](../../.gitattributes) | 跨平台文本换行规则 | sha256:bef30d55070d |
-| [.github/workflows/ci.yml](../../.github/workflows/ci.yml) | 既有远程离线检查工作流，根目录位置由 GitHub 约定 | sha256:dfe66c8ce281 |
+| [.github/workflows/ci.yml](../../.github/workflows/ci.yml) | 既有远程离线检查工作流，根目录位置由 GitHub 约定 | sha256:e7f8b4eb1c60 |
 | [.gitignore](../../.gitignore) | 私有数据、文档、凭证与生成缓存的 Git 排除规则 | sha256:3e41120a23af |
-| [AGENTS.md](../../AGENTS.md) | 协作者的执行、阶段、凭证及发布约束 | sha256:11916b372de8 |
+| [AGENTS.md](../../AGENTS.md) | 协作者的执行、阶段、凭证及发布约束 | sha256:d559e514da0e |
 | [LICENSE](../../LICENSE) | 原创代码与文档的 MIT 授权 | sha256:9ccc1508d876 |
-| [README.md](../../README.md) | 项目入口、当前状态与三类目录索引 | sha256:bba010c7cf97 |
+| [README.md](../../README.md) | 项目入口、当前状态与三类目录索引 | sha256:1d08f3010392 |
 | [data/README.md](../../data/README.md) | 私有数据与已公开冻结样本的生命周期说明 | sha256:37fdf1428196 |
 | [data/samples/pilot_20261011/raw/item_001.nuxt.json](../../data/samples/pilot_20261011/raw/item_001.nuxt.json) | 旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审 | sha256:1557dc48382f |
 | [data/samples/pilot_20261011/raw/item_002.nuxt.json](../../data/samples/pilot_20261011/raw/item_002.nuxt.json) | 旧匿名公开样本的来源响应或来源清单，冻结待 UU 用途复审 | sha256:1c5884b75e48 |
@@ -73,10 +73,10 @@
 | [data/samples/pilot_20261011/tables/items.csv](../../data/samples/pilot_20261011/tables/items.csv) | 旧匿名公开样本的派生表，冻结待 UU 用途复审 | sha256:a429c153662a |
 | [data/samples/pilot_20261011/tables/quotes.csv](../../data/samples/pilot_20261011/tables/quotes.csv) | 旧匿名公开样本的派生表，冻结待 UU 用途复审 | sha256:bb3d0815d6e6 |
 | [data/samples/pilot_20261011/tables/related_variants.csv](../../data/samples/pilot_20261011/tables/related_variants.csv) | 旧匿名公开样本的派生表，冻结待 UU 用途复审 | sha256:4db527f3b702 |
-| [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) | 架构主文档：真实实现、数据流、存储恢复与待建模型和执行层 | sha256:02c61e3b1635 |
-| [docs/PRODUCT.md](../../docs/PRODUCT.md) | 产品主文档：目标、范围、用户流程、策略、建议输出和验收要求 | sha256:ca5815436b27 |
-| [docs/PROGRESS.md](../../docs/PROGRESS.md) | 进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步 | sha256:7d06343c0534 |
-| [docs/README.md](../../docs/README.md) | 三大主文档与专项字段、运行、管理附件索引 | sha256:ba29b173d014 |
+| [docs/ARCHITECTURE.md](../../docs/ARCHITECTURE.md) | 架构主文档：真实实现、数据流、存储恢复与待建模型和执行层 | sha256:8436c7adf3e5 |
+| [docs/PRODUCT.md](../../docs/PRODUCT.md) | 产品主文档：目标、范围、用户流程、策略、建议输出和验收要求 | sha256:57f856ce652b |
+| [docs/PROGRESS.md](../../docs/PROGRESS.md) | 进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步 | sha256:880038e59ef9 |
+| [docs/README.md](../../docs/README.md) | 三大主文档与专项字段、运行、管理附件索引 | sha256:53e4c8323e10 |
 | [docs/data/CYREX_DAILY_SAMPLES.md](../../docs/data/CYREX_DAILY_SAMPLES.md) | 次时代日级候选字段、28天序列、七日价格目标、缺失/隔离规则和Notebook操作说明 | sha256:5364f0b71a22 |
 | [docs/data/DATA_DICTIONARY.md](../../docs/data/DATA_DICTIONARY.md) | 旧公开快照表的字段字典 | sha256:f0589a84da9c |
 | [docs/data/DATA_SOURCES.md](../../docs/data/DATA_SOURCES.md) | 旧来源、采集证据及口径限制 | sha256:c81a42660293 |
@@ -86,16 +86,17 @@
 | [docs/data/UU_EXECUTION_RULES.md](../../docs/data/UU_EXECUTION_RULES.md) | Steam 和 UU 公开规则、旧版适用限制、资金时间字段及访问限制处理 | sha256:824aebde1f40 |
 | [docs/data/UU_FIELD_CONTRACT.md](../../docs/data/UU_FIELD_CONTRACT.md) | 已核验 UU 来源行情、汇总快照及混合逐笔字段定义与执行准入限制 | sha256:a7069d1edce0 |
 | [docs/data/UU_HISTORY_CHART.md](../../docs/data/UU_HISTORY_CHART.md) | UU 历史图表指标映射、两份用户响应的字段与实际间隔核验、统计及决策时间边界 | sha256:35159eb2941f |
-| [docs/governance/ASSET_REGISTER.md](../../docs/governance/ASSET_REGISTER.md) | 旧资产保留依据及按用途准入状态 | sha256:86a7ce7f2ff7 |
-| [docs/governance/CONTRIBUTING.md](../../docs/governance/CONTRIBUTING.md) | 本地工程修改与检查方法 | sha256:b1244b3e6e06 |
+| [docs/governance/ASSET_REGISTER.md](../../docs/governance/ASSET_REGISTER.md) | 旧资产保留依据及按用途准入状态 | sha256:91bfc1db0e68 |
+| [docs/governance/CONTRIBUTING.md](../../docs/governance/CONTRIBUTING.md) | 本地工程修改与检查方法 | sha256:5cfb682e98dd |
 | [docs/governance/FILE_CATALOG.json](../../docs/governance/FILE_CATALOG.json) | 公开文件及目录的用途、版本和内容哈希索引 | layout-1.0.catalog |
 | [docs/governance/FILE_INDEX.md](../../docs/governance/FILE_INDEX.md) | 逐文件与逐目录用途和内容版本的可读索引，由 manage_assets 生成 | layout-1.0.catalog |
-| [docs/governance/FILE_MANAGEMENT.md](../../docs/governance/FILE_MANAGEMENT.md) | 文件布局、资产生命周期、版本、迁移及发布制度 | sha256:03ad37116954 |
-| [docs/governance/HANDOFF.md](../../docs/governance/HANDOFF.md) | 精简交接入口：三大主文档、接手顺序与版本保护 | sha256:9e955b012c70 |
+| [docs/governance/FILE_MANAGEMENT.md](../../docs/governance/FILE_MANAGEMENT.md) | 文件布局、资产生命周期、版本、迁移及发布制度 | sha256:b30dbab38f3b |
+| [docs/governance/HANDOFF.md](../../docs/governance/HANDOFF.md) | 精简交接入口：三大主文档、接手顺序与版本保护 | sha256:b479cf1a051a |
 | [docs/governance/ORGANIZATION.md](../../docs/governance/ORGANIZATION.md) | layout-1.0 整理结果、迁移、清理及恢复方法 | sha256:3399a18b667b |
-| [docs/governance/SECURITY.md](../../docs/governance/SECURITY.md) | 凭证隔离与安全问题处理说明 | sha256:1e28de94832a |
+| [docs/governance/SECURITY.md](../../docs/governance/SECURITY.md) | 凭证隔离与安全问题处理说明 | sha256:8e93242a8e09 |
 | [docs/governance/STATE.md](../../docs/governance/STATE.md) | 旧状态路径的兼容入口，当前进展统一到 PROGRESS | sha256:33f3fa4756b9 |
-| [docs/releases/CHANGELOG.md](../../docs/releases/CHANGELOG.md) | 代码历史变更及未发布本地版本说明 | sha256:9a4395b1edf0 |
+| [docs/releases/CHANGELOG.md](../../docs/releases/CHANGELOG.md) | 代码历史变更及未打发布标签的迭代说明 | sha256:a38d279a2240 |
+| [docs/releases/WORK_LOG_20261014_20261019.md](../../docs/releases/WORK_LOG_20261014_20261019.md) | 10月14至19日既往操作记录的冻结归档，不维护当前路线 | sha256:a611f034e169 |
 | [docs/research/DATA_METHODS_20261019.md](../../docs/research/DATA_METHODS_20261019.md) | 2025至2026年一手论文与官方实现调研：缺失感知、异常、特征和概率预测的采用理由与候选对照 | sha256:5f30ba32958c |
 | [docs/research/P03_OBSERVATION_PLAN.md](../../docs/research/P03_OBSERVATION_PLAN.md) | 用户本地连续观察的固定窗口、预算、恢复、用途与未启动状态 | sha256:0525e7c988e8 |
 | [docs/research/P03_VERIFICATION_PLAN.md](../../docs/research/P03_VERIFICATION_PLAN.md) | P03 两规格来源、盘口、属性与规则核验范围、预算和验收问题 | sha256:2a0c3cc09406 |
@@ -114,7 +115,7 @@
 | [docs/usage/UU_CHART_EXPORT.md](../../docs/usage/UU_CHART_EXPORT.md) | Edge 复制图表响应正文及用户本地离线核验命令，不复制请求头或启动采集 | sha256:2c2af0fd8cbe |
 | [docs/usage/UU_DIRECT_COLLECT.md](../../docs/usage/UU_DIRECT_COLLECT.md) | 本地纯脚本凭证配置、单请求试采、间隔配额、停止恢复和独立输出说明；不保证Cookie单独可用 | sha256:fb37ca5605d7 |
 | [docs/usage/UU_HISTORY_COLLECT.md](../../docs/usage/UU_HISTORY_COLLECT.md) | 用户登录页面历史采集、下载入库、恢复限制、当前报价用途与UU/SteamDT结合方案 | sha256:405e96e41e84 |
-| [pyproject.toml](../../pyproject.toml) | Python 打包配置及单一源码版本入口 | sha256:5fccbcc7bee3 |
+| [pyproject.toml](../../pyproject.toml) | Python 打包配置及单一源码版本入口 | sha256:11cbed521a6f |
 | [scripts/README.md](../../scripts/README.md) | 代码、配置、测试、SQL 和检查入口说明 | sha256:4966fb04e822 |
 | [scripts/build_research_samples.py](../../scripts/build_research_samples.py) | 日级样本构建的兼容CLI/API薄入口，实际实现委托research/data；不联网或训练 | sha256:fb83a73151d8 |
 | [scripts/check_secrets.py](../../scripts/check_secrets.py) | 暂存区及 Git 历史的凭证隔离检查，不打印真实值 | sha256:deeb89ea73de |
@@ -134,9 +135,9 @@
 | [scripts/config/watchlist.json](../../scripts/config/watchlist.json) | 流金王朝、燃料喷射器等旧调查线索 | sha256:298f1fdecd1c |
 | [scripts/evaluate_research_baselines.py](../../scripts/evaluate_research_baselines.py) | 离线固定规则基准评估薄入口：验证集选规则、锁定测试和七日来源参考预测，不执行交易 | sha256:c15fb3364880 |
 | [scripts/hooks/pre-commit](../../scripts/hooks/pre-commit) | 本地提交前的暂存凭证检查 | sha256:377f8130236b |
-| [scripts/hooks/pre-push](../../scripts/hooks/pre-push) | 历史凭证检查；新增远程推送仍暂停 | sha256:8bcdeaad4b7d |
+| [scripts/hooks/pre-push](../../scripts/hooks/pre-push) | 推送前历史凭证检查；本轮公开分支迭代已获授权 | sha256:8bcdeaad4b7d |
 | [scripts/import_uu_chart_batch.py](../../scripts/import_uu_chart_batch.py) | 用户浏览器下载批次的纯离线校验与独立SQLite/CSV入库，保留窗口、状态和历史可得时间未知 | sha256:1241a8fc9a35 |
-| [scripts/manage_assets.py](../../scripts/manage_assets.py) | 生成及校验逐文件、逐目录版本和用途清单 | sha256:1fbd915202dc |
+| [scripts/manage_assets.py](../../scripts/manage_assets.py) | 生成及校验逐文件、逐目录版本和用途清单 | sha256:73851b5faa9f |
 | [scripts/notebooks/cyrex_daily_samples.ipynb](../../scripts/notebooks/cyrex_daily_samples.ipynb) | VS Code离线日级样本构建与检查入口，默认不构建、交付空输出；不联网或训练 | sha256:7fb48801d825 |
 | [scripts/notebooks/cyrex_forecast_dashboard.ipynb](../../scripts/notebooks/cyrex_forecast_dashboard.ipynb) | VS Code离线预测评估与可视化入口，默认读取已有结果，显式开关才新建评估版本 | sha256:6bea389cab84 |
 | [scripts/notebooks/steamdt_cleaning.ipynb](../../scripts/notebooks/steamdt_cleaning.ipynb) | VS Code七品清洗与质量检查入口，默认只读已有结果；显式开关新建版本，不采集或训练 | sha256:7c8e0bfcec8e |
