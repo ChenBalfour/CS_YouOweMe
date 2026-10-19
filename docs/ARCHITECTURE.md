@@ -2,8 +2,8 @@
 
 | 字段 | 当前值 |
 | --- | --- |
-| doc-version | architecture-1.9 |
-| updated | 2026-10-16（Asia/Shanghai） |
+| doc-version | architecture-1.10 |
+| updated | 2026-10-19（Asia/Shanghai） |
 | 工程 / 目录 / 制度 | 0.3.5（本地未发布） / layout-1.0 / management-1.3 |
 
 本页解释当前实现、数据如何流动，以及后续模型与执行评估的边界。[PRODUCT](PRODUCT.md)说明目标与研究方案，[PROGRESS](PROGRESS.md)记录成果、证据和下一步。首批目标为 UU 百元普通枪皮，采用七日 CD 解锁后尽快退出的策略；当前实现仅支持来源观察、有限采集和离线验收。
@@ -17,6 +17,12 @@
 已有bars主键去重，新增research_bar_versions通过触发器保存首次值及变化；research_hourly_latest按规格/小时取最近来源记录，原始秒偏移保留。daily重查7天、weekly重查35天后续接较早未完成任务。源端空页、到起点、预算暂停、访问停止分别记录；源端缺口不填造。请求限制与共享停止/锁见[使用说明](usage/STEAMDT_RESEARCH.md)。
 
 4h/日/周是按北京时间从小时派生：首开/max高/min低/末收；小时覆盖不足标记complete_hours=false，量额任一缺失则聚合保留null。未实现正式UU多源特征拼接、模型或执行器。
+
+## 用户页面证据与单品研究假设
+
+新增私有 `data/local/staging/steamdt/research_20261016_v1/manual_cyrex_20261019_v1/`，保存用户主动提供的两张在售/求购图片、原文件SHA-256、逐行转录与说明。截图时刻未知，与提交日期分开；两图页签求购数量274/272不同，严格同步性未知。原图包含无关昵称，保持私有，转录不保留昵称。
+
+用户确认的次时代崭新无细限与贴纸暂不建特征，登记为单品价格研究的显式简化假设；截图所示条件、用户说明与已验证执行条件分别记录。研究可按普通版+标准磨损继续，execution_eligible仍为false；不回写既有research_quotes快照或采集清单，不改冻结源码，也未实现个体属性溢价模型。
 
 ## 1. 当前实现与目标流程
 

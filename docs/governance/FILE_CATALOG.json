@@ -9,7 +9,7 @@
       "path": ".",
       "purpose": "项目根及 Git/Python 所需入口元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:4b07ffebe5cdd7ce7644e9ae93d85cd85796fa123737840b6ceaea2b9cf35a8f"
+      "version": "sha256:cdc7d0a302021792514d97cef0208fc414f378f6313548c9c39124f0df8edce2"
     },
     {
       "path": ".github",
@@ -63,7 +63,7 @@
       "path": "docs",
       "purpose": "计划、制度、使用说明和交接记录",
       "layout_version": "layout-1.0",
-      "version": "sha256:f4ab19dfe1b4d711129fbede5c3c71e7e796f712d83d39cbcdf78d0d2458c2f4"
+      "version": "sha256:9f67d4630c26aba24592c7ce39a45e818cb60f8913f616cf6af7daeacf779599"
     },
     {
       "path": "docs/data",
@@ -417,25 +417,25 @@
       "path": "docs/ARCHITECTURE.md",
       "purpose": "架构主文档：真实实现、数据流、存储恢复与待建模型和执行层",
       "status": "current-or-reference",
-      "version": "sha256:e22215e28086d9b5a84486ed16451ec336b6e6f73da46acecc869ea11798ecca",
-      "sha256": "e22215e28086d9b5a84486ed16451ec336b6e6f73da46acecc869ea11798ecca",
-      "bytes": 19185
+      "version": "sha256:91a71ac8d9019b9312f3f3cd879c6eab09d5827145ae730506d5a5c49851c5cf",
+      "sha256": "91a71ac8d9019b9312f3f3cd879c6eab09d5827145ae730506d5a5c49851c5cf",
+      "bytes": 19976
     },
     {
       "path": "docs/PRODUCT.md",
       "purpose": "产品主文档：目标、范围、用户流程、策略、建议输出和验收要求",
       "status": "current-or-reference",
-      "version": "sha256:242cc966bf7abf47a18dc8e43cb132243638c385830ed78337a4d1a64dbad9cd",
-      "sha256": "242cc966bf7abf47a18dc8e43cb132243638c385830ed78337a4d1a64dbad9cd",
-      "bytes": 12876
+      "version": "sha256:1d160898345d9053e16ac7479efa7085d4b6dd914e2bdad7a408d39a095d5644",
+      "sha256": "1d160898345d9053e16ac7479efa7085d4b6dd914e2bdad7a408d39a095d5644",
+      "bytes": 13412
     },
     {
       "path": "docs/PROGRESS.md",
       "purpose": "进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步",
       "status": "current-or-reference",
-      "version": "sha256:d4675ae180ccacc59cba3b4c5de4c107841ae64a99c068ce3e5eea09aa825c72",
-      "sha256": "d4675ae180ccacc59cba3b4c5de4c107841ae64a99c068ce3e5eea09aa825c72",
-      "bytes": 46203
+      "version": "sha256:963451ee5379bbc3d8cf03818ddc913cdf7ddcc3d59609cf86cae138510b1ef6",
+      "sha256": "963451ee5379bbc3d8cf03818ddc913cdf7ddcc3d59609cf86cae138510b1ef6",
+      "bytes": 48609
     },
     {
       "path": "docs/README.md",
