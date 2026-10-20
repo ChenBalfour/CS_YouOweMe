@@ -1,6 +1,6 @@
 # CS_YouOweMe
 
-面向悠悠有品的 CS2 普通百元枪皮研究 demo：SteamDT 小时来源数据 → 七日参考价格预测 → UU 当前匹配报价与成本/实际解锁判断。已有七品小时库、清洗研究版、次时代日级样本、固定基准评估和价格图；完整买卖决策仍待接入执行证据。
+面向悠悠有品的 CS2 普通百元枪皮研究 demo：SteamDT 小时来源数据 → 七日参考价格预测 → UU 当前匹配报价与成本/实际解锁判断。已有七品小时库、清洗版和统一特征/七日标签，另有旧次时代固定基准评估和价格图；完整买卖决策仍待接入执行证据。
 
 ## 三个主文档
 
@@ -16,10 +16,11 @@
 | --- | --- | --- |
 | 1 | [steamdt_research.ipynb](scripts/notebooks/steamdt_research.ipynb) | 用户手动更新小时数据库、检查续采/覆盖 |
 | 2 | [steamdt_cleaning.ipynb](scripts/notebooks/steamdt_cleaning.ipynb) | 只读查看或显式新建七品清洗版、检查缺口和事件 |
-| 3 | [cyrex_daily_samples.ipynb](scripts/notebooks/cyrex_daily_samples.ipynb) | 从已保存数据离线生成日级候选版本 |
+| 3 | [seven_daily_samples.ipynb](scripts/notebooks/seven_daily_samples.ipynb) | 查看七品21特征、七日点/路径标签、样本数量和待成熟状态 |
+| 旧单品 | [cyrex_daily_samples.ipynb](scripts/notebooks/cyrex_daily_samples.ipynb) | 从已保存数据离线生成日级候选版本 |
 | 4 | [cyrex_forecast_dashboard.ipynb](scripts/notebooks/cyrex_forecast_dashboard.ipynb) | 读取或明确新建基准评估，显示历史、七日路径和测试误差 |
 
-默认不启动采集/新评估。已有本轮结果时，预测 Notebook 直接运行全部即可看图。各轮输入与输出另存在本地；Notebook不是唯一存储。清洗后的新特征工程尚待实施；旧Cyrex样本/评估仍按原严格规范运行，没有自动接入新清洗库。见[清洗与调研说明](docs/data/STEAMDT_CLEANING.md)、[采集说明](docs/usage/STEAMDT_RESEARCH.md)、[样本规范](docs/data/CYREX_DAILY_SAMPLES.md)、[图表说明](docs/usage/FORECAST_DASHBOARD.md)。
+默认不启动采集/新评估。已有本轮结果时，预测 Notebook 直接运行全部即可看图。各轮输入与输出另存在本地；Notebook不是唯一存储。七品清洗→21特征/独立七日标签已接通，新样本Notebook默认只读。旧Cyrex样本/评估仍按原严格规范运行；下一步建立适配七品新样本的评估。见[新样本说明](docs/data/SEVEN_DAILY_SAMPLES.md)、[清洗与调研说明](docs/data/STEAMDT_CLEANING.md)、[采集说明](docs/usage/STEAMDT_RESEARCH.md)、[样本规范](docs/data/CYREX_DAILY_SAMPLES.md)、[图表说明](docs/usage/FORECAST_DASHBOARD.md)。
 
 初次验证选择了“价格持平”，当前趋势外推没有超过它。来源预测不是可成交价或净利润；尚未拟合深度模型，没有自动买卖。
 

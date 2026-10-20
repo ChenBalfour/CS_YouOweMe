@@ -6,10 +6,11 @@
 
 1. [steamdt_research.ipynb](notebooks/steamdt_research.ipynb)：更新七品小时SQLite、查看任务和缺口；[操作说明](../docs/usage/STEAMDT_RESEARCH.md)。
 2. [steamdt_cleaning.ipynb](notebooks/steamdt_cleaning.ipynb)：七品小时清洗、NULL/mask、事件和质量报告；[操作与字段](../docs/data/STEAMDT_CLEANING.md)。
-3. [cyrex_daily_samples.ipynb](notebooks/cyrex_daily_samples.ipynb)：冻结本地来源并构建次时代日级样本；[字段说明](../docs/data/CYREX_DAILY_SAMPLES.md)。
-4. [cyrex_forecast_dashboard.ipynb](notebooks/cyrex_forecast_dashboard.ipynb)：基准评估、历史/预测图、测试误差；[图表说明](../docs/usage/FORECAST_DASHBOARD.md)。
+3. [seven_daily_samples.ipynb](notebooks/seven_daily_samples.ipynb)：七品21特征、独立七日点/路径标签与样本资格；[说明](../docs/data/SEVEN_DAILY_SAMPLES.md)。
+4. [cyrex_daily_samples.ipynb](notebooks/cyrex_daily_samples.ipynb)：冻结本地来源并构建次时代日级样本；[字段说明](../docs/data/CYREX_DAILY_SAMPLES.md)。
+5. [cyrex_forecast_dashboard.ipynb](notebooks/cyrex_forecast_dashboard.ipynb)：基准评估、历史/预测图、测试误差；[图表说明](../docs/usage/FORECAST_DASHBOARD.md)。
 
-清洗后的新特征工程尚待实施；旧Cyrex样本/预测未自动切换清洗库。新版交付Notebook默认关闭变更开关。用户已经保存的旧Notebook输出不清空。重启内核可加载本次包迁移后的代码。
+清洗→七品21特征/独立七日标签已接通；下一步建立新七品评估。旧Cyrex样本/预测保留原版。新版交付Notebook默认关闭变更开关。用户已经保存的旧Notebook输出不清空。重启内核可加载本次包迁移后的代码。
 
 ## 按功能放实现
 
@@ -17,6 +18,7 @@
 | --- | --- |
 | research/data/clean_hourly.py | 清洗1.0：只读来源、规则小时网格、NULL/mask、真实价格保留和过去窗口诊断 |
 | clean_steamdt_data.py、config/steamdt_cleaning_spec.json | 清洗薄入口与评分前固定规范；独立输出SQLite，默认status只读 |
+| research/data/seven_samples.py、build_seven_samples.py | 新七品1.0：显式父清洗版本、过去21x、独立点/路径y、共同split/purge与不可变输出 |
 | research/data/daily_samples.py | 样本组件1.1；只读小时快照、28天序列、七日标签和时间隔离 |
 | research/models/baselines.py | 固定持平与3/7/14日趋势规则；没有训练参数 |
 | research/evaluation/baseline_report.py | 校验候选、验证选规则、锁定测试与不可变评估 |

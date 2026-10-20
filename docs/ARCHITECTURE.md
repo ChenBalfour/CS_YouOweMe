@@ -1,6 +1,6 @@
 # 产品架构
 
-版本 **architecture-1.15**；2026-10-19（北京时间）。冻结采集核心仍为 **0.3.5**，独立研究组件分别版本化。目标见 [PRODUCT](PRODUCT.md)，实际运行、分数和卡点见 [PROGRESS](PROGRESS.md)。
+版本 **architecture-1.16**；2026-10-20（北京时间）。冻结采集核心仍为 **0.3.5**，独立研究组件分别版本化。目标见 [PRODUCT](PRODUCT.md)，实际运行、分数和卡点见 [PROGRESS](PROGRESS.md)。
 
 ## 从来源到决策
 
@@ -9,7 +9,8 @@ flowchart TD
     S[SteamDT 显式 YOUPIN 小时来源] --> C[用户本地有限采集\n商品清单 / 分页与续采]
     C --> D[SQLite 小时库 / 来源修订\n压缩原始响应 / 请求时间]
     D --> QC[七品清洗研究版\nNULL / mask / 质量和事件诊断]
-    QC -. 后续新特征接入 .-> NF[缺失感知特征与新评估]
+    QC --> NF[七品21个过去特征\n独立点价与路径标签]
+    NF -. 下一步 .-> NE[适配新样本的七品评估]
     D --> F[既有严格单品离线冻结快照\n过去28天 / 每日10点 / 七日目标]
     F --> E[固定基准\n验证集选规则 / 锁定测试]
     E --> V[Notebook\n历史、预测路径和误差图]
@@ -29,13 +30,15 @@ scripts/
   config/                            商品种子、固定规范、受保护本地配置
   research/
     data/clean_hourly.py              七品小时清洗、缺失与因果质量诊断
-    data/daily_samples.py            冻结快照、过去特征、序列和七日标签
+    data/daily_samples.py             旧单品严格样本、序列和七日标签
+    data/seven_samples.py             清洗库到七品过去特征、独立点/路径标签
     models/baselines.py               固定预测规则
     evaluation/baseline_report.py     数据校验、验证选择、锁定测试和产物
     evaluation/costs.py               已知报价/费用的保本情景
     visualization/forecast_charts.py  历史与预测图
   clean_steamdt_data.py               清洗薄入口
-  build_research_samples.py           兼容薄入口
+  build_research_samples.py           旧单品兼容薄入口
+  build_seven_samples.py              新七品特征/标签薄入口
   evaluate_research_baselines.py      评估薄入口
   steamdt_research.py                 有限采集组件，当前保持原版
   src/cs_youoweme/                    冻结0.3.5核心与历史实现
@@ -52,6 +55,8 @@ Notebook 配置、调用和展示；计算逻辑放入包，避免在单元格�
 | data/local/staging/steamdt/research_control/ | 跨运行共享配额、访问停止与锁，不得清理重置来绕过限制 |
 | data/local/staging/uu_charts/ | UU图表各窗口响应、独立SQLite、数量/价格、来源和采集时间 |
 | data/local/datasets/steamdt_clean/具体ID/ | 全部来源版本、小时网格、合法价格/NULL/mask、事件诊断、质量窗口、报告及源码规范 |
+| data/local/datasets/seven_daily/具体ID/ | 日级samples.sqlite、分开的features/labels、schema、父清洗/规范/准确源码与产物哈希 |
+| data/local/reports/seven_samples/具体ID/ | 独立重算真实特征/标签/资格、1198旧资产保留与Notebook默认只读验证 |
 | data/local/reports/cleaning_reviews/具体ID/ | 清洗实际值/窗口/哈希与Notebook默认只读行为复核 |
 | data/local/staging/research_samples/具体ID/ | 冻结小时输入、日级样本、28日序列、质量报告、规范与准确代码依赖 |
 | data/local/artifacts/baseline_evaluations/具体ID/ | 规则、验证/测试预测、误差、最新七日参考路径及哈希清单 |
@@ -80,9 +85,19 @@ research_hourly_latest 按规范小时取得最近来源版本，保留原始秒
 
 时间/身份结构不符停止；非法价格/OHLC/量额字段隔离，原值仍在source_versions。真实跳变不删、不平滑、不截尾，预设30%涨跌/振幅与过去168小时MAD标记仅诊断，未认定操盘。MAD不含当前收益，零MAD不造分母，缺小时不算跨缺口一小时收益。
 
-input_quality_windows仅计算过去28天覆盖和最近24h完整度，保留严格/95%门槛对照，没有未来标签；它不是预测特征或训练资格。新特征工程将显式接入本版clean.sqlite；既有Cyrex builder仍读旧原库并维持严格规范。本轮没有安装深度框架、插补模型或重算旧预测。
+input_quality_windows仅计算过去28天覆盖和最近24h完整度，保留严格/95%门槛对照，没有未来标签；它不是预测特征或训练资格。新增seven_samples已显式接入本版clean.sqlite；既有Cyrex builder仍读旧原库并维持严格规范。清洗本身不变，新特征/标签另建版本，没有安装深度框架、插补模型或重算旧预测。
 
-## 样本与预测评估
+## 七品特征与标签连接
+
+组件seven-daily-samples-1.0，规范seven-daily-spec-1.0；[Notebook](../scripts/notebooks/seven_daily_samples.ipynb)、[字段与使用](data/SEVEN_DAILY_SAMPLES.md)。build显式选clean ID并核验其全部输出；父库mode=ro，完整网格/身份校验，构建前后哈希一致。新SQLite/CSV按ID冻结，失败不更新latest，已有版不覆盖，所有实际代码依赖、规范、schema和父manifest准确保存。
+
+每品每日10点，用过去28天672小时。21个x包括参考价、1/3/7/14日收益、观察值MA比例、相邻有效小时log收益标准差、范围/尾部、覆盖/最长缺口/年龄及同日其他品过去7日收益中位数/数量。缺口不桥接小时收益，不插补；量额、missing_kind、修订编号和未来资格不作x。跨品成员只按当时过去收益可用性，不看未来标签。
+
+点目标是t+168h前完整小时close（bucket=t+167h）；成熟且目标有效即可有价格标签，参考价缺失时相对收益仍空。路径低/高及相对收益只有未来168h全部真实有效才提供，不能称最大回撤。strict与95%/最近24h输入并列，分别计算点/路径资格，标签触及下一日期分界隔离。所有品同日同split，旧test仅探索，历史available_at仍未知。
+
+新样本只是研究候选：少量容缺候选仍有NULL特征，下游需明确适配，不能默默补0。features.csv只有键/split＋21个明确x；labels.csv另含y与未来状态/资格；模型必须使用白名单而非整表自动选数值列。没有标准化拟合、模型训练或新七品预测，旧评估不改。
+
+## 旧单品样本与预测评估
 
 cyrex-daily-samples-1.1 从保存报告的请求上限内选择版本，SQLite只读；旧1.0候选继续可读。每天北京时间10:00，以此前28天672小时构成28个24小时段。价格输入缺一小时不进入首版规则，来源量额辅助保留，空值不补0。
 

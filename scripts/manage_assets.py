@@ -33,6 +33,11 @@ PURPOSES = {
     "scripts/build_research_samples.py": "日级样本构建的兼容CLI/API薄入口，实际实现委托research/data；不联网或训练",
     "scripts/evaluate_research_baselines.py": "离线固定规则基准评估薄入口：验证集选规则、锁定测试和七日来源参考预测，不执行交易",
     "scripts/clean_steamdt_data.py": "七品小时清洗CLI/API薄入口，只读来源、缺失感知网格、事件标记与独立SQLite版本，不训练",
+    "scripts/build_seven_samples.py": "七品特征/标签薄CLI与Notebook API：显式父清洗ID、离线新建版本和只读status，不训练",
+    "scripts/research/data/seven_samples.py": "seven-daily-samples-1.0：过去21特征、独立七日点/路径标签、同日跨品与时间隔离、不可变产物",
+    "scripts/config/seven_daily_spec.json": "七品日级输入/点目标/路径风险、缺失门槛、共同日期分组及七日purge的冻结1.0规范",
+    "scripts/notebooks/seven_daily_samples.ipynb": "VS Code七品特征/标签检查，默认只读既有结果；显式开关才新建版本，交付空输出",
+    "docs/data/SEVEN_DAILY_SAMPLES.md": "七品21输入特征、独立点/路径标签、样本资格、版本与Notebook操作说明",
     "scripts/config/steamdt_cleaning_spec.json": "七品清洗的缺失、价格/量额校验、因果波动诊断与输入质量门槛固定规范",
     "scripts/notebooks/steamdt_cleaning.ipynb": "VS Code七品清洗与质量检查入口，默认只读已有结果；显式开关新建版本，不采集或训练",
     "docs/data/STEAMDT_CLEANING.md": "七品清洗SQLite表、mask/缺失/极端事件与Notebook使用及特征工程边界",
@@ -163,6 +168,8 @@ FOLDERS = {
     "data/local/reports/cleaning_reviews": "清洗冻结产物的只读独立复核、Notebook默认行为检查与数据保留证据",
     "data/local/datasets": "按明确用途冻结的研究数据版本；不自动批准正式训练或交易",
     "data/local/datasets/steamdt_clean": "七品小时清洗研究版：全部来源修订、规则网格、缺失/事件标记、质量报告及准确代码规范",
+    "data/local/datasets/seven_daily": "从明确清洗版派生的七品日级特征/标签候选；按用途冻结，不自动批准训练",
+    "data/local/reports/seven_samples": "七品样本真实值独立重算、旧资产保留和Notebook默认只读验收",
     "data/local/database": "旧 SteamDT 试采库及其伴随原始证据",
     "data/local/database/raw": "旧来源内容寻址压缩响应",
     "data/local/api_cache": "旧官方目录与配额状态缓存，不自动刷新",
@@ -214,6 +221,10 @@ def purpose(path):
     if path in PURPOSES:
         return PURPOSES[path]
     name = Path(path).name
+    if path.startswith("data/local/datasets/seven_daily/"):
+        return "本版准确执行的源码、规范、schema或父清洗manifest快照" if "/source/" in path else {"samples.sqlite": "七品日级21输入、独立七日点/路径标签、分组/缺失/资格和追溯元数据", "features.csv": "按明确FEATURE_FIELDS白名单输出的过去输入，含商品和同日split键，不含y或未来资格", "labels.csv": "同键关联的七日真实点/路径标签、成熟/缺口/隔离与样本资格", "quality_report.json": "逐品/分组候选计数、点/路径标签独立状态和特征NULL数量", "report.md": "七品样本真实构建结果、缺失/标签/分组规则及未训练限制", "protocol_locked.json": "构建前锁定父清洗版本、规范和21x白名单", "manifest.json": "父清洗/源码/规范/schema/产物哈希、时间截止与研究用途", "latest.json": "仅指向具体成功冻结样本版本的入口"}.get(name, "七品日级特征/标签的不可变追溯附件")
+    if path.startswith("data/local/reports/seven_samples/"):
+        return "七品样本来源值/特征/标签/资格独立复算、保留基线、Notebook只读和离线构建核验附件"
     if path.startswith("scripts/research/"):
         return {"__init__.py": "研究功能包的职责与公共接口", "clean_hourly.py": "steamdt-hourly-cleaning-1.0：只读七品源版本、NULL/mask、原值保留、因果事件诊断与质量窗口", "daily_samples.py": "cyrex-daily-samples-1.1：只读冻结小时来源、28天样本、七日标签与准确依赖快照", "baselines.py": "仅使用过去价格特征的持平/固定对数趋势规则与七日路径", "baseline_report.py": "候选完整性校验、验证选择及锁定测试、预测与实验清单", "costs.py": "已知买价与费用的保本情景计算；未知输入保留为不足", "forecast_charts.py": "来源历史、真实七日目标与固定规则预测路径的Matplotlib图表及版本报告"}.get(name, "离线研究的功能实现与公共接口")
     if path.startswith("data/local/datasets/steamdt_clean/"):
@@ -299,6 +310,10 @@ def folder_purpose(path):
         return FOLDERS[path]
     if path.startswith("scripts/research/"):
         return "当前离线研究的功能包与公共接口"
+    if path.startswith("data/local/datasets/seven_daily/"):
+        return "一次七品特征与独立七日标签研究候选、准确实现/规范/schema及父清洗追溯"
+    if path.startswith("data/local/reports/seven_samples/"):
+        return "七品特征标签的独立复核、旧资产保留和Notebook默认行为记录"
     if path.startswith("data/local/datasets/steamdt_clean/"):
         return "一次冻结的七品小时清洗研究版本、质量输出与准确来源/实现快照"
     if path.startswith("data/local/reports/cleaning_reviews/"):

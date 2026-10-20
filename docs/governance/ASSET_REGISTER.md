@@ -1,9 +1,11 @@
 # 既有资产登记
 
-登记版本 asset-register-2.10，2026-10-19。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
+登记版本 asset-register-2.11，2026-10-20。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
+| research/data/seven_samples、build_seven_samples、seven_daily_spec、对应Notebook和datasets/seven_daily | frozen / retrospective-feature-label-candidate | 显式清洗版到七品21x/独立点路径y，3346行；未来/准入隔离，未拟合，旧单品不改 | 新研究样本 |
+| reports/seven_samples | private / independently-verified | 70266个特征值及全部标签/资格独立重算，1198旧资产不变、Notebook默认只读 | 研究验收 |
 | research/data/clean_hourly、clean_steamdt_data、对应规范/Notebook、datasets/steamdt_clean | frozen / research-cleaning-only | 7品全部81407源版本、81397真实小时、84924网格与NULL/mask/过去窗口诊断；原值/极端走势保留，历史可得时间未知，不自动训练 | P04研究清洗 |
 | DATA_METHODS_20261019、STEAMDT_CLEANING、reports/cleaning_reviews | current / evidence-and-methods | 2025–2026论文与官方实现方法依据，清洗字段与实际值/窗口/Notebook验证；基础模型与新特征仅为后续对照 | 研究方法 |
 | research_20261016_v1/gap_audit_20261019_v1 | private / bounded-live-gap-verified | 一次6请求、独立probe库/raw/准确源码、旧页/新页/入库/样本筛选追溯；实际端点仍缺26h，非JSON折叠或本地丢失，用户页面也观察到跳时，未穷尽所有端点 | P03缺口诊断 |

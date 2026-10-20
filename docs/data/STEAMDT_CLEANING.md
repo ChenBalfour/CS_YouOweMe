@@ -1,6 +1,6 @@
 # 七品小时数据清洗：字段与运行
 
-版本 steamdt-cleaning-guide-1.0；2026-10-19。组件steamdt-hourly-cleaning-1.0，规范steamdt-cleaning-spec-1.0。[方法调研](../research/DATA_METHODS_20261019.md)说明近期论文、采用理由与后续对照。
+版本 steamdt-cleaning-guide-1.1；2026-10-20。组件steamdt-hourly-cleaning-1.0，规范steamdt-cleaning-spec-1.0。[方法调研](../research/DATA_METHODS_20261019.md)说明近期论文、采用理由与后续对照。
 
 ## 使用
 
@@ -48,4 +48,4 @@ price_age_hours是距最近有效来源小时的距离，首个有效价格前�
 
 input_quality_pass暂用过去28天有效价格覆盖≥95%且最近24小时完整，同时保留strict_input_complete作完整窗口对照。它不生成x/y特征、标签，不意味着可训练或可交易；不按已看过的测试成绩调阈值。下游需要原生支持缺失或明确适配器，不能把NULL悄悄当0。
 
-未来特征工程才接入这版数据库。七日点目标与路径风险标签可分别判断完整性，不假造缺失目标；旧Cyrex严格样本与预测Notebook不改、不自动改读新库。新的规则效果需要未来留出数据验证。历史available_at和UU执行价格/费用仍未验证，清洗不能解决这些缺口。
+已增加[七品特征与标签](SEVEN_DAILY_SAMPLES.md)，显式读取这版数据库，独立生成21个过去特征与七日点/路径标签；清洗层仍不承担特征或训练。点目标与路径风险分别判断完整性，不假造缺失目标。旧Cyrex严格样本和预测Notebook保持原版；新规则效果仍需新评估与未来留出验证。历史available_at和UU执行价格/费用仍未验证，清洗不能解决这些缺口。
