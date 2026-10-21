@@ -29,7 +29,8 @@ def git(*args, input_bytes=None):
 
 def configured_secrets():
     values = {os.environ.get(name, "").strip() for name in ("STEAMDT_API_KEY", "GITHUB_TOKEN", "GH_TOKEN")}
-    for path in (ROOT / "config" / ".env", ROOT / "config" / ".env.example",
+    for path in (ROOT / "scripts" / "config" / ".env", ROOT / "scripts" / "config" / ".env.example",
+                 ROOT / "config" / ".env", ROOT / "config" / ".env.example",
                  ROOT / ".env", ROOT / ".env.example", ROOT / "env.example"):
         if not path.exists():
             continue
@@ -57,7 +58,9 @@ def sensitive_path(path):
         or name == "env.example"
         or name.endswith((".env", ".pem", ".key"))
         or (name.startswith("credentials") and name.endswith(".json"))
-        or (path.startswith("data/") and not path.startswith("data/samples/"))
+        or (path.startswith("data/") and not path.startswith("data/samples/") and path != "data/readme.md")
+        or path.startswith("docs/local/")
+        or path.startswith("scripts/local/")
     )
 
 

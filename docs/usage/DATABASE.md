@@ -1,5 +1,7 @@
 # 数据库与 VS Code
 
+> 状态：legacy / unreviewed。此页描述旧技术试验，不代表已验收的 UU 研究能力；其中命令不作为本阶段执行任务。当前方向以 [主计划](../research/PLAN.md)与[资产登记](../governance/ASSET_REGISTER.md)为准。
+
 历史库是 **SQLite 本地文件**，可以直接用 SQL 查询，不需要服务器、端口、账号或密码。
 
 当前维护工作区的路径：
@@ -14,9 +16,9 @@ F:\Codex\CS_YouOweMe\data\local\database\market.sqlite
 
 1. 安装 **SQLTools**（`mtxr.sqltools`）和 **SQLTools SQLite**（`mtxr.sqltools-driver-sqlite`）。
 2. 驱动需要 Node.js 14+ 和 npm；将 `sqltools.useNodeRuntime` 设为 `true`。首次连接时驱动会提示安装 SQLite 运行依赖。采集程序仍只需要 Python。
-3. 用“文件 → 从文件打开工作区”打开 `config/vscode.code-workspace`，其中已提供数据库相对路径和扩展推荐。
+3. 用“文件 → 从文件打开工作区”打开 `scripts/config/vscode.code-workspace`，其中已提供数据库相对路径和扩展推荐。
 4. 左侧 SQLTools 面板连接 **CS_YouOweMe Local**，展开 Tables 查看表。手动创建连接时选择 SQLite，Database 填上面的完整文件路径。
-5. 打开 `sql/` 中的文件，绑定该连接，通过 SQLTools 查询命令执行选中的语句；每条语句以分号结束。也可以在连接生成的 SQL 会话文件中粘贴执行。
+5. 打开 `scripts/sql/` 中的文件，绑定该连接，通过 SQLTools 查询命令执行选中的语句；每条语句以分号结束。也可以在连接生成的 SQL 会话文件中粘贴执行。
 
 步骤与驱动要求依据 [SQLTools 官方入门](https://vscode-sqltools.mteixeira.dev/)和 [SQLite 驱动说明](https://vscode-sqltools.mteixeira.dev/en/drivers/sq-lite.html)。Node 自动识别失败时，将设置改为本机 `node.exe` 完整路径；官方说明也列出 Windows 终端配置方法。
 
@@ -47,7 +49,7 @@ WHERE market_hash_name = 'M4A4 | Buzz Kill (Factory New)'
 ORDER BY trade_time DESC LIMIT 20;
 ```
 
-`sql/01_catalog.sql` 搜目录，`02_universe.sql` 查最新名单，`03_market.sql` 查成交与小时行情，`04_coverage.sql` 查已观察范围和任务进度。行情示例使用已有试采的 M4A4；新规格返回空行可能是尚未采集，不代表无成交。
+`scripts/sql/01_catalog.sql` 搜目录，`02_universe.sql` 查最新名单，`03_market.sql` 查成交与小时行情，`04_coverage.sql` 查已观察范围和任务进度。行情示例使用已有试采的 M4A4；新规格返回空行可能是尚未采集，不代表无成交。
 
 ## 时间、价格与备份
 

@@ -1,69 +1,48 @@
 # CS_YouOweMe
 
-CS2 枪皮市场研究与数据基础设施。当前版本 **v0.3.0**：可查询的商品目录、精确磨损成交、小时行情、可恢复的采集任务与版本化研究名单。
+面向悠悠有品的CS2普通百元枪皮研究demo：SteamDT小时来源数据→七日参考价格预测→UU匹配报价/成本与实际解锁判断。已有七品小时库、清洗/特征标签、本地CPU/CUDA训练与参数重载评估入口。预处理已准备，真实模型训练由用户在VS Code运行；完整买卖决策仍待UU执行证据。
 
-研究集中于**千百战枪皮**：百元和千元价位的普通武器皮肤。先完成主力筛选和数据质量验证，再进行事件研究、论文复现与预测评估。
+## 三个主文档
 
-## 开始使用
+| 文档 | 用途 |
+| --- | --- |
+| [产品说明](docs/PRODUCT.md) | 目标、选品、七日CD退出策略和验收 |
+| [产品架构](docs/ARCHITECTURE.md) | 当前数据流、功能包、存储和待建能力 |
+| [当前进展与卡点](docs/PROGRESS.md) | 真实成果、卡点、未来工作与验收；历史操作另归档 |
 
-Python 3.11+；采集与查询使用标准库，无第三方运行依赖。
+## 当前 Notebook 入口
 
-```bash
-git clone https://github.com/ChenBalfour/CS_YouOweMe.git
-cd CS_YouOweMe
-python scripts/collect.py --version
-python scripts/collect.py catalog sync
-python scripts/collect.py catalog search --query "燃料喷射器"
-python scripts/collect.py universe scan --output data/local/universes/qianbaizhan.json
+| 顺序 | VS Code 文件 | 做什么 |
+| --- | --- | --- |
+| 1 | [steamdt_research.ipynb](scripts/notebooks/steamdt_research.ipynb) | 用户手动更新小时数据库、检查续采/覆盖 |
+| 2 | [steamdt_cleaning.ipynb](scripts/notebooks/steamdt_cleaning.ipynb) | 只读查看或显式新建七品清洗版、检查缺口和事件 |
+| 3 | [seven_daily_samples.ipynb](scripts/notebooks/seven_daily_samples.ipynb) | 查看七品21特征、七日点/路径标签、样本数量和待成熟状态 |
+| 4 | [seven_model_training_v1_1.ipynb](scripts/notebooks/seven_model_training_v1_1.ipynb) | 显式运行CPU或CUDA训练，保存本地参数；重载评估并显示七品价格/预测/误差图 |
+| 旧单品 | [cyrex_daily_samples.ipynb](scripts/notebooks/cyrex_daily_samples.ipynb) | 从已保存数据离线生成原严格候选版本 |
+| 旧单品 | [cyrex_forecast_dashboard.ipynb](scripts/notebooks/cyrex_forecast_dashboard.ipynb) | 读取或明确新建旧固定基准评估，显示历史、七日路径和误差 |
+
+默认不采集、不训练、不新建评估。修复版训练Notebook先重启内核、保持全False运行全部检查，再打开RUN_CUDA_TRAIN和RUN_EVALUATE；CUDA默认float32，旧v1入口和输出保留；操作见[七品训练说明](docs/usage/SEVEN_MODEL_TRAINING.md)。模型、预处理、准确源码与结果都留本地；以后评估只加载参数，不重新fit。旧Cyrex样本/评估保持原严格规范。另见[七品特征标签](docs/data/SEVEN_DAILY_SAMPLES.md)、[清洗说明](docs/data/STEAMDT_CLEANING.md)、[采集说明](docs/usage/STEAMDT_RESEARCH.md)、[旧图表说明](docs/usage/FORECAST_DASHBOARD.md)。
+
+新入口提供持平/Ridge/有界ARIMA/LightGBM，以及DLinear/LSTM/Transformer/门控cross attention；两轮真实CUDA尝试仅持平完成，四神经模型因fp16梯度非有限停止；修复版默认float32并另建v2预处理，真实完整重跑待用户完成。旧单品趋势规则未超过持平。来源预测不是可成交价或净利润，没有自动买卖。
+
+## 文件分工与版本
+
+| 目录 | 内容 |
+| --- | --- |
+| [scripts](scripts/README.md) | Notebook、薄入口、按data/models/evaluation/visualization分工的research包及冻结采集核心 |
+| [data](data/README.md) | 私有小时SQLite、原始响应、UU快照、候选、评估与图表 |
+| [docs](docs/README.md) | 三大主文档、字段、使用、治理及历史附件 |
+
+冻结核心 **0.3.5（未打发布标签）**；独立组件分别版本化。文件/目录用途与SHA-256见[索引](docs/governance/FILE_INDEX.md)和[清单](docs/governance/FILE_CATALOG.json)。已有原始证据、用户Notebook输出和冻结运行保留；只清理有依据的缓存或冗余。
+
+本轮相关离线检查：
+
+```powershell
+python -m pip install ".[test]"
+python -B -m unittest discover -s scripts/tests -v
+python -B scripts/manage_assets.py --check
 ```
 
-官方目录读取本地 `config/.env`；公开模板 `config/.env.example` 保持空白。网页历史使用实测的匿名接口。新名单不会自动启动历史回填；审阅后再指定名单和日期窗口。
+UU补充入口见[纯脚本说明](docs/usage/UU_DIRECT_COLLECT.md)、[历史图表Notebook](scripts/notebooks/uu_history_collect.ipynb)。登录信息仅由用户本地维护，不贴聊天或加入Git。采集由用户显式本地运行，不代启动持续采集、后台/定时服务。公开代码/文档在`planning/uu-research-reset`分支迭代；私有数据和用户已保存的Notebook输出留在本地。分支上传不代表正式release或交易能力上线。
 
-- [在 VS Code 连接数据库、运行 SQL](docs/usage/DATABASE.md)
-- [筛选、回填、续跑与覆盖检查](docs/usage/HISTORY.md)
-- [研究范围、假设、事件与方向](docs/research/DESIGN.md)
-- [第一版千百战名单与依据](docs/research/UNIVERSE.md)
-
-## 项目结构
-
-```text
-src/cs_youoweme/
-├── collectors/      公开页面、官方接口、网页历史客户端
-└── history/         目录、名单、SQLite、任务、查询与聚合
-scripts/             CLI 入口、密钥检查
-config/              试采种子、观察名单、空白模板、VS Code 工作区
-sql/                 可直接执行的只读查询
-data/
-├── samples/         经核对的匿名公开试采样本
-└── local/           私有数据库、原始响应、名单和运行记录
-docs/
-├── usage/           使用方法
-├── data/            字段、来源与口径
-├── research/        研究设计、名单与方向
-└── releases/        发布记录
-tests/               离线验证
-.github/             CI、贡献与安全说明
-.githooks/           提交与推送检查
-```
-
-默认历史库：`data/local/database/market.sqlite`。目录、成交、行情、名单和任务分表保存；原始响应采用 gzip 压缩并保留 SHA-256。
-
-## 已验证的范围
-
-截至 2026-10-12，本地目录有 **44,502 个来源当前规格**；历史试采有 **119,520 条小时行情、1,420 条成交**。10 个试采行情序列的小时桶覆盖北京时间 **2025-06-01 至 2026-10-11**，包含早期刀／手套及相位验证数据。部分来源量额缺失，逐笔成交尚未回填到目标起点。第一版千百战名单入选 11 个规格，其完整历史回填尚未开始。
-
-这些是本地验证结果，数据库不随代码分发。小时桶齐全不代表全市场成交完整，也不代表新入选规格已有历史。保留完整轻量目录，仅回填已选样本。
-
-[公开试采样本](data/samples/pilot_20261011/)保留 20 条商品、180 条报价和 267 条关联规格，供解析与追溯验证。报价是挂牌价，不能作为真实成交。见[数据字典](docs/data/DATA_DICTIONARY.md)、[历史库口径](docs/data/HISTORY_SCHEMA.md)和[数据来源](docs/data/DATA_SOURCES.md)。
-
-## 开发
-
-```bash
-git config core.hooksPath .githooks
-python -m unittest discover -s tests -v
-python scripts/check_secrets.py --history
-```
-
-`main` 保存通过检查的代码，正式版本使用标签和 [Changelog](CHANGELOG.md)。密钥检查只报告路径和状态，不打印真实值；CI 使用合成数据。版本唯一来源为 `src/cs_youoweme/__init__.py`。
-
-原创代码与文档采用 [MIT](LICENSE)。第三方数据与商标的权利归各自权利人。
+原创代码与文档采用[MIT](LICENSE)。第三方数据及商标权利归其权利人。

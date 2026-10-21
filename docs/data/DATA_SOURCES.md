@@ -1,5 +1,7 @@
 # 数据来源与分发
 
+> 状态：legacy / unreviewed。此页描述旧技术试验，不代表已验收的 UU 研究能力；其中命令不作为本阶段执行任务。当前方向以 [主计划](../research/PLAN.md)与[资产登记](../governance/ASSET_REGISTER.md)为准。
+
 主要来源为 [SteamDT](https://www.steamdt.com/) 的匿名公开商品详情页。其[官方介绍](https://www.steamdt.com/terms/AboutUs)将平台定位为 CS 饰品数据分析工具。
 
 首批访问 20 个商品 URL，提取服务端渲染的 `__NUXT_DATA__` 数据，使用明确的商品名匹配主对象，检查响应 `success=true`。完整网页留在 `data/local/archive/initial_collection/` 的最初本地采集归档，不作为开源代码分发。
@@ -22,4 +24,4 @@
 
 官方 K 线与网站行情为独立接口。网页实测小时数组为 `[time,open,close,high,low,volume,turnover]`，成交页返回事件时间、价格、磨损、模板与来源 ID。原始公开响应本地压缩归档；标准化成交不保留 Steam 用户信息。分页可向过去续取，但来源记录不代表全市场交易完整。
 
-截至 2026-10-12，早期试采 10 个小时序列覆盖 2025-06-01 至 2026-10-11；量额仍有缺失，逐笔回填尚未完成。当前研究聚焦千百战枪皮，只采明确名单历史。字段与局限见 [历史库口径](HISTORY_SCHEMA.md)，研究问题见 [研究设计](../research/DESIGN.md)。
+截至 2026-10-12，早期试采 10 个小时序列覆盖 2025-06-01 至 2026-10-11；量额仍有缺失，逐笔回填尚未完成。当前研究聚焦千百战枪皮，只采明确名单历史。字段与局限见 [历史库口径](HISTORY_SCHEMA.md)，研究问题见 [主计划](../research/PLAN.md)。
