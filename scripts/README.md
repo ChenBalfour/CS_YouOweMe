@@ -7,10 +7,11 @@
 1. [steamdt_research.ipynb](notebooks/steamdt_research.ipynb)：更新七品小时SQLite、查看任务和缺口；[操作说明](../docs/usage/STEAMDT_RESEARCH.md)。
 2. [steamdt_cleaning.ipynb](notebooks/steamdt_cleaning.ipynb)：七品小时清洗、NULL/mask、事件和质量报告；[操作与字段](../docs/data/STEAMDT_CLEANING.md)。
 3. [seven_daily_samples.ipynb](notebooks/seven_daily_samples.ipynb)：七品21特征、独立七日点/路径标签与样本资格；[说明](../docs/data/SEVEN_DAILY_SAMPLES.md)。
-4. [cyrex_daily_samples.ipynb](notebooks/cyrex_daily_samples.ipynb)：冻结本地来源并构建次时代日级样本；[字段说明](../docs/data/CYREX_DAILY_SAMPLES.md)。
-5. [cyrex_forecast_dashboard.ipynb](notebooks/cyrex_forecast_dashboard.ipynb)：基准评估、历史/预测图、测试误差；[图表说明](../docs/usage/FORECAST_DASHBOARD.md)。
+4. [seven_model_training.ipynb](notebooks/seven_model_training.ipynb)：七品CPU/CUDA本地训练、保存参数、重载评估和价格/误差图；[训练说明](../docs/usage/SEVEN_MODEL_TRAINING.md)。
+5. [cyrex_daily_samples.ipynb](notebooks/cyrex_daily_samples.ipynb)：旧次时代严格样本入口；[字段说明](../docs/data/CYREX_DAILY_SAMPLES.md)。
+6. [cyrex_forecast_dashboard.ipynb](notebooks/cyrex_forecast_dashboard.ipynb)：旧固定基准评估、历史/预测图、测试误差；[图表说明](../docs/usage/FORECAST_DASHBOARD.md)。
 
-清洗→七品21特征/独立七日标签已接通；下一步建立新七品评估。旧Cyrex样本/预测保留原版。新版交付Notebook默认关闭变更开关。用户已经保存的旧Notebook输出不清空。重启内核可加载本次包迁移后的代码。
+七品清洗→特征标签→train-only预处理→显式训练/重载评估已接通。预处理版seven_prep_20261021_v1已准备；长时间真实训练由用户运行。旧Cyrex样本/预测保留原版，新Notebook默认全部开关False，旧Notebook用户输出不清空。
 
 ## 按功能放实现
 
@@ -19,8 +20,12 @@
 | research/data/clean_hourly.py | 清洗1.0：只读来源、规则小时网格、NULL/mask、真实价格保留和过去窗口诊断 |
 | clean_steamdt_data.py、config/steamdt_cleaning_spec.json | 清洗薄入口与评分前固定规范；独立输出SQLite，默认status只读 |
 | research/data/seven_samples.py、build_seven_samples.py | 新七品1.0：显式父清洗版本、过去21x、独立点/路径y、共同split/purge与不可变输出 |
+| research/data/training_data.py、model_preprocessing.py | 冻结链只读核验、672h序列、预测白名单、train-only median/mask/std与JSON保存 |
 | research/data/daily_samples.py | 样本组件1.1；只读小时快照、28天序列、七日标签和时间隔离 |
 | research/models/baselines.py | 固定持平与3/7/14日趋势规则；没有训练参数 |
+| research/models/classical.py、neural.py | CPU持平/Ridge/有界ARIMA/LightGBM；CUDA DLinear/LSTM/Transformer/门控cross attention |
+| research/models/foundation.py | 可选本地Chronos-2适配；未验证真实权重，不在默认模型内 |
+| research/evaluation/seven_training.py、train_seven_models.py、config/seven_training_spec.json | 新训练/重载评估workflow、薄CLI、固定规范；源码/输入哈希与完整实验校验 |
 | research/evaluation/baseline_report.py | 校验候选、验证选规则、锁定测试与不可变评估 |
 | research/evaluation/costs.py | 显式报价/费用的保本情景；缺参不当0 |
 | research/visualization/forecast_charts.py | 历史、目标/预测、七日路径和PNG报告 |
@@ -31,7 +36,7 @@
 | tests/ | 离线行为测试 |
 | manage_assets.py、check_secrets.py、hooks/ | 逐文件版本与提交凭证检查 |
 
-采集和研究使用Python3.11+标准库，图表另需Matplotlib。研究包从项目根导入；冻结核心仍位于src/cs_youoweme。源码准确快照由各轮清单保留，不能移动到旧运行里。
+Python3.11+；采集/样本核心使用标准库，图表另需Matplotlib。新训练按需使用research可选依赖，神经训练使用PyTorch；Notebook不自动安装或替换CUDA环境。研究包从项目根导入；冻结核心仍位于src/cs_youoweme。各轮保留准确源码、预处理、源哈希和本地参数，源码漂移时拒绝加载旧实验。
 
 ## UU与历史兼容入口
 

@@ -30,7 +30,7 @@ jobs:
       - name: Check tracked files and history
         run: python scripts/check_secrets.py --history
       - name: Install offline test dependencies
-        run: python -m pip install ".[test]"
+        run: python -m pip install ".[test,research]"
       - name: Run offline tests
         run: python -B -m unittest discover -s scripts/tests -v
       - name: Check CLI version

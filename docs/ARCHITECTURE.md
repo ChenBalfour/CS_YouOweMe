@@ -1,6 +1,6 @@
 # 产品架构
 
-版本 **architecture-1.16**；2026-10-20（北京时间）。冻结采集核心仍为 **0.3.5**，独立研究组件分别版本化。目标见 [PRODUCT](PRODUCT.md)，实际运行、分数和卡点见 [PROGRESS](PROGRESS.md)。
+版本 **architecture-1.17**；2026-10-21（北京时间）。冻结采集核心仍为 **0.3.5**，独立研究组件分别版本化。目标见 [PRODUCT](PRODUCT.md)，实际运行、分数和卡点见 [PROGRESS](PROGRESS.md)。
 
 ## 从来源到决策
 
@@ -10,7 +10,9 @@ flowchart TD
     C --> D[SQLite 小时库 / 来源修订\n压缩原始响应 / 请求时间]
     D --> QC[七品清洗研究版\nNULL / mask / 质量和事件诊断]
     QC --> NF[七品21个过去特征\n独立点价与路径标签]
-    NF -. 下一步 .-> NE[适配新样本的七品评估]
+    NF --> P[只用训练集拟合缺失适配/缩放\n冻结预处理参数]
+    P --> NE[用户显式本地训练\nCPU基线 / CUDA神经网络]
+    NE --> R[保存模型与源码/输入哈希\n仅重载的评估与七品图表]
     D --> F[既有严格单品离线冻结快照\n过去28天 / 每日10点 / 七日目标]
     F --> E[固定基准\n验证集选规则 / 锁定测试]
     E --> V[Notebook\n历史、预测路径和误差图]
@@ -18,6 +20,7 @@ flowchart TD
     UD -. 待核验身份和可得时间后接特征 .-> NF
     Q[UU 当前匹配在售 / 求购\n数量 / 费用 / 实际解锁] -. 待接入 .-> X[执行情景与建议\n购买候选 / 观察 / 数据不足]
     E -. 来源预测不能直接当退出价 .-> X
+    R -. 待接执行证据 .-> X
 ```
 
 实线已实现，虚线待接入。目前是 **L0 来源研究**，不是已验证盈利的交易系统。预测对应 SteamDT 来源参考价；真正的买入/出售判断还需同规格可匹配 UU 报价、费用、有效数量和实际可卖状态。持仓尚未解锁时只能更新风险；解锁、出售成交、结算分别记录，不能模拟 CD 内提前止损。
@@ -32,20 +35,27 @@ scripts/
     data/clean_hourly.py              七品小时清洗、缺失与因果质量诊断
     data/daily_samples.py             旧单品严格样本、序列和七日标签
     data/seven_samples.py             清洗库到七品过去特征、独立点/路径标签
+    data/training_data.py             冻结链核验、过去672小时序列与预测字段白名单
+    data/model_preprocessing.py       train-only缺失适配、缩放、mask和JSON持久化
     models/baselines.py               固定预测规则
+    models/classical.py               持平、Ridge、有界ARIMA与LightGBM
+    models/neural.py                  DLinear/LSTM/Transformer/门控cross attention
+    models/foundation.py              可选本地Chronos适配，未验证真实权重
     evaluation/baseline_report.py     数据校验、验证选择、锁定测试和产物
+    evaluation/seven_training.py      prepare/显式训练/重载评估/七品误差图
     evaluation/costs.py               已知报价/费用的保本情景
     visualization/forecast_charts.py  历史与预测图
   clean_steamdt_data.py               清洗薄入口
   build_research_samples.py           旧单品兼容薄入口
   build_seven_samples.py              新七品特征/标签薄入口
   evaluate_research_baselines.py      评估薄入口
+  train_seven_models.py               新七品训练/评估薄入口
   steamdt_research.py                 有限采集组件，当前保持原版
   src/cs_youoweme/                    冻结0.3.5核心与历史实现
   tests/                             离线行为测试
 ```
 
-Notebook 配置、调用和展示；计算逻辑放入包，避免在单元格复制实现。旧 CLI/Notebook 保持兼容，旧运行源码和产物不迁移、不重写。研究包从项目根导入；冻结核心继续按 scripts/src 打包。Python 3.11+；采集、样本与基准用标准库，图表用 Matplotlib，Notebook 需要 Python/Jupyter 内核。pyproject的test可选依赖为图表离线测试提供Matplotlib；CI显式安装后运行全套离线测试，生产核心dependencies仍为空。没有引入深度学习框架或数据库服务。
+Notebook配置、调用和展示；计算逻辑放入包。旧CLI/Notebook保持兼容，旧运行源码和产物不迁移、不重写。研究包从项目根导入；冻结核心继续按scripts/src打包。Python3.11+；采集/样本核心用标准库，图表用Matplotlib。新增research可选依赖为NumPy、scikit-learn、statsmodels和LightGBM，neural可选依赖为PyTorch；不把它们加入采集核心的强制依赖，也不自动安装或替换用户CUDA环境。Notebook需要匹配的Python/Jupyter内核。
 
 ## 本地数据职责
 
@@ -56,6 +66,9 @@ Notebook 配置、调用和展示；计算逻辑放入包，避免在单元格�
 | data/local/staging/uu_charts/ | UU图表各窗口响应、独立SQLite、数量/价格、来源和采集时间 |
 | data/local/datasets/steamdt_clean/具体ID/ | 全部来源版本、小时网格、合法价格/NULL/mask、事件诊断、质量窗口、报告及源码规范 |
 | data/local/datasets/seven_daily/具体ID/ | 日级samples.sqlite、分开的features/labels、schema、父清洗/规范/准确源码与产物哈希 |
+| data/local/artifacts/seven_training/prepared/具体ID/ | train-only预处理器、特征/序列字段与item编码、规范、输入/父版本及schema哈希引用和准确源码 |
+| data/local/artifacts/seven_training/experiments/具体ID/ | 本地模型参数、预处理副本、配置、环境、训练历史、验证选择、成功/失败清单及源码 |
+| data/local/reports/seven_training/具体ID/ | 重载评估分数、逐品预测CSV、价格/误差PNG、报告和独立哈希清单 |
 | data/local/reports/seven_samples/具体ID/ | 独立重算真实特征/标签/资格、1198旧资产保留与Notebook默认只读验证 |
 | data/local/reports/cleaning_reviews/具体ID/ | 清洗实际值/窗口/哈希与Notebook默认只读行为复核 |
 | data/local/staging/research_samples/具体ID/ | 冻结小时输入、日级样本、28日序列、质量报告、规范与准确代码依赖 |
@@ -95,7 +108,23 @@ input_quality_windows仅计算过去28天覆盖和最近24h完整度，保留严
 
 点目标是t+168h前完整小时close（bucket=t+167h）；成熟且目标有效即可有价格标签，参考价缺失时相对收益仍空。路径低/高及相对收益只有未来168h全部真实有效才提供，不能称最大回撤。strict与95%/最近24h输入并列，分别计算点/路径资格，标签触及下一日期分界隔离。所有品同日同split，旧test仅探索，历史available_at仍未知。
 
-新样本只是研究候选：少量容缺候选仍有NULL特征，下游需明确适配，不能默默补0。features.csv只有键/split＋21个明确x；labels.csv另含y与未来状态/资格；模型必须使用白名单而非整表自动选数值列。没有标准化拟合、模型训练或新七品预测，旧评估不改。
+冻结样本保留原始NULL。features.csv只有键/split＋21个明确x；labels.csv另含y与未来状态/资格。模型使用白名单，不能整表自动选数值列。新训练适配层独立处理这些缺失，不改样本或旧评估。
+
+## 七品本地训练与重载评估
+
+组件seven-training-1.0、规范seven-training-spec-1.0；[Notebook](../scripts/notebooks/seven_model_training.ipynb)、[操作说明](usage/SEVEN_MODEL_TRAINING.md)。入口分prepare、train、evaluate：默认全部关闭，用户明确选择后运行。训练授权记录为2026-10-21回顾研究，不修改父样本的training_approved=false，也不升级UU执行资格。
+
+training_data核验样本/父清洗全部outputs、源码快照、规范、schema、父manifest和只读SQLite完整性；验证共同日期split、168小时标签与purge。默认quality点任务为train1,714、validation588、test_exploratory707。测试行在原库仍叫test，接口专门标记为探索；没有随机拆分或把同日不同品分入不同组。
+
+表格输入21项x；预处理只在eligible、未purge的train行拟合列median，再在填充后的train上拟合mean/std，附21个缺失mask和7个训练商品one-hot，共49列。全缺失训练列显式采用0作为模型输入fallback并保留mask，常量列scale=1；未知商品拒绝预测。树模型使用21项原NaN＋7项one-hot，共28列。统计参数、字段顺序、商品身份、fit行键及哈希保存JSON，transform和evaluate不重新fit，y_return_7d不缩放。
+
+序列严格取[t-672h,t)的672个小时：log(close/reference)、相邻真实一小时log收益、log(high/low)。缺失NaN不插值，不跨缺口计算收益，窗口首收益也为空；同样用训练统计适配并附3个mask，共6通道。预测输入显式去掉y、target、未来资格和诊断元数据；训练标签在调用模型时独立追加。
+
+CPU候选为持平、Ridge、有界ARIMA、LightGBM；CUDA候选为DLinear、LSTM、小Transformer、门控LSTM–Transformer cross attention。神经网络统一使用序列＋表格输入，训练MSE、验证MAE早停并保存最佳.pt权重。门控结构从毕设思路改写为本任务联合训练，不加载交通预测权重。Chronos只提供显式本地权重的可选适配，未验证真实权重、不在默认模型列表。
+
+每轮保存模型、预处理、配置/字段、源与父清单哈希、准确源码、环境和训练历史。preprocessor.json记录特征/序列顺序、item编码和训练行键；SQLschema保留在不可变dataset中，由provenance按哈希引用，不重复复制或改写。加载时核验哈希及当前运行源码与快照，代码漂移即拒绝。失败保留状态及错误，不自动重试或静默更换设备；部分失败实验保留manifest，完整实验才进入统一评估。旧实验ID不覆盖，重跑另建ID。
+
+选模只按validation收益MAE，价格由reference×(1+预测收益)还原；重载评估输出价格MAE/RMSE、MAPE、偏差、方向正确率及逐品图。图上的每个预测点来自七日前的origin，缺日期保持断线；本版没有训练可靠区间，也没有预测期间每小时路径。旧test需要显式探索开关。未来仍需滚动时间验证、新前向留出和UU执行成本对照。
 
 ## 旧单品样本与预测评估
 
@@ -109,7 +138,7 @@ cyrex-daily-samples-1.1 从保存报告的请求上限内选择版本，SQLite�
 
 测试图按目标时刻对齐真实价/提前七日预测；最新图展示28天历史与day0–7预测点。没有未来真实曲线时不编造；缺小时断线，外推不制造日内波动。固定10点示例在实际收到数据后才生成，不冒充当日10点已发的实盘预测。见 [图表说明](usage/FORECAST_DASHBOARD.md)。
 
-没有拟合深度学习或正式交易模型。回顾历史 available_at 未核验，快照可能含后来修订，training_approved=false；正确时间划分仍不等于严格PIT回测。每日七日标签重叠，不当作独立交易次数。
+旧单品链路未拟合深度模型；新增七品训练走上面的独立入口。回顾历史available_at未核验，快照可能含后来修订，源training_approved=false保持原值；正确时间划分仍不等于严格PIT回测。每日七日标签重叠，不当作独立交易次数。
 
 ## UU 补充与执行边界
 

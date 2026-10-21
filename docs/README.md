@@ -12,9 +12,10 @@
 | --- | --- |
 | 选品规则与历史调查 | [计划](research/SELECTION_PLAN.md)、[报告](research/SELECTION_REPORT.md)、[百元修订](research/SELECTION_REVISION_20261014.md) |
 | 来源与执行证据 | [P03计划](research/P03_VERIFICATION_PLAN.md)、[有限报告](research/P03_VERIFICATION_REPORT.md)、[字段](data/UU_FIELD_CONTRACT.md)、[规则](data/UU_EXECUTION_RULES.md)、[历史图表](data/UU_HISTORY_CHART.md) |
-| 预测、误差与可视化 | [新Notebook](../scripts/notebooks/cyrex_forecast_dashboard.ipynb)、[操作与图表说明](usage/FORECAST_DASHBOARD.md)；固定基准已评估，默认读取已有结果 |
+| 七品训练、预测与图表 | [新Notebook](../scripts/notebooks/seven_model_training.ipynb)、[本地训练/重载评估说明](usage/SEVEN_MODEL_TRAINING.md)；4CPU＋4CUDA候选，默认不训练，真实模型成绩待用户运行 |
+| 旧单品固定基准与图表 | [Notebook](../scripts/notebooks/cyrex_forecast_dashboard.ipynb)、[图表说明](usage/FORECAST_DASHBOARD.md)；原固定基准和结果保持 |
 | 七品清洗和方法调研 | [Notebook](../scripts/notebooks/steamdt_cleaning.ipynb)、[字段/用法](data/STEAMDT_CLEANING.md)、[近期一手方法与采用方案](research/DATA_METHODS_20261019.md)；清洗层保持原版，新七品样本已独立接入 |
-| 七品统一特征与标签 | [Notebook](../scripts/notebooks/seven_daily_samples.ipynb)、[字段与操作](data/SEVEN_DAILY_SAMPLES.md)；21项过去输入、独立七日点/路径标签，未训练 |
+| 七品统一特征与标签 | [Notebook](../scripts/notebooks/seven_daily_samples.ipynb)、[字段与操作](data/SEVEN_DAILY_SAMPLES.md)；21项过去输入、独立七日点/路径标签，冻结源保持 |
 | 次时代日级研究候选 | [字段与使用说明](data/CYREX_DAILY_SAMPLES.md)、[离线Notebook](../scripts/notebooks/cyrex_daily_samples.ipynb) |
 | SteamDT小时研究库 | [VS Code Notebook](../scripts/notebooks/steamdt_research.ipynb)、[商品清单/续采/去重说明](usage/STEAMDT_RESEARCH.md) |
 | 用户本地运行 | [连续观察计划](research/P03_OBSERVATION_PLAN.md)、[VS Code说明](usage/OBSERVE_24H.md)、[Notebook](../scripts/notebooks/uu_observe_24h.ipynb) |

@@ -9,25 +9,25 @@
       "path": ".",
       "purpose": "项目根及 Git/Python 所需入口元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:f00dd4d757e82d58e46b9ccb8956a6c2d21ae36375c5a4f21895b673048334bc"
+      "version": "sha256:d52053919affca352c57fcf403962cbde70b5282a2467a45d6f1bc3f0f995b70"
     },
     {
       "path": ".github",
       "purpose": "GitHub 工具约定的根目录配置",
       "layout_version": "layout-1.0",
-      "version": "sha256:1790293e25fd569daab8cbaf8a3bcb71fc9b24a014fc8ba30f99be1b79bdef94"
+      "version": "sha256:6f71f839203194c72a3da86eee432b060e31f426dc4fc0af3d15c87c403d629b"
     },
     {
       "path": ".github/workflows",
       "purpose": "既有自动检查配置",
       "layout_version": "layout-1.0",
-      "version": "sha256:1790293e25fd569daab8cbaf8a3bcb71fc9b24a014fc8ba30f99be1b79bdef94"
+      "version": "sha256:6f71f839203194c72a3da86eee432b060e31f426dc4fc0af3d15c87c403d629b"
     },
     {
       "path": "data",
       "purpose": "来源数据及其伴随元数据",
       "layout_version": "layout-1.0",
-      "version": "sha256:3a0a9f4c5392aea3a2faa0c454bcd6aba200ab76459b9d5a2860698fdb4d9214"
+      "version": "sha256:7ffabc98f5b55414ff8a99f0c0e38bd67bd1f27bb8569f5571d8082ab21438da"
     },
     {
       "path": "data/samples",
@@ -63,7 +63,7 @@
       "path": "docs",
       "purpose": "计划、制度、使用说明和交接记录",
       "layout_version": "layout-1.0",
-      "version": "sha256:51d1c8afda601b623611234b98bbe50667a51c9d1c103554d4ad606939d9ded3"
+      "version": "sha256:5ae3e5fdbfc03d64f8b3aa83598e6ed5579524f2ca80dd11062ac3fb74b51f7f"
     },
     {
       "path": "docs/data",
@@ -75,13 +75,13 @@
       "path": "docs/governance",
       "purpose": "管理、阶段、资产登记与版本索引",
       "layout_version": "layout-1.0",
-      "version": "sha256:97e9d6bd2a426617015022cad68720fb99817b4bb6c72a069dab727c7b51470d"
+      "version": "sha256:edf1ad6cedf520970786217ae53eb4f2dadac63c07b1b2d42714f7438e709e61"
     },
     {
       "path": "docs/releases",
       "purpose": "历史发布与本地版本变更说明",
       "layout_version": "layout-1.0",
-      "version": "sha256:565b4af8d0db2cf839eec46d3eabb57a88f319f9097cee793ede4bf7c76c006d"
+      "version": "sha256:63ef687d4bce6e0ab99972954bae0e4f86606d63d4bfa1cc3189c7d085294c76"
     },
     {
       "path": "docs/research",
@@ -93,19 +93,19 @@
       "path": "docs/usage",
       "purpose": "用户本地观察、图表导出与旧实现参考，不构成采集或发布授权",
       "layout_version": "layout-1.0",
-      "version": "sha256:95a11e3b398b04024ea78094e3e23b0419d31b74b4e9f011c7f5d640d803a27a"
+      "version": "sha256:b261fe1a1138cb9d38eebc7a8de79062dc6b35e68495c6dc566f48e04f8ad0b6"
     },
     {
       "path": "scripts",
       "purpose": "所有可执行代码及其工程配套",
       "layout_version": "layout-1.0",
-      "version": "sha256:097187f9e778407525c0ed378404f7e53125eecca92daa4b133dadd2cdfa95f8"
+      "version": "sha256:fb33f1d17354b8ddc73414fce5c3a1788c33266e0a1a817bcc37d775863fabef"
     },
     {
       "path": "scripts/config",
       "purpose": "脚本配置、空白模板与受保护本地凭证",
       "layout_version": "layout-1.0",
-      "version": "sha256:a5980c8b8b1299a75c80b482fb72e1ea7cf910622e0e9da1e7c52025385ba841"
+      "version": "sha256:91be6831e05643229ef0936936d90705de3cbfa4d99f62699fadb6f54ecb6b8f"
     },
     {
       "path": "scripts/hooks",
@@ -117,31 +117,31 @@
       "path": "scripts/notebooks",
       "purpose": "用户手动运行的 Notebook 入口，Git 中清空执行输出",
       "layout_version": "layout-1.0",
-      "version": "sha256:5d271afd87c1a65dcea68c60f4ccef6092c808c5c1368c3a24598eb53178f975"
+      "version": "sha256:342868243081b2c32972eba817ffaf86b5f6e33296cd57048a39f48696e0e52f"
     },
     {
       "path": "scripts/research",
       "purpose": "当前离线研究包，按数据、模型、评估、可视化分工；独立于冻结采集核心",
       "layout_version": "layout-1.0",
-      "version": "sha256:2804ec64c2994c888ce5dfb0f450781ebe999ff39a6523357edcf8a592b2de70"
+      "version": "sha256:437b1f4d3338c1362666c57dce2286c5ece82c796cd6e38c16e32fc0005beb22"
     },
     {
       "path": "scripts/research/data",
       "purpose": "冻结来源快照、七品清洗、缺失感知质量与日级样本/标签",
       "layout_version": "layout-1.0",
-      "version": "sha256:89a5fa8565a34221c0fe657d58c0afd1d76655c249a242c894a799e71f18314d"
+      "version": "sha256:ba707b0c3baa7c624a42793cb1eca4d1df82e9269fc9c2059adad4d179e68006"
     },
     {
       "path": "scripts/research/evaluation",
       "purpose": "候选校验、验证集选择、锁定测试、成本情景和不可变评估产物",
       "layout_version": "layout-1.0",
-      "version": "sha256:d3fbc1fbd67863bb75539a38c6746e35bc2ad8d4efcb945428cf38404638ee99"
+      "version": "sha256:c554c8fad72352f49ac38f63bc74f89db0994c325c2a47d8f41afccbb159cbd6"
     },
     {
       "path": "scripts/research/models",
       "purpose": "固定价格预测基准及以后经批准的模型实现",
       "layout_version": "layout-1.0",
-      "version": "sha256:624afba236cbe0a2667a56e289a4fa413efc22519c376357ab7ad79eee6af696"
+      "version": "sha256:b96abe76cb447c24e244a5962d50341e7bb4d36cdc8dbf0cf2b643efe7710afa"
     },
     {
       "path": "scripts/research/visualization",
@@ -183,7 +183,7 @@
       "path": "scripts/tests",
       "purpose": "离线与合成回归测试",
       "layout_version": "layout-1.0",
-      "version": "sha256:8ec1f9d1c857bf8054b4a2f5d64b829addaa2d08409cf2378fc0f2dd2a0a118f"
+      "version": "sha256:6f5a4cab1fc104e8adba92b4589097c31ebc65893128eb22d4b75db878d9ba42"
     }
   ],
   "files": [
@@ -199,9 +199,9 @@
       "path": ".github/workflows/ci.yml",
       "purpose": "既有远程离线检查工作流，根目录位置由 GitHub 约定",
       "status": "current-or-reference",
-      "version": "sha256:e7f8b4eb1c60d76846b97abce15106e59b3f43542a3dae05596f44a6ea9cc832",
-      "sha256": "e7f8b4eb1c60d76846b97abce15106e59b3f43542a3dae05596f44a6ea9cc832",
-      "bytes": 946
+      "version": "sha256:1668f2f945cf2a835ce90f164822ba83ba108ac7ec73e26ffaeaa3cc7e461e61",
+      "sha256": "1668f2f945cf2a835ce90f164822ba83ba108ac7ec73e26ffaeaa3cc7e461e61",
+      "bytes": 955
     },
     {
       "path": ".gitignore",
@@ -215,9 +215,9 @@
       "path": "AGENTS.md",
       "purpose": "协作者的执行、阶段、凭证及发布约束",
       "status": "current-or-reference",
-      "version": "sha256:71e7c588e099140697a6100b7dbe8c026665f71c731bb9821ae68effc9ab1f48",
-      "sha256": "71e7c588e099140697a6100b7dbe8c026665f71c731bb9821ae68effc9ab1f48",
-      "bytes": 6474
+      "version": "sha256:def2e2fa5ce81944fd95dc39e83a3989f721fbf4948051875d60e794f8453260",
+      "sha256": "def2e2fa5ce81944fd95dc39e83a3989f721fbf4948051875d60e794f8453260",
+      "bytes": 7408
     },
     {
       "path": "LICENSE",
@@ -231,17 +231,17 @@
       "path": "README.md",
       "purpose": "项目入口、当前状态与三类目录索引",
       "status": "current-or-reference",
-      "version": "sha256:2edd0ded492747744b22a9ec4416d1ab33a89511a9c809a0e88adb024459b16c",
-      "sha256": "2edd0ded492747744b22a9ec4416d1ab33a89511a9c809a0e88adb024459b16c",
-      "bytes": 3777
+      "version": "sha256:88175a97879c76e84b6f82a30db20d801c809ab15ee3208302f19f7b2219e443",
+      "sha256": "88175a97879c76e84b6f82a30db20d801c809ab15ee3208302f19f7b2219e443",
+      "bytes": 4083
     },
     {
       "path": "data/README.md",
       "purpose": "私有数据与已公开冻结样本的生命周期说明",
       "status": "current-or-reference",
-      "version": "sha256:37fdf142819689ec38fae6734b76958479ec308fa2adf8f9f3d297db8de0b3ed",
-      "sha256": "37fdf142819689ec38fae6734b76958479ec308fa2adf8f9f3d297db8de0b3ed",
-      "bytes": 2362
+      "version": "sha256:56eed9b61883f4ca3971471c7e334d1fc22250d37d960be86192ffd3f7f6cd08",
+      "sha256": "56eed9b61883f4ca3971471c7e334d1fc22250d37d960be86192ffd3f7f6cd08",
+      "bytes": 3116
     },
     {
       "path": "data/samples/pilot_20261011/raw/item_001.nuxt.json",
@@ -447,33 +447,33 @@
       "path": "docs/ARCHITECTURE.md",
       "purpose": "架构主文档：真实实现、数据流、存储恢复与待建模型和执行层",
       "status": "current-or-reference",
-      "version": "sha256:cf0c28ab3718e617cda7be750c3b3f02bbcfd2a0d300d79f32fb30f28a6fc58d",
-      "sha256": "cf0c28ab3718e617cda7be750c3b3f02bbcfd2a0d300d79f32fb30f28a6fc58d",
-      "bytes": 13987
+      "version": "sha256:a7b74be3997f94a9985e43aa20ef0694eaec844730e5d3da4bc3ec4db1203e3e",
+      "sha256": "a7b74be3997f94a9985e43aa20ef0694eaec844730e5d3da4bc3ec4db1203e3e",
+      "bytes": 18273
     },
     {
       "path": "docs/PRODUCT.md",
       "purpose": "产品主文档：目标、范围、用户流程、策略、建议输出和验收要求",
       "status": "current-or-reference",
-      "version": "sha256:7fab04e07c60473c145846f57e4747a3c2b10c4ee8112157fbb5d820ab3e0cab",
-      "sha256": "7fab04e07c60473c145846f57e4747a3c2b10c4ee8112157fbb5d820ab3e0cab",
-      "bytes": 6789
+      "version": "sha256:994208b30a147a144098d6bef8e4f48d0a8f5a5900271452616a840f832fe120",
+      "sha256": "994208b30a147a144098d6bef8e4f48d0a8f5a5900271452616a840f832fe120",
+      "bytes": 7396
     },
     {
       "path": "docs/PROGRESS.md",
       "purpose": "进展主文档：每次操作成果、验证、实际运行、当前卡点和下一步",
       "status": "current-or-reference",
-      "version": "sha256:92f834f45b2f75ea277397877974e6a4aa9a48a55af5f91cc7e01a8b48662cd8",
-      "sha256": "92f834f45b2f75ea277397877974e6a4aa9a48a55af5f91cc7e01a8b48662cd8",
-      "bytes": 8421
+      "version": "sha256:e9a4027045920941e2e06efc8045dee9bbf48b9a6c7303813a10e9e3b41649fa",
+      "sha256": "e9a4027045920941e2e06efc8045dee9bbf48b9a6c7303813a10e9e3b41649fa",
+      "bytes": 11981
     },
     {
       "path": "docs/README.md",
       "purpose": "三大主文档与专项字段、运行、管理附件索引",
       "status": "current-or-reference",
-      "version": "sha256:2c485a176d5f3edda700af0589773638fc20009785624f767931f35a11544c61",
-      "sha256": "2c485a176d5f3edda700af0589773638fc20009785624f767931f35a11544c61",
-      "bytes": 3159
+      "version": "sha256:d1671db58adedc8f4e0aa5cfbe4738d4156e1ff15aae75f709befb95414aadb4",
+      "sha256": "d1671db58adedc8f4e0aa5cfbe4738d4156e1ff15aae75f709befb95414aadb4",
+      "bytes": 3380
     },
     {
       "path": "docs/data/CYREX_DAILY_SAMPLES.md",
@@ -559,9 +559,9 @@
       "path": "docs/governance/ASSET_REGISTER.md",
       "purpose": "旧资产保留依据及按用途准入状态",
       "status": "current-or-reference",
-      "version": "sha256:b3c0dc1ab22332400bed4dd65c64b3adad3ec08bfdbf467a8b3100d7140cc76f",
-      "sha256": "b3c0dc1ab22332400bed4dd65c64b3adad3ec08bfdbf467a8b3100d7140cc76f",
-      "bytes": 11287
+      "version": "sha256:c4610cb203ef8ceb473d61a9fe519b3c108d9ea38aa57c15d2a83b5219517a86",
+      "sha256": "c4610cb203ef8ceb473d61a9fe519b3c108d9ea38aa57c15d2a83b5219517a86",
+      "bytes": 11972
     },
     {
       "path": "docs/governance/CONTRIBUTING.md",
@@ -591,9 +591,9 @@
       "path": "docs/governance/FILE_MANAGEMENT.md",
       "purpose": "文件布局、资产生命周期、版本、迁移及发布制度",
       "status": "current-or-reference",
-      "version": "sha256:0462384bdf2975d63f4f4bd5d89f2c18bd864adcb02d1b0d7094a1ec462afd52",
-      "sha256": "0462384bdf2975d63f4f4bd5d89f2c18bd864adcb02d1b0d7094a1ec462afd52",
-      "bytes": 7965
+      "version": "sha256:4d1ac77425f0ecaf7731fd00c8ef9decec5e46173ef1f1d179211dad6ef18d5a",
+      "sha256": "4d1ac77425f0ecaf7731fd00c8ef9decec5e46173ef1f1d179211dad6ef18d5a",
+      "bytes": 8537
     },
     {
       "path": "docs/governance/HANDOFF.md",
@@ -631,9 +631,9 @@
       "path": "docs/releases/CHANGELOG.md",
       "purpose": "代码历史变更及未打发布标签的迭代说明",
       "status": "current-or-reference",
-      "version": "sha256:f0f4cca524b12399390aa8259e9a71d38547ca87c98696653b3a575e8a606939",
-      "sha256": "f0f4cca524b12399390aa8259e9a71d38547ca87c98696653b3a575e8a606939",
-      "bytes": 13304
+      "version": "sha256:75a2890912844825c98b01b4f6d9ebabe2d413d31f3619241a4f66fb3e26e364",
+      "sha256": "75a2890912844825c98b01b4f6d9ebabe2d413d31f3619241a4f66fb3e26e364",
+      "bytes": 14148
     },
     {
       "path": "docs/releases/WORK_LOG_20261014_20261019.md",
@@ -748,6 +748,14 @@
       "bytes": 7840
     },
     {
+      "path": "docs/usage/SEVEN_MODEL_TRAINING.md",
+      "purpose": "七品训练评估Notebook操作、CPU/CUDA、参数存储与结果解释",
+      "status": "current-or-reference",
+      "version": "sha256:b63945f2799d6a0d083183a68da3ef242bc5852019f89ab1db362f1064a8818d",
+      "sha256": "b63945f2799d6a0d083183a68da3ef242bc5852019f89ab1db362f1064a8818d",
+      "bytes": 7840
+    },
+    {
       "path": "docs/usage/STEAMDT_RESEARCH.md",
       "purpose": "SteamDT本地小时研究库、商品清单扩展、分页恢复、去重修订、请求预算、跨周期与日常更新说明",
       "status": "current-or-reference",
@@ -791,17 +799,17 @@
       "path": "pyproject.toml",
       "purpose": "Python 打包配置及单一源码版本入口",
       "status": "current-or-reference",
-      "version": "sha256:11cbed521a6fb33549deced138eb72597dbffbc74b04fb4d1deec007847cdc15",
-      "sha256": "11cbed521a6fb33549deced138eb72597dbffbc74b04fb4d1deec007847cdc15",
-      "bytes": 634
+      "version": "sha256:0986f055ed124aaf0d91ed182c355d0c1e41ec2dbc186ab410bde02292b84e3b",
+      "sha256": "0986f055ed124aaf0d91ed182c355d0c1e41ec2dbc186ab410bde02292b84e3b",
+      "bytes": 757
     },
     {
       "path": "scripts/README.md",
       "purpose": "代码、配置、测试、SQL 和检查入口说明",
       "status": "current-or-reference",
-      "version": "sha256:9e524996cabb657c4a394204846a23c41e7793f58110008a919e694f7bbf720c",
-      "sha256": "9e524996cabb657c4a394204846a23c41e7793f58110008a919e694f7bbf720c",
-      "bytes": 4246
+      "version": "sha256:b01d1d7496b1cea98e3185aaab45df17fb41677050968b5849fae7dee4278851",
+      "sha256": "b01d1d7496b1cea98e3185aaab45df17fb41677050968b5849fae7dee4278851",
+      "bytes": 5219
     },
     {
       "path": "scripts/build_research_samples.py",
@@ -900,6 +908,14 @@
       "bytes": 756
     },
     {
+      "path": "scripts/config/seven_training_spec.json",
+      "purpose": "七品研究训练1.0固定模型、预算、标签和验证选择规范",
+      "status": "current-or-reference",
+      "version": "sha256:75f31cff25b96087c9732f2adfa13b292b50bb1fe557b37a8ea58e1a0a71c0b5",
+      "sha256": "75f31cff25b96087c9732f2adfa13b292b50bb1fe557b37a8ea58e1a0a71c0b5",
+      "bytes": 1723
+    },
+    {
       "path": "scripts/config/steamdt_cleaning_spec.json",
       "purpose": "七品清洗的缺失、价格/量额校验、因果波动诊断与输入质量门槛固定规范",
       "status": "current-or-reference",
@@ -983,9 +999,9 @@
       "path": "scripts/manage_assets.py",
       "purpose": "生成及校验逐文件、逐目录版本和用途清单",
       "status": "current-or-reference",
-      "version": "sha256:3e09345adb039ebabc511b95763604ce82722c76c85c78681762acf9dfcd1abb",
-      "sha256": "3e09345adb039ebabc511b95763604ce82722c76c85c78681762acf9dfcd1abb",
-      "bytes": 42738
+      "version": "sha256:b07812e68938f0bcea3850f25474d3cd966bf665692816c5f11a803443636be2",
+      "sha256": "b07812e68938f0bcea3850f25474d3cd966bf665692816c5f11a803443636be2",
+      "bytes": 45723
     },
     {
       "path": "scripts/notebooks/cyrex_daily_samples.ipynb",
@@ -1010,6 +1026,14 @@
       "version": "sha256:42bcd2645ddafbaf3079714ec9fab92a55c70154c6e1f5c4630514e8a953103c",
       "sha256": "42bcd2645ddafbaf3079714ec9fab92a55c70154c6e1f5c4630514e8a953103c",
       "bytes": 6978
+    },
+    {
+      "path": "scripts/notebooks/seven_model_training.ipynb",
+      "purpose": "用户VS Code预处理、CPU/CUDA训练、参数重载评估和七品图表；默认开关关闭",
+      "status": "current-or-reference",
+      "version": "sha256:46b6c45dd62517ec93d41bc2b018c5a1c2da9ee952a0b4d30f8e4f370939b78a",
+      "sha256": "46b6c45dd62517ec93d41bc2b018c5a1c2da9ee952a0b4d30f8e4f370939b78a",
+      "bytes": 9940
     },
     {
       "path": "scripts/notebooks/steamdt_cleaning.ipynb",
@@ -1092,12 +1116,28 @@
       "bytes": 27453
     },
     {
+      "path": "scripts/research/data/model_preprocessing.py",
+      "purpose": "只在训练段拟合的中位数/mask/缩放与商品编码JSON",
+      "status": "current-or-reference",
+      "version": "sha256:6905258150de7c3f3132604c0155b182768edb93b7e3dc6fb245ffb6e3c27354",
+      "sha256": "6905258150de7c3f3132604c0155b182768edb93b7e3dc6fb245ffb6e3c27354",
+      "bytes": 10489
+    },
+    {
       "path": "scripts/research/data/seven_samples.py",
       "purpose": "seven-daily-samples-1.0：过去21特征、独立七日点/路径标签、同日跨品与时间隔离、不可变产物",
       "status": "current-or-reference",
       "version": "sha256:f2003ad5e3bdf3c1d3a74c3881337012d9b4814ad8f3de9bbbf9604e0c08d90b",
       "sha256": "f2003ad5e3bdf3c1d3a74c3881337012d9b4814ad8f3de9bbbf9604e0c08d90b",
       "bytes": 31819
+    },
+    {
+      "path": "scripts/research/data/training_data.py",
+      "purpose": "冻结七品/父清洗哈希与只读验证、过去672h序列和预测字段白名单",
+      "status": "current-or-reference",
+      "version": "sha256:7e5194598713fb41b3bdf8de0c7384951389cbacc80c1e31ebbd2d0dd48b3e7f",
+      "sha256": "7e5194598713fb41b3bdf8de0c7384951389cbacc80c1e31ebbd2d0dd48b3e7f",
+      "bytes": 18966
     },
     {
       "path": "scripts/research/evaluation/__init__.py",
@@ -1124,6 +1164,14 @@
       "bytes": 1113
     },
     {
+      "path": "scripts/research/evaluation/seven_training.py",
+      "purpose": "七品不可变预处理/实验、验证选型、仅重载评分和图表",
+      "status": "current-or-reference",
+      "version": "sha256:c09498e6ab0de1971a1ab503dc4f4577b75deaf6fefb91943e9e3c6652dd7b14",
+      "sha256": "c09498e6ab0de1971a1ab503dc4f4577b75deaf6fefb91943e9e3c6652dd7b14",
+      "bytes": 19274
+    },
+    {
       "path": "scripts/research/models/__init__.py",
       "purpose": "研究功能包的职责与公共接口",
       "status": "current-or-reference",
@@ -1138,6 +1186,30 @@
       "version": "sha256:0169d0389cff4525594daab70c1171c745fad1d70fa0ffa2cae5022a74a3e749",
       "sha256": "0169d0389cff4525594daab70c1171c745fad1d70fa0ffa2cae5022a74a3e749",
       "bytes": 1599
+    },
+    {
+      "path": "scripts/research/models/classical.py",
+      "purpose": "持平、Ridge、有界ARIMA及LightGBM CPU适配与保存/无拟合重载",
+      "status": "current-or-reference",
+      "version": "sha256:db35b26796c9b9bcf93999a4d77c5e02924ac472174ef331829ff1e89e172c9c",
+      "sha256": "db35b26796c9b9bcf93999a4d77c5e02924ac472174ef331829ff1e89e172c9c",
+      "bytes": 26512
+    },
+    {
+      "path": "scripts/research/models/foundation.py",
+      "purpose": "仅本地权重的可选Chronos-2零样本适配；无自动下载，真实权重待验",
+      "status": "current-or-reference",
+      "version": "sha256:75ea6e070c4fd2722ad1ba24f9432195f29bfb45d37d11ad942c9d28a7ad4dd4",
+      "sha256": "75ea6e070c4fd2722ad1ba24f9432195f29bfb45d37d11ad942c9d28a7ad4dd4",
+      "bytes": 8566
+    },
+    {
+      "path": "scripts/research/models/neural.py",
+      "purpose": "四种小神经网络、CUDA AMP、早停、最佳state_dict与无拟合重载",
+      "status": "current-or-reference",
+      "version": "sha256:f8c0997f4a1c01aba82d9dfefe0f1fb3fa0ba7bcf0cb0021320f10d6114f68f4",
+      "sha256": "f8c0997f4a1c01aba82d9dfefe0f1fb3fa0ba7bcf0cb0021320f10d6114f68f4",
+      "bytes": 23267
     },
     {
       "path": "scripts/research/visualization/__init__.py",
@@ -1436,6 +1508,14 @@
       "bytes": 450
     },
     {
+      "path": "scripts/tests/test_classical_models.py",
+      "purpose": "CPU四模型保存重载、无fit推断、purge与篡改合成测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:2743619e51fe03a0c52dec30a368fd9356102447911cb2226abd68efc0f8dc95",
+      "sha256": "2743619e51fe03a0c52dec30a368fd9356102447911cb2226abd68efc0f8dc95",
+      "bytes": 10807
+    },
+    {
       "path": "scripts/tests/test_cleaning.py",
       "purpose": "cleaning 模块的离线行为回归测试",
       "status": "legacy-unreviewed",
@@ -1482,6 +1562,14 @@
       "version": "sha256:e6fe6e394bdfe5a15dffa0168f4077dd40c9619f053bda11691ee1729ec4f306",
       "sha256": "e6fe6e394bdfe5a15dffa0168f4077dd40c9619f053bda11691ee1729ec4f306",
       "bytes": 10666
+    },
+    {
+      "path": "scripts/tests/test_neural_models.py",
+      "purpose": "神经网络和本地基础模型stub的保存、早停与隔离合成测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:c796a575d1893b0cee28eef5aaaf2c5cd334dbf705300d3046138d8a29c5a68d",
+      "sha256": "c796a575d1893b0cee28eef5aaaf2c5cd334dbf705300d3046138d8a29c5a68d",
+      "bytes": 9381
     },
     {
       "path": "scripts/tests/test_observe.py",
@@ -1548,12 +1636,28 @@
       "bytes": 24228
     },
     {
+      "path": "scripts/tests/test_seven_training.py",
+      "purpose": "七品训练入口的合成端到端、默认安全边界和仅重载评估检查",
+      "status": "legacy-unreviewed",
+      "version": "sha256:517bed0967cb815d88102b6039e5d6bd27336988737216fe51999fafd601dc70",
+      "sha256": "517bed0967cb815d88102b6039e5d6bd27336988737216fe51999fafd601dc70",
+      "bytes": 5556
+    },
+    {
       "path": "scripts/tests/test_steamdt_research.py",
       "purpose": "steamdt_research 模块的离线行为回归测试",
       "status": "legacy-unreviewed",
       "version": "sha256:0a68d55417d3c27d9811f8f2cb7637971b6211fe08b36b7f4948c9643d6ead03",
       "sha256": "0a68d55417d3c27d9811f8f2cb7637971b6211fe08b36b7f4948c9643d6ead03",
       "bytes": 10391
+    },
+    {
+      "path": "scripts/tests/test_training_data.py",
+      "purpose": "冻结输入、train-only缩放、mask、未知品和因果序列合成测试",
+      "status": "legacy-unreviewed",
+      "version": "sha256:c5642608977d463aabf073b913b637a93bd2bda241f1c85e08d236a34e15c6b6",
+      "sha256": "c5642608977d463aabf073b913b637a93bd2bda241f1c85e08d236a34e15c6b6",
+      "bytes": 12239
     },
     {
       "path": "scripts/tests/test_transport.py",
@@ -1610,6 +1714,14 @@
       "version": "sha256:c1cf0b6aa1e3929730c5f95909f6cedf7429c27fe73a82f278e6f5319265e8d1",
       "sha256": "c1cf0b6aa1e3929730c5f95909f6cedf7429c27fe73a82f278e6f5319265e8d1",
       "bytes": 3350
+    },
+    {
+      "path": "scripts/train_seven_models.py",
+      "purpose": "七品训练准备、显式拟合和仅重载评估的薄CLI，默认不自动启动训练",
+      "status": "current-or-reference",
+      "version": "sha256:3ad2bbc22796f724c0ef5a2a740a275f44c3d47a5fa4d41325d3b525b8f56be7",
+      "sha256": "3ad2bbc22796f724c0ef5a2a740a275f44c3d47a5fa4d41325d3b525b8f56be7",
+      "bytes": 2018
     },
     {
       "path": "scripts/verify_public_evidence.py",

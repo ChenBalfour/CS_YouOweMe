@@ -1,6 +1,6 @@
 # 文件管理规范
 
-版本 management-1.6，目录版本 layout-1.0，2026-10-20（北京时间）。2026-10-12 用户要求略读、清理、按脚本/数据/文档收拢并逐项管理版本；整理已完成，当前阶段以三大主文档为准。本次确定持续更新规则，并清理重复说明及可再生缓存。
+版本 management-1.7，目录版本 layout-1.0，2026-10-21（北京时间）。2026-10-12 用户要求略读、清理、按脚本/数据/文档收拢并逐项管理版本；整理已完成，当前阶段以三大主文档为准。本次确定持续更新规则，并清理重复说明及可再生缓存。
 
 ## 目录职责
 
@@ -29,13 +29,15 @@
 - Git 本地提交保存代码、说明和公开清单的可恢复历史；私有数据靠来源清单、哈希和冻结版本管理，不存入 Git。
 - 修改后运行 `python -B scripts/manage_assets.py --write`，随后 `--check`。清单过期、缺说明、缺文件均应修正后再收尾。
 
-三大主文档以各自页首版本为准；兼容计划 plan-1.7、选品计划 selection-plan-1.2、代码 0.3.5、目录 layout-1.0、制度 management-1.6、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)，当前阶段见 PROGRESS。
+三大主文档以各自页首版本为准；兼容计划 plan-1.7、选品计划 selection-plan-1.2、代码 0.3.5、目录 layout-1.0、制度 management-1.7、schema、数据集及模型版本分别记录，不能混为已发布版本。完整整理记录见 [ORGANIZATION](ORGANIZATION.md)，当前阶段见 PROGRESS。
 
 scripts/notebooks 保存用户本地运行入口，交付的 Git 版本保持 execution_count=null、outputs=[]；实际观察写独立 data/local/staging/steamdt/p03_steamdt_observe_*，用户可能另外保存单元格输出。保留用户工作副本，不为提交自动清空或覆盖；提交仅纳入当前任务变更，不擅自提交用户执行输出。若需要修改已有入口，先私有保存准确执行版本，再处理仅供提交的空输出版本。私有恢复指针与首轮成功不能当作完成一天验收。
 
 公开清单记录当前工作副本内容，因此用户保存 Notebook 输出会产生本地哈希变更。仅提交文档时，提交中的公开清单按 Notebook 原 Git 版本记录，提交后重新生成工作区清单，使工作副本输出仍有可检查的内容版本；用户输出及对应清单差异可以保持未提交。
 
 七品新特征/标签按明确父清洗ID保存到data/local/datasets/seven_daily，每版保留准确代码/规范/schema/父manifest；features和labels列白名单分开。新基准评估放data/local/artifacts/baseline_evaluations，每轮图放data/local/reports/baseline_charts。两者独立清单，图表不追加到已冻结评估。逐品价格和UU报价快照长期落盘，Notebook内存不替代数据层；准确源码依赖在每版产物中保存。
+
+七品训练组件另存data/local/artifacts/seven_training/prepared与experiments；训练段预处理JSON包含字段/序列顺序、商品编码和训练键，模型参数、规范、环境、历史、源哈希及准确源码随实验ID保存。source/schema由冻结dataset按哈希引用。每轮重载评估在reports/seven_training新建ID，参数不上传Git；既有ID不覆盖，源码漂移不静默改变旧预测。用户2026-10-21已授权回顾研究训练流程，长时间真实训练由用户Notebook显式启动，不升级历史PIT或交易资格。
 
 ## 私有数据生命周期
 

@@ -16,6 +16,20 @@ INDEX = "docs/governance/FILE_INDEX.md"
 CATALOGS = {PUBLIC, PRIVATE, INDEX}
 
 PURPOSES = {
+    "scripts/train_seven_models.py": "七品训练准备、显式拟合和仅重载评估的薄CLI，默认不自动启动训练",
+    "scripts/config/seven_training_spec.json": "七品研究训练1.0固定模型、预算、标签和验证选择规范",
+    "scripts/notebooks/seven_model_training.ipynb": "用户VS Code预处理、CPU/CUDA训练、参数重载评估和七品图表；默认开关关闭",
+    "scripts/research/data/training_data.py": "冻结七品/父清洗哈希与只读验证、过去672h序列和预测字段白名单",
+    "scripts/research/data/model_preprocessing.py": "只在训练段拟合的中位数/mask/缩放与商品编码JSON",
+    "scripts/research/models/classical.py": "持平、Ridge、有界ARIMA及LightGBM CPU适配与保存/无拟合重载",
+    "scripts/research/models/neural.py": "四种小神经网络、CUDA AMP、早停、最佳state_dict与无拟合重载",
+    "scripts/research/models/foundation.py": "仅本地权重的可选Chronos-2零样本适配；无自动下载，真实权重待验",
+    "scripts/research/evaluation/seven_training.py": "七品不可变预处理/实验、验证选型、仅重载评分和图表",
+    "scripts/tests/test_training_data.py": "冻结输入、train-only缩放、mask、未知品和因果序列合成测试",
+    "scripts/tests/test_classical_models.py": "CPU四模型保存重载、无fit推断、purge与篡改合成测试",
+    "scripts/tests/test_neural_models.py": "神经网络和本地基础模型stub的保存、早停与隔离合成测试",
+    "scripts/tests/test_seven_training.py": "七品训练入口的合成端到端、默认安全边界和仅重载评估检查",
+    "docs/usage/SEVEN_MODEL_TRAINING.md": "七品训练评估Notebook操作、CPU/CUDA、参数存储与结果解释",
     "README.md": "项目入口、当前状态与三类目录索引",
     "AGENTS.md": "协作者的执行、阶段、凭证及发布约束",
     "LICENSE": "原创代码与文档的 MIT 授权",
@@ -136,6 +150,10 @@ SOURCE_PURPOSES = {
 }
 
 FOLDERS = {
+    "data/local/artifacts/seven_training": "七品训练私有预处理与模型实验；版本不可覆盖，模型参数不上传",
+    "data/local/artifacts/seven_training/prepared": "训练段拟合预处理参数、固定协议、父数据哈希与准确源码",
+    "data/local/artifacts/seven_training/experiments": "各轮模型参数、环境、训练历史、验证选择和完整哈希",
+    "data/local/reports/seven_training": "七品仅重载评估的逐行预测、误差、PNG及本轮工程验证证据",
     ".": "项目根及 Git/Python 所需入口元数据",
     ".github": "GitHub 工具约定的根目录配置",
     ".github/workflows": "既有自动检查配置",
@@ -221,6 +239,10 @@ def purpose(path):
     if path in PURPOSES:
         return PURPOSES[path]
     name = Path(path).name
+    if path.startswith("data/local/artifacts/seven_training/"):
+        return "七品训练私有版本的预处理、协议、准确源码、模型参数、运行状态与哈希"
+    if path.startswith("data/local/reports/seven_training/"):
+        return "七品模型仅重载评估、图表或本轮工程/保留核验的私有证据；非交易收益证明"
     if path.startswith("data/local/datasets/seven_daily/"):
         return "本版准确执行的源码、规范、schema或父清洗manifest快照" if "/source/" in path else {"samples.sqlite": "七品日级21输入、独立七日点/路径标签、分组/缺失/资格和追溯元数据", "features.csv": "按明确FEATURE_FIELDS白名单输出的过去输入，含商品和同日split键，不含y或未来资格", "labels.csv": "同键关联的七日真实点/路径标签、成熟/缺口/隔离与样本资格", "quality_report.json": "逐品/分组候选计数、点/路径标签独立状态和特征NULL数量", "report.md": "七品样本真实构建结果、缺失/标签/分组规则及未训练限制", "protocol_locked.json": "构建前锁定父清洗版本、规范和21x白名单", "manifest.json": "父清洗/源码/规范/schema/产物哈希、时间截止与研究用途", "latest.json": "仅指向具体成功冻结样本版本的入口"}.get(name, "七品日级特征/标签的不可变追溯附件")
     if path.startswith("data/local/reports/seven_samples/"):
@@ -310,6 +332,10 @@ def folder_purpose(path):
         return FOLDERS[path]
     if path.startswith("scripts/research/"):
         return "当前离线研究的功能包与公共接口"
+    if path.startswith("data/local/artifacts/seven_training/"):
+        return "明确版本的七品训练准备/实验及准确源码，私有且旧版不覆盖"
+    if path.startswith("data/local/reports/seven_training/"):
+        return "明确版本的七品重载评估或工程验证证据，私有留存"
     if path.startswith("data/local/datasets/seven_daily/"):
         return "一次七品特征与独立七日标签研究候选、准确实现/规范/schema及父清洗追溯"
     if path.startswith("data/local/reports/seven_samples/"):

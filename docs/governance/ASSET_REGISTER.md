@@ -1,9 +1,11 @@
 # 既有资产登记
 
-登记版本 asset-register-2.11，2026-10-20。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
+登记版本 asset-register-2.12，2026-10-21。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
+| research/data/training_data、model_preprocessing、models/classical/neural、evaluation/seven_training、train_seven_models和训练Notebook | delivered / synthetic-CPU-CUDA-verified / user-runs-real-fit | train-only缺失适配/缩放，4种CPU与4种神经候选、保存重载及验证图；真实preprocessor已准备、真实模型未全量拟合，Chronos真实权重另待验证 | 回顾研究训练 |
+| artifacts/seven_training、reports/seven_training | private / immutable-preprocessing-and-research-runs | 预处理、模型参数/源码/环境/哈希和失败证据；重载评估独立输出，1198旧资产全保留，Notebook默认开关关闭 | 本地实验追溯 |
 | research/data/seven_samples、build_seven_samples、seven_daily_spec、对应Notebook和datasets/seven_daily | frozen / retrospective-feature-label-candidate | 显式清洗版到七品21x/独立点路径y，3346行；未来/准入隔离，未拟合，旧单品不改 | 新研究样本 |
 | reports/seven_samples | private / independently-verified | 70266个特征值及全部标签/资格独立重算，1198旧资产不变、Notebook默认只读 | 研究验收 |
 | research/data/clean_hourly、clean_steamdt_data、对应规范/Notebook、datasets/steamdt_clean | frozen / research-cleaning-only | 7品全部81407源版本、81397真实小时、84924网格与NULL/mask/过去窗口诊断；原值/极端走势保留，历史可得时间未知，不自动训练 | P04研究清洗 |
