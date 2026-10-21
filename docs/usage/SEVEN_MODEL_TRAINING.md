@@ -1,17 +1,23 @@
 # 七品本地模型训练与重载评估
 
-版本 **seven-training-usage-1.0**；2026-10-21。入口为[seven_model_training.ipynb](../../scripts/notebooks/seven_model_training.ipynb)，实现与数据流见[架构](../ARCHITECTURE.md)，最新实测见[进展](../PROGRESS.md)。
+版本 **seven-training-usage-1.1**；2026-10-21。入口为[seven_model_training_v1_1.ipynb](../../scripts/notebooks/seven_model_training_v1_1.ipynb)，实现与数据流见[架构](../ARCHITECTURE.md)，最新实测见[进展](../PROGRESS.md)。
 
 ## 现在怎样运行
 
-1. 在VS Code打开项目和Notebook，选择已有CUDA环境对应的Python内核。先保持所有开关False，运行全部，检查环境、预处理版本和样本数量；这一步不训练、不采行情。
-2. 首轮建议CPU：配置格设`RUN_CPU_TRAIN=True`、`RUN_EVALUATE=True`，其余开关False，再运行全部。想先用GPU就改为`RUN_CUDA_TRAIN=True`，CPU保持False；一次只开一个训练开关。
+1. 重启VS Code的Notebook内核，打开修复版seven_model_training_v1_1.ipynb，选择已有CUDA环境对应的Python内核。先保持所有开关False，运行全部，检查环境、v2预处理版本和样本数量；这一步不训练、不采行情。
+2. 本次重跑配置格设`RUN_CUDA_TRAIN=True`、`RUN_EVALUATE=True`，其余开关False，再运行全部。CUDA默认float32；CPU基线可另轮单独打开RUN_CPU_TRAIN，一次只开一个训练开关。
 3. 运行结束，保存打印的`EXPERIMENT_ID`和`REPORT_ID`。下面会显示validation成绩、七品真实目标/预测/持平对照、误差图，以及神经模型训练历史。
 4. 把训练和评估开关改回False。以后只评估时，把旧实验ID填入配置的`EXPERIMENT_ID`，仅打开`RUN_EVALUATE=True`，无需重新训练。
 
-默认`DATASET_ID="seven_daily_20261020_v1"`、`PREPARED_ID="seven_prep_20261021_v1"`，本次已准备好预处理版，只读加载即可。若以后换电脑或缺少本地私有产物，Notebook会提示显式prepare；已有ID不能覆盖，新数据/特征/预处理必须另建ID。prepare只拟合训练集的缺失适配/缩放，不训练预测模型。配置格重新执行会按填写值重置ID，所以单独重跑评估前要把已保存ID贴回去。
+默认`DATASET_ID="seven_daily_20261020_v1"`、`PREPARED_ID="seven_prep_20261021_v2"`，本次已准备好预处理版，只读加载即可。若以后换电脑或缺少本地私有产物，Notebook会提示显式prepare；已有ID不能覆盖，新数据/特征/预处理必须另建ID。prepare只拟合训练集的缺失适配/缩放，不训练预测模型。配置格重新执行会按填写值重置ID，所以单独重跑评估前要把已保存ID贴回去。
 
 默认全部开关False，包括`RUN_EXPLORATORY_TEST`。旧test已经看过，继续评分只能探索，首轮不用打开它。
+
+## 本次报错与恢复
+
+两轮真实实验中，持平基线成功，四神经模型都在第一轮完成前因fp16梯度非有限停止；随后Incomplete experiment是评估对partial实验的拦截。旧轮没有完成的神经模型checkpoint，不能只跳过错误继续评估成神经模型成绩。
+
+v1.1默认CUDA float32并保留有限性检查；AMP半精度改为显式可选，正常溢出时记录跳步/降低scale。修复后190项离线测试通过，四模型已在真实64条train/16条validation上各完成1epoch/batch8 CUDA数值及保存重载验证；这是有限诊断，完整训练和成绩仍需用户运行。请使用上面的新Notebook和v2预处理，新实验ID自动生成。旧Notebook、实验、参数和数据均保留；不用重抓数据或重新清洗，也不要修改旧manifest来绕过源码校验。
 
 ## 环境和模型
 
@@ -27,7 +33,7 @@
 
 CPU默认比较4模型，CUDA入口比较4神经模型并附持平。门控结构借鉴用户毕设，但这是本任务的新权重和联合训练，不导入交通预测权重。可选Chronos-2仅有本地权重适配器，尚未验证真实权重，不在默认训练或评分列表。
 
-6GB显存默认batch8、最多50epoch、patience8；每轮输出耗时。可先显式改为2epoch做自己的短轮，再以新实验ID正式运行；短轮不能用于判断模型优劣。若显存不足，失败信息会保留，确认后降低到batch4或2，新建实验运行；程序不会自行更换设备或自动重试。也不保证深度模型超过持平/简单模型。
+6GB显存默认CUDA float32、batch8、最多50epoch、patience8；每轮输出耗时。显式amp_float16不是本次重跑默认项。可先显式改为2epoch做自己的短轮，再以新实验ID正式运行；短轮不能用于判断模型优劣。若显存不足，失败信息会保留，确认后降低到batch4或2，新建实验运行；程序不会自行更换设备或自动重试。也不保证深度模型超过持平/简单模型。
 
 ## 数据、缺失与防泄漏
 
@@ -74,7 +80,7 @@ python -B scripts/train_seven_models.py environment
 已有预处理版本时，显式训练与重载评估：
 
 ```powershell
-python -B scripts/train_seven_models.py train --prepared-id seven_prep_20261021_v1 --models persistence ridge auto_arima lightgbm --device cpu
+python -B scripts/train_seven_models.py train --prepared-id seven_prep_20261021_v2 --models persistence ridge auto_arima lightgbm --device cpu
 python -B scripts/train_seven_models.py evaluate --experiment-id <上一步打印的实验ID>
 ```
 

@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[3]
 BASE = ROOT / "data/local/artifacts/seven_training"
 REPORTS = ROOT / "data/local/reports/seven_training"
 SPEC_PATH = ROOT / "scripts/config/seven_training_spec.json"
-VERSION = "seven-training-1.0"
+VERSION = "seven-training-1.1"
 CLASSICAL = ("persistence", "ridge", "auto_arima", "lightgbm")
 NEURAL = ("dlinear", "lstm", "transformer", "gated_lstm_transformer")
 CODE_FILES = (
@@ -309,9 +309,12 @@ def evaluate(experiment_id, split="validation", report_id=None, device="auto", a
     if split == "test_exploratory" and not allow_exploratory_test:
         raise ValueError("Old test was already viewed; explicit exploratory permission required")
     experiment_path, experiment = verify(BASE / "experiments", experiment_id, "experiment")
-    _check_runtime_code(experiment_path)
     if experiment["status"] != "complete" or not experiment["selected_model"]:
-        raise ValueError("Incomplete experiment: inspect failures and start a new explicit run")
+        failed = [f"{name} ({entry['status']}: {entry.get('error_type', 'unknown')})"
+                  for name, entry in experiment["models"].items() if entry["status"] != "complete"]
+        raise ValueError("Incomplete experiment: " + ", ".join(failed) +
+                         ". Inspect progress.json; keep the saved files and run the corrected v1.1 Notebook with a new experiment ID.")
+    _check_runtime_code(experiment_path)
     prepared_path, _, bundle, preprocessor = _load_prepared(experiment["prepared_id"])
     if _sha(prepared_path / "manifest.json") != experiment["prepared_manifest_sha256"]:
         raise ValueError("Prepared manifest changed")

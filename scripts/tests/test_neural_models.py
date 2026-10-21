@@ -83,8 +83,13 @@ class NeuralAdapterTests(unittest.TestCase):
                     self.assertEqual(self.metadata[name]["status"], "complete")
                     self.assertEqual(self.metadata[name]["architecture"]["sequence_length"], 48)
                     self.assertEqual(self.metadata[name]["amp"], "disabled")
+                    self.assertEqual(self.metadata[name]["precision"], "float32")
+                    self.assertEqual(self.metadata[name]["optimizer_steps_total"], 4)
+                    self.assertEqual(self.metadata[name]["skipped_optimizer_steps_total"], 0)
                     history = json.loads((model_dir / "history.json").read_text())
                     self.assertEqual(len(history), 2)
+                    self.assertTrue(all(row["optimizer_steps"] == 2 and row["skipped_optimizer_steps"] == 0
+                                        and row["loss_scale"] is None for row in history))
 
     def test_best_checkpoint_is_independent_of_later_updates(self):
         common = {**self.config, "min_delta": 999.0}
@@ -136,6 +141,79 @@ class NeuralAdapterTests(unittest.TestCase):
             self.assertIn("auto selected CPU", text.getvalue())
             with self.assertRaisesRegex(RuntimeError, "no CPU fallback"):
                 neural.resolve_device("cuda")
+
+    def test_precision_defaults_to_float32_and_amp_requires_cuda(self):
+        self.assertEqual(neural._training_config()["precision"], "float32")
+        self.assertEqual(neural._training_config({"precision": "amp_float16"})["precision"], "amp_float16")
+        with self.assertRaisesRegex(ValueError, "precision"):
+            neural._training_config({"precision": "float16"})
+        output = self.root / "cpu_amp_rejected"
+        with self.assertRaisesRegex(ValueError, "requires a CUDA"):
+            neural.fit_neural("lstm", self.train, self.validation,
+                              {**self.config, "precision": "amp_float16"}, output, device="cpu")
+        self.assertFalse(output.exists())
+
+    def test_amp_overflow_skips_and_backs_off_before_any_clipping(self):
+        network = torch.nn.Linear(1, 1, bias=False)
+        optimizer = torch.optim.SGD(network.parameters(), lr=.1)
+        parameter = next(network.parameters())
+        before = parameter.detach().clone()
+
+        class ScalerStub:
+            """CPU simulation of documented GradScaler found-inf behavior."""
+            def __init__(self):
+                self.value = 65536.
+                self.skipped = 0
+                self.updates = 0
+            def unscale_(self, optimizer):
+                self.found_inf = not bool(torch.isfinite(parameter.grad).all())
+            def step(self, optimizer):
+                if self.found_inf:
+                    self.skipped += 1
+                else:
+                    optimizer.step()
+            def update(self):
+                self.updates += 1
+                if self.found_inf:
+                    self.value /= 2
+
+        scaler = ScalerStub()
+        parameter.grad = torch.full_like(parameter, float("inf"))
+        with patch.object(torch.nn.utils, "clip_grad_norm_", side_effect=AssertionError("Overflow was clipped before GradScaler recovery")):
+            updated = neural._optimizer_step(torch, network, optimizer, scaler, True, 1.)
+        self.assertFalse(updated)
+        self.assertTrue(torch.equal(before, parameter))
+        self.assertEqual((scaler.skipped, scaler.updates, scaler.value), (1, 1, 32768.))
+        parameter.grad = torch.full_like(parameter, 2.)
+        self.assertTrue(neural._optimizer_step(torch, network, optimizer, scaler, True, 1.))
+        self.assertTrue(torch.allclose(parameter, before - .1, atol=1e-6))
+
+    def test_float32_nonfinite_gradients_and_finite_gradient_norm_overflow_stop(self):
+        from unittest.mock import Mock
+        network = torch.nn.Linear(1, 1, bias=False)
+        parameter = next(network.parameters())
+        scaler, optimizer = Mock(), Mock()
+        parameter.grad = torch.full_like(parameter, float("nan"))
+        with self.assertRaisesRegex(FloatingPointError, "float32 gradients"):
+            neural._optimizer_step(torch, network, optimizer, scaler, False, 1.)
+        scaler.step.assert_not_called()
+        scaler.update.assert_not_called()
+        parameter.grad = torch.ones_like(parameter)
+        with patch.object(torch.nn.utils, "clip_grad_norm_", side_effect=RuntimeError("non-finite norm")):
+            with self.assertRaisesRegex(RuntimeError, "non-finite norm"):
+                neural._optimizer_step(torch, network, optimizer, scaler, True, 1.)
+        scaler.step.assert_not_called()
+
+    def test_epoch_without_successful_steps_fails_without_checkpoint(self):
+        output = self.root / "no_optimizer_step"
+        with patch.object(neural, "_optimizer_step", return_value=False), redirect_stdout(io.StringIO()):
+            with self.assertRaisesRegex(FloatingPointError, "no successful optimizer steps"):
+                neural.fit_neural("lstm", self.train, self.validation, self.config, output, device="cpu")
+        metadata = json.loads((output / "metadata.json").read_text())
+        self.assertEqual(metadata["status"], "failed")
+        self.assertEqual(metadata["optimizer_steps_total"], 0)
+        self.assertEqual(metadata["skipped_optimizer_steps_total"], 2)
+        self.assertFalse((output / "best_state.pt").exists())
 
 
 class FoundationLocalVerificationTests(unittest.TestCase):

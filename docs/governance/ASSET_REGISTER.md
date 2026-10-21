@@ -1,9 +1,10 @@
 # 既有资产登记
 
-登记版本 asset-register-2.12，2026-10-21。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
+登记版本 asset-register-2.13，2026-10-21。当前成果和卡点统一见 [PROGRESS](../PROGRESS.md)，产品与实现分别见 [PRODUCT](../PRODUCT.md)、[ARCHITECTURE](../ARCHITECTURE.md)。本页只登记资产用途与保留/清理依据。
 
 | 资产/位置 | 状态 | 用途与保留依据 | 后续部分 |
 | --- | --- | --- | --- |
+| seven_model_training_v1_1、neural1.1、seven_prep_20261021_v2 | delivered / real-subset-CUDA-numerical-verified | 修复默认半精度梯度溢出处理，CUDA默认float32；64真实train/16val各一轮验证通过，旧2轮实验/Notebook保留，完整训练待用户重跑 | 训练故障修复 |
 | research/data/training_data、model_preprocessing、models/classical/neural、evaluation/seven_training、train_seven_models和训练Notebook | delivered / synthetic-CPU-CUDA-verified / user-runs-real-fit | train-only缺失适配/缩放，4种CPU与4种神经候选、保存重载及验证图；真实preprocessor已准备、真实模型未全量拟合，Chronos真实权重另待验证 | 回顾研究训练 |
 | artifacts/seven_training、reports/seven_training | private / immutable-preprocessing-and-research-runs | 预处理、模型参数/源码/环境/哈希和失败证据；重载评估独立输出，1198旧资产全保留，Notebook默认开关关闭 | 本地实验追溯 |
 | research/data/seven_samples、build_seven_samples、seven_daily_spec、对应Notebook和datasets/seven_daily | frozen / retrospective-feature-label-candidate | 显式清洗版到七品21x/独立点路径y，3346行；未来/准入隔离，未拟合，旧单品不改 | 新研究样本 |

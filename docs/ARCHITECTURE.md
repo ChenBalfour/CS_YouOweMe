@@ -1,6 +1,6 @@
 # 产品架构
 
-版本 **architecture-1.17**；2026-10-21（北京时间）。冻结采集核心仍为 **0.3.5**，独立研究组件分别版本化。目标见 [PRODUCT](PRODUCT.md)，实际运行、分数和卡点见 [PROGRESS](PROGRESS.md)。
+版本 **architecture-1.18**；2026-10-21（北京时间）。冻结采集核心仍为 **0.3.5**，独立研究组件分别版本化。目标见 [PRODUCT](PRODUCT.md)，实际运行、分数和卡点见 [PROGRESS](PROGRESS.md)。
 
 ## 从来源到决策
 
@@ -112,7 +112,7 @@ input_quality_windows仅计算过去28天覆盖和最近24h完整度，保留严
 
 ## 七品本地训练与重载评估
 
-组件seven-training-1.0、规范seven-training-spec-1.0；[Notebook](../scripts/notebooks/seven_model_training.ipynb)、[操作说明](usage/SEVEN_MODEL_TRAINING.md)。入口分prepare、train、evaluate：默认全部关闭，用户明确选择后运行。训练授权记录为2026-10-21回顾研究，不修改父样本的training_approved=false，也不升级UU执行资格。
+组件seven-training-1.1、规范seven-training-spec-1.1；[修复版Notebook](../scripts/notebooks/seven_model_training_v1_1.ipynb)、[操作说明](usage/SEVEN_MODEL_TRAINING.md)。入口分prepare、train、evaluate：默认全部关闭，用户明确选择后运行。训练授权记录为2026-10-21回顾研究，不修改父样本的training_approved=false，也不升级UU执行资格。
 
 training_data核验样本/父清洗全部outputs、源码快照、规范、schema、父manifest和只读SQLite完整性；验证共同日期split、168小时标签与purge。默认quality点任务为train1,714、validation588、test_exploratory707。测试行在原库仍叫test，接口专门标记为探索；没有随机拆分或把同日不同品分入不同组。
 
@@ -120,9 +120,11 @@ training_data核验样本/父清洗全部outputs、源码快照、规范、schem
 
 序列严格取[t-672h,t)的672个小时：log(close/reference)、相邻真实一小时log收益、log(high/low)。缺失NaN不插值，不跨缺口计算收益，窗口首收益也为空；同样用训练统计适配并附3个mask，共6通道。预测输入显式去掉y、target、未来资格和诊断元数据；训练标签在调用模型时独立追加。
 
-CPU候选为持平、Ridge、有界ARIMA、LightGBM；CUDA候选为DLinear、LSTM、小Transformer、门控LSTM–Transformer cross attention。神经网络统一使用序列＋表格输入，训练MSE、验证MAE早停并保存最佳.pt权重。门控结构从毕设思路改写为本任务联合训练，不加载交通预测权重。Chronos只提供显式本地权重的可选适配，未验证真实权重、不在默认模型列表。
+CPU候选为持平、Ridge、有界ARIMA、LightGBM；CUDA候选为DLinear、LSTM、小Transformer、门控LSTM–Transformer cross attention。神经网络统一使用序列＋表格输入，训练MSE、验证MAE早停并保存最佳.pt权重。seven-neural-1.1默认在CUDA用float32；amp_float16改为显式可选，遇非有限梯度由GradScaler跳过更新并回退scale，计数记录在历史中；float32及正常裁剪仍保留有限性检查，持续失败停止，不删市场样本。门控结构从毕设思路改写为本任务联合训练，不加载交通预测权重。Chronos只提供显式本地权重的可选适配，未验证真实权重、不在默认模型列表。
 
 每轮保存模型、预处理、配置/字段、源与父清单哈希、准确源码、环境和训练历史。preprocessor.json记录特征/序列顺序、item编码和训练行键；SQLschema保留在不可变dataset中，由provenance按哈希引用，不重复复制或改写。加载时核验哈希及当前运行源码与快照，代码漂移即拒绝。失败保留状态及错误，不自动重试或静默更换设备；部分失败实验保留manifest，完整实验才进入统一评估。旧实验ID不覆盖，重跑另建ID。
+
+用户两轮v1真实训练仅持平完成，四神经模型在第一轮完成前因fp16梯度非有限被裁剪检查停止，实验为partial；统一评估因此拒绝。这不代表数据缺失或需要重抓。旧实验、v1预处理及用户Notebook保留，修复版另用seven_prep_20261021_v2和新Notebook；源码变更后不能改旧manifest绕过冻结校验，必须重启内核并新建实验。
 
 选模只按validation收益MAE，价格由reference×(1+预测收益)还原；重载评估输出价格MAE/RMSE、MAPE、偏差、方向正确率及逐品图。图上的每个预测点来自七日前的origin，缺日期保持断线；本版没有训练可靠区间，也没有预测期间每小时路径。旧test需要显式探索开关。未来仍需滚动时间验证、新前向留出和UU执行成本对照。
 

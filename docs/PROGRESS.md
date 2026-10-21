@@ -1,10 +1,10 @@
 # 当前进展与卡点
 
-版本 **progress-1.24**；2026-10-21（北京时间）。产品目标见[PRODUCT](PRODUCT.md)，实现见[ARCHITECTURE](ARCHITECTURE.md)。本页是当前成果、卡点和后续工作的唯一入口；每次操作后更新。10月14至19日的既往操作记录见[历史日志](releases/WORK_LOG_20261014_20261019.md)。
+版本 **progress-1.25**；2026-10-21（北京时间）。产品目标见[PRODUCT](PRODUCT.md)，实现见[ARCHITECTURE](ARCHITECTURE.md)。本页是当前成果、卡点和后续工作的唯一入口；每次操作后更新。10月14至19日的既往操作记录见[历史日志](releases/WORK_LOG_20261014_20261019.md)。
 
 ## 当前结论
 
-**“七品小时库→清洗/特征标签→训练集缺失适配与缩放→本地训练→参数重载评估”已接通。** 新[VS Code Notebook](../scripts/notebooks/seven_model_training.ipynb)提供4个CPU候选和4个CUDA候选，参数与预处理器留本地。下一步由用户打开CPU或CUDA训练开关并评估；尚未完成真实七品模型训练，没有新模型成绩。
+**“七品小时库→清洗/特征标签→训练集缺失适配与缩放→本地训练→参数重载评估”已接通。** 用户已运行两轮真实CUDA实验：持平基线完成，四神经模型均在第一轮完成前因fp16梯度非有限停止，随后统一评估按partial状态拒绝。修复版[VS Code Notebook](../scripts/notebooks/seven_model_training_v1_1.ipynb)默认CUDA float32，保留数值检查；下一步重启内核后用新预处理/实验ID重新训练。数据不用重抓，尚无成功的真实神经模型成绩。
 
 源样本`seven_daily_20261020_v1`保持冻结，3,346行中quality点任务可用3,009行，train1,714 / validation588 /旧探索test707。缺失适配和缩放只拟合train，选模只看validation；源training_approved=false不改，新实验单独记录用户本轮回顾研究授权。另保留旧次时代严格样本/固定规则/图表，其规则、数据和成绩不改；初次趋势规则未超过持平。
 
@@ -46,7 +46,7 @@
 | 身份与采集 | 七品两平台ID；分页续采、去重、修订、SQLite/raw追溯；一次跨日22请求/105秒、每品补84小时 | 长期稳定，来源量额与实际UU订单统计，其他六品执行属性 |
 | 来源缺口 | 次时代26小时源端缺口经同参/换窗核对；非DevTools折叠或本地丢失，用户页面也跳时 | 未穷尽所有网站端点；不假造缺行情 |
 | 小时清洗 | 81,407源版本、81,397真实小时、84,924网格；缺失NULL/mask，29次≥30%涨跌全留 | 质量阈值效果；统计事件不认定操盘 |
-| 新七品模型入口 | train-only预处理、8候选、保存/重载、validation选型、七品真实/预测/误差图；3060合成CUDA验证通过 | 用户真实训练成绩、泛化增益、滚动验证与新前向留出 |
+| 新七品模型入口 | train-only预处理、8候选、保存/重载、validation选型、七品图；真实两轮已定位fp16梯度溢出，修复版默认CUDA float32 | 重跑真实完整训练、成绩与泛化增益、滚动验证及新前向留出 |
 | 旧单品基准 | 421严格候选，验证选持平；测试68个MAE33.4232元、RMSE41.4195元、MAPE11.4933%；图表可查看 | 不是新七品模型成绩，不等于盈利 |
 | UU补充 | 44828纯脚本历史7组单轮成功、1,360窗口记录；价格/在售数量各自真实频率保留 | 多品/多轮、统计、当前匹配ask/bid、费用与实际CD/结算 |
 | 文件与版本 | scripts/data/docs；研究data/models/evaluation/visualization；源与实验私有、代码/文档独立版本 | 完整L1决策demo仍待接通和前向验证 |
@@ -55,11 +55,23 @@
 
 | 优先级 | 工作与交付 | 验收条件 |
 | --- | --- | --- |
-| 1 | 用户运行新Notebook：CPU或CUDA训练→保存参数→重载validation评估和七品图 | 记录完整实验ID/配置、成功失败、逐品误差与持平对照；没有结果前不预判冠军；不自动调旧test |
+| 1 | 重启内核，运行修复版Notebook：CUDA float32训练→保存参数→重载validation评估和七品图 | 记录完整实验ID/配置、成功失败、逐品误差与持平对照；没有结果前不预判冠军；不自动调旧test |
 | 2：并行 | 用户显式每日有限daily更新、每周weekly复核，依次另建清洗和样本版本 | 检查新鲜度、失败停止、来源修订；旧版不覆盖；每周才更新一次不能提供每日新鲜输入 |
 | 3：并行 | 补UU匹配报价/数量、费用和收货/解锁/出售/结算；核验历史available_at和量额语义 | 不用今天盘口回填过去；费用未知不当0，来源上涨不直接变买入建议 |
 | 4 | 评估严格/容缺、滚动时间验证、期间风险与区间，再接UU成本情景和前向决策账本 | 不将七日点预测画成真实未来路径；候选/观察/数据不足可追溯；记录CD内不能卖、解锁等待、未成交和结算 |
 | 5 | 再验收可选预训练模型、更多价格带/商品与正式发布 | Chronos本地adapter尚无真实权重验证；扩展先有新留出增益、明确请求/存储预算；不保证深度方法更准或每天都有进出 |
+
+## 2026-10-21 CUDA梯度溢出修复
+
+- 故障：用户的`fit_20261021T111644Z_a24b27`和`fit_20261021T111957Z_64421d`均为partial；持平基线成功，DLinear/LSTM/Transformer/门控模型均因gradient norm non-finite停止，epochs_completed=0，没有完成的神经权重。评估的Incomplete experiment是后续拦截信息。
+- 原因：v1默认CUDA fp16 AMP，在GradScaler正常回退scale前就用严格裁剪抛错；此前4条合成样本没有覆盖真实训练范围的该问题。
+- 修复：seven-neural-1.1默认CUDA float32，amp_float16需显式选择；AMP溢出跳过更新/降低scale并记录，float32保留有限性检查和失败停止。另建`seven_prep_20261021_v2`和`seven_model_training_v1_1.ipynb`，新实验自动ID，旧运行/预处理/Notebook及原始数据不覆盖。
+- 验证：190项离线测试全部通过，用时27.138秒。4模型在CUDA float32下各用64条train/16条validation、1epoch/batch8完成；每模型8次optimizer更新、0跳步，保存重载预测有限。记录在私有repair_20261021_v1/real_cuda_diagnostic.json；这些短轮只验证数值与存取流程，不是模型优劣证据。
+- 默认入口：修复版Notebook7个代码格在prepare/train/evaluate/写盘/网络拦截下通过，0违规、0数据库连接，交付保存输出为空；seven_prep_20261021_v2已成功且与冻结源码一致。旧运行保留核对另随本轮私有验收记录。
+- 版本：seven-training/spec/neural及Notebook/使用说明1.1；product-1.17、architecture-1.18、progress-1.25。
+- 保留核验：本轮两次实验、原v1预处理和两份原Notebook共82项字节/哈希全部不变；新v2运行源码校验通过。
+- 用户下一步：重启VS Code Notebook内核，打开修复版，设RUN_CUDA_TRAIN=True和RUN_EVALUATE=True，其余开关False，再运行全部。无需重抓、重清洗或删除旧实验；成功后保存新EXPERIMENT_ID/REPORT_ID。
+- 边界：本轮不代跑完整训练、不评分旧test、不修改冻结样本；可靠风险区间、新前向留出和UU执行收益仍未验收。
 
 ## 2026-10-21 本轮操作记录
 

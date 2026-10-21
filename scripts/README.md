@@ -7,11 +7,11 @@
 1. [steamdt_research.ipynb](notebooks/steamdt_research.ipynb)：更新七品小时SQLite、查看任务和缺口；[操作说明](../docs/usage/STEAMDT_RESEARCH.md)。
 2. [steamdt_cleaning.ipynb](notebooks/steamdt_cleaning.ipynb)：七品小时清洗、NULL/mask、事件和质量报告；[操作与字段](../docs/data/STEAMDT_CLEANING.md)。
 3. [seven_daily_samples.ipynb](notebooks/seven_daily_samples.ipynb)：七品21特征、独立七日点/路径标签与样本资格；[说明](../docs/data/SEVEN_DAILY_SAMPLES.md)。
-4. [seven_model_training.ipynb](notebooks/seven_model_training.ipynb)：七品CPU/CUDA本地训练、保存参数、重载评估和价格/误差图；[训练说明](../docs/usage/SEVEN_MODEL_TRAINING.md)。
+4. [seven_model_training_v1_1.ipynb](notebooks/seven_model_training_v1_1.ipynb)：七品CPU/CUDA本地训练、保存参数、重载评估和价格/误差图；[训练说明](../docs/usage/SEVEN_MODEL_TRAINING.md)。
 5. [cyrex_daily_samples.ipynb](notebooks/cyrex_daily_samples.ipynb)：旧次时代严格样本入口；[字段说明](../docs/data/CYREX_DAILY_SAMPLES.md)。
 6. [cyrex_forecast_dashboard.ipynb](notebooks/cyrex_forecast_dashboard.ipynb)：旧固定基准评估、历史/预测图、测试误差；[图表说明](../docs/usage/FORECAST_DASHBOARD.md)。
 
-七品清洗→特征标签→train-only预处理→显式训练/重载评估已接通。预处理版seven_prep_20261021_v1已准备；长时间真实训练由用户运行。旧Cyrex样本/预测保留原版，新Notebook默认全部开关False，旧Notebook用户输出不清空。
+七品清洗→特征标签→train-only预处理→显式训练/重载评估已接通。修复版使用预处理seven_prep_20261021_v2，默认CUDA float32；用户需重启内核再运行新Notebook。v1两轮真实尝试仅持平完成、四神经模型失败，旧入口与证据保留，长时间重训由用户运行。旧Cyrex样本/预测保留原版，新Notebook默认全部开关False，旧Notebook用户输出不清空。
 
 ## 按功能放实现
 

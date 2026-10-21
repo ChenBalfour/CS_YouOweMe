@@ -15,7 +15,7 @@ from pathlib import Path
 import random
 import time
 
-VERSION = "seven-neural-1.0"
+VERSION = "seven-neural-1.1"
 MODEL_NAMES = ("dlinear", "lstm", "transformer", "gated_lstm_transformer")
 _ARCH_DEFAULTS = {
     "sequence_length": 672, "sequence_dim": 6, "tabular_dim": 49,
@@ -25,7 +25,7 @@ _ARCH_DEFAULTS = {
 _TRAIN_DEFAULTS = {
     "batch_size": 8, "epochs": 50, "patience": 8, "learning_rate": 1e-3,
     "weight_decay": 1e-4, "seed": 20261021, "min_delta": 0.0,
-    "gradient_clip": 1.0,
+    "gradient_clip": 1.0, "precision": "float32",
 }
 
 
@@ -116,6 +116,8 @@ def _training_config(config=None):
             raise ValueError(f"Invalid finite nonnegative {key}")
     if result["learning_rate"] == 0 or result["gradient_clip"] == 0:
         raise ValueError("learning_rate and gradient_clip must be positive")
+    if result["precision"] not in ("float32", "amp_float16"):
+        raise ValueError("precision must be float32 or amp_float16")
     return result
 
 
@@ -260,15 +262,42 @@ def _loader(values, batch_size, shuffle, seed, cuda):
         generator=generator, drop_last=False)
 
 
-def _autocast(torch, cuda):
+def _autocast(torch, amp_enabled):
     # CUDA AMP for the user's torch 2.0.1 as well as current torch releases.
-    return torch.autocast(device_type="cuda", dtype=torch.float16) if cuda else nullcontext()
+    return torch.autocast(device_type="cuda", dtype=torch.float16) if amp_enabled else nullcontext()
 
 
-def _scaler(torch, cuda):
+def _scaler(torch, amp_enabled):
     if hasattr(torch, "amp") and hasattr(torch.amp, "GradScaler"):
-        return torch.amp.GradScaler("cuda", enabled=cuda)
-    return torch.cuda.amp.GradScaler(enabled=cuda)
+        return torch.amp.GradScaler("cuda", enabled=amp_enabled)
+    return torch.cuda.amp.GradScaler(enabled=amp_enabled)
+
+
+def _optimizer_step(torch, network, optimizer, scaler, amp_enabled, gradient_clip):
+    """Clip finite unscaled gradients, or let AMP skip/back off an overflow.
+
+    GradScaler records Inf/NaN during unscale_. Its step then skips the update
+    and update lowers the loss scale. Clipping before this check would throw
+    before that normal recovery, or turn a finite-gradient norm overflow into
+    corrupt updates. Float32 non-finite gradients still stop explicitly.
+    """
+    scaler.unscale_(optimizer)
+    parameters = [parameter for parameter in network.parameters() if parameter.grad is not None]
+    if not parameters:
+        raise RuntimeError("Training produced no parameter gradients")
+    finite = all(bool(torch.isfinite(parameter.grad).all()) for parameter in parameters)
+    if not finite:
+        if not amp_enabled:
+            raise FloatingPointError("Non-finite float32 gradients; no optimizer update was performed")
+        scaler.step(optimizer)  # unscale_ has marked this step; GradScaler skips it.
+        scaler.update()
+        return False
+    # A non-finite norm with individually finite gradients is not an AMP
+    # overflow marker: fail rather than applying a corrupted clipped update.
+    torch.nn.utils.clip_grad_norm_(parameters, gradient_clip, error_if_nonfinite=True)
+    scaler.step(optimizer)
+    scaler.update()
+    return True
 
 
 def _predict_loaded(network, arrays, cfg, device, batch_size):
@@ -327,6 +356,9 @@ def fit_neural(name, train_arrays, val_arrays, config, output_dir, device="auto"
     validation = _arrays(val_arrays, cfg, targets=True)
     selected = resolve_device(device)
     cuda = selected.type == "cuda"
+    amp_enabled = train_cfg["precision"] == "amp_float16"
+    if amp_enabled and not cuda:
+        raise ValueError("amp_float16 requires a CUDA device; use precision=float32 for CPU")
     output = Path(output_dir).resolve()
     if output.exists() and any(output.iterdir()):
         raise FileExistsError(f"Refusing to overwrite a nonempty model directory: {output}")
@@ -345,10 +377,13 @@ def fit_neural(name, train_arrays, val_arrays, config, output_dir, device="auto"
         "device_requested": str(device), "device_used": str(selected),
         "device_name": torch.cuda.get_device_name(selected) if cuda else "CPU",
         "torch_version": str(torch.__version__), "cuda_runtime": torch.version.cuda,
-        "amp": "cuda_float16" if cuda else "disabled", "train_rows": len(train[0]),
+        "precision": train_cfg["precision"], "amp": "cuda_float16" if amp_enabled else "disabled",
+        "train_rows": len(train[0]),
         "validation_rows": len(validation[0]), "selection_metric": "validation_return_mae",
         "weights_file": "best_state.pt", "history_file": "history.json",
         "artifact_dir": str(output), "epochs_completed": 0,
+        "optimizer_steps_total": 0, "skipped_optimizer_steps_total": 0,
+        "max_consecutive_amp_overflows": 32,
         "preprocessing": "external_train_only_saved_schema_required",
     }
     _write_json(output / "model_config.json", {"name": name, "architecture": cfg, "training": train_cfg})
@@ -359,29 +394,40 @@ def fit_neural(name, train_arrays, val_arrays, config, output_dir, device="auto"
         network = build_network(name, cfg).to(selected)
         metadata["parameter_count"] = sum(p.numel() for p in network.parameters())
         optimizer = torch.optim.AdamW(network.parameters(), lr=train_cfg["learning_rate"], weight_decay=train_cfg["weight_decay"])
-        scaler = _scaler(torch, cuda)
+        scaler = _scaler(torch, amp_enabled)
         train_loader = _loader(train, train_cfg["batch_size"], True, seed, cuda)
         val_loader = _loader(validation, train_cfg["batch_size"], False, seed, cuda)
         best_mae, bad_epochs, best_state = math.inf, 0, None
+        consecutive_overflows = 0
         for epoch in range(1, train_cfg["epochs"] + 1):
             epoch_started = time.monotonic()
             network.train()
             total_squared, count = 0.0, 0
+            optimizer_steps, skipped_steps = 0, 0
             for sequence, tabular, target in train_loader:
                 sequence, tabular, target = (tensor.to(selected, non_blocking=True) for tensor in (sequence, tabular, target))
                 optimizer.zero_grad(set_to_none=True)
-                with _autocast(torch, cuda):
+                with _autocast(torch, amp_enabled):
                     prediction = network(sequence, tabular)
                     loss = (prediction.float() - target).square().mean()
                 if not torch.isfinite(loss):
                     raise FloatingPointError("Non-finite training loss; no fallback or sample deletion performed")
                 scaler.scale(loss).backward()
-                scaler.unscale_(optimizer)
-                torch.nn.utils.clip_grad_norm_(network.parameters(), train_cfg["gradient_clip"], error_if_nonfinite=True)
-                scaler.step(optimizer)
-                scaler.update()
+                updated = _optimizer_step(torch, network, optimizer, scaler, amp_enabled, train_cfg["gradient_clip"])
+                if updated:
+                    optimizer_steps += 1
+                    metadata["optimizer_steps_total"] += 1
+                    consecutive_overflows = 0
+                else:
+                    skipped_steps += 1
+                    metadata["skipped_optimizer_steps_total"] += 1
+                    consecutive_overflows += 1
+                    if consecutive_overflows >= metadata["max_consecutive_amp_overflows"]:
+                        raise FloatingPointError("32 consecutive AMP gradient overflows; stopped without a fallback")
                 total_squared += float(loss.detach()) * len(target)
                 count += len(target)
+            if not optimizer_steps:
+                raise FloatingPointError("Epoch had no successful optimizer steps; no checkpoint was produced")
             network.eval()
             val_absolute, val_squared, val_count = 0.0, 0.0, 0
             with torch.inference_mode():
@@ -396,7 +442,9 @@ def fit_neural(name, train_arrays, val_arrays, config, output_dir, device="auto"
             val_mae = val_absolute / val_count
             row = {"epoch": epoch, "train_return_mse": total_squared / count,
                    "validation_return_mse": val_squared / val_count, "validation_return_mae": val_mae,
-                   "seconds": time.monotonic() - epoch_started}
+                   "seconds": time.monotonic() - epoch_started,
+                   "optimizer_steps": optimizer_steps, "skipped_optimizer_steps": skipped_steps,
+                   "loss_scale": float(scaler.get_scale()) if amp_enabled else None}
             history.append(row)
             print(f"[{name}] epoch {epoch}/{train_cfg['epochs']} train_mse={row['train_return_mse']:.6g} val_mae={val_mae:.6g}", flush=True)
             if val_mae < best_mae - train_cfg["min_delta"]:

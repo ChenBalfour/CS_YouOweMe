@@ -1,5 +1,5 @@
 {
-  "version": "seven-training-spec-1.0",
+  "version": "seven-training-spec-1.1",
   "task": "source_reference_simple_return_7d",
   "horizon_hours": 168,
   "lookback_hours": 672,
@@ -8,19 +8,86 @@
   "default_profile": "quality",
   "selection": "validation_return_mae",
   "test_usage": "explicit_exploratory_only_already_viewed",
-  "default_training_models": ["persistence", "ridge", "auto_arima", "lightgbm"],
-  "neural_candidates": ["dlinear", "lstm", "transformer", "gated_lstm_transformer"],
+  "default_training_models": [
+    "persistence",
+    "ridge",
+    "auto_arima",
+    "lightgbm"
+  ],
+  "neural_candidates": [
+    "dlinear",
+    "lstm",
+    "transformer",
+    "gated_lstm_transformer"
+  ],
   "preprocessing": "train_only_median_standard_scale_plus_missing_masks_item_onehot",
   "tree_preprocessing": "raw_nan_features_plus_training_item_onehot",
-  "sequence_channels": ["log_close_to_reference", "adjacent_1h_log_return", "log_high_low"],
+  "sequence_channels": [
+    "log_close_to_reference",
+    "adjacent_1h_log_return",
+    "log_high_low"
+  ],
   "model_configs": {
     "persistence": {},
-    "ridge": {"ridge_alphas": [0.1, 1.0, 10.0]},
-    "auto_arima": {"arima_maxiter": 50, "arima_max_train_hours": 8760, "arima_min_train_observed": 336},
-    "lightgbm": {"n_estimators": 300, "learning_rate": 0.03, "n_jobs": 4, "early_stopping_rounds": 30, "seed": 20261021},
-    "dlinear": {"hidden_dim": 32, "batch_size": 8, "epochs": 50, "patience": 8, "learning_rate": 0.001, "seed": 20261021},
-    "lstm": {"hidden_dim": 32, "batch_size": 8, "epochs": 50, "patience": 8, "learning_rate": 0.001, "seed": 20261021},
-    "transformer": {"hidden_dim": 32, "nhead": 4, "num_layers": 1, "batch_size": 8, "epochs": 50, "patience": 8, "learning_rate": 0.001, "seed": 20261021},
-    "gated_lstm_transformer": {"hidden_dim": 32, "nhead": 4, "num_layers": 1, "short_length": 24, "batch_size": 8, "epochs": 50, "patience": 8, "learning_rate": 0.001, "seed": 20261021}
+    "ridge": {
+      "ridge_alphas": [
+        0.1,
+        1.0,
+        10.0
+      ]
+    },
+    "auto_arima": {
+      "arima_maxiter": 50,
+      "arima_max_train_hours": 8760,
+      "arima_min_train_observed": 336
+    },
+    "lightgbm": {
+      "n_estimators": 300,
+      "learning_rate": 0.03,
+      "n_jobs": 4,
+      "early_stopping_rounds": 30,
+      "seed": 20261021
+    },
+    "dlinear": {
+      "hidden_dim": 32,
+      "batch_size": 8,
+      "epochs": 50,
+      "patience": 8,
+      "learning_rate": 0.001,
+      "seed": 20261021,
+      "precision": "float32"
+    },
+    "lstm": {
+      "hidden_dim": 32,
+      "batch_size": 8,
+      "epochs": 50,
+      "patience": 8,
+      "learning_rate": 0.001,
+      "seed": 20261021,
+      "precision": "float32"
+    },
+    "transformer": {
+      "hidden_dim": 32,
+      "nhead": 4,
+      "num_layers": 1,
+      "batch_size": 8,
+      "epochs": 50,
+      "patience": 8,
+      "learning_rate": 0.001,
+      "seed": 20261021,
+      "precision": "float32"
+    },
+    "gated_lstm_transformer": {
+      "hidden_dim": 32,
+      "nhead": 4,
+      "num_layers": 1,
+      "short_length": 24,
+      "batch_size": 8,
+      "epochs": 50,
+      "patience": 8,
+      "learning_rate": 0.001,
+      "seed": 20261021,
+      "precision": "float32"
+    }
   }
 }
